@@ -1,47 +1,70 @@
-interface SubmissionStatus {
-  status: {
-    id: number
-    description: string
-  }
-  compile_output?: string
-  stdout?: string
-  stderr?: string
-  time?: number
-  memory?: number
-  exit_code?: number
-  expected_output?: string
-  // ... other fields as needed
+export interface SubmissionStatus {
+  description: string;
+  results: {
+    test_case_index: number;
+    passed: boolean;
+    stdout?: string;
+    stderr?: string;
+    compile_output?: string;
+    expected_output?: string;
+    status: {
+      id: number;
+      description: string;
+    };
+  }[];
 }
 
-export async function pollSubmission(token: string): Promise<SubmissionStatus> {
-  if (!token) {
-    console.error('Invalid token:', token);
-    throw new Error('Cannot poll submission status: Invalid token');
+interface TestCaseResult {
+  test_case_index: number;
+  token: string;
+  status: {
+    id: number;
+    description: string;
+  };
+  compile_output?: string;
+  stdout?: string;
+  stderr?: string;
+  expected_output?: string;
+  passed: boolean;
+  error?: string;
+}
+
+interface BatchSubmissionStatus {
+  completed: boolean;
+  passed: boolean;
+  results: TestCaseResult[];
+}
+
+export async function pollSubmission(tokens: string[]): Promise<BatchSubmissionStatus> {
+  if (!tokens.length) {
+    throw new Error('No submission tokens provided');
   }
 
-  // Define processing status IDs
-  const PROCESSING_STATUSES = [1, 2]; // 1: In Queue, 2: Processing
+  const PROCESSING_STATUSES = [1, 2];
 
   while (true) {
-    console.log('Polling submission with token:', token);
+    console.log('Polling submissions...');
     
-    const response = await fetch(`http://localhost:8000/problem-submission/submission/${token}`);
+    const response = await fetch(`http://localhost:8000/problem-submission/submissions-status`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ tokens })
+    });
     
     if (!response.ok) {
-      const error = await response.text();
-      console.error('Error polling submission:', error);
-      throw new Error(`Failed to poll submission: ${error}`);
+      throw new Error(`Failed to poll submissions: ${await response.text()}`);
     }
 
-    const result = await response.json();
+    const result = await response.json() as BatchSubmissionStatus;
     console.log('Poll result:', result);
     
-    // If status is not "processing", return the result
-    if (!PROCESSING_STATUSES.includes(result.status.id)) {
+    if (result.completed) {
       return result;
     }
 
-    // Wait 2 seconds before polling again
+    // Wait before polling again
     await new Promise(resolve => setTimeout(resolve, 2000));
   }
 }

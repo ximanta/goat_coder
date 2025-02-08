@@ -1,90 +1,136 @@
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 interface TestCase {
-  id?: string;
-  input: any[];
-  output?: any;
+  input: any[]
+  output: any
+}
+
+interface TestCaseResult {
+  test_case_index: number
+  passed: boolean
+  stdout?: string
+  stderr?: string
+  compile_output?: string
+  expected_output?: string
+  status: {
+    id: number
+    description: string
+  }
 }
 
 interface TestCasesProps {
   testCases: TestCase[]
-  results: Record<string, any>
-  structure?: {
-    input_structure: Array<{ Input_Field: string }>;
+  results?: {
+    completed: boolean
+    passed: boolean
+    results: TestCaseResult[]
   }
+  structure: any
 }
 
 export function TestCases({ testCases, results, structure }: TestCasesProps) {
-  const [selectedTestCase, setSelectedTestCase] = useState(0)
-
-  const renderParamValue = (value: any) => {
-    if (Array.isArray(value)) {
-      return `[${value.join(", ")}]`
-    }
-    if (typeof value === 'string') {
-      return `"${value}"`
-    }
-    return String(value)
-  }
-
+  console.log('TestCases render:', { testCases, results });
+  
   return (
-    <Tabs defaultValue="testcase" className="w-full">
-      <TabsList className="bg-background border-b rounded-none w-full justify-start h-12 p-0">
-        <TabsTrigger value="testcase" className="data-[state=active]:bg-muted rounded-none h-full px-4">
-          Testcase
-        </TabsTrigger>
-        <TabsTrigger value="result" className="data-[state=active]:bg-muted rounded-none h-full px-4">
-          Test Result
-        </TabsTrigger>
+    <Tabs defaultValue="test-result" className="w-full">
+      <TabsList className="grid w-full grid-cols-7">
+        <TabsTrigger value="test-result">Test Result</TabsTrigger>
+        {testCases.map((_, index) => {
+          const result = results?.results?.find(r => r.test_case_index === index);
+          console.log(`Test ${index} result:`, result);
+          return (
+            <TabsTrigger 
+              key={index} 
+              value={`test-${index}`}
+              className={cn(
+                result?.passed && "bg-green-500 text-white hover:bg-green-600",
+                result?.passed === false && "bg-red-500 text-white hover:bg-red-600"
+              )}
+            >
+              Test {index + 1}
+            </TabsTrigger>
+          );
+        })}
       </TabsList>
-      <TabsContent value="testcase" className="p-0 border-0">
-        <Card className="border-0 shadow-none">
-          <CardContent className="p-4">
-            <div className="flex flex-wrap gap-2 mb-4">
-              {testCases.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedTestCase(index)}
-                  className={`px-3 py-1 rounded-full text-sm ${
-                    selectedTestCase === index
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700"
-                  }`}
-                >
-                  Test Case {index + 1}
-                </button>
-              ))}
+
+      <TabsContent value="test-result" className="p-4">
+        {results ? (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Overall Results</h3>
+            <div className="space-y-2">
+              <p>Status: {results.completed ? "Completed" : "Running..."}</p>
+              <p className={cn(
+                "font-medium",
+                results.passed ? "text-green-600" : "text-red-600"
+              )}>
+                {results.passed ? "All Tests Passed!" : "Some Tests Failed"}
+              </p>
+              <p>Total Tests: {testCases.length}</p>
+              <p>Passed: {results.results?.filter(r => r.passed)?.length || 0}</p>
+              <p>Failed: {results.results?.filter(r => !r.passed)?.length || 0}</p>
+            </div>
+          </div>
+        ) : (
+          <p>Run your code to see results</p>
+        )}
+      </TabsContent>
+
+      {testCases.map((testCase, index) => (
+        <TabsContent key={index} value={`test-${index}`} className="p-4">
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Input:</h3>
+              <pre className="bg-gray-100 p-2 rounded">
+                {testCase.input.map((input, i) => (
+                  <div key={i}>{JSON.stringify(input)}</div>
+                ))}
+              </pre>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Expected Output:</h3>
+              <pre className="bg-gray-100 p-2 rounded">
+                {JSON.stringify(testCase.output)}
+              </pre>
             </div>
 
-            {testCases[selectedTestCase] && structure?.input_structure && (
-              <div className="space-y-4">
-                {structure.input_structure.map((param, index) => (
-                  <div key={index} className="space-y-1">
-                    <Label className="text-sm font-medium">
-                      Param {index + 1} - {param.Input_Field.split(" ")[1]}
-                    </Label>
-                    <div className="p-2 rounded bg-muted font-mono text-sm">
-                      {renderParamValue(testCases[selectedTestCase].input[index])}
-                    </div>
+            {results?.results?.[index] && (
+              <>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Your Output:</h3>
+                  <pre className="bg-gray-100 p-2 rounded">
+                    {results.results[index].stdout?.trim() || "No output"}
+                  </pre>
+                </div>
+
+                {results.results[index].stderr && (
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 text-red-600">Errors:</h3>
+                    <pre className="bg-red-50 text-red-600 p-2 rounded">
+                      {results.results[index].stderr}
+                    </pre>
                   </div>
-                ))}
-              </div>
+                )}
+
+                <div className={cn(
+                  "p-4 rounded-lg",
+                  results.results[index].passed ? "bg-green-50" : "bg-red-50"
+                )}>
+                  <p className={cn(
+                    "font-semibold",
+                    results.results[index].passed ? "text-green-600" : "text-red-600"
+                  )}>
+                    Status: {results.results[index].status.description}
+                  </p>
+                </div>
+              </>
             )}
-          </CardContent>
-        </Card>
-      </TabsContent>
-      <TabsContent value="result" className="p-0 border-0">
-        <Card className="border-0 shadow-none">
-          <CardContent className="p-4">
-            <pre className="whitespace-pre-wrap font-mono text-sm">{JSON.stringify(results, null, 2)}</pre>
-          </CardContent>
-        </Card>
-      </TabsContent>
+          </div>
+        </TabsContent>
+      ))}
     </Tabs>
   )
 }

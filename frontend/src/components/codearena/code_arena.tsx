@@ -15,6 +15,19 @@ export interface CodeArenaProps {
   onBack?: () => void;
 }
 
+interface TestCaseResult {
+  test_case_index: number;
+  passed: boolean;
+  stdout?: string;
+  stderr?: string;
+  compile_output?: string;
+  expected_output?: string;
+  status: {
+    id: number;
+    description: string;
+  };
+}
+
 export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("4")
@@ -48,6 +61,15 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     pythonBoilerplate: ""
   })
   const { theme } = useTheme()
+  const [testResults, setTestResults] = useState<{
+    completed: boolean;
+    passed: boolean;
+    results: TestCaseResult[];
+  }>({
+    completed: false,
+    passed: false,
+    results: []
+  });
 
   useEffect(() => {
     handleGenerateNewProblem()
@@ -77,34 +99,21 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (result: { status: { description: string; results: any[] } }) => {
     try {
-      console.log('=== Submit Code ===');
-      console.log('Code:', code);
-      console.log('Language:', language);
-      console.log('Structure:', problem.structure);
-      console.log('Test Cases:', problem.testCases);
-
-      const structureStr = JSON.stringify({
-        function_name: problem.structure.function_name,
-        input_structure: problem.structure.input_structure,
-        output_structure: problem.structure.output_structure
-      });
+      console.log('=== Submit Result ===');
+      console.log('Result:', result);
       
-      const result = await submitCode(
-        code,
-        language,
-        structureStr,
-        problem.testCases
-      );
-      
-      if (!result?.status) {
-        throw new Error('No status received from submission');
+      if (result?.status) {
+        setTestResults({
+          completed: true,
+          passed: result.status.results.every(r => r.passed),
+          results: result.status.results
+        });
+        setStatus(result.status.description);
       }
-      
-      setStatus(result.status.description || 'Submission completed');
     } catch (error) {
-      console.error('Error submitting code:', error);
+      console.error('Error handling submit:', error);
       setStatus(error instanceof Error ? error.message : 'Submission failed');
     }
   };
@@ -160,6 +169,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
               testCases={problem.testCases}
               javaBoilerplate={problem.javaBoilerplate}
               pythonBoilerplate={problem.pythonBoilerplate}
+              testResults={testResults}
             />
           </div>
         </Panel>

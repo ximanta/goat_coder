@@ -14,7 +14,7 @@ interface CodeEditorProps {
   language: string
   onCodeChange: (code: string) => void
   onLanguageChange: (language: string) => void
-  onSubmit: (result: { status: string }) => void
+  onSubmit: (result: { status: { description: string; results: any[] } }) => void
   status: string
   structure: {
     problem_name: string;
@@ -28,6 +28,30 @@ interface CodeEditorProps {
   }[]
   javaBoilerplate?: string
   pythonBoilerplate?: string
+  testResults?: {
+    completed: boolean;
+    passed: boolean;
+    results: {
+      test_case_index: number;
+      passed: boolean;
+      stdout?: string;
+      stderr?: string;
+      compile_output?: string;
+      expected_output?: string;
+      status: {
+        id: number;
+        description: string;
+      };
+    }[];
+  }
+}
+
+interface TestCaseResult {
+  passed: boolean;
+  stdout?: string;
+  stderr?: string;
+  compile_output?: string;
+  expected_output?: string;
 }
 
 // Replace the hardcoded languages array with a transformed version from language_mapping
@@ -46,7 +70,8 @@ export function CodeEditor({
   structure, 
   testCases = [],
   javaBoilerplate = '',
-  pythonBoilerplate = ''
+  pythonBoilerplate = '',
+  testResults
 }: CodeEditorProps) {
   const editorRef = useRef<any>(null)
 
@@ -188,6 +213,43 @@ export function CodeEditor({
     }
   }
 
+  const TestCaseResults: React.FC<{ results: TestCaseResult[] }> = ({ results }) => {
+    return (
+      <div className="space-y-4">
+        {results.map((result, index) => (
+          <div key={index} className={`p-4 rounded-lg ${result.passed ? 'bg-green-50' : 'bg-red-50'}`}>
+            <div className="flex items-center gap-2">
+              <span className={`text-sm font-medium ${result.passed ? 'text-green-600' : 'text-red-600'}`}>
+                Test Case {index + 1}: {result.passed ? 'Passed' : 'Failed'}
+              </span>
+            </div>
+            {!result.passed && (
+              <div className="mt-2 text-sm">
+                {result.compile_output && (
+                  <div className="text-red-600">
+                    <strong>Compilation Error:</strong>
+                    <pre className="mt-1 text-xs">{result.compile_output}</pre>
+                  </div>
+                )}
+                {result.stderr && (
+                  <div className="text-red-600">
+                    <strong>Runtime Error:</strong>
+                    <pre className="mt-1 text-xs">{result.stderr}</pre>
+                  </div>
+                )}
+                <div className="mt-2">
+                  <strong>Expected:</strong> {result.expected_output}
+                  <br />
+                  <strong>Got:</strong> {result.stdout || 'No output'}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <PanelGroup direction="vertical" className="h-full">
       <Panel defaultSize={70} minSize={30}>
@@ -245,7 +307,11 @@ export function CodeEditor({
 
       <Panel defaultSize={30} minSize={20}>
         <div className="h-full overflow-y-auto">
-          <TestCases testCases={testCases} results={{ status }} structure={structure} />
+          <TestCases 
+            testCases={testCases} 
+            results={testResults} 
+            structure={structure} 
+          />
         </div>
       </Panel>
     </PanelGroup>

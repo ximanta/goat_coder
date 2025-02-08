@@ -52,84 +52,40 @@ class ProblemSubmissionService:
         return "\n".join(formatted_inputs)
 
     async def submit_code(self, language_id: int, source_code: str, problem_id: str, structure: str, test_cases: list):
-        logger.info("=== Problem Submission Service ===")
-        logger.info(f"1. Received structure (type: {type(structure)}): {structure}")
-        
         try:
             parsed_structure = json.loads(structure) if isinstance(structure, str) else structure
-            logger.info(f"2. Parsed structure: {parsed_structure}")
             
             # Generate complete Java submission
             java_generator = JavaSubmissionGenerator()
-            logger.info("3. Creating Java generator")
-            
             complete_source = java_generator.generate_submission(source_code, parsed_structure)
-            
-            url = f"{self.judge0_base_url}/submissions/batch"
-            
-            # Use the first test case for initial submission
-            first_test = test_cases[0]
-            logger.info(f"Using test case: {first_test}")
-            
-            # Format input properly for Java
-            input_str = self.format_input_for_java(first_test['input'])
-            output_str = str(first_test['output'])
-            
-            logger.info("=== Input/Output Processing ===")
-            logger.info(f"Raw input: {first_test['input']}")
-            logger.info(f"Formatted input string: {input_str}")
-            logger.info(f"Raw output: {first_test['output']}")
-            logger.info(f"Formatted output string: {output_str}")
-
-            # Encode the inputs in base64
             encoded_source = self.encode_base64(complete_source)
-            encoded_stdin = self.encode_base64(input_str)
-            encoded_expected = self.encode_base64(output_str)
             
-            logger.info("=== Base64 Encoded Data ===")
-            logger.info(f"Encoded stdin (base64): {encoded_stdin}")
-            logger.info("Decoded stdin (for verification):")
-            logger.info(base64.b64decode(encoded_stdin).decode('utf-8'))
-
-            # Payload for batch submission
-            payload = {
-                "submissions": [
-                    {
-                        "language_id": language_id,
-                        "source_code": encoded_source,
-                        "stdin": encoded_stdin,
-                        "expected_output": encoded_expected,
-                        "callback_url": os.getenv("JUDGE0_CALLBACK_URL", "http://localhost:8000/problem-submission/submission-callback")
-                    }
-                ]
-            }
+            # Prepare submissions for all test cases
+            submissions = []
+            logger.info(f"Processing {len(test_cases)} test cases")
             
-            querystring = {"base64_encoded":"true","wait":"false","fields":"*"}
-            
-            # Log request details
-            logger.info("Sending request to Judge0:")
-            logger.info(f"URL: {url}")
-            logger.info(f"Payload: {payload}")
-            
-            try:
-                response = requests.post(
-                    url,
-                    json=payload,
-                    headers=self.headers,
-                    params=querystring
-                )
+            for i, test_case in enumerate(test_cases):
+                input_str = self.format_input_for_java(test_case['input'])
+                output_str = str(test_case['output'])
                 
-                logger.info(f"Response status: {response.status_code}")
-                logger.info(f"Response body: {response.text}")
+                logger.info(f"Test Case {i + 1}:")
+                logger.info(f"Input: {input_str}")
+                logger.info(f"Expected Output: {output_str}")
                 
-                response.raise_for_status()
-                response_json = response.json()
-                logger.info(f"Parsed response: {response_json}")
-                return response_json
-            except requests.exceptions.RequestException as e:
-                logger.error(f"Request failed: {str(e)}")
-                logger.error(f"Response content: {e.response.text if hasattr(e, 'response') else 'No response content'}")
-                raise Exception(f"Failed to submit code: {str(e)}")
+                submissions.append({
+                    "language_id": language_id,
+                    "source_code": encoded_source,
+                    "stdin": self.encode_base64(input_str),
+                    "expected_output": self.encode_base64(output_str),
+                    "callback_url": os.getenv("JUDGE0_CALLBACK_URL")
+                })
+            
+            # Submit batch request
+            url = f"{self.judge0_base_url}/submissions/batch"
+            payload = {"submissions": submissions}
+            
+            response = await self._make_request(url, payload)
+            return response
         except json.JSONDecodeError as e:
             logger.error(f"5. Failed to parse structure JSON: {e}")
             raise Exception(f"Invalid structure format: {e}")
@@ -215,3 +171,75 @@ class ProblemSubmissionService:
         except Exception as e:
             logger.error(f"Error processing submission response: {str(e)}")
             raise Exception(f"Failed to process submission response: {str(e)}")
+
+    async def get_submissions_status(self, tokens: list[str]):
+        """Get status for multiple submissions"""
+        results = []
+        
+        for i, token in enumerate(tokens):
+            try:
+                result = await self.get_submission(token)
+                results.append({
+                    "test_case_index": i,
+                    "token": token,
+                    "status": result["status"],
+                    "compile_output": result.get("compile_output"),
+                    "stdout": result.get("stdout"),
+                    "stderr": result.get("stderr"),
+                    "expected_output": result.get("expected_output"),
+                    "passed": result["status"]["id"] == 3  # 3 is Accepted
+                })
+            except Exception as e:
+                logger.error(f"Error getting status for submission {token}: {e}")
+                results.append({
+                    "test_case_index": i,
+                    "token": token,
+                    "error": str(e),
+                    "passed": False
+                })
+        
+        # Calculate overall status
+        all_completed = all(r.get("status", {}).get("id") not in [1, 2] for r in results)
+        all_passed = all(r.get("passed", False) for r in results)
+        
+        return {
+            "completed": all_completed,
+            "passed": all_passed,
+            "results": results
+        }
+
+    async def _make_request(self, url: str, payload: dict) -> dict:
+        """
+        Make a request to Judge0 API
+        """
+        try:
+            logger.info(f"Making request to: {url}")
+            logger.info(f"Payload: {json.dumps(payload, indent=2)}")
+            
+            response = requests.post(
+                url,
+                headers=self.headers,
+                json=payload,
+                params={"base64_encoded": "true", "fields": "*"}
+            )
+            
+            logger.info(f"Response status: {response.status_code}")
+            
+            if not response.ok:
+                error_text = response.text
+                logger.error(f"Request failed with status {response.status_code}: {error_text}")
+                raise Exception(f"Judge0 API request failed: {error_text}")
+            
+            result = response.json()
+            logger.info(f"Response: {json.dumps(result, indent=2)}")
+            
+            return result
+        
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request error: {str(e)}")
+            if hasattr(e, 'response'):
+                logger.error(f"Response content: {e.response.text}")
+            raise Exception(f"Failed to make Judge0 API request: {str(e)}")
+        except Exception as e:
+            logger.error(f"Unexpected error: {str(e)}")
+            raise Exception(f"Unexpected error in Judge0 API request: {str(e)}")

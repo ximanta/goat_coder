@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Body
 from pydantic import BaseModel
 from typing import Optional, List, Any
 from .problem_submission_service import ProblemSubmissionService
@@ -30,30 +30,51 @@ class ProblemSubmission(BaseModel):
             }
         }
 
+# Add new model for submissions status request
+class SubmissionsStatusRequest(BaseModel):
+    tokens: List[str]
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "tokens": ["token1", "token2", "token3"]
+            }
+        }
+
 @router.post("/submit")
-async def submit_problem(submission: ProblemSubmission):
+async def submit_problem(
+    language_id: int = Body(...),
+    source_code: str = Body(...),
+    problem_id: str = Body(...),
+    structure: str = Body(...),
+    test_cases: list = Body(...)
+):
+    """
+    Submit code for evaluation
+    """
     try:
         logger.info("=== Problem Submission Route ===")
         logger.info("1. Received submission request:")
-        logger.info(f"Language ID: {submission.language_id}")
-        logger.info(f"Source code length: {len(submission.source_code)}")
-        logger.info(f"Problem ID: {submission.problem_id}")
-        logger.info(f"Structure (raw): {submission.structure}")
-        logger.info(f"Test cases count: {len(submission.test_cases)}")
-
+        logger.info(f"Language ID: {language_id}")
+        logger.info(f"Source code length: {len(source_code)}")
+        logger.info(f"Problem ID: {problem_id}")
+        logger.info(f"Structure (raw): {structure}")
+        logger.info(f"Test cases count: {len(test_cases)}")
+        
         service = ProblemSubmissionService()
-        result = await service.submit_code(
-            language_id=int(submission.language_id),
-            source_code=submission.source_code,
-            problem_id=submission.problem_id,
-            structure=submission.structure,
-            test_cases=submission.test_cases
-        )
-        logger.info("2. Service result:", result)
+        result = await service.submit_code(language_id, source_code, problem_id, structure, test_cases)
+        
+        # Fix the logging format
+        logger.info("2. Service result: %s", result)  # Changed from logger.info("2. Service result:", result)
+        
         return result
+        
     except Exception as e:
-        logger.error(f"3. Error in submit_problem: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error in submit_problem: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
 
 @router.post("/submission-callback")
 async def submission_callback(request: Request):
@@ -81,3 +102,29 @@ async def get_submission(submission_id: str):
     except Exception as e:
         logger.error(f"Error in get_submission: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/submissions-status")
+async def get_submissions_status(request: SubmissionsStatusRequest):
+    """
+    Get status for multiple submissions
+    """
+    try:
+        logger.info(f"=== Getting Status for {len(request.tokens)} Submissions ===")
+        logger.info(f"Tokens: {request.tokens}")
+        
+        service = ProblemSubmissionService()
+        result = await service.get_submissions_status(request.tokens)
+        
+        logger.info("Batch status result:")
+        logger.info(f"Completed: {result['completed']}")
+        logger.info(f"All Passed: {result['passed']}")
+        logger.info(f"Results count: {len(result['results'])}")
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"Error getting submissions status: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to get submissions status: {str(e)}"
+        )
