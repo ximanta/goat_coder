@@ -24,6 +24,7 @@ interface TestCaseResult {
 interface TestCasesProps {
   testCases: TestCase[]
   results?: {
+    submitted: boolean
     completed: boolean
     passed: boolean
     results: TestCaseResult[]
@@ -36,28 +37,44 @@ export function TestCases({ testCases, results, structure }: TestCasesProps) {
   
   return (
     <Tabs defaultValue="test-result" className="w-full">
-      <TabsList className="grid w-full grid-cols-7">
-        <TabsTrigger value="test-result">Test Result</TabsTrigger>
-        {testCases.map((_, index) => {
-          const result = results?.results?.find(r => r.test_case_index === index);
-          console.log(`Test ${index} result:`, result);
-          return (
-            <TabsTrigger 
-              key={index} 
-              value={`test-${index}`}
-              className={cn(
-                result?.passed && "bg-green-500 text-white hover:bg-green-600",
-                result?.passed === false && "bg-red-500 text-white hover:bg-red-600"
-              )}
-            >
-              Test {index + 1}
-            </TabsTrigger>
-          );
-        })}
-      </TabsList>
+      <div className="border rounded-lg p-2 bg-background">
+        <TabsList className="grid w-full" style={{
+          gridTemplateColumns: `repeat(${testCases.length}, 1fr) 1.5fr`
+        }}>
+          {testCases.map((_, index) => {
+            const result = results?.results?.find(r => r.test_case_index === index);
+            console.log(`Test ${index} result:`, result);
+            return (
+              <TabsTrigger 
+                key={index} 
+                value={`test-${index}`}
+                className={cn(
+                  "border-r last:border-r-0",
+                  result?.passed && "bg-green-500 text-white hover:bg-green-600",
+                  result?.passed === false && "bg-red-500 text-white hover:bg-red-600"
+                )}
+              >
+                Test {index + 1}
+              </TabsTrigger>
+            );
+          })}
+          <TabsTrigger 
+            value="test-result"
+            className={cn(
+              "border-l ml-2 bg-gray-100 hover:bg-gray-200",
+              results?.submitted && results.passed && "bg-green-100 hover:bg-green-200",
+              results?.submitted && !results?.passed && "bg-red-100 hover:bg-red-200"
+            )}
+          >
+            Submission Results
+          </TabsTrigger>
+        </TabsList>
+      </div>
 
       <TabsContent value="test-result" className="p-4">
-        {results ? (
+        {!results?.submitted ? (
+          <p className="text-gray-600">Please submit your code to view results</p>
+        ) : results ? (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Overall Results</h3>
             <div className="space-y-2">

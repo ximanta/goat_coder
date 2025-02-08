@@ -28,11 +28,19 @@ interface TestCaseResult {
   };
 }
 
+interface TestResults {
+  submitted: boolean;
+  completed: boolean;
+  passed: boolean;
+  results: TestCaseResult[];
+}
+
 export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("4")
   const [status, setStatus] = useState("")
   const [loading, setLoading] = useState(true)
+  const [isGenerating, setIsGenerating] = useState(false)
   const [problem, setProblem] = useState<{
     title: string;
     difficulty: string;
@@ -61,23 +69,16 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     pythonBoilerplate: ""
   })
   const { theme } = useTheme()
-  const [testResults, setTestResults] = useState<{
-    completed: boolean;
-    passed: boolean;
-    results: TestCaseResult[];
-  }>({
+  const [testResults, setTestResults] = useState<TestResults>({
+    submitted: false,
     completed: false,
     passed: false,
     results: []
   });
 
-  useEffect(() => {
-    handleGenerateNewProblem()
-  }, [category])
-
   const handleGenerateNewProblem = async () => {
     try {
-      setLoading(true)
+      setIsGenerating(true)
       const complexities = ["EASY", "MEDIUM", "HARD"]
       const randomComplexity = complexities[Math.floor(Math.random() * complexities.length)]
       
@@ -100,9 +101,17 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     } catch (error) {
       console.error("Failed to generate new problem:", error)
     } finally {
-      setLoading(false)
+      setIsGenerating(false)
     }
   }
+
+  useEffect(() => {
+    const initializeComponent = async () => {
+      await handleGenerateNewProblem()
+      setLoading(false)
+    }
+    initializeComponent()
+  }, [category])
 
   const handleSubmit = async (result: { status: { description: string; results: any[] } }) => {
     try {
@@ -111,6 +120,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
       
       if (result?.status) {
         setTestResults({
+          submitted: true,
           completed: true,
           passed: result.status.results.every(r => r.passed),
           results: result.status.results
@@ -155,6 +165,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
               difficulty={problem.difficulty}
               description={problem.description}
               onGenerateNewProblem={handleGenerateNewProblem}
+              isGenerating={isGenerating}
             />
           </div>
         </Panel>
