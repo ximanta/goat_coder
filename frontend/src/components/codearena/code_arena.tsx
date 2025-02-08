@@ -79,6 +79,16 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const handleGenerateNewProblem = async () => {
     try {
       setIsGenerating(true)
+      // Clear existing code and results immediately when generation starts
+      setCode("")
+      setTestResults({
+        submitted: false,
+        completed: false,
+        passed: false,
+        results: []
+      })
+      setStatus("")
+
       const complexities = ["EASY", "MEDIUM", "HARD"]
       const randomComplexity = complexities[Math.floor(Math.random() * complexities.length)]
       
@@ -96,8 +106,6 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         javaBoilerplate: newProblem.java_boilerplate,
         pythonBoilerplate: newProblem.python_boilerplate
       })
-      setCode("")
-      setStatus("")
     } catch (error) {
       console.error("Failed to generate new problem:", error)
     } finally {
@@ -186,6 +194,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
               javaBoilerplate={problem.javaBoilerplate}
               pythonBoilerplate={problem.pythonBoilerplate}
               testResults={testResults}
+              isGenerating={isGenerating}
             />
           </div>
         </Panel>

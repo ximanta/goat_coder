@@ -2,6 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { Loader2 } from "lucide-react"
 
 interface TestCase {
   input: any[]
@@ -30,14 +31,20 @@ interface TestCasesProps {
     results: TestCaseResult[]
   }
   structure: any
+  isGenerating?: boolean
 }
 
-export function TestCases({ testCases, results, structure }: TestCasesProps) {
+export function TestCases({ testCases, results, structure, isGenerating = false }: TestCasesProps) {
   console.log('TestCases render:', { testCases, results });
   
   return (
     <Tabs defaultValue="test-result" className="w-full">
-      <div className="border rounded-lg p-2 bg-background">
+      <div className="border rounded-lg p-2 bg-background relative">
+        {isGenerating && (
+          <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
+            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          </div>
+        )}
         <TabsList className="grid w-full" style={{
           gridTemplateColumns: `repeat(${testCases.length}, 1fr) 1.5fr`
         }}>

@@ -8,6 +8,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { TestCases } from "@/components/codearena/test-cases"
 import languageMapping from '@/components/language_mapping.json'
 import { submitCode } from "@/services/code-submission"
+import { Loader2 } from "lucide-react"
 
 interface CodeEditorProps {
   code: string
@@ -44,6 +45,7 @@ interface CodeEditorProps {
       };
     }[];
   }
+  isGenerating?: boolean
 }
 
 interface TestCaseResult {
@@ -71,7 +73,8 @@ export function CodeEditor({
   testCases = [],
   javaBoilerplate = '',
   pythonBoilerplate = '',
-  testResults
+  testResults,
+  isGenerating = false
 }: CodeEditorProps) {
   const editorRef = useRef<any>(null)
 
@@ -250,12 +253,19 @@ export function CodeEditor({
     );
   };
 
+  // Clear code when generating starts
+  useEffect(() => {
+    if (isGenerating) {
+      onCodeChange("")  // Clear the code
+    }
+  }, [isGenerating, onCodeChange])
+
   return (
     <PanelGroup direction="vertical" className="h-full">
       <Panel defaultSize={70} minSize={30}>
         <div className="flex flex-col h-full">
           <div className="flex items-center gap-4 p-4 border-b border-border bg-background">
-            <Select value={language} onValueChange={handleLanguageChange}>
+            <Select value={language} onValueChange={handleLanguageChange} disabled={isGenerating}>
               <SelectTrigger className="w-[180px] bg-white border-2">
                 <SelectValue placeholder="Select language" />
               </SelectTrigger>
@@ -275,17 +285,23 @@ export function CodeEditor({
               onClick={handleSubmit} 
               size="lg" 
               className="bg-green-600 hover:bg-green-700 text-white px-8"
+              disabled={isGenerating}
             >
               Submit
             </Button>
           </div>
 
           <div className="flex-1 relative min-h-0 overflow-hidden">
+            {isGenerating && (
+              <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
+                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              </div>
+            )}
             <Editor
               height="100%"
               language={getMonacoLanguage(language)}
-              value={code}
-              onChange={(value) => onCodeChange(value || "")}
+              value={isGenerating ? "" : code}  // Clear code when generating
+              onChange={(value) => !isGenerating && onCodeChange(value || "")}  // Prevent changes while generating
               theme="vs-dark"
               options={{
                 minimap: { enabled: false },
@@ -295,6 +311,8 @@ export function CodeEditor({
                 scrollBeyondLastLine: false,
                 wordWrap: "on",
                 renderWhitespace: "selection",
+                readOnly: isGenerating,  // Disable editor while generating
+                domReadOnly: isGenerating,  // Additional protection against edits
               }}
               onMount={handleEditorDidMount}
               className="absolute inset-0"
@@ -308,9 +326,10 @@ export function CodeEditor({
       <Panel defaultSize={30} minSize={20}>
         <div className="h-full overflow-y-auto">
           <TestCases 
-            testCases={testCases} 
-            results={testResults} 
-            structure={structure} 
+            testCases={isGenerating ? [] : testCases}  // Clear test cases while generating
+            results={isGenerating ? undefined : testResults}  // Clear results while generating
+            structure={structure}
+            isGenerating={isGenerating}
           />
         </div>
       </Panel>
