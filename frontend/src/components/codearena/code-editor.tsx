@@ -5,22 +5,53 @@ import { Editor } from "@monaco-editor/react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
-import { TestCases } from "./test-cases"
-import languageMapping from '../language_mapping.json'
+import { TestCases } from "@/components/codearena/test-cases"
+import languageMapping from '@/components/language_mapping.json'
+import { submitCode } from "@/services/code-submission"
 
 interface CodeEditorProps {
   code: string
-  language: string  // This will now store the codeInt
+  language: string
   onCodeChange: (code: string) => void
   onLanguageChange: (language: string) => void
-  onSubmit: () => void
+  onSubmit: (result: { status: { description: string; results: any[] } }) => void
   status: string
-  structure?: {
+  structure: {
+    problem_name: string;
+    function_name: string;
     input_structure: Array<{ Input_Field: string }>;
+    output_structure: { Output_Field: string };
   }
-  testCases?: any[]
+  testCases?: {
+    input: any[];
+    output: any;
+  }[]
   javaBoilerplate?: string
   pythonBoilerplate?: string
+  testResults?: {
+    completed: boolean;
+    passed: boolean;
+    results: {
+      test_case_index: number;
+      passed: boolean;
+      stdout?: string;
+      stderr?: string;
+      compile_output?: string;
+      expected_output?: string;
+      status: {
+        id: number;
+        description: string;
+      };
+    }[];
+  }
+}
+
+interface TestCaseResult {
+  passed: boolean;
+  stdout?: string;
+  stderr?: string;
+  compile_output?: string;
+  expected_output?: string;
 }
 
 // Replace the hardcoded languages array with a transformed version from language_mapping
@@ -39,7 +70,8 @@ export function CodeEditor({
   structure, 
   testCases = [],
   javaBoilerplate = '',
-  pythonBoilerplate = ''
+  pythonBoilerplate = '',
+  testResults
 }: CodeEditorProps) {
   const editorRef = useRef<any>(null)
 
@@ -73,6 +105,14 @@ export function CodeEditor({
       hasTestCases: !!testCases?.length
     })
   }, [language, code, javaBoilerplate, pythonBoilerplate, structure, testCases])
+
+  useEffect(() => {
+    console.log('=== CodeEditor Mount ===');
+    console.log('Initial props:', {
+      structure,
+      testCases: testCases?.length
+    });
+  }, []);
 
   const handleEditorDidMount = (editor: any) => {
     editorRef.current = editor
@@ -127,6 +167,89 @@ export function CodeEditor({
     }
   }
 
+  const handleSubmit = async () => {
+    try {
+      console.log('=== CodeEditor Submit ===');
+      console.log('1. Initial structure prop:', structure);
+      console.log('1a. Structure type:', typeof structure);
+      
+      if (!structure) {
+        console.error('Structure is missing!');
+        throw new Error('Problem structure is required');
+      }
+
+      if (!structure.function_name || !structure.input_structure || !structure.output_structure) {
+        console.error('Structure is incomplete:', structure);
+        throw new Error('Problem structure is incomplete');
+      }
+
+      // Use the structure directly from the problem generator
+      const formattedStructure = {
+        function_name: structure.function_name,
+        input_structure: structure.input_structure,
+        output_structure: structure.output_structure
+      };
+      
+      const structureStr = JSON.stringify(formattedStructure);
+      
+      console.log('2. Formatted structure:', formattedStructure);
+      console.log('3. Structure string:', structureStr);
+      console.log('4. Test cases:', testCases);
+      
+      // Call submitCode with all required parameters
+      const result = await submitCode(
+        code,
+        language,
+        structureStr,
+        testCases || []
+      );
+      
+      console.log('5. Submit result:', result);
+      onSubmit(result);
+    } catch (error) {
+      console.error('Error in handleSubmit:', error);
+      // Show error to user
+      alert(error instanceof Error ? error.message : 'An error occurred');
+    }
+  }
+
+  const TestCaseResults: React.FC<{ results: TestCaseResult[] }> = ({ results }) => {
+    return (
+      <div className="space-y-4">
+        {results.map((result, index) => (
+          <div key={index} className={`p-4 rounded-lg ${result.passed ? 'bg-green-50' : 'bg-red-50'}`}>
+            <div className="flex items-center gap-2">
+              <span className={`text-sm font-medium ${result.passed ? 'text-green-600' : 'text-red-600'}`}>
+                Test Case {index + 1}: {result.passed ? 'Passed' : 'Failed'}
+              </span>
+            </div>
+            {!result.passed && (
+              <div className="mt-2 text-sm">
+                {result.compile_output && (
+                  <div className="text-red-600">
+                    <strong>Compilation Error:</strong>
+                    <pre className="mt-1 text-xs">{result.compile_output}</pre>
+                  </div>
+                )}
+                {result.stderr && (
+                  <div className="text-red-600">
+                    <strong>Runtime Error:</strong>
+                    <pre className="mt-1 text-xs">{result.stderr}</pre>
+                  </div>
+                )}
+                <div className="mt-2">
+                  <strong>Expected:</strong> {result.expected_output}
+                  <br />
+                  <strong>Got:</strong> {result.stdout || 'No output'}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <PanelGroup direction="vertical" className="h-full">
       <Panel defaultSize={70} minSize={30}>
@@ -148,7 +271,11 @@ export function CodeEditor({
                 ))}
               </SelectContent>
             </Select>
-            <Button onClick={onSubmit} size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8">
+            <Button 
+              onClick={handleSubmit} 
+              size="lg" 
+              className="bg-green-600 hover:bg-green-700 text-white px-8"
+            >
               Submit
             </Button>
           </div>
@@ -180,7 +307,11 @@ export function CodeEditor({
 
       <Panel defaultSize={30} minSize={20}>
         <div className="h-full overflow-y-auto">
-          <TestCases testCases={testCases} results={{ status }} structure={structure} />
+          <TestCases 
+            testCases={testCases} 
+            results={testResults} 
+            structure={structure} 
+          />
         </div>
       </Panel>
     </PanelGroup>
