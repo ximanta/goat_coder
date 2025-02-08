@@ -1,0 +1,18 @@
+{
+    "languages": { 
+       "Java": {
+        "displayName": "Java",
+        "name": "Java (OpenJDK 14.0.1)",
+        "extension": ".java",
+        "codeInt": 4
+      },
+    
+      "Python_3.10": {
+        "displayName": "Python",
+        "name": "Python 3.10 (PyPy 7.3.12)",
+        "extension": ".py",
+        "codeInt": 28
+      }
+
+    }
+  }
