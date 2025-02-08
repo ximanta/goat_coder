@@ -5,6 +5,9 @@ from langchain_openai import AzureChatOpenAI
 from pydantic import BaseModel, Field
 from ..boilerplate_generator.java_boilerplate_generator import JavaBoilerplateGenerator
 from ..boilerplate_generator.python_boilerplate_generator import PythonBoilerplateGenerator
+import logging
+
+logger = logging.getLogger(__name__)
 
 class TestCase(BaseModel):
     input: List[Any] = Field(description="Input values for the test case")
@@ -54,6 +57,9 @@ class ProblemGeneratorService:
         self.python_generator = PythonBoilerplateGenerator()
 
     async def generate_problem(self, concept: str, complexity: str) -> Dict:
+        logger.info("=== Generating Problem in Service ===")
+        logger.info(f"Parameters - concept: {concept}, complexity: {complexity}")
+
         messages = [
             {
                 "role": "system",
@@ -222,17 +228,20 @@ class ProblemGeneratorService:
             }
         }]
 
+        logger.info("Sending request to LLM")
         response = await self.llm.ainvoke(
             messages,
             functions=functions,
             function_call={"name": "generate_programming_problem"}
         )
+        logger.info("Received response from LLM")
 
         try:
             if hasattr(response, 'additional_kwargs') and 'function_call' in response.additional_kwargs:
                 function_call = response.additional_kwargs['function_call']
                 if function_call and 'arguments' in function_call:
                     result = json.loads(function_call['arguments'])
+                    logger.info(f"Successfully parsed problem: {result.get('problem_title', 'Unknown Title')}")
                     
                     # Ensure structure has all required fields
                     if 'structure' in result:
@@ -258,15 +267,15 @@ class ProblemGeneratorService:
                     
                     return Problem(**result).model_dump()
             
-            print(f"Response content: {response}")
+            logger.error(f"Invalid response format: {response}")
             raise ValueError("No valid function call in response")
             
         except json.JSONDecodeError as e:
-            print(f"JSON decode error: {e}")
-            print(f"Response content: {response}")
+            logger.error(f"JSON decode error: {e}", exc_info=True)
+            logger.error(f"Response content: {response}")
             raise ValueError(f"Failed to parse LLM response: {e}")
             
         except Exception as e:
-            print(f"Error: {str(e)}")
-            print(f"Response: {response}")
+            logger.error(f"Error generating problem: {str(e)}", exc_info=True)
+            logger.error(f"Response: {response}")
             raise ValueError(f"Failed to generate problem: {str(e)}")

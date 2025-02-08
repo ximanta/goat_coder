@@ -80,6 +80,11 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
       setLoading(true)
       const complexities = ["EASY", "MEDIUM", "HARD"]
       const randomComplexity = complexities[Math.floor(Math.random() * complexities.length)]
+      
+      console.log('=== Generating New Problem ===');
+      console.log('Category:', category);
+      console.log('Selected Complexity:', randomComplexity);
+      
       const newProblem = await generateProblem(category, randomComplexity)
       setProblem({
         title: newProblem.problem_title,

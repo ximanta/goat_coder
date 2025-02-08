@@ -14,9 +14,16 @@ interface ProblemResponse {
     input_structure: Array<{ Input_Field: string }>;
     output_structure: { Output_Field: string };
   };
+  java_boilerplate: string;
+  python_boilerplate: string;
 }
 
-export async function generateProblem(concept: string = "array", complexity: string = "EASY"): Promise<ProblemResponse> {
+export type { ProblemResponse };
+
+export async function generateProblem(concept: string, complexity: string): Promise<ProblemResponse> {
+  console.log('=== generateProblem API Call ===');
+  console.log('Sending to backend:', { concept, complexity });
+
   const response = await fetch("http://localhost:8000/problem-generator/generate", {
     method: "POST",
     headers: {
@@ -29,8 +36,12 @@ export async function generateProblem(concept: string = "array", complexity: str
   });
 
   if (!response.ok) {
-    throw new Error("Failed to generate problem");
+    const errorText = await response.text();
+    console.error('API Error:', errorText);
+    throw new Error(`Failed to generate problem: ${errorText}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  console.log('Received from backend:', data);
+  return data;
 } 
