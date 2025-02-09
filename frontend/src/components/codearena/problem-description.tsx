@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Loader2 } from "lucide-react"
+import ReactMarkdown from 'react-markdown'
 
 interface ProblemDescriptionProps {
   title?: string;
@@ -35,9 +35,36 @@ export function ProblemDescription({
         {difficulty}
       </div>
 
-      <div className="prose dark:prose-invert max-w-none">
+      <div className="prose prose-slate dark:prose-invert max-w-none">
         {description ? (
-          <p>{description}</p>
+          <ReactMarkdown
+            components={{
+              h3: ({ children }) => (
+                <h3 className="text-xl font-semibold mt-6 mb-4">{children}</h3>
+              ),
+              p: ({ children }) => (
+                <p className="my-4">{children}</p>
+              ),
+              ul: ({ children }) => (
+                <ul className="list-disc pl-6 my-4">{children}</ul>
+              ),
+              li: ({ children }) => (
+                <li className="my-2">{children}</li>
+              ),
+              code: ({ node, inline, className, children, ...props }) => (
+                <code className={`${inline ? "bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded" : ""}`} {...props}>
+                  {children}
+                </code>
+              ),
+              pre: ({ children }) => (
+                <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-4">
+                  {children}
+                </pre>
+              )
+            }}
+          >
+            {description}
+          </ReactMarkdown>
         ) : (
           <>
             <p>
