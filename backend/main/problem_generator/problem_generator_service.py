@@ -324,7 +324,23 @@ class ProblemGeneratorService:
                             },
                             "tags": {
                                 "type": "array",
-                                "items": {"type": "string"}
+                                "description": "Programming concepts and subconcepts used in this problem. Should include the main category and specific operations used.",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        # Main categories
+                                        "arrays", "strings", "numbers", "control_flow", "data_types",
+                                        # Operations
+                                        "array_iteration", "array_manipulation", "string_formatting",
+                                        "string_manipulation", "arithmetic", "type_conversion",
+                                        "conditional_logic", "loops", "input_validation",
+                                        # Data structures
+                                        "lists", "arrays", "strings",
+                                        # Common patterns
+                                        "searching", "counting", "transformation", "validation"
+                                    ]
+                                },
+                                "example": ["arrays", "array_iteration", "counting"]
                             },
                             "structure": {
                                 "type": "object",
@@ -376,6 +392,9 @@ class ProblemGeneratorService:
                         function_call = response.additional_kwargs['function_call']
                         if function_call and 'arguments' in function_call:
                             result = json.loads(function_call['arguments'])
+                            
+                            # Ensure the concept matches the input concept exactly
+                            result['concept'] = concept
                             
                             # Store full problem details
                             self.problem_cache.add_problem(

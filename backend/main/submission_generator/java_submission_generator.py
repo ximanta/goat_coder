@@ -218,6 +218,8 @@ public class {class_name} {{
             return f"String[] {param_name} = scanner.nextLine().split(" ");"
         elif java_type == "int":
             return f"int {param_name} = Integer.parseInt(scanner.nextLine());"
+        elif java_type == "double":
+            return f"double {param_name} = Double.parseDouble(scanner.nextLine());"
         elif java_type == "String":
             return f"String {param_name} = scanner.nextLine();"
         else:

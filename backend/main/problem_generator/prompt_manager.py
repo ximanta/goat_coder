@@ -19,6 +19,12 @@ class PromptManager:
         self.complexity_path.mkdir(parents=True, exist_ok=True)
         self.contexts_path.mkdir(parents=True, exist_ok=True)
 
+        # Track last used categories to avoid repetition
+        self.last_used = {
+            'category': None,
+            'type': None
+        }
+
     def _normalize_name(self, name: str) -> str:
         """Convert concept/complexity name to filename format"""
         logger.info(f"Normalizing name: {name}")
@@ -39,60 +45,58 @@ class PromptManager:
     def get_concept_prompt(self, concept: str) -> str:
         """Get concept-specific prompt with a randomly selected problem type"""
         try:
-            # Normalize the concept name for file path
+            # Set random seed at the start
+            random.seed(os.urandom(8))
+            
             concept_path = self._normalize_name(concept)
-            logger.info(f"Looking for config in: {self.concepts_path / concept_path}")
-            
-            # Construct paths
             config_path = self.concepts_path / concept_path / "config.json"
-            main_prompt_path = self.concepts_path / concept_path / "main_prompt.md"
             
-            # Log paths for debugging
-            logger.info(f"Config path: {config_path}")
-            logger.info(f"Main prompt path: {main_prompt_path}")
-            
-            if not config_path.exists():
-                logger.error(f"Config file not found at: {config_path}")
-                logger.info("Available directories:")
-                for p in self.concepts_path.iterdir():
-                    logger.info(f"  - {p}")
-                return "You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples."
-            
-            # Load and validate config
             with config_path.open() as f:
                 config = json.load(f)
-                
-            if not config.get("problem_types"):
-                logger.error("Config file does not contain problem_types")
-                return "You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples."
             
-            # Log available categories
-            categories = [cat["category"] for cat in config["problem_types"]]
-            logger.info(f"Available categories: {categories}")
+            # Get available categories excluding the last used one
+            available_categories = [
+                cat for cat in config["problem_types"] 
+                if cat["category"] != self.last_used['category']
+            ]
             
-            # Random selection with logging
-            category = random.choice(config["problem_types"])
-            logger.info(f"Selected category: {category['category']}")
+            if not available_categories:
+                available_categories = config["problem_types"]
             
-            problem = random.choice(category["problems"])
-            logger.info(f"Selected problem type: {problem['type']}")
+            # Select category and update last used
+            category = random.choice(available_categories)
+            logger.info(f"Selected category: {category['category']} (previous was: {self.last_used['category']})")
+            self.last_used['category'] = category['category']
             
+            # Get available problems excluding the last used type
+            available_problems = [
+                prob for prob in category["problems"]
+                if prob["type"] != self.last_used['type']
+            ]
+            
+            if not available_problems:
+                available_problems = category["problems"]
+            
+            # Select problem and update last used
+            problem = random.choice(available_problems)
+            logger.info(f"Selected problem type: {problem['type']} (previous was: {self.last_used['type']})")
+            self.last_used['type'] = problem['type']
+            
+            # Select variation
             variation = random.choice(problem["variations"])
-            logger.info(f"Selected variation: {variation}")
             
             # Log the complete selection path
             logger.info(f"""
             Random Selection Path:
-            Category: {category['category']}
-              └─ Problem Type: {problem['type']}
-                  └─ Variation: {variation}
+            Category: {category['category']} (from {len(available_categories)} available)
+              └─ Problem Type: {problem['type']} (from {len(available_problems)} available)
+                  └─ Variation: {variation} (from {len(problem['variations'])} available)
             """)
-            
-            # Ensure randomness
-            random.seed(os.urandom(8))
             
             # Load main prompt with fallback
             main_prompt = ""
+            main_prompt_path = self.concepts_path / concept_path / "main_prompt.md"
+            
             if main_prompt_path.exists():
                 main_prompt = main_prompt_path.read_text().strip()
             else:
