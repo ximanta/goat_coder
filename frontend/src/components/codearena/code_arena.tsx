@@ -89,7 +89,9 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const handleGenerateNewProblem = async () => {
     try {
       setIsGenerating(true)
-      // Clear existing code and results immediately when generation starts
+      console.log('Starting new problem generation');
+      
+      // Clear existing code and results
       setCode("")
       setTestResults({
         submitted: false,
@@ -102,11 +104,14 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
       const complexities = ["EASY", "MEDIUM", "HARD"]
       const randomComplexity = complexities[Math.floor(Math.random() * complexities.length)]
       
-      console.log('=== Generating New Problem ===');
-      console.log('Category:', category);
-      console.log('Selected Complexity:', randomComplexity);
+      console.log('Fetching new problem:', { category, randomComplexity });
+      const newProblem = await generateProblem(category!, randomComplexity)
       
-      const newProblem = await generateProblem(category, randomComplexity)
+      console.log('Received new problem:', {
+        hasJavaBoilerplate: !!newProblem.java_boilerplate,
+        hasPythonBoilerplate: !!newProblem.python_boilerplate
+      });
+      
       setProblem({
         title: newProblem.problem_title,
         difficulty: newProblem.difficulty,

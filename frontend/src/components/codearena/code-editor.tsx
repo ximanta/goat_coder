@@ -82,21 +82,33 @@ export function CodeEditor({
 
   // Update the useEffect to handle language changes and new problems
   useEffect(() => {
-    if (language && (code === "" || isGenerating)) {  // Check both empty code and generating state
+    console.log('Boilerplate useEffect triggered:', {
+      language,
+      code,
+      isGenerating,
+      hasJavaBoilerplate: !!javaBoilerplate,
+      hasPythonBoilerplate: !!pythonBoilerplate
+    });
+    
+    // Remove the code === "" condition since we want to update whenever boilerplate changes
+    if (language) {
+      console.log('Attempting to set boilerplate for language:', language);
       switch (language) {
         case '4': // Java
           if (javaBoilerplate) {
+            console.log('Setting Java boilerplate:', javaBoilerplate);
             onCodeChange(javaBoilerplate)
           }
           break
         case '28': // Python
           if (pythonBoilerplate) {
+            console.log('Setting Python boilerplate:', pythonBoilerplate);
             onCodeChange(pythonBoilerplate)
           }
           break
       }
     }
-  }, [language, javaBoilerplate, pythonBoilerplate, code, onCodeChange, isGenerating])
+  }, [language, javaBoilerplate, pythonBoilerplate, onCodeChange]) // Remove code and isGenerating from dependencies
 
   useEffect(() => {
     console.log('Language:', language)
@@ -297,6 +309,15 @@ export function CodeEditor({
               )}
               {isSubmitting ? 'Running...' : 'Run'}
             </Button>
+            {/* <Button 
+            
+              size="sm"
+              variant="outline"
+              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
+              disabled={isGenerating || isSubmitting}
+            >
+              Submit
+            </Button> */}
             <Timer />
           </div>
 
