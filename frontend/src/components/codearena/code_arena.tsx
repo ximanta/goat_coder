@@ -54,6 +54,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     };
     javaBoilerplate: string;
     pythonBoilerplate: string;
+    tags?: string[];
   }>({
     title: "10. Regular Expression Matching",
     difficulty: "Hard",
@@ -66,7 +67,8 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
       output_structure: { Output_Field: "" }
     },
     javaBoilerplate: "",
-    pythonBoilerplate: ""
+    pythonBoilerplate: "",
+    tags: []
   })
   const { theme } = useTheme()
   const [testResults, setTestResults] = useState<TestResults>({
@@ -104,7 +106,8 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         testCases: newProblem.test_cases,
         structure: newProblem.structure,
         javaBoilerplate: newProblem.java_boilerplate,
-        pythonBoilerplate: newProblem.python_boilerplate
+        pythonBoilerplate: newProblem.python_boilerplate,
+        tags: newProblem.tags
       })
     } catch (error) {
       console.error("Failed to generate new problem:", error)
@@ -178,11 +181,12 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         <Panel defaultSize={40} minSize={30}>
           <div className="h-full overflow-hidden border-r border-border">
             <ProblemDescription
-              title={problem.title}
-              difficulty={problem.difficulty}
-              description={problem.description}
+              title={problem?.problem_title}
+              difficulty={problem?.difficulty}
+              description={problem?.problem_statement}
               onGenerateNewProblem={handleGenerateNewProblem}
               isGenerating={isGenerating}
+              tags={problem?.tags}
             />
           </div>
         </Panel>

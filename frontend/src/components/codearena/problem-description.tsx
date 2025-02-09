@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import ReactMarkdown from 'react-markdown'
+import { Tag } from "lucide-react"
 
 interface ProblemDescriptionProps {
   title?: string;
@@ -9,6 +10,7 @@ interface ProblemDescriptionProps {
   description?: string;
   onGenerateNewProblem: () => void;
   isGenerating?: boolean;
+  tags?: string[];
 }
 
 export function ProblemDescription({ 
@@ -16,8 +18,15 @@ export function ProblemDescription({
   difficulty = "Hard",
   description,
   onGenerateNewProblem,
-  isGenerating = false 
+  isGenerating = false,
+  tags = []
 }: ProblemDescriptionProps) {
+  // Helper function to normalize difficulty
+  const normalizeDifficulty = (diff: string): string => {
+    const normalized = diff.toLowerCase();
+    return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+  };
+
   return (
     <div className="h-full overflow-y-auto p-6">
       <div className="flex justify-between items-center mb-4">
@@ -31,11 +40,29 @@ export function ProblemDescription({
         </Button>
       </div>
       
-      <div className="inline-block px-2 py-1 rounded text-red-500 bg-red-100 dark:bg-red-900/30 text-sm mb-4">
-        {difficulty}
+      <div className="space-y-3">
+        <div className="inline-block px-2 py-1 rounded text-red-500 bg-red-100 dark:bg-red-900/30 text-sm">
+          {normalizeDifficulty(difficulty)}
+        </div>
+
+        {tags && tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 items-center">
+            <Tag className="w-4 h-4 text-gray-500" />
+            {tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 
+                          text-gray-600 dark:text-gray-300 hover:bg-gray-200 
+                          dark:hover:bg-gray-700 transition-colors"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
-      <div className="prose prose-slate dark:prose-invert max-w-none">
+      <div className="prose prose-slate dark:prose-invert max-w-none mt-6">
         {description ? (
           <ReactMarkdown
             components={{
@@ -57,7 +84,7 @@ export function ProblemDescription({
                 </code>
               ),
               pre: ({ children }) => (
-                <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-4">
+                <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-4 whitespace-pre-wrap break-words">
                   {children}
                 </pre>
               )
@@ -86,7 +113,11 @@ export function ProblemDescription({
             </p>
 
             <h2>Example 1:</h2>
-            <pre>Input: s = "aa", p = "a" Output: false Explanation: "a" does not match the entire string "aa".</pre>
+            <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-4 whitespace-pre-wrap break-words">
+              Input: s = "aa", p = "a" 
+              Output: false 
+              Explanation: "a" does not match the entire string "aa".
+            </pre>
           </>
         )}
       </div>

@@ -1,6 +1,6 @@
 interface ProblemResponse {
   concept: string;
-  difficulty: string;
+  difficulty: "Easy" | "Medium" | "Hard";
   problem_title: string;
   problem_statement: string;
   test_cases: {
