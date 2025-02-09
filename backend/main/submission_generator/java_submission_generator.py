@@ -85,6 +85,7 @@ class JavaSubmissionGenerator:
             code_body = re.sub(r'\}[\s]*$', '', code_body)
             
             submission_template = """import java.util.*;
+import java.util.regex.*;
 
 public class {class_name} {{
     public {return_type} {function_name}({function_params}) {{
@@ -119,9 +120,12 @@ public class {class_name} {{
                 output_printing=self._generate_output_printing(return_type, 'result')
             )
             
-            # Keep only one set of logging, either here or in the service
-            # logger.info("Generated submission:")
-            # logger.info(submission)
+            # Add detailed logging of the generated submission
+            logger.info("=== Generated Java Submission ===")
+            logger.info("Generated submission code:")
+            for i, line in enumerate(submission.split('\n'), 1):
+                logger.info(f"{i:3d} | {line}")
+            logger.info("=== End Java Submission ===")
             
             return submission.strip()
         
@@ -236,6 +240,7 @@ public class {class_name} {{
         function_call_args = ", ".join(p.split()[-1] for p in param_list)
         
         template = f"""import java.util.*;
+import java.util.regex.*;
 
 public class {class_name} {{
     public {return_type} {function_name}({function_params}) {{

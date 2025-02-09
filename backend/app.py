@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from main.problem_generator.problem_generator_route import router as problem_generator_router
 from main.problem_submission.problem_submission_route import router as problem_submission_router
+from main.codeassist_chat.codeassist_chat_router import router as codeassist_chat_router
 
 
 load_dotenv()
@@ -41,6 +42,7 @@ app.add_middleware(
 # Configure routes
 app.include_router(problem_generator_router, prefix="/problem-generator", tags=["problem-generator"])
 app.include_router(problem_submission_router, prefix="/problem-submission", tags=["problem-submission"])
+app.include_router(codeassist_chat_router, prefix="/codeassist", tags=["codeassist"])
 
 
 if __name__ == "__main__":

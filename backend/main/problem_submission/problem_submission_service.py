@@ -58,19 +58,27 @@ class ProblemSubmissionService:
             # Generate complete Java submission
             java_generator = JavaSubmissionGenerator()
             complete_source = java_generator.generate_submission(source_code, parsed_structure)
+            
+            # Log the unencoded submission details
+            logger.info("=== Submission Details for Judge0 ===")
+            logger.info(f"Language ID: {language_id}")
+            logger.info("Complete Source Code:")
+            for i, line in enumerate(complete_source.split('\n'), 1):
+                logger.info(f"{i:3d} | {line}")
+            
             encoded_source = self.encode_base64(complete_source)
             
             # Prepare submissions for all test cases
             submissions = []
-            logger.info(f"Processing {len(test_cases)} test cases")
+            logger.info(f"\nProcessing {len(test_cases)} test cases:")
             
             for i, test_case in enumerate(test_cases):
                 input_str = self.format_input_for_java(test_case['input'])
                 output_str = str(test_case['output'])
                 
-                logger.info(f"Test Case {i + 1}:")
-                logger.info(f"Input: {input_str}")
-                logger.info(f"Expected Output: {output_str}")
+                logger.info(f"\nTest Case {i + 1}:")
+                logger.info(f"Input (unencoded): {input_str}")
+                logger.info(f"Expected Output (unencoded): {output_str}")
                 
                 submissions.append({
                     "language_id": language_id,
@@ -79,6 +87,8 @@ class ProblemSubmissionService:
                     "expected_output": self.encode_base64(output_str),
                     "callback_url": os.getenv("JUDGE0_CALLBACK_URL")
                 })
+            
+            logger.info("\n=== End Submission Details ===")
             
             # Submit batch request
             url = f"{self.judge0_base_url}/submissions/batch"

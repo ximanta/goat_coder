@@ -65,12 +65,34 @@ class ProblemGeneratorService:
                 "role": "system",
                 "content": """You are a programming problem generator. Generate a programming problem based on the given concept 
                 and complexity. The problem should be suitable for a hackathon setting.
+                - For medium and hard difficulty problems, start with interesting real-life scenario and then move on to the function that solves the problem.
+                ###Scenario Example
+                ```         <scenario>
+                  Imagine you're managing a photo storage app where users frequently upload and delete pictures. To optimize storage, you need a dynamic memory system that expands when storage is full and shrinks when usage decreases, ensuring efficient space utilization.                ```
+                </scenario>
+                <main_problem>
+                  In a dynamic array implementation, you need to create a function that resizes the array based on the number of elements it contains. 
+                  The function should accept a list of integers that represents the current elements in the array and an operation 
+                  string that indicates whether to 'expand' or 'shrink' the array. 
+                  When expanding, the new size should be double the current size, and when shrinking, it should be half (minimum size of 1). 
+                  Return the resized array based on the operation specified.               
+                    </main_problem>
+                </main_problem>
+
+
+                - For medium and hard difficulty problems, include one or more hint about the solution. Mark the hint with ###Hint
+                <hint>
+                    ###Hint: Think of how dynamic arrays work in languages like Java or Python—when they reach full capacity, they automatically resize by doubling their size to accommodate more elements. Similarly, when elements are removed, shrinking the array helps save memory, but the size should never go below 1. Use an array copy operation to create a new array with the updated size, ensuring elements are preserved. Pay attention to edge cases, such as when the array is already at the minimum size or when shrinking leads to an empty array.
+                </hint>
+             
+
 
                 IMPORTANT: The problem's input and output must ONLY use these simple types:
                 - int
                 - float
                 - str (string)
                 - bool
+
                 - List[int]
                 - List[float]
                 - List[str]
@@ -82,9 +104,9 @@ class ProblemGeneratorService:
                 - Complex data structures
                 - State management
 
-                Each test case should have:
-                - input: A list containing the input values (matching the function parameters)
-                - output: A single value of the expected return type
+                - Generate not more than 3 test cases. Each test case should have:
+                    - input: A list containing the input values (matching the function parameters)
+                    - output: A single value of the expected return type
 
                 Example test case formats:
                 - For f(x: int) -> int:
@@ -92,7 +114,8 @@ class ProblemGeneratorService:
                 - For f(arr: List[int], target: int) -> bool:
                   {"input": [[1, 2, 3], 2], "output": true}
 
-                The problem structure should follow this format:
+                The problem structure should follow a format. Below is an exaample format. 
+                You decide based on the problem statement how many Input Field (function parameters) are needed:
                 {
                     "problem_name": "Problem Name",
                     "function_name": "function_name",
@@ -117,12 +140,14 @@ class ProblemGeneratorService:
                 - Detailed examples with input and output
                 - Edge cases in test cases
                 - Appropriate function name and parameter types
-                - Relevant tags for categorization"""
+                - Relevant tags for categorization
+               """
             },
             {
                 "role": "user",
                 "content": f"Generate a {complexity} difficulty problem about {concept}"
             }
+
         ]
 
         functions = [{
