@@ -165,7 +165,7 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
             <div className="h-full flex items-center justify-center">
               <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
             </div>
-          ) : results ? (
+          ) : results?.submitted ? (
             <div className="p-4 space-y-4">
               <div className={`p-4 rounded-lg ${
                 results.passed ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'

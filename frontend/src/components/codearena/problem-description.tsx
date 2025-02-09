@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import ReactMarkdown from 'react-markdown'
 import { Tag, ArrowRight } from "lucide-react"
 import ChatAssistant from "./chat-assistant"
+import { CommonCodeArena } from "./common-code-arena"
 
 interface ProblemDescriptionProps {
   title?: string;
@@ -129,9 +130,10 @@ export function ProblemDescription({
         </div>
       </div>
 
-      {/* Position the ChatAssistant at the bottom of ProblemDescription */}
-      <div className="absolute bottom-0 right-0 pb-4 pr-4">
+      {/* Position both ChatAssistant and CommonCodeArena at the bottom */}
+      <div className="absolute bottom-0 right-0 pb-4 pr-4 flex flex-col gap-2">
         <ChatAssistant problemContext={chatContext} />
+        <CommonCodeArena />
       </div>
     </div>
   )

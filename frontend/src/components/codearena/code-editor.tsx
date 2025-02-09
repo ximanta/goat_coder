@@ -80,19 +80,23 @@ export function CodeEditor({
   const editorRef = useRef<any>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Add useEffect to set initial boilerplate based on selected language
+  // Update the useEffect to handle language changes and new problems
   useEffect(() => {
-    if (language && !code) {  // Only set if language is selected and no code is present
+    if (language && (code === "" || isGenerating)) {  // Check both empty code and generating state
       switch (language) {
         case '4': // Java
-          onCodeChange(javaBoilerplate)
+          if (javaBoilerplate) {
+            onCodeChange(javaBoilerplate)
+          }
           break
         case '28': // Python
-          onCodeChange(pythonBoilerplate)
+          if (pythonBoilerplate) {
+            onCodeChange(pythonBoilerplate)
+          }
           break
       }
     }
-  }, [language, javaBoilerplate, pythonBoilerplate, code, onCodeChange])
+  }, [language, javaBoilerplate, pythonBoilerplate, code, onCodeChange, isGenerating])
 
   useEffect(() => {
     console.log('Language:', language)
@@ -257,13 +261,6 @@ export function CodeEditor({
       </div>
     );
   };
-
-  // Clear code when generating starts
-  useEffect(() => {
-    if (isGenerating) {
-      onCodeChange("")  // Clear the code
-    }
-  }, [isGenerating, onCodeChange])
 
   return (
     <PanelGroup direction="vertical" className="h-full">
