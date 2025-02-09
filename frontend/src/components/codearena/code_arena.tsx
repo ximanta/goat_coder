@@ -45,6 +45,17 @@ const languages = Object.entries(languageMapping.languages).map(([key, lang]) =>
   name: lang.displayName
 }))
 
+function LoadingOverlay({ message }: { message: string }) {
+  return (
+    <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 flex items-center justify-center transition-all duration-300">
+      <div className="text-center">
+        <Loader2 className="h-12 w-12 animate-spin text-indigo-600 mx-auto" />
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">{message}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("4")
@@ -100,30 +111,17 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const handleGenerateNewProblem = async () => {
     try {
       setIsGenerating(true)
-      console.log('Starting new problem generation');
       
-      // Clear existing code and results
-      setCode("")
-      setTestResults({
-        submitted: false,
-        completed: false,
-        passed: false,
-        results: []
-      })
-      setStatus("")
-
-      // Check concept for complexity
+      // Determine complexity based on category
       const complexities = ["EASY", "MEDIUM", "HARD"];
-      const randomComplexity = category === "Basic Programming for Absolute Beginners" ? "EASY" : complexities[Math.floor(Math.random() * complexities.length)];
+      const randomComplexity = category === "Basic Programming for Absolute Beginners" 
+        ? "EASY" 
+        : complexities[Math.floor(Math.random() * complexities.length)];
       
-      console.log('Fetching new problem:', { category, randomComplexity });
+      // Keep existing content visible until new content is ready
       const newProblem = await generateProblem(category!, randomComplexity)
       
-      console.log('Received new problem:', {
-        hasJavaBoilerplate: !!newProblem.java_boilerplate,
-        hasPythonBoilerplate: !!newProblem.python_boilerplate
-      });
-      
+      // Update all content at once
       setProblem({
         title: newProblem.problem_title,
         difficulty: newProblem.difficulty,
@@ -135,6 +133,17 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         tags: newProblem.tags,
         concept: newProblem.concept
       })
+
+      // Clear code after new problem is loaded
+      setCode("")
+      setTestResults({
+        submitted: false,
+        completed: false,
+        passed: false,
+        results: []
+      })
+      setStatus("")
+      
     } catch (error) {
       console.error("Failed to generate new problem:", error)
     } finally {
@@ -220,6 +229,11 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
 
   return (
     <div id="code-arena-container" className="relative flex flex-col h-[calc(100vh-73px)]">
+      {/* Loading overlay */}
+      {isGenerating && (
+        <LoadingOverlay message="Loading new challenge..." />
+      )}
+
       <div className="flex-none h-12 bg-white px-4">
         <div className="max-w-7xl mx-auto w-full h-full flex items-center justify-between">
           <button 
@@ -315,15 +329,6 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
           </div>
         </div>
       </div>
-
-      {isGenerating && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-50">
-          <div className="text-center">
-            <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto" />
-            <p className="mt-4 text-lg text-gray-600">Generating new problem...</p>
-          </div>
-        </div>
-      )}
 
       <div className="flex-1 overflow-hidden">
         <PanelGroup direction="horizontal" className="h-full">
