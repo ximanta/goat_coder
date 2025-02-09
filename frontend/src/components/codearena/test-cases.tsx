@@ -2,7 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { Loader2 } from "lucide-react"
+import { Loader2, CheckCircle2, XCircle } from "lucide-react"
 import { useState } from "react"
 
 interface TestCase {
@@ -87,18 +87,53 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
   return (
     <div className="h-full">
       <Tabs defaultValue="test1" className="h-full flex flex-col">
-        <TabsList className="grid w-full grid-cols-4">
-          {testCases.map((_, index) => (
-            <TabsTrigger
-              key={`test${index + 1}`}
-              value={`test${index + 1}`}
-              className="text-sm"
-            >
-              Test {index + 1}
-            </TabsTrigger>
-          ))}
-          <TabsTrigger value="results" className="text-sm">
-            Results
+        <TabsList className="grid w-full grid-cols-4 rounded-t-lg">
+          {testCases.map((_, index) => {
+            const testResult = results?.results[index];
+            const showIcon = results?.completed && testResult;
+            
+            return (
+              <TabsTrigger
+                key={`test${index + 1}`}
+                value={`test${index + 1}`}
+                className={cn(
+                  "text-sm p-2 border border-blue-200",
+                  "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-b-0",
+                  "hover:bg-blue-50",
+                  "transition-colors",
+                  "flex items-center justify-center gap-2"
+                )}
+              >
+                <span>Test {index + 1}</span>
+                {showIcon && (
+                  testResult.passed ? (
+                    <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  ) : (
+                    <XCircle className="w-4 h-4 text-red-600" />
+                  )
+                )}
+              </TabsTrigger>
+            );
+          })}
+          <TabsTrigger 
+            value="results" 
+            className={cn(
+              "text-sm p-2 border border-blue-200 bg-blue-50",
+              "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-b-0",
+              "hover:bg-blue-50",
+              "font-medium",
+              "transition-colors",
+              "flex items-center justify-center gap-2"
+            )}
+          >
+            <span>Results</span>
+            {results?.completed && (
+              results.passed ? (
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+              ) : (
+                <XCircle className="w-4 h-4 text-red-600" />
+              )
+            )}
           </TabsTrigger>
         </TabsList>
 
