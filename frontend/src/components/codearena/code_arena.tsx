@@ -101,8 +101,9 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
       })
       setStatus("")
 
-      const complexities = ["EASY", "MEDIUM", "HARD"]
-      const randomComplexity = complexities[Math.floor(Math.random() * complexities.length)]
+      // Check concept for complexity
+      const complexities = ["EASY", "MEDIUM", "HARD"];
+      const randomComplexity = category === "Basic Programming for Absolute Beginners" ? "EASY" : complexities[Math.floor(Math.random() * complexities.length)];
       
       console.log('Fetching new problem:', { category, randomComplexity });
       const newProblem = await generateProblem(category!, randomComplexity)

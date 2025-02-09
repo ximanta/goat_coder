@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Search, Code, BookOpen, Brain, Zap, Trophy, LogIn } from 'lucide-react';
+import { Boxes , Puzzle, Network, TextCursor, CodeSquare, Search, Code, BookOpen, Brain, Zap, Trophy, LogIn } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { LoadingSpinner } from '@/components/common/loading-spinner';
 
@@ -14,12 +14,13 @@ const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const categories = [
-    { icon: <Code className="w-6 h-6" />, name: 'Programming Basics', count: '500+ Problems', value: 'Basic Programming for Absolute Beginners' },
-    { icon: <Code className="w-6 h-6" />, name: 'String Handling', count: '150+ Problems', value: 'String Handling' },
-    { icon: <BookOpen className="w-6 h-6" />, name: 'Data Structures', count: '200+ Problems', value: 'Data Structures' },
+    { icon: <CodeSquare className="w-6 h-6" />, name: 'Programming Basics - Newbie', count: '250+ Problems', value: 'Basic Programming for Absolute Beginners' },
+    { icon: <Code className="w-6 h-6" />, name: 'Programming Basics - Intermediate', count: '200+ Problems', value: 'Basic Programming for Intermediate Beginner - level programmers' },
+    { icon: <TextCursor className="w-6 h-6" />, name: 'String Handling', count: '150+ Problems', value: 'String Handling' },
+    { icon: <Network className="w-6 h-6" />, name: 'Data Structures', count: '200+ Problems', value: 'Data Structures' },
     { icon: <Brain className="w-6 h-6" />, name: 'Algorithms', count: '180+ Problems', value: 'Algorithms' },
-    { icon: <Zap className="w-6 h-6" />, name: 'Problem Solving', count: '120+ Problems', value: 'Problem Solving' },
-    { icon: <Zap className="w-6 h-6" />, name: 'Array', count: '350+ Problems', value: 'Array' }
+    { icon: <Puzzle className="w-6 h-6" />, name: 'Problem Solving', count: '120+ Problems', value: 'Problem Solving' },
+    { icon: <Boxes  className="w-6 h-6" />, name: 'Array', count: '350+ Problems', value: 'Array' }
 
   ];
 
@@ -52,15 +53,18 @@ const Page = () => {
             <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Explore</button>
             <div className="relative group">
               <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Practice</button>
-              <div className="absolute hidden group-hover:block w-48 right-0 mt-2 py-2 bg-white rounded-lg shadow-xl">
+              <div className="absolute hidden group-hover:block w-72 right-0 mt-2 py-2 bg-white rounded-lg shadow-xl z-50">
                 {categories.map((category, index) => (
                   <button
                     key={index}
-                    className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-2"
+                    className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-3"
                     onClick={() => handleCategorySelect(category.value)}
                   >
                     {category.icon}
-                    <span>{category.name}</span>
+                    <div className="flex flex-col">
+                      <span className="font-medium">{category.name}</span>
+                      <span className="text-sm text-gray-500">{category.count}</span>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -77,7 +81,11 @@ const Page = () => {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Be the GOAT Coder - Master Coding Through Practice!
+            Be the{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-[#4f4ee5] animate-gradient">
+              GOAT Coder
+            </span>{' '}
+            - Master Coding Through Practice!
           </h2>
           <p className="text-xl text-gray-600 mb-8">
             Join thousands of developers mastering coding skills across programming languages

@@ -3,7 +3,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import { Loader2, CheckCircle2, XCircle } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface TestCase {
   input: any[]
@@ -38,6 +38,12 @@ interface TestCasesProps {
 }
 
 export function TestCases({ testCases = [], results, structure, isGenerating }: TestCasesProps) {
+  const [activeTab, setActiveTab] = useState("test1")
+
+  useEffect(() => {
+    setActiveTab("test1")
+  }, [testCases])
+
   const renderTestResult = (result: TestCaseResult) => {
     const hasError = result.compile_output || result.stderr;
     const statusColor = result.passed ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
@@ -86,7 +92,7 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
 
   return (
     <div className="h-full">
-      <Tabs defaultValue="test1" className="h-full flex flex-col">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
         <TabsList className="grid w-full grid-cols-4 rounded-t-lg">
           {testCases.map((_, index) => {
             const testResult = results?.results[index];
