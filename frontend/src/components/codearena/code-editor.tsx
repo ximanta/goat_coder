@@ -292,16 +292,11 @@ export function CodeEditor({
           </div>
 
           <div className="flex-1 relative min-h-0 overflow-hidden">
-            {isGenerating && (
-              <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
-                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              </div>
-            )}
             <Editor
               height="100%"
               language={getMonacoLanguage(language)}
-              value={isGenerating ? "" : code}  // Clear code when generating
-              onChange={(value) => !isGenerating && onCodeChange(value || "")}  // Prevent changes while generating
+              value={isGenerating ? "" : code}
+              onChange={(value) => !isGenerating && onCodeChange(value || "")}
               theme="vs-dark"
               options={{
                 minimap: { enabled: false },
@@ -311,8 +306,8 @@ export function CodeEditor({
                 scrollBeyondLastLine: false,
                 wordWrap: "on",
                 renderWhitespace: "selection",
-                readOnly: isGenerating,  // Disable editor while generating
-                domReadOnly: isGenerating,  // Additional protection against edits
+                readOnly: isGenerating,
+                domReadOnly: isGenerating,
               }}
               onMount={handleEditorDidMount}
               className="absolute inset-0"

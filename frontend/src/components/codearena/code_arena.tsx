@@ -165,6 +165,15 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         </button>
       </div>
 
+      {isGenerating && (
+        <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-50 mt-16">
+          <div className="text-center">
+            <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto" />
+            <p className="mt-4 text-lg text-gray-600">Generating new problem...</p>
+          </div>
+        </div>
+      )}
+
       <PanelGroup direction="horizontal" className="min-h-screen pt-16">
         <Panel defaultSize={40} minSize={30}>
           <div className="h-full overflow-hidden border-r border-border">
