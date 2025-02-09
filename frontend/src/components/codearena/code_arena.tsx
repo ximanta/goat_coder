@@ -266,13 +266,13 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
               onClick={handleSubmit} 
               size="sm"
               variant="outline"
-              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
+              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2 border-green-500"
               disabled={isGenerating || isSubmitting}
             >
               {isSubmitting ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <Play className="w-4 h-4" />
+                <Play className="w-4 h-4 text-green-500" fill="currentColor" />
               )}
               {isSubmitting ? 'Running...' : 'Run'}
             </Button>
