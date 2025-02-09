@@ -40,6 +40,7 @@ interface CodeEditorProps {
     }[];
   }
   isGenerating?: boolean
+  editorTheme?: string
 }
 
 interface TestCaseResult {
@@ -65,7 +66,8 @@ export function CodeEditor({
   javaBoilerplate = '',
   pythonBoilerplate = '',
   testResults,
-  isGenerating = false
+  isGenerating = false,
+  editorTheme = 'vs-dark'
 }: CodeEditorProps) {
   const editorRef = useRef<any>(null)
 
@@ -252,7 +254,7 @@ export function CodeEditor({
               language={getMonacoLanguage(language)}
               value={isGenerating ? "" : code}
               onChange={(value) => !isGenerating && onCodeChange(value || "")}
-              theme="vs-dark"
+              theme={editorTheme}
               options={{
                 minimap: { enabled: false },
                 fontSize: 14,

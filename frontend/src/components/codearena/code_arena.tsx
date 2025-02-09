@@ -9,7 +9,7 @@ import { pollSubmission } from "@/lib/fetch_submission_api"
 import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { ProblemResponse } from "@/lib/get_problem_api"
-import { Loader2, ArrowLeft, GripHorizontal, Play } from "lucide-react"
+import { Loader2, ArrowLeft, GripHorizontal, Play, Moon, Sun } from "lucide-react"
 import languageMapping from '@/components/language_mapping.json'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Timer } from "@/components/ui/timer"
@@ -90,6 +90,11 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     results: []
   });
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [editorTheme, setEditorTheme] = useState("vs-dark")
+
+  const toggleTheme = () => {
+    setEditorTheme(prev => prev === "vs-dark" ? "vs-light" : "vs-dark")
+  }
 
   const handleGenerateNewProblem = async () => {
     try {
@@ -250,8 +255,19 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
             <Timer />
           </div>
 
-          {/* Empty div to balance the layout */}
-          <div className="w-[100px]"></div>
+          {/* Theme toggle button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="w-9 h-9 hover:bg-gray-100"
+          >
+            {editorTheme === "vs-dark" ? (
+              <Sun className="h-4 w-4 text-gray-600" />
+            ) : (
+              <Moon className="h-4 w-4 text-gray-600" />
+            )}
+          </Button>
         </div>
       </div>
 
@@ -313,6 +329,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
                 pythonBoilerplate={problem.pythonBoilerplate}
                 testResults={testResults}
                 isGenerating={isGenerating}
+                editorTheme={editorTheme}
               />
             </div>
           </Panel>
