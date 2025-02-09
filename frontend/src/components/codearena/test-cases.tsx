@@ -3,6 +3,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
+import { useState } from "react"
 
 interface TestCase {
   input: any[]
@@ -23,136 +24,142 @@ interface TestCaseResult {
 }
 
 interface TestCasesProps {
-  testCases: TestCase[]
+  testCases?: TestCase[]
   results?: {
-    submitted: boolean
     completed: boolean
     passed: boolean
     results: TestCaseResult[]
   }
-  structure: any
+  structure?: {
+    input_structure: Array<{ Input_Field: string }>
+    output_structure: { Output_Field: string }
+  }
   isGenerating?: boolean
 }
 
-export function TestCases({ testCases, results, structure, isGenerating = false }: TestCasesProps) {
-  console.log('TestCases render:', { testCases, results });
-  
+export function TestCases({ testCases = [], results, structure, isGenerating }: TestCasesProps) {
+  const renderTestResult = (result: TestCaseResult) => {
+    const hasError = result.compile_output || result.stderr;
+    const statusColor = result.passed ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
+    const textColor = result.passed ? 'text-green-800' : 'text-red-800';
+
+    return (
+      <div className={`p-4 border rounded-lg mb-4 ${statusColor}`}>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="font-medium">Test Case {result.test_case_index + 1}</h3>
+          <span className={`px-2 py-1 rounded-full text-sm font-medium ${textColor}`}>
+            {result.passed ? 'Passed' : 'Failed'}
+          </span>
+        </div>
+        
+        <div className="space-y-3 text-sm">
+          {hasError && (
+            <div className="text-red-600">
+              {result.compile_output && (
+                <div className="mb-2">
+                  <div className="font-medium">Compilation Error:</div>
+                  <pre className="mt-1 p-2 bg-red-50 rounded whitespace-pre-wrap">{result.compile_output}</pre>
+                </div>
+              )}
+              {result.stderr && (
+                <div className="mb-2">
+                  <div className="font-medium">Runtime Error:</div>
+                  <pre className="mt-1 p-2 bg-red-50 rounded whitespace-pre-wrap">{result.stderr}</pre>
+                </div>
+              )}
+            </div>
+          )}
+          
+          <div>
+            <div className="font-medium">Your Output:</div>
+            <pre className="mt-1 p-2 bg-gray-50 rounded whitespace-pre-wrap">{result.stdout || '(no output)'}</pre>
+          </div>
+          
+          <div>
+            <div className="font-medium">Expected Output:</div>
+            <pre className="mt-1 p-2 bg-gray-50 rounded whitespace-pre-wrap">{result.expected_output}</pre>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <Tabs defaultValue="test-0" className="w-full">
-      <div className="border rounded-lg p-2 bg-background">
-        <TabsList className="grid w-full" style={{
-          gridTemplateColumns: `repeat(${testCases.length}, 1fr) 1.5fr`
-        }}>
-          {testCases.map((_, index) => {
-            const result = results?.results?.find(r => r.test_case_index === index);
-            console.log(`Test ${index} result:`, result);
-            return (
-              <TabsTrigger 
-                key={index} 
-                value={`test-${index}`}
-                className={cn(
-                  "border-r last:border-r-0",
-                  "data-[state=active]:border-2 data-[state=active]:border-blue-400",
-                  result?.passed && "bg-green-500 text-white hover:bg-green-600",
-                  result?.passed === false && "bg-red-500 text-white hover:bg-red-600"
-                )}
-              >
-                Test {index + 1}
-              </TabsTrigger>
-            );
-          })}
-          <TabsTrigger 
-            value="test-result"
-            className={cn(
-              "border-l ml-2 bg-gray-100 hover:bg-gray-200",
-              "data-[state=active]:border-2 data-[state=active]:border-blue-400",
-              results?.submitted && results.passed && "bg-green-100 hover:bg-green-200",
-              results?.submitted && !results?.passed && "bg-red-100 hover:bg-red-200"
-            )}
-          >
-            Submission Results
+    <div className="h-full">
+      <Tabs defaultValue="test1" className="h-full flex flex-col">
+        <TabsList className="grid w-full grid-cols-4">
+          {testCases.map((_, index) => (
+            <TabsTrigger
+              key={`test${index + 1}`}
+              value={`test${index + 1}`}
+              className="text-sm"
+            >
+              Test {index + 1}
+            </TabsTrigger>
+          ))}
+          <TabsTrigger value="results" className="text-sm">
+            Results
           </TabsTrigger>
         </TabsList>
-      </div>
 
-      <TabsContent value="test-result" className="p-4">
-        {!results?.submitted ? (
-          <p className="text-gray-600">Please submit your code to view results</p>
-        ) : results ? (
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Overall Results</h3>
-            <div className="space-y-2">
-              <p>Status: {results.completed ? "Completed" : "Running..."}</p>
-              <p className={cn(
-                "font-medium",
-                results.passed ? "text-green-600" : "text-red-600"
-              )}>
-                {results.passed ? "All Tests Passed!" : "Some Tests Failed"}
-              </p>
-              <p>Total Tests: {testCases.length}</p>
-              <p>Passed: {results.results?.filter(r => r.passed)?.length || 0}</p>
-              <p>Failed: {results.results?.filter(r => !r.passed)?.length || 0}</p>
+        {testCases.map((testCase, index) => (
+          <TabsContent
+            key={`test${index + 1}`}
+            value={`test${index + 1}`}
+            className="flex-1 overflow-auto"
+          >
+            <div className="p-4 space-y-4 rounded-lg bg-white">
+              <div>
+                <h3 className="font-medium mb-2">Input:</h3>
+                <pre className="p-2 bg-gray-50 rounded text-sm">
+                  {JSON.stringify(testCase.input, null, 2)}
+                </pre>
+              </div>
+              <div>
+                <h3 className="font-medium mb-2">Expected Output:</h3>
+                <pre className="p-2 bg-gray-50 rounded text-sm">
+                  {JSON.stringify(testCase.output, null, 2)}
+                </pre>
+              </div>
             </div>
-          </div>
-        ) : (
-          <p>Run your code to see results</p>
-        )}
-      </TabsContent>
+          </TabsContent>
+        ))}
 
-      {testCases.map((testCase, index) => (
-        <TabsContent key={index} value={`test-${index}`} className="p-4">
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Input:</h3>
-              <pre className="bg-gray-100 p-2 rounded">
-                {testCase.input.map((input, i) => (
-                  <div key={i}>{JSON.stringify(input)}</div>
-                ))}
-              </pre>
+        <TabsContent value="results" className="flex-1 overflow-auto">
+          {isGenerating ? (
+            <div className="h-full flex items-center justify-center">
+              <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
             </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Expected Output:</h3>
-              <pre className="bg-gray-100 p-2 rounded">
-                {JSON.stringify(testCase.output)}
-              </pre>
-            </div>
-
-            {results?.results?.[index] && (
-              <>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Your Output:</h3>
-                  <pre className="bg-gray-100 p-2 rounded">
-                    {results.results[index].stdout?.trim() || "No output"}
-                  </pre>
+          ) : results ? (
+            <div className="p-4 space-y-4">
+              <div className={`p-4 rounded-lg ${
+                results.passed ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
+              }`}>
+                <h3 className="font-medium mb-2">Overall Results</h3>
+                <div className="space-y-1 text-sm">
+                  <p>Status: {results.completed ? 'Completed' : 'Processing'}</p>
+                  <p>Total Tests: {results.results.length}</p>
+                  <p>Passed: {results.results.filter(r => r.passed).length}</p>
+                  <p>Failed: {results.results.filter(r => !r.passed).length}</p>
                 </div>
-
-                {results.results[index].stderr && (
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2 text-red-600">Errors:</h3>
-                    <pre className="bg-red-50 text-red-600 p-2 rounded">
-                      {results.results[index].stderr}
-                    </pre>
+              </div>
+              
+              <div className="space-y-4">
+                {results.results.map((result, index) => (
+                  <div key={index}>
+                    {renderTestResult(result)}
                   </div>
-                )}
-
-                <div className={cn(
-                  "p-4 rounded-lg",
-                  results.results[index].passed ? "bg-green-50" : "bg-red-50"
-                )}>
-                  <p className={cn(
-                    "font-semibold",
-                    results.results[index].passed ? "text-green-600" : "text-red-600"
-                  )}>
-                    Status: {results.results[index].status.description}
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="h-full flex items-center justify-center text-gray-500">
+              Run your code to see results
+            </div>
+          )}
         </TabsContent>
-      ))}
-    </Tabs>
+      </Tabs>
+    </div>
   )
 }
 
