@@ -1,0 +1,109 @@
+{
+    "problem_types": [
+        {
+            "category": "String Operations",
+            "problems": [
+                {
+                    "type": "Character Analysis",
+                    "variations": [
+                        "Count vowels in a username",
+                        "Count uppercase letters in a game tag",
+                        "Find spaces in a player name",
+                        "Count special characters in a password",
+                        "Count digits in a phone number"
+                    ]
+                },
+                {
+                    "type": "String Transformation",
+                    "variations": [
+                        "Convert player name to uppercase",
+                        "Remove spaces from a game code",
+                        "Get first letter of each word in a team name",
+                        "Replace special characters in username",
+                        "Format phone number with dashes"
+                    ]
+                },
+                {
+                    "type": "String Validation",
+                    "variations": [
+                        "Check if username contains only letters",
+                        "Validate email format",
+                        "Check if password meets requirements",
+                        "Verify game code format",
+                        "Check if string ends with specific pattern"
+                    ]
+                }
+            ]
+        },
+        {
+            "category": "Array Operations",
+            "problems": [
+                {
+                    "type": "Element Finding",
+                    "variations": [
+                        "Find highest score in game results",
+                        "Find lowest temperature in weather data",
+                        "Find longest player name in team list",
+                        "Find first occurrence of a specific item",
+                        "Find most common element"
+                    ]
+                },
+                {
+                    "type": "Element Counting",
+                    "variations": [
+                        "Count players with score above threshold",
+                        "Count sunny days in weather data",
+                        "Count team members with long names",
+                        "Count elements matching condition",
+                        "Count unique elements"
+                    ]
+                },
+                {
+                    "type": "Array Transformation",
+                    "variations": [
+                        "Convert all names to uppercase",
+                        "Filter scores above threshold",
+                        "Remove empty names from list",
+                        "Replace negative temperatures with zero",
+                        "Format all phone numbers in list"
+                    ]
+                }
+            ]
+        },
+        {
+            "category": "Basic Arithmetic",
+            "problems": [
+                {
+                    "type": "Simple Calculations",
+                    "variations": [
+                        "Calculate total points in a game",
+                        "Find average temperature",
+                        "Calculate remaining items in inventory",
+                        "Compute final score with bonus",
+                        "Calculate distance between two points"
+                    ]
+                },
+                {
+                    "type": "Number Transformations",
+                    "variations": [
+                        "Convert temperature between Celsius and Fahrenheit",
+                        "Convert distance between kilometers and miles",
+                        "Convert time between hours and minutes",
+                        "Convert weight between pounds and kilograms",
+                        "Convert currency with fixed rate"
+                    ]
+                },
+                {
+                    "type": "Number Properties",
+                    "variations": [
+                        "Check if number is even or odd",
+                        "Determine if year is leap year",
+                        "Check if number is within range",
+                        "Verify if number is positive/negative",
+                        "Check if number is multiple of another"
+                    ]
+                }
+            ]
+        }
+    ]
+} 

@@ -1,11 +1,20 @@
 import os
 import json
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from langchain_openai import AzureChatOpenAI
 from pydantic import BaseModel, Field
 from ..boilerplate_generator.java_boilerplate_generator import JavaBoilerplateGenerator
 from ..boilerplate_generator.python_boilerplate_generator import PythonBoilerplateGenerator
 import logging
+from collections import deque
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+from .prompt_manager import PromptManager
+from langchain.memory import ConversationBufferWindowMemory
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from pathlib import Path
+import random
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +53,44 @@ class Problem(BaseModel):
     java_boilerplate: str = Field(description="Java boilerplate code for the problem")
     python_boilerplate: str = Field(description="Python boilerplate code for the problem")
 
+@dataclass
+class ProblemMetadata:
+    concept: str
+    complexity: str
+    problem_title: str
+    problem_statement: str  # Store full problem statement
+    timestamp: datetime
+
+class ProblemHistoryCache:
+    def __init__(self, max_size=10):
+        self.history = deque(maxlen=max_size)
+        self.expiry_time = timedelta(hours=24)
+
+    def add_problem(self, concept: str, complexity: str, problem_title: str, problem_statement: str):
+        self.history.append(ProblemMetadata(
+            concept=concept,
+            complexity=complexity,
+            problem_title=problem_title,
+            problem_statement=problem_statement,
+            timestamp=datetime.now()
+        ))
+        self._cleanup_old_entries()
+
+    def get_recent_problems(self, concept: str, complexity: str) -> list[ProblemMetadata]:
+        """Return full ProblemMetadata objects instead of just titles"""
+        self._cleanup_old_entries()
+        return [
+            p for p in self.history 
+            if p.concept == concept and p.complexity == complexity
+        ]
+
+    def _cleanup_old_entries(self):
+        now = datetime.now()
+        self.history = deque(
+            (p for p in self.history if now - p.timestamp < self.expiry_time),
+            maxlen=self.history.maxlen
+        )
+
 class ProblemGeneratorService:
     def __init__(self):
         self.llm = AzureChatOpenAI(
@@ -51,256 +98,340 @@ class ProblemGeneratorService:
             azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
             azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
             api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            temperature=0.7,
+            temperature=0.9,
         )
+        self.problem_cache = ProblemHistoryCache()
+        self.prompt_manager = PromptManager()
         self.java_generator = JavaBoilerplateGenerator()
         self.python_generator = PythonBoilerplateGenerator()
 
+    def _create_avoid_problems_prompt(self, recent_problems: list[ProblemMetadata]) -> str:
+        if not recent_problems:
+            return ""
+        
+        # Load forbidden operations from config
+        concept_path = self._normalize_name(recent_problems[0].concept)
+        config_file = Path(__file__).parent / "prompts" / "concepts" / concept_path / "config.json"
+        forbidden_ops = []
+        
+        if config_file.exists():
+            with config_file.open() as f:
+                config = json.load(f)
+                for category in config.get("forbidden_operations", {}).values():
+                    forbidden_ops.extend(category)
+        
+        problems_str = "\n\n".join(
+            f"""Previously Generated Problem #{i+1}:
+            Title: {p.problem_title}
+            Statement: {p.problem_statement}
+            Core Operation: {self._extract_core_operation(p.problem_title)}
+            ---"""
+            for i, p in enumerate(recent_problems)
+        )
+        
+        return f"""
+        IMPORTANT: You have previously generated these problems:
+
+        {problems_str}
+
+        ABSOLUTELY DO NOT generate problems that:
+        1. Use any of these operations: {', '.join(forbidden_ops)}
+        2. Are variations of arithmetic calculations
+        3. Are simple counting problems
+        4. Involve basic mathematical operations
+
+        Instead, focus on:
+        - String manipulation (reverse, replace, transform)
+        - Pattern matching
+        - Data validation
+        - Array transformations
+        - Logic operations
+        """
+
+    def _extract_core_operation(self, title: str) -> str:
+        """Extract the core operation from a problem title"""
+        title_lower = title.lower()
+        
+        operations = {
+            "count": "counting operation",
+            "find": "finding/searching operation",
+            "convert": "conversion operation",
+            "transform": "transformation operation",
+            "check": "validation operation",
+            "validate": "validation operation",
+            "reverse": "reversal operation",
+            "maximum": "max/min operation",
+            "minimum": "max/min operation",
+            "longest": "max/min operation",
+            "shortest": "max/min operation"
+        }
+        
+        for key, operation in operations.items():
+            if key in title_lower:
+                return operation
+                
+        return "unknown operation"
+
+    def _get_beginner_problem_suggestions(self) -> str:
+        return """
+        For Basic Programming beginners, choose from these problem types:
+        1. String Manipulation
+           - Reverse a string
+           - Count specific characters
+           - Convert case (upper/lower)
+           - Find longest word in a sentence
+           
+        2. Simple Array Operations
+           - Find maximum/minimum
+           - Count elements matching condition
+           - Find first/last occurrence
+           - Check if element exists
+           
+        3. Number Patterns
+           - Check even/odd patterns
+           - Count digits
+           - Check number properties (palindrome, perfect number)
+           - Convert number to digits array
+           
+        4. Basic Logic
+           - Temperature conversion
+           - Time conversion
+           - Distance conversion
+           - Simple scoring systems
+           
+        5. Character Patterns
+           - Check vowels/consonants
+           - Convert letter to position
+           - Simple character patterns
+           - Basic input validation
+
+        IMPORTANT: For each category, create unique variations and real-world contexts.
+        Example contexts:
+        - Gaming scores
+        - Social media posts
+        - School grades
+        - Sports statistics
+        - Weather data
+        - Shopping calculations
+        - Music playlist management
+        - Text message analysis
+        """
+
     async def generate_problem(self, concept: str, complexity: str) -> Dict:
-        logger.info("=== Generating Problem in Service ===")
-        logger.info(f"Parameters - concept: {concept}, complexity: {complexity}")
+        max_attempts = 3
+        
+        for attempt in range(max_attempts):
+            try:
+                # Add some randomness to the seed on each attempt
+                random.seed(os.urandom(8))
+                
+                # Get recent problems to avoid
+                recent_problems = self.problem_cache.get_recent_problems(concept, complexity)
+                avoid_prompt = self._create_avoid_problems_prompt(recent_problems)
+                
+                # Get concept and complexity specific prompts
+                concept_prompt = self.prompt_manager.get_concept_prompt(concept)
+                complexity_prompt = self.prompt_manager.get_complexity_prompt(complexity) or ""
+                context_prompt = self.prompt_manager.get_context_prompt(concept, complexity) or ""
+                
+                # Log the selected problem type (safely)
+                if concept_prompt:
+                    logger.info(f"Attempt {attempt + 1}: Using concept prompt: {concept_prompt[:200]}...")
+                
+                # Combine prompts
+                combined_prompt = f"""
+                {avoid_prompt}
 
-        messages = [
-            {
-                "role": "system",
-                "content": """You are a programming problem generator. Generate a programming problem based on the given concept 
-                and complexity. The problem should be suitable for a hackathon setting.
-                - For medium and hard difficulty problems, start with interesting real-life scenario and then move on to the function that solves the problem.
-                ###Scenario Example
-                ```         <scenario>
-                  Imagine you're managing a photo storage app where users frequently upload and delete pictures. To optimize storage, you need a dynamic memory system that expands when storage is full and shrinks when usage decreases, ensuring efficient space utilization.                ```
-                </scenario>
-                <main_problem>
-                  In a dynamic array implementation, you need to create a function that resizes the array based on the number of elements it contains. 
-                  The function should accept a list of integers that represents the current elements in the array and an operation 
-                  string that indicates whether to 'expand' or 'shrink' the array. 
-                  When expanding, the new size should be double the current size, and when shrinking, it should be half (minimum size of 1). 
-                  Return the resized array based on the operation specified.               
-                    </main_problem>
-                </main_problem>
+                {concept_prompt}
 
+                {complexity_prompt}
 
-                - For medium and hard difficulty problems, include one or more hint about the solution. Mark the hint with ###Hint
-                <hint>
-                    ###Hint: Think of how dynamic arrays work in languages like Java or Python—when they reach full capacity, they automatically resize by doubling their size to accommodate more elements. Similarly, when elements are removed, shrinking the array helps save memory, but the size should never go below 1. Use an array copy operation to create a new array with the updated size, ensuring elements are preserved. Pay attention to edge cases, such as when the array is already at the minimum size or when shrinking leads to an empty array.
-                </hint>
-             
+                {context_prompt}
+                """
 
-
-                IMPORTANT: The problem's input and output must ONLY use these simple types:
-                - int
-                - float
-                - str (string)
-                - bool
-
-                - List[int]
-                - List[float]
-                - List[str]
-                - List[bool]
-
-                Do NOT generate problems that require:
-                - Multiple function calls
-                - Class implementations
-                - Complex data structures
-                - State management
-
-                - Generate not more than 3 test cases. Each test case should have:
-                    - input: A list containing the input values (matching the function parameters)
-                    - output: A single value of the expected return type
-
-                Example test case formats:
-                - For f(x: int) -> int:
-                  {"input": [5], "output": 10}
-                - For f(arr: List[int], target: int) -> bool:
-                  {"input": [[1, 2, 3], 2], "output": true}
-
-                The problem structure should follow a format. Below is an exaample format. 
-                You decide based on the problem statement how many Input Field (function parameters) are needed:
-                {
-                    "problem_name": "Problem Name",
-                    "function_name": "function_name",
-                    "input_structure": [
-                        {
-                            "Input Field": "List[int] array"
-                        },
-                        {
-                            "Input Field": "string operation"
-                        },
-                        {
-                            "Input Field": "int element"
-                        }
-                    ],
-                    "output_structure": {
-                        "Output Field": "List[int] result"
+                messages = [
+                    {
+                        "role": "system",
+                        "content": combined_prompt.strip()
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Generate a {complexity} difficulty problem about {concept}"
                     }
-                }
+                ]
 
-                Format the problem statement in markdown with:
-                - Clear title and description
-                - Detailed examples with input and output
-                - Edge cases in test cases
-                - Appropriate function name and parameter types
-                - Relevant tags for categorization
-               """
-            },
-            {
-                "role": "user",
-                "content": f"Generate a {complexity} difficulty problem about {concept}"
-            }
-
-        ]
-
-        functions = [{
-            "name": "generate_programming_problem",
-            "description": "Generate a programming problem with specific structure",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "concept": {"type": "string"},
-                    "difficulty": {"type": "string"},
-                    "problem_title": {"type": "string"},
-                    "problem_statement": {"type": "string"},
-                    "test_cases": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "input": {
-                                    "type": "array",
-                                    "description": "List of input values matching function parameters. Each value must be one of: int, float, str, bool, or arrays of these types",
-                                    "items": {
-                                        "oneOf": [
-                                            {"type": "integer"},
-                                            {"type": "number"},
-                                            {"type": "string"},
-                                            {"type": "boolean"},
-                                            {
-                                                "type": "array",
-                                                "items": {
-                                                    "oneOf": [
-                                                        {"type": "integer"},
-                                                        {"type": "number"},
-                                                        {"type": "string"},
-                                                        {"type": "boolean"}
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "output": {
-                                    "description": "Expected output value of one of the allowed types: int, float, str, bool, or arrays of these types",
-                                    "oneOf": [
-                                        {"type": "integer"},
-                                        {"type": "number"},
-                                        {"type": "string"},
-                                        {"type": "boolean"},
-                                        {
+                functions = [{
+                    "name": "generate_programming_problem",
+                    "description": "Generate a programming problem with specific structure",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "concept": {"type": "string"},
+                            "difficulty": {"type": "string"},
+                            "problem_title": {"type": "string"},
+                            "problem_statement": {"type": "string"},
+                            "test_cases": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "input": {
                                             "type": "array",
+                                            "description": "List of input values matching function parameters. Each value must be one of: int, float, str, bool, or arrays of these types",
                                             "items": {
                                                 "oneOf": [
                                                     {"type": "integer"},
                                                     {"type": "number"},
                                                     {"type": "string"},
-                                                    {"type": "boolean"}
+                                                    {"type": "boolean"},
+                                                    {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "oneOf": [
+                                                                {"type": "integer"},
+                                                                {"type": "number"},
+                                                                {"type": "string"},
+                                                                {"type": "boolean"}
+                                                            ]
+                                                        }
+                                                    }
                                                 ]
                                             }
-                                        }
-                                    ]
-                                }
-                            },
-                            "required": ["input", "output"]
-                        }
-                    },
-                    "tags": {
-                        "type": "array",
-                        "items": {"type": "string"}
-                    },
-                    "structure": {
-                        "type": "object",
-                        "properties": {
-                            "problem_name": {"type": "string"},
-                            "function_name": {"type": "string"},
-                            "input_structure": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "Input Field": {
-                                            "type": "string",
-                                            "description": "Type and name of the input parameter (e.g., 'List[int] array', 'string operation')"
+                                        },
+                                        "output": {
+                                            "description": "Expected output value of one of the allowed types: int, float, str, bool, or arrays of these types",
+                                            "oneOf": [
+                                                {"type": "integer"},
+                                                {"type": "number"},
+                                                {"type": "string"},
+                                                {"type": "boolean"},
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "oneOf": [
+                                                            {"type": "integer"},
+                                                            {"type": "number"},
+                                                            {"type": "string"},
+                                                            {"type": "boolean"}
+                                                        ]
+                                                    }
+                                                }
+                                            ]
                                         }
                                     },
-                                    "required": ["Input Field"]
+                                    "required": ["input", "output"]
                                 }
                             },
-                            "output_structure": {
+                            "tags": {
+                                "type": "array",
+                                "items": {"type": "string"}
+                            },
+                            "structure": {
                                 "type": "object",
                                 "properties": {
-                                    "Output Field": {
-                                        "type": "string",
-                                        "description": "Type and name of the output (e.g., 'List[int] result')"
+                                    "problem_name": {"type": "string"},
+                                    "function_name": {"type": "string"},
+                                    "input_structure": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Input Field": {
+                                                    "type": "string",
+                                                    "description": "Type and name of the input parameter (e.g., 'List[int] array', 'string operation')"
+                                                }
+                                            },
+                                            "required": ["Input Field"]
+                                        }
+                                    },
+                                    "output_structure": {
+                                        "type": "object",
+                                        "properties": {
+                                            "Output Field": {
+                                                "type": "string",
+                                                "description": "Type and name of the output (e.g., 'List[int] result')"
+                                            }
+                                        },
+                                        "required": ["Output Field"]
                                     }
                                 },
-                                "required": ["Output Field"]
+                                "required": ["problem_name", "function_name", "input_structure", "output_structure"]
                             }
                         },
-                        "required": ["problem_name", "function_name", "input_structure", "output_structure"]
+                        "required": ["concept", "difficulty", "problem_title", "problem_statement", 
+                                   "test_cases", "tags", "structure"]
                     }
-                },
-                "required": ["concept", "difficulty", "problem_title", "problem_statement", 
-                           "test_cases", "tags", "structure"]
-            }
-        }]
+                }]
 
-        logger.info("Sending request to LLM")
-        response = await self.llm.ainvoke(
-            messages,
-            functions=functions,
-            function_call={"name": "generate_programming_problem"}
-        )
-        logger.info("Received response from LLM")
+                logger.info("Sending request to LLM")
+                response = await self.llm.ainvoke(
+                    messages,
+                    functions=functions,
+                    function_call={"name": "generate_programming_problem"}
+                )
+                logger.info("Received response from LLM")
 
-        try:
-            if hasattr(response, 'additional_kwargs') and 'function_call' in response.additional_kwargs:
-                function_call = response.additional_kwargs['function_call']
-                if function_call and 'arguments' in function_call:
-                    result = json.loads(function_call['arguments'])
-                    logger.info(f"Successfully parsed problem: {result.get('problem_title', 'Unknown Title')}")
+                try:
+                    if hasattr(response, 'additional_kwargs') and 'function_call' in response.additional_kwargs:
+                        function_call = response.additional_kwargs['function_call']
+                        if function_call and 'arguments' in function_call:
+                            result = json.loads(function_call['arguments'])
+                            
+                            # Store full problem details
+                            self.problem_cache.add_problem(
+                                concept=concept,
+                                complexity=complexity,
+                                problem_title=result['problem_title'],
+                                problem_statement=result['problem_statement']
+                            )
+                            
+                            logger.info(f"Successfully parsed problem: {result.get('problem_title', 'Unknown Title')}")
+                            
+                            # Ensure structure has all required fields
+                            if 'structure' in result:
+                                if 'problem_name' not in result['structure']:
+                                    result['structure']['problem_name'] = result['problem_title']
+                                if 'input_structure' not in result['structure']:
+                                    result['structure']['input_structure'] = [
+                                        {"Input Field": "List[int] array"}
+                                    ]
+                                if 'output_structure' not in result['structure']:
+                                    result['structure']['output_structure'] = {
+                                        "Output Field": "int result"
+                                    }
+                                if 'function_name' not in result['structure']:
+                                    result['structure']['function_name'] = result['problem_title'].lower().replace(' ', '_')
+                            
+                            # Generate boilerplate code for both languages
+                            java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+                            python_boilerplate = self.python_generator.convert_to_python_boilerplate(result['structure'])
+                            
+                            result['java_boilerplate'] = java_boilerplate
+                            result['python_boilerplate'] = python_boilerplate
+                            
+                            return Problem(**result).model_dump()
                     
-                    # Ensure structure has all required fields
-                    if 'structure' in result:
-                        if 'problem_name' not in result['structure']:
-                            result['structure']['problem_name'] = result['problem_title']
-                        if 'input_structure' not in result['structure']:
-                            result['structure']['input_structure'] = [
-                                {"Input Field": "List[int] array"}
-                            ]
-                        if 'output_structure' not in result['structure']:
-                            result['structure']['output_structure'] = {
-                                "Output Field": "int result"
-                            }
-                        if 'function_name' not in result['structure']:
-                            result['structure']['function_name'] = result['problem_title'].lower().replace(' ', '_')
+                    logger.error(f"Invalid response format: {response}")
+                    raise ValueError("No valid function call in response")
                     
-                    # Generate boilerplate code for both languages
-                    java_boilerplate = JavaBoilerplateGenerator.convert_to_java_boilerplate(result['structure'])
-                    python_boilerplate = PythonBoilerplateGenerator.convert_to_python_boilerplate(result['structure'])
+                except json.JSONDecodeError as e:
+                    logger.error(f"JSON decode error: {e}", exc_info=True)
+                    logger.error(f"Response content: {response}")
+                    raise ValueError(f"Failed to parse LLM response: {e}")
                     
-                    result['java_boilerplate'] = java_boilerplate
-                    result['python_boilerplate'] = python_boilerplate
-                    
-                    return Problem(**result).model_dump()
-            
-            logger.error(f"Invalid response format: {response}")
-            raise ValueError("No valid function call in response")
-            
-        except json.JSONDecodeError as e:
-            logger.error(f"JSON decode error: {e}", exc_info=True)
-            logger.error(f"Response content: {response}")
-            raise ValueError(f"Failed to parse LLM response: {e}")
-            
-        except Exception as e:
-            logger.error(f"Error generating problem: {str(e)}", exc_info=True)
-            logger.error(f"Response: {response}")
-            raise ValueError(f"Failed to generate problem: {str(e)}")
+                except Exception as e:
+                    logger.error(f"Error generating problem: {str(e)}", exc_info=True)
+                    logger.error(f"Response: {response}")
+                    raise ValueError(f"Failed to generate problem: {str(e)}")
+
+                logger.info(f"Generated problem was too similar, attempt {attempt + 1}/{max_attempts}")
+
+            except Exception as e:
+                logger.error(f"Error generating problem: {str(e)}", exc_info=True)
+                logger.error(f"Response: {response}")
+                raise ValueError(f"Failed to generate problem: {str(e)}")
+
+        # If we couldn't generate a unique problem after max attempts
+        logger.warning("Could not generate sufficiently different problem")
+        # Return the last generated problem anyway
+        return Problem(**result).model_dump()
