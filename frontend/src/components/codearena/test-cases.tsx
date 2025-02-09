@@ -103,7 +103,7 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
                 key={`test${index + 1}`}
                 value={`test${index + 1}`}
                 className={cn(
-                  "text-sm p-2 border border-blue-200",
+                  "text-sm p-2 border border-blue-200 bg-white",
                   "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-b-0",
                   "hover:bg-blue-50",
                   "transition-colors",
@@ -124,9 +124,10 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
           <TabsTrigger 
             value="results" 
             className={cn(
-              "text-sm p-2 border border-blue-200 bg-blue-50",
-              "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-b-0",
-              "hover:bg-blue-50",
+              "text-sm p-2 border border-blue-200",
+              "bg-gray-200",
+              "data-[state=active]:bg-blue-100 data-[state=active]:text-gray-700 data-[state=active]:border-b-0",
+              "hover:bg-gray-100",
               "font-medium",
               "transition-colors",
               "flex items-center justify-center gap-2"
@@ -166,7 +167,7 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
           </TabsContent>
         ))}
 
-        <TabsContent value="results" className="flex-1 overflow-auto custom-scrollbar">
+        <TabsContent value="results" className="flex-1 overflow-auto custom-scrollbar bg-gray-50">
           {isGenerating ? (
             <div className="h-full flex items-center justify-center">
               <Loader2 className="h-8 w-8 animate-spin text-gray-400" />

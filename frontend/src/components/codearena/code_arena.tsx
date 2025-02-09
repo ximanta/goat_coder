@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import { ProblemDescription } from "@/components/codearena/problem-description"
 import { CodeEditor } from "@/components/codearena/code-editor"
 import { useTheme } from "next-themes"
-import { submitCode } from "@/services/code-submission"
+import { submitCode } from "@/lib/submission_api"
+import { pollSubmission } from "@/lib/fetch_submission_api"
 import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { ProblemResponse } from "@/lib/get_problem_api"
@@ -145,26 +146,49 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
 
   const handleSubmit = async () => {
     try {
-      setIsSubmitting(true)
-      console.log('=== Submit Result ===');
-      console.log('Result:', testResults);
-      
-      if (testResults.submitted) {
-        setTestResults({
-          submitted: true,
-          completed: true,
-          passed: testResults.results.every(r => r.passed),
-          results: testResults.results
-        });
-        setStatus(testResults.results.every(r => r.passed) ? "All tests passed!" : "Some tests failed.");
-      }
+      setIsSubmitting(true);
+      setTestResults({
+        submitted: true,
+        completed: false,
+        passed: false,
+        results: []
+      });
+
+      // 1. Submit the code and get submission tokens
+      const tokens = await submitCode(
+        code,
+        language,
+        JSON.stringify(problem.structure),
+        problem.testCases || []
+      );
+
+      // 2. Poll for results
+      const result = await pollSubmission(tokens.map(t => t.token));
+
+      // 3. Update the test results
+      setTestResults({
+        submitted: true,
+        completed: true,
+        passed: result.passed,
+        results: result.results
+      });
+
+      // 4. Update status message
+      setStatus(result.passed ? "All tests passed!" : "Some tests failed.");
+
     } catch (error) {
-      console.error('Error handling submit:', error);
+      console.error('Error in handleSubmit:', error);
       setStatus(error instanceof Error ? error.message : 'Submission failed');
+      setTestResults({
+        submitted: false,
+        completed: false,
+        passed: false,
+        results: []
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   if (loading) {
     return (
