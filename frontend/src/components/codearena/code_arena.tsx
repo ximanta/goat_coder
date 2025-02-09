@@ -57,8 +57,8 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     tags?: string[];
     concept?: string;
   }>({
-    title: "10. Regular Expression Matching",
-    difficulty: "Hard",
+    title: "",
+    difficulty: "Medium",
     description: "",
     testCases: [],
     structure: {
@@ -184,9 +184,9 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         <Panel defaultSize={40} minSize={30}>
           <div className="h-full overflow-hidden border-r border-border">
             <ProblemDescription
-              title={problem?.problem_title}
+              title={problem?.title}
               difficulty={problem?.difficulty}
-              description={problem?.problem_statement}
+              description={problem?.description}
               concept={problem?.concept}
               onGenerateNewProblem={handleGenerateNewProblem}
               isGenerating={isGenerating}

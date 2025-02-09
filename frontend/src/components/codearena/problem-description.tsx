@@ -16,9 +16,9 @@ interface ProblemDescriptionProps {
 }
 
 export function ProblemDescription({ 
-  title = "10. Regular Expression Matching",
-  difficulty = "Hard",
-  description,
+  title = "",
+  difficulty = "Medium",
+  description = "",
   concept = "",
   onGenerateNewProblem,
   isGenerating = false,
@@ -104,32 +104,9 @@ export function ProblemDescription({
               {description}
             </ReactMarkdown>
           ) : (
-            <>
-              <p>
-                Given an input string <code>s</code> and a pattern <code>p</code>, implement regular expression matching with
-                support for <code>.</code> and <code>*</code> where:
-              </p>
-
-              <ul>
-                <li>
-                  <code>.</code> Matches any single character.
-                </li>
-                <li>
-                  <code>*</code> Matches zero or more of the preceding element.
-                </li>
-              </ul>
-
-              <p>
-                The matching should cover the <strong>entire</strong> input string (not partial).
-              </p>
-
-              <h2>Example 1:</h2>
-              <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-4 whitespace-pre-wrap break-words">
-                Input: s = "aa", p = "a" 
-                Output: false 
-                Explanation: "a" does not match the entire string "aa".
-              </pre>
-            </>
+            <div className="text-gray-500 text-center py-8">
+              Loading problem description...
+            </div>
           )}
         </div>
       </div>
