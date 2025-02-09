@@ -9,6 +9,7 @@ import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { ProblemResponse } from "@/lib/get_problem_api"
 import { Loader2, ArrowLeft } from "lucide-react"
+import languageMapping from '@/components/language_mapping.json'
 
 export interface CodeArenaProps {
   category?: string;
@@ -79,6 +80,11 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     passed: false,
     results: []
   });
+
+  const languages = Object.entries(languageMapping.languages).map(([key, lang]) => ({
+    id: lang.codeInt.toString(),
+    name: lang.displayName
+  }))
 
   const handleGenerateNewProblem = async () => {
     try {
@@ -191,6 +197,18 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
               onGenerateNewProblem={handleGenerateNewProblem}
               isGenerating={isGenerating}
               tags={problem?.tags}
+              chatContext={{
+                userId: 'guest',
+                concept: problem?.concept,
+                complexity: problem?.difficulty,
+                keywords: problem?.tags,
+                problemTitle: problem?.title,
+                problemDescription: problem?.description,
+                programmingLanguage: languages.find(l => l.id === language)?.name || 'Java',
+                currentCode: code,
+                testCases: problem?.testCases,
+                submissionResults: testResults,
+              }}
             />
           </div>
         </Panel>

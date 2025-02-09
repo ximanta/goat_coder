@@ -8,8 +8,32 @@ interface ChatResponse {
   error?: string;
 }
 
-export async function sendChatMessage(message: string): Promise<ChatResponse> {
+interface ChatContext {
+  userId: string;
+  concept?: string;
+  complexity?: string;
+  keywords?: string[];
+  problemTitle?: string;
+  problemDescription?: string;
+  programmingLanguage?: string;
+  currentCode?: string;
+  testCases?: Array<{ input: any[]; output: any; }>;
+  submissionResults?: {
+    completed: boolean;
+    passed: boolean;
+    results: any[];
+  };
+}
+
+export async function sendChatMessage(
+  message: string, 
+  context: ChatContext,
+  onChunk: (chunk: string) => void
+): Promise<void> {
   try {
+    console.log('=== Chat API Call ===');
+    console.log('Sending to backend:', { message, context });
+
     const response = await fetch("http://localhost:8000/codeassist/chat", {
       method: "POST",
       headers: {
@@ -17,6 +41,7 @@ export async function sendChatMessage(message: string): Promise<ChatResponse> {
       },
       body: JSON.stringify({
         message,
+        context
       }),
     });
 
@@ -26,15 +51,23 @@ export async function sendChatMessage(message: string): Promise<ChatResponse> {
       throw new Error(`Failed to send message: ${errorText}`);
     }
 
-    const data = await response.json();
-    return {
-      message: data.response,
-    };
+    if (!response.body) {
+      throw new Error('No response body received');
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const chunk = decoder.decode(value);
+      onChunk(chunk);
+    }
+
   } catch (error) {
     console.error('Chat API Error:', error);
-    return {
-      message: "Sorry, I'm having trouble connecting to the server.",
-      error: error instanceof Error ? error.message : 'Unknown error occurred',
-    };
+    throw error;
   }
 } 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,17 +14,43 @@ interface Message {
   role: 'user' | 'assistant';
 }
 
-export default function ChatAssistant() {
+interface ChatAssistantProps {
+  problemContext: {
+    userId?: string;
+    concept?: string;
+    complexity?: string;
+    keywords?: string[];
+    problemTitle?: string;
+    problemDescription?: string;
+    programmingLanguage?: string;
+    currentCode?: string;
+    testCases?: Array<{ input: any[]; output: any; }>;
+    submissionResults?: {
+      completed: boolean;
+      passed: boolean;
+      results: any[];
+    };
+  };
+}
+
+export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  // Function to scroll to bottom of chat
+  const scrollToBottom = () => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = contentRef.current.scrollHeight
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim()) return
 
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
       content: input.trim(),
@@ -34,27 +60,53 @@ export default function ChatAssistant() {
     setInput('')
     setIsLoading(true)
 
+    // Create a placeholder message for the assistant's response
+    const assistantMessageId = (Date.now() + 1).toString()
+    setMessages(prev => [...prev, {
+      id: assistantMessageId,
+      content: '',
+      role: 'assistant'
+    }])
+
     try {
-      // Send message to backend
-      const response = await sendChatMessage(userMessage.content)
-      
-      // Add assistant's response
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: response.error || response.message,
-        role: 'assistant'
-      }
-      setMessages(prev => [...prev, assistantMessage])
+      console.log('=== Sending Chat Message ===');
+      console.log('Message:', userMessage.content);
+      console.log('Context:', problemContext);
+
+      await sendChatMessage(
+        userMessage.content,
+        {
+          userId: problemContext.userId || 'guest',
+          concept: problemContext.concept,
+          complexity: problemContext.complexity,
+          keywords: problemContext.keywords,
+          problemTitle: problemContext.problemTitle,
+          problemDescription: problemContext.problemDescription,
+          programmingLanguage: problemContext.programmingLanguage,
+          currentCode: problemContext.currentCode,
+          testCases: problemContext.testCases,
+          submissionResults: problemContext.submissionResults,
+        },
+        (chunk: string) => {
+          // Update the assistant's message with the new chunk
+          setMessages(prev => prev.map(msg => 
+            msg.id === assistantMessageId
+              ? { ...msg, content: msg.content + chunk }
+              : msg
+          ))
+          scrollToBottom()
+        }
+      )
     } catch (error) {
-      // Add error message
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: "Sorry, I'm having trouble connecting to the server.",
-        role: 'assistant'
-      }
-      setMessages(prev => [...prev, errorMessage])
+      // Update the assistant's message with the error
+      setMessages(prev => prev.map(msg => 
+        msg.id === assistantMessageId
+          ? { ...msg, content: "Sorry, I'm having trouble connecting to the server." }
+          : msg
+      ))
     } finally {
       setIsLoading(false)
+      scrollToBottom()
     }
   }
 
@@ -82,7 +134,10 @@ export default function ChatAssistant() {
           </div>
         </CardHeader>
 
-        <CardContent className="h-[320px] overflow-y-auto p-3 space-y-3">
+        <CardContent 
+          ref={contentRef}
+          className="h-[320px] overflow-y-auto p-3 space-y-3 scroll-smooth"
+        >
           {messages.length === 0 && (
             <div className="text-sm text-gray-500 text-center py-4">
               Ask any questions about the problem!
@@ -99,15 +154,11 @@ export default function ChatAssistant() {
                   : "bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700",
               )}
             >
-              {message.content}
+              {message.content || (
+                <span className="animate-pulse">▋</span>
+              )}
             </div>
           ))}
-          {isLoading && (
-            <div className="flex items-center gap-2 text-sm text-gray-500 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              Assistant is thinking...
-            </div>
-          )}
         </CardContent>
 
         <CardFooter className="border-t border-gray-200 dark:border-gray-700 p-3 bg-white dark:bg-gray-800">
@@ -117,6 +168,7 @@ export default function ChatAssistant() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="flex-1 text-sm bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700"
+              disabled={isLoading}
             />
             <Button 
               type="submit" 

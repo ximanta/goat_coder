@@ -13,6 +13,22 @@ interface ProblemDescriptionProps {
   onGenerateNewProblem: () => void;
   isGenerating?: boolean;
   tags?: string[];
+  chatContext: {
+    userId?: string;
+    concept?: string;
+    complexity?: string;
+    keywords?: string[];
+    problemTitle?: string;
+    problemDescription?: string;
+    programmingLanguage?: string;
+    currentCode?: string;
+    testCases?: Array<{ input: any[]; output: any; }>;
+    submissionResults?: {
+      completed: boolean;
+      passed: boolean;
+      results: any[];
+    };
+  };
 }
 
 export function ProblemDescription({ 
@@ -22,7 +38,8 @@ export function ProblemDescription({
   concept = "",
   onGenerateNewProblem,
   isGenerating = false,
-  tags = []
+  tags = [],
+  chatContext
 }: ProblemDescriptionProps) {
   // Helper function to normalize difficulty
   const normalizeDifficulty = (diff: string): string => {
@@ -113,7 +130,7 @@ export function ProblemDescription({
 
       {/* Position the ChatAssistant at the bottom of ProblemDescription */}
       <div className="absolute bottom-0 right-0 pb-4 pr-4">
-        <ChatAssistant />
+        <ChatAssistant problemContext={chatContext} />
       </div>
     </div>
   )
