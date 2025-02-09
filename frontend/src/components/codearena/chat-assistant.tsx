@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { MessageCircle, X, Send, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { sendChatMessage } from "@/lib/codeassist-chat-api"
+import ReactMarkdown from 'react-markdown'
 
 interface Message {
   id: string;
@@ -114,33 +115,51 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
     <>
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="h-10 w-10 rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white"
+        className="h-10 w-10 rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white fixed bottom-4 left-4 z-50"
         size="icon"
+        aria-label="Toggle Problem Mentor"
       >
         {isOpen ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </Button>
 
       <Card
         className={cn(
-          "absolute bottom-16 right-0 w-[380px] shadow-xl transition-all duration-200 ease-in-out",
-          "bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700",
-          isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none",
+          "fixed inset-y-16 left-0 w-[500px] shadow-xl transition-all duration-300 ease-in-out z-40",
+          "bg-gray-50/95 dark:bg-gray-900/95 border-2 border-blue-200 dark:border-blue-900 backdrop-blur-sm",
+          isOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700 p-3 bg-white dark:bg-gray-800">
-          <div className="flex items-center gap-2">
-            <MessageCircle className="h-4 w-4 text-blue-600" />
-            <h3 className="font-semibold text-sm">Problem Assistant</h3>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <MessageCircle className="h-5 w-5 text-blue-600" />
+              <h3 className="font-semibold">Problem Mentor</h3>
+            </div>
+            <Button
+              onClick={() => setIsOpen(false)}
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8"
+              aria-label="Close Problem Mentor"
+            >
+              <X className="h-4 w-4" />
+            </Button>
           </div>
         </CardHeader>
 
         <CardContent 
           ref={contentRef}
-          className="h-[320px] overflow-y-auto p-3 space-y-3 scroll-smooth"
+          className="flex-1 overflow-y-auto p-4 space-y-4 h-[calc(100%-8rem)]"
         >
           {messages.length === 0 && (
-            <div className="text-sm text-gray-500 text-center py-4">
-              Ask any questions about the problem!
+            <div className="text-center py-8 space-y-2">
+              <MessageCircle className="h-8 w-8 mx-auto text-blue-600/50" />
+              <h4 className="font-semibold text-gray-600 dark:text-gray-400">
+                Welcome to Problem Mentor!
+              </h4>
+              <p className="text-sm text-gray-500 dark:text-gray-500 max-w-sm mx-auto">
+                Ask any questions about the problem. I'm here to guide you through the solution process.
+              </p>
             </div>
           )}
           
@@ -148,23 +167,63 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
             <div
               key={message.id}
               className={cn(
-                "flex w-max max-w-[80%] rounded-lg px-3 py-2 text-sm",
+                "flex rounded-lg px-4 py-2",
                 message.role === "user" 
-                  ? "ml-auto bg-blue-600 text-white" 
-                  : "bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700",
+                  ? "ml-auto bg-blue-600 text-white max-w-[85%]" 
+                  : "bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 max-w-[90%]",
               )}
             >
-              {message.content || (
+              {message.role === "user" ? (
+                <div className="text-sm break-words whitespace-pre-wrap">
+                  {message.content}
+                </div>
+              ) : message.content ? (
+                <div className="prose prose-sm dark:prose-invert max-w-none break-words">
+                  <ReactMarkdown
+                    components={{
+                      p: ({ children }) => (
+                        <p className="my-1.5 whitespace-pre-wrap">{children}</p>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc pl-4 my-2">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="list-decimal pl-4 my-2">{children}</ol>
+                      ),
+                      li: ({ children }) => (
+                        <li className="my-1 whitespace-pre-wrap flex">
+                          <span className="mr-2">{children}</span>
+                        </li>
+                      ),
+                      code: ({ node, inline, className, children, ...props }) => (
+                        <code 
+                          className={cn(
+                            "whitespace-pre-wrap break-all",
+                            inline 
+                              ? "bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded" 
+                              : "block bg-gray-100 dark:bg-gray-800 p-3 rounded-md my-2"
+                          )}
+                          {...props}
+                        >
+                          {children}
+                        </code>
+                      ),
+                    }}
+                  >
+                    {message.content}
+                  </ReactMarkdown>
+                </div>
+              ) : (
                 <span className="animate-pulse">▋</span>
               )}
             </div>
           ))}
         </CardContent>
 
-        <CardFooter className="border-t border-gray-200 dark:border-gray-700 p-3 bg-white dark:bg-gray-800">
+        <CardFooter className="border-t border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800">
           <form onSubmit={handleSubmit} className="flex w-full gap-2">
             <Input
-              placeholder="Ask about the problem..."
+              placeholder="Ask your mentor..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="flex-1 text-sm bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700"

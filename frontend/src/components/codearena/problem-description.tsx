@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import ReactMarkdown from 'react-markdown'
-import { Tag } from "lucide-react"
+import { Tag, ArrowRight } from "lucide-react"
 import ChatAssistant from "./chat-assistant"
 
 interface ProblemDescriptionProps {
@@ -54,10 +54,11 @@ export function ProblemDescription({
           <h1 className="text-2xl font-bold">{title}</h1>
           <Button 
             onClick={onGenerateNewProblem}
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-blue-50 hover:bg-blue-100 text-blue-600 border-none shadow-none gap-2 transition-colors"
             disabled={isGenerating}
           >
-            Solve Another
+            Next Challenge
+            <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
         
