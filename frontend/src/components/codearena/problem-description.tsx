@@ -48,10 +48,25 @@ export function ProblemDescription({
     return normalized.charAt(0).toUpperCase() + normalized.slice(1);
   };
 
+  // Helper function to get difficulty styles
+  const getDifficultyStyles = (diff: string): string => {
+    const normalized = diff.toLowerCase();
+    switch (normalized) {
+      case 'easy':
+        return 'bg-green-100 text-green-700'; // Light green background, darker green text
+      case 'medium':
+        return 'bg-green-200 text-green-800'; // Medium green background, darker green text
+      case 'hard':
+        return 'bg-green-300 text-green-900'; // Darker green background, darkest green text
+      default:
+        return 'bg-green-100 text-green-700';
+    }
+  };
+
   return (
-    <div className="relative h-full flex flex-col">
+    <div className="relative h-full flex flex-col bg-white">
       {/* Main content - scrollable area */}
-      <div className="flex-1 overflow-y-auto pb-20 custom-scrollbar"> {/* Added custom-scrollbar class */}
+      <div className="flex-1 overflow-y-auto pb-20 custom-scrollbar bg-white"> {/* Added custom-scrollbar class */}
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl font-bold">{title}</h1>
@@ -72,7 +87,7 @@ export function ProblemDescription({
                   {concept}
                 </div>
               )}
-              <div className="inline-block px-2 py-1 rounded text-red-500 bg-red-100 dark:bg-red-900/30 text-sm">
+              <div className={`inline-block px-2 py-1 rounded text-sm ${getDifficultyStyles(difficulty)}`}>
                 {normalizeDifficulty(difficulty)}
               </div>
             </div>

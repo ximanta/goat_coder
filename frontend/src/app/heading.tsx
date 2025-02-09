@@ -15,36 +15,40 @@ const Heading = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-indigo-600">CodeCraft Academy</h1>
-        <div className="flex items-center gap-4">
-          <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Explore</button>
-          <div className="relative group">
-            <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Practice</button>
-            <div className="absolute hidden group-hover:block w-72 right-0 mt-2 py-2 bg-white rounded-lg shadow-xl z-50">
-              {categories.map((category, index) => (
-                <button
-                  key={index}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-3"
-                  onClick={() => window.dispatchEvent(new CustomEvent('categorySelect', { detail: category.value }))}
-                >
-                  {category.icon}
-                  <div className="flex flex-col">
-                    <span className="font-medium">{category.name}</span>
-                    <span className="text-sm text-gray-500">{category.count}</span>
-                  </div>
-                </button>
-              ))}
+    <div id="main-header">
+      <nav className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-indigo-600">CodeCraft Academy</h1>
+          <div className="flex items-center gap-4">
+            <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Explore</button>
+            <div className="relative group">
+              <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Practice</button>
+              <div className="absolute w-full h-3 bottom-0 translate-y-full" />
+              <div className="absolute hidden group-hover:block w-72 right-0 mt-[2px] py-2 bg-white rounded-lg shadow-xl z-50">
+                {categories.map((category, index) => (
+                  <button
+                    key={index}
+                    className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-3"
+                    onClick={() => window.dispatchEvent(new CustomEvent('categorySelect', { detail: category.value }))}
+                  >
+                    {category.icon}
+                    <div className="flex flex-col">
+                      <span className="font-medium">{category.name}</span>
+                      <span className="text-sm text-gray-500">{category.count}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
+            <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+              <LogIn className="w-4 h-4" />
+              Login
+            </button>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
-            <LogIn className="w-4 h-4" />
-            Login
-          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <div className="h-[1px] bg-gray-200 w-full" />
+    </div>
   );
 };
 

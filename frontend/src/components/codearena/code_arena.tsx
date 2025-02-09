@@ -9,7 +9,7 @@ import { pollSubmission } from "@/lib/fetch_submission_api"
 import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { ProblemResponse } from "@/lib/get_problem_api"
-import { Loader2, ArrowLeft, GripHorizontal, Play, Moon, Sun } from "lucide-react"
+import { Loader2, ArrowLeft, GripHorizontal, Play, Moon, Sun, Copy, Check } from "lucide-react"
 import languageMapping from '@/components/language_mapping.json'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Timer } from "@/components/ui/timer"
@@ -91,6 +91,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [editorTheme, setEditorTheme] = useState("vs-dark")
+  const [showCopied, setShowCopied] = useState(false)
 
   const toggleTheme = () => {
     setEditorTheme(prev => prev === "vs-dark" ? "vs-light" : "vs-dark")
@@ -195,6 +196,16 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     }
   };
 
+  const handleCopyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(code)
+      setShowCopied(true)
+      setTimeout(() => setShowCopied(false), 2000) // Hide after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy code:', err)
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-[calc(100vh-73px)]">
@@ -208,8 +219,8 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
   console.log('Problem structure:', problem?.structure);
 
   return (
-    <div className="relative flex flex-col h-[calc(100vh-73px)]">
-      <div className="flex-none h-12 bg-white border-b border-border px-4">
+    <div id="code-arena-container" className="relative flex flex-col h-[calc(100vh-73px)]">
+      <div className="flex-none h-12 bg-white px-4">
         <div className="max-w-7xl mx-auto w-full h-full flex items-center justify-between">
           <button 
             onClick={onBack}
@@ -255,19 +266,53 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
             <Timer />
           </div>
 
-          {/* Theme toggle button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="w-9 h-9 hover:bg-gray-100"
-          >
-            {editorTheme === "vs-dark" ? (
-              <Sun className="h-4 w-4 text-gray-600" />
-            ) : (
-              <Moon className="h-4 w-4 text-gray-600" />
-            )}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleCopyCode}
+              className="w-9 h-9 hover:bg-gray-100 relative group"
+            >
+              {showCopied ? (
+                <>
+                  <Check className="h-4 w-4 text-green-600" />
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Copied!
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4 text-gray-600" />
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Copy code
+                  </span>
+                </>
+              )}
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="w-9 h-9 hover:bg-gray-100 relative group"
+            >
+              {editorTheme === "vs-dark" ? (
+                <>
+                  <Sun className="h-4 w-4 text-gray-600" />
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Light mode
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-4 w-4 text-gray-600" />
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Dark mode
+                  </span>
+                </>
+              )}
+            </Button>
+          </div>
         </div>
       </div>
 

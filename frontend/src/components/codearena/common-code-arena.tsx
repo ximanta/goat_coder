@@ -12,10 +12,14 @@ interface CommonCodeArenaProps {
 export function CommonCodeArena({ className }: CommonCodeArenaProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Update fullscreen state when user uses Esc key or browser's full-screen exit
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(document.fullscreenElement !== null);
+      // Toggle header visibility
+      const header = document.getElementById('main-header');
+      if (header) {
+        header.style.display = document.fullscreenElement ? 'none' : 'block';
+      }
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
@@ -27,21 +31,21 @@ export function CommonCodeArena({ className }: CommonCodeArenaProps) {
   const toggleFullScreen = async () => {
     try {
       if (!isFullscreen) {
-        // Get the root element (you might want to target a specific container)
-        const element = document.documentElement;
-        if (element.requestFullscreen) {
-          await element.requestFullscreen();
-        } else if ((element as any).webkitRequestFullscreen) { // Safari
-          await (element as any).webkitRequestFullscreen();
-        } else if ((element as any).msRequestFullscreen) { // IE11
-          await (element as any).msRequestFullscreen();
+        // Target the code-arena container instead of document
+        const codeArena = document.getElementById('code-arena-container');
+        if (codeArena?.requestFullscreen) {
+          await codeArena.requestFullscreen();
+        } else if ((codeArena as any)?.webkitRequestFullscreen) {
+          await (codeArena as any).webkitRequestFullscreen();
+        } else if ((codeArena as any)?.msRequestFullscreen) {
+          await (codeArena as any).msRequestFullscreen();
         }
       } else {
         if (document.exitFullscreen) {
           await document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) { // Safari
+        } else if ((document as any).webkitExitFullscreen) {
           await (document as any).webkitExitFullscreen();
-        } else if ((document as any).msExitFullscreen) { // IE11
+        } else if ((document as any).msExitFullscreen) {
           await (document as any).msExitFullscreen();
         }
       }
