@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Editor } from "@monaco-editor/react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
@@ -8,7 +8,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { TestCases } from "@/components/codearena/test-cases"
 import languageMapping from '@/components/language_mapping.json'
 import { submitCode } from "@/services/code-submission"
-import { Loader2, Play } from "lucide-react"
+import { Loader2, Play, GripVertical } from "lucide-react"
 import { Timer } from "@/components/ui/timer"
 
 interface CodeEditorProps {
@@ -78,6 +78,7 @@ export function CodeEditor({
   isGenerating = false
 }: CodeEditorProps) {
   const editorRef = useRef<any>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Add useEffect to set initial boilerplate based on selected language
   useEffect(() => {
@@ -173,6 +174,7 @@ export function CodeEditor({
 
   const handleSubmit = async () => {
     try {
+      setIsSubmitting(true)
       console.log('=== CodeEditor Submit ===');
       console.log('1. Initial structure prop:', structure);
       console.log('1a. Structure type:', typeof structure);
@@ -214,6 +216,8 @@ export function CodeEditor({
       console.error('Error in handleSubmit:', error);
       // Show error to user
       alert(error instanceof Error ? error.message : 'An error occurred');
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -287,10 +291,14 @@ export function CodeEditor({
               size="sm"
               variant="outline"
               className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
-              disabled={isGenerating}
+              disabled={isGenerating || isSubmitting}
             >
-              <Play className="w-4 h-4" />
-              Run
+              {isSubmitting ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Play className="w-4 h-4" />
+              )}
+              {isSubmitting ? 'Running...' : 'Run'}
             </Button>
             <Timer />
           </div>
@@ -320,7 +328,11 @@ export function CodeEditor({
         </div>
       </Panel>
 
-      <PanelResizeHandle className="h-2 bg-border hover:bg-muted/50 cursor-row-resize" />
+      <PanelResizeHandle className="h-2 bg-border hover:bg-muted/50 cursor-row-resize flex items-center justify-center">
+        <div className="h-4 w-full flex items-center justify-center hover:bg-muted/80">
+          <GripVertical className="h-2.5 w-2.5 text-gray-400" />
+        </div>
+      </PanelResizeHandle>
 
       <Panel defaultSize={30} minSize={20}>
         <div className="h-full overflow-y-auto">

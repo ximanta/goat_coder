@@ -8,7 +8,7 @@ import { submitCode } from "@/services/code-submission"
 import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { ProblemResponse } from "@/lib/get_problem_api"
-import { Loader2, ArrowLeft } from "lucide-react"
+import { Loader2, ArrowLeft, GripHorizontal } from "lucide-react"
 import languageMapping from '@/components/language_mapping.json'
 
 export interface CodeArenaProps {
@@ -213,7 +213,11 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
           </div>
         </Panel>
 
-        <PanelResizeHandle className="w-2 bg-border hover:bg-muted/50 cursor-col-resize" />
+        <PanelResizeHandle className="w-2 bg-border hover:bg-muted/50 cursor-col-resize flex items-center justify-center">
+          <div className="w-4 h-full flex items-center justify-center hover:bg-muted/80">
+            <GripHorizontal className="h-2.5 w-2.5 text-gray-400" />
+          </div>
+        </PanelResizeHandle>
 
         <Panel defaultSize={60} minSize={40}>
           <div className="h-full">
