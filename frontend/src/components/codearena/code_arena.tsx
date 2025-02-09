@@ -8,8 +8,11 @@ import { submitCode } from "@/services/code-submission"
 import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { ProblemResponse } from "@/lib/get_problem_api"
-import { Loader2, ArrowLeft, GripHorizontal } from "lucide-react"
+import { Loader2, ArrowLeft, GripHorizontal, Play } from "lucide-react"
 import languageMapping from '@/components/language_mapping.json'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Timer } from "@/components/ui/timer"
+import { Button } from "@/components/ui/button"
 
 export interface CodeArenaProps {
   category?: string;
@@ -35,6 +38,11 @@ interface TestResults {
   passed: boolean;
   results: TestCaseResult[];
 }
+
+const languages = Object.entries(languageMapping.languages).map(([key, lang]) => ({
+  id: lang.codeInt.toString(),
+  name: lang.displayName
+}))
 
 export default function CodeArena({ category, onBack }: CodeArenaProps) {
   const [code, setCode] = useState("")
@@ -80,11 +88,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     passed: false,
     results: []
   });
-
-  const languages = Object.entries(languageMapping.languages).map(([key, lang]) => ({
-    id: lang.codeInt.toString(),
-    name: lang.displayName
-  }))
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleGenerateNewProblem = async () => {
     try {
@@ -139,29 +143,32 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     initializeComponent()
   }, [category])
 
-  const handleSubmit = async (result: { status: { description: string; results: any[] } }) => {
+  const handleSubmit = async () => {
     try {
+      setIsSubmitting(true)
       console.log('=== Submit Result ===');
-      console.log('Result:', result);
+      console.log('Result:', testResults);
       
-      if (result?.status) {
+      if (testResults.submitted) {
         setTestResults({
           submitted: true,
           completed: true,
-          passed: result.status.results.every(r => r.passed),
-          results: result.status.results
+          passed: testResults.results.every(r => r.passed),
+          results: testResults.results
         });
-        setStatus(result.status.description);
+        setStatus(testResults.results.every(r => r.passed) ? "All tests passed!" : "Some tests failed.");
       }
     } catch (error) {
       console.error('Error handling submit:', error);
       setStatus(error instanceof Error ? error.message : 'Submission failed');
+    } finally {
+      setIsSubmitting(false)
     }
-  };
+  }
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center h-[calc(100vh-73px)]">
         <Loader2 className="h-12 w-12 animate-spin text-indigo-600" />
         <p className="mt-4 text-lg text-gray-600">Loading your coding challenge...</p>
       </div>
@@ -172,19 +179,60 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
   console.log('Problem structure:', problem?.structure);
 
   return (
-    <div className="relative min-h-screen">
-      <div className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-border z-10 px-4 flex items-center">
-        <button 
-          onClick={onBack}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 p-2 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span>Back</span>
-        </button>
+    <div className="relative flex flex-col h-[calc(100vh-73px)]">
+      <div className="flex-none h-12 bg-white border-b border-border px-4">
+        <div className="max-w-7xl mx-auto w-full h-full flex items-center justify-between">
+          <button 
+            onClick={onBack}
+            className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 py-1.5 px-2 transition-colors text-sm"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back</span>
+          </button>
+
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-4">
+            <Select value={language} onValueChange={setLanguage} disabled={isGenerating}>
+              <SelectTrigger className="w-[180px] bg-white border-2">
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-2">
+                {languages.map((lang) => (
+                  <SelectItem 
+                    key={lang.id} 
+                    value={lang.id} 
+                    className="hover:bg-gray-100 text-gray-900 cursor-pointer"
+                  >
+                    {lang.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Button 
+              onClick={handleSubmit} 
+              size="sm"
+              variant="outline"
+              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
+              disabled={isGenerating || isSubmitting}
+            >
+              {isSubmitting ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Play className="w-4 h-4" />
+              )}
+              {isSubmitting ? 'Running...' : 'Run'}
+            </Button>
+
+            <Timer />
+          </div>
+
+          {/* Empty div to balance the layout */}
+          <div className="w-[100px]"></div>
+        </div>
       </div>
 
       {isGenerating && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-50 mt-16">
+        <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-50">
           <div className="text-center">
             <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto" />
             <p className="mt-4 text-lg text-gray-600">Generating new problem...</p>
@@ -192,58 +240,60 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
         </div>
       )}
 
-      <PanelGroup direction="horizontal" className="min-h-screen pt-16">
-        <Panel defaultSize={40} minSize={30}>
-          <div className="h-full overflow-hidden border-r border-border">
-            <ProblemDescription
-              title={problem?.title}
-              difficulty={problem?.difficulty}
-              description={problem?.description}
-              concept={problem?.concept}
-              onGenerateNewProblem={handleGenerateNewProblem}
-              isGenerating={isGenerating}
-              tags={problem?.tags}
-              chatContext={{
-                userId: 'guest',
-                concept: problem?.concept,
-                complexity: problem?.difficulty,
-                keywords: problem?.tags,
-                problemTitle: problem?.title,
-                problemDescription: problem?.description,
-                programmingLanguage: languages.find(l => l.id === language)?.name || 'Java',
-                currentCode: code,
-                testCases: problem?.testCases,
-                submissionResults: testResults,
-              }}
-            />
-          </div>
-        </Panel>
+      <div className="flex-1 overflow-hidden">
+        <PanelGroup direction="horizontal" className="h-full">
+          <Panel defaultSize={40} minSize={30}>
+            <div className="h-full overflow-hidden border-r border-border">
+              <ProblemDescription
+                title={problem?.title}
+                difficulty={problem?.difficulty}
+                description={problem?.description}
+                concept={problem?.concept}
+                onGenerateNewProblem={handleGenerateNewProblem}
+                isGenerating={isGenerating}
+                tags={problem?.tags}
+                chatContext={{
+                  userId: 'guest',
+                  concept: problem?.concept,
+                  complexity: problem?.difficulty,
+                  keywords: problem?.tags,
+                  problemTitle: problem?.title,
+                  problemDescription: problem?.description,
+                  programmingLanguage: languages.find(l => l.id === language)?.name || 'Java',
+                  currentCode: code,
+                  testCases: problem?.testCases,
+                  submissionResults: testResults,
+                }}
+              />
+            </div>
+          </Panel>
 
-        <PanelResizeHandle className="w-2 bg-border hover:bg-muted/50 cursor-col-resize flex items-center justify-center">
-          <div className="w-4 h-full flex items-center justify-center hover:bg-muted/80">
-            <GripHorizontal className="h-2.5 w-2.5 text-gray-400" />
-          </div>
-        </PanelResizeHandle>
+          <PanelResizeHandle className="w-2 bg-border hover:bg-muted/50 cursor-col-resize flex items-center justify-center">
+            <div className="w-4 h-full flex items-center justify-center hover:bg-muted/80">
+              <GripHorizontal className="h-2.5 w-2.5 text-gray-400" />
+            </div>
+          </PanelResizeHandle>
 
-        <Panel defaultSize={60} minSize={40}>
-          <div className="h-full">
-            <CodeEditor
-              code={code}
-              language={language}
-              onCodeChange={setCode}
-              onLanguageChange={setLanguage}
-              onSubmit={handleSubmit}
-              status={status}
-              structure={problem.structure}
-              testCases={problem.testCases}
-              javaBoilerplate={problem.javaBoilerplate}
-              pythonBoilerplate={problem.pythonBoilerplate}
-              testResults={testResults}
-              isGenerating={isGenerating}
-            />
-          </div>
-        </Panel>
-      </PanelGroup>
+          <Panel defaultSize={60} minSize={40}>
+            <div className="h-full">
+              <CodeEditor
+                code={code}
+                language={language}
+                onCodeChange={setCode}
+                onLanguageChange={setLanguage}
+                onSubmit={handleSubmit}
+                status={status}
+                structure={problem.structure}
+                testCases={problem.testCases}
+                javaBoilerplate={problem.javaBoilerplate}
+                pythonBoilerplate={problem.pythonBoilerplate}
+                testResults={testResults}
+                isGenerating={isGenerating}
+              />
+            </div>
+          </Panel>
+        </PanelGroup>
+      </div>
     </div>
   )
 }

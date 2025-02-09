@@ -2,22 +2,15 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Editor } from "@monaco-editor/react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { TestCases } from "@/components/codearena/test-cases"
 import languageMapping from '@/components/language_mapping.json'
-import { submitCode } from "@/services/code-submission"
-import { Loader2, Play, GripVertical } from "lucide-react"
-import { Timer } from "@/components/ui/timer"
+import { GripVertical } from "lucide-react"
 
 interface CodeEditorProps {
   code: string
   language: string
   onCodeChange: (code: string) => void
-  onLanguageChange: (language: string) => void
-  onSubmit: (result: { status: { description: string; results: any[] } }) => void
-  status: string
   structure: {
     problem_name: string;
     function_name: string;
@@ -65,12 +58,9 @@ const languages = Object.entries(languageMapping.languages).map(([key, lang]) =>
 
 export function CodeEditor({ 
   code, 
-  language, 
-  onCodeChange, 
-  onLanguageChange, 
-  onSubmit, 
-  status, 
-  structure, 
+  language,
+  onCodeChange,
+  structure,
   testCases = [],
   javaBoilerplate = '',
   pythonBoilerplate = '',
@@ -78,7 +68,6 @@ export function CodeEditor({
   isGenerating = false
 }: CodeEditorProps) {
   const editorRef = useRef<any>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Update the useEffect to handle language changes and new problems
   useEffect(() => {
@@ -171,26 +160,8 @@ export function CodeEditor({
     }
   }
 
-  // Add handler for language change that also updates the code
-  const handleLanguageChange = (newLanguage: string) => {
-    onLanguageChange(newLanguage)
-    
-    // Set appropriate boilerplate based on language
-    switch (newLanguage) {
-      case '4': // Java
-        onCodeChange(javaBoilerplate)
-        break
-      case '28': // Python
-        onCodeChange(pythonBoilerplate)
-        break
-      default:
-        onCodeChange('')
-    }
-  }
-
   const handleSubmit = async () => {
     try {
-      setIsSubmitting(true)
       console.log('=== CodeEditor Submit ===');
       console.log('1. Initial structure prop:', structure);
       console.log('1a. Structure type:', typeof structure);
@@ -227,13 +198,10 @@ export function CodeEditor({
       );
       
       console.log('5. Submit result:', result);
-      onSubmit(result);
     } catch (error) {
       console.error('Error in handleSubmit:', error);
       // Show error to user
       alert(error instanceof Error ? error.message : 'An error occurred');
-    } finally {
-      setIsSubmitting(false)
     }
   }
 
@@ -278,49 +246,6 @@ export function CodeEditor({
     <PanelGroup direction="vertical" className="h-full">
       <Panel defaultSize={70} minSize={30}>
         <div className="flex flex-col h-full">
-          <div className="flex items-center gap-4 p-4 border-b border-border bg-background">
-            <Select value={language} onValueChange={handleLanguageChange} disabled={isGenerating}>
-              <SelectTrigger className="w-[180px] bg-white border-2">
-                <SelectValue placeholder="Select language" />
-              </SelectTrigger>
-              <SelectContent className="bg-white border-2">
-                {languages.map((lang) => (
-                  <SelectItem 
-                    key={lang.id} 
-                    value={lang.id} 
-                    className="hover:bg-gray-100 text-gray-900 cursor-pointer"
-                  >
-                    {lang.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button 
-              onClick={handleSubmit} 
-              size="sm"
-              variant="outline"
-              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
-              disabled={isGenerating || isSubmitting}
-            >
-              {isSubmitting ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <Play className="w-4 h-4" />
-              )}
-              {isSubmitting ? 'Running...' : 'Run'}
-            </Button>
-            {/* <Button 
-            
-              size="sm"
-              variant="outline"
-              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
-              disabled={isGenerating || isSubmitting}
-            >
-              Submit
-            </Button> */}
-            <Timer />
-          </div>
-
           <div className="flex-1 relative min-h-0 overflow-hidden">
             <Editor
               height="100%"
@@ -355,8 +280,8 @@ export function CodeEditor({
       <Panel defaultSize={30} minSize={20}>
         <div className="h-full overflow-y-auto">
           <TestCases 
-            testCases={isGenerating ? [] : testCases}  // Clear test cases while generating
-            results={isGenerating ? undefined : testResults}  // Clear results while generating
+            testCases={isGenerating ? [] : testCases}
+            results={isGenerating ? undefined : testResults}
             structure={structure}
             isGenerating={isGenerating}
           />

@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from 'react';
-import { Boxes , Puzzle, Network, TextCursor, CodeSquare, Search, Code, BookOpen, Brain, Zap, Trophy, LogIn } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Boxes, Puzzle, Network, TextCursor, CodeSquare, Search, Code, BookOpen, Brain, Zap, Trophy, LogIn } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { LoadingSpinner } from '@/components/common/loading-spinner';
+import Heading from './heading';
 
 const CodeArena = dynamic(() => import('@/components/codearena/code_arena'), {
   loading: () => <LoadingSpinner />,
@@ -21,7 +22,6 @@ const Page = () => {
     { icon: <Brain className="w-6 h-6" />, name: 'Algorithms', count: '180+ Problems', value: 'Algorithms' },
     { icon: <Puzzle className="w-6 h-6" />, name: 'Problem Solving', count: '120+ Problems', value: 'Problem Solving' },
     { icon: <Boxes  className="w-6 h-6" />, name: 'Array', count: '350+ Problems', value: 'Array' }
-
   ];
 
   const features = [
@@ -31,52 +31,34 @@ const Page = () => {
     { title: 'Structured Learning Path', description: 'Follow curated paths from basics to advanced topics' }
   ];
 
-  const handleCategorySelect = (categoryValue: string) => {
-    setSelectedCategory(categoryValue);
-  };
+  useEffect(() => {
+    const handleCategorySelect = (event: CustomEvent) => {
+      setSelectedCategory(event.detail);
+    };
+
+    window.addEventListener('categorySelect', handleCategorySelect as EventListener);
+    return () => {
+      window.removeEventListener('categorySelect', handleCategorySelect as EventListener);
+    };
+  }, []);
 
   const handleBack = () => {
     setSelectedCategory(null);
   };
 
   if (selectedCategory) {
-    return <CodeArena category={selectedCategory} onBack={handleBack} />;
+    return (
+      <>
+        <Heading />
+        <CodeArena category={selectedCategory} onBack={handleBack} />
+      </>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-indigo-600">CodeCraft Academy</h1>
-          <div className="flex items-center gap-4">
-            <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Explore</button>
-            <div className="relative group">
-              <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Practice</button>
-              <div className="absolute hidden group-hover:block w-72 right-0 mt-2 py-2 bg-white rounded-lg shadow-xl z-50">
-                {categories.map((category, index) => (
-                  <button
-                    key={index}
-                    className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-3"
-                    onClick={() => handleCategorySelect(category.value)}
-                  >
-                    {category.icon}
-                    <div className="flex flex-col">
-                      <span className="font-medium">{category.name}</span>
-                      <span className="text-sm text-gray-500">{category.count}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
-              <LogIn className="w-4 h-4" />
-              Login
-            </button>
-          </div>
-        </div>
-      </nav>
-
+      <Heading />
+      
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center">
@@ -108,7 +90,7 @@ const Page = () => {
           {categories.map((category, index) => (
             <button
               key={index}
-              onClick={() => handleCategorySelect(category.value)}
+              onClick={() => setSelectedCategory(category.value)}
               className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-left"
             >
               <div className="flex items-center gap-4 mb-4">

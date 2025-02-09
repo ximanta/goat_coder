@@ -147,7 +147,7 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
           <TabsContent
             key={`test${index + 1}`}
             value={`test${index + 1}`}
-            className="flex-1 overflow-auto"
+            className="flex-1 overflow-auto custom-scrollbar"
           >
             <div className="p-4 space-y-4 rounded-lg bg-white">
               <div>
@@ -166,7 +166,7 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
           </TabsContent>
         ))}
 
-        <TabsContent value="results" className="flex-1 overflow-auto">
+        <TabsContent value="results" className="flex-1 overflow-auto custom-scrollbar">
           {isGenerating ? (
             <div className="h-full flex items-center justify-center">
               <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
