@@ -38,7 +38,7 @@ export function TestCases({ testCases, results, structure, isGenerating = false 
   console.log('TestCases render:', { testCases, results });
   
   return (
-    <Tabs defaultValue="test-result" className="w-full">
+    <Tabs defaultValue="test-0" className="w-full">
       <div className="border rounded-lg p-2 bg-background">
         <TabsList className="grid w-full" style={{
           gridTemplateColumns: `repeat(${testCases.length}, 1fr) 1.5fr`
@@ -52,6 +52,7 @@ export function TestCases({ testCases, results, structure, isGenerating = false 
                 value={`test-${index}`}
                 className={cn(
                   "border-r last:border-r-0",
+                  "data-[state=active]:border-2 data-[state=active]:border-blue-400",
                   result?.passed && "bg-green-500 text-white hover:bg-green-600",
                   result?.passed === false && "bg-red-500 text-white hover:bg-red-600"
                 )}
@@ -64,6 +65,7 @@ export function TestCases({ testCases, results, structure, isGenerating = false 
             value="test-result"
             className={cn(
               "border-l ml-2 bg-gray-100 hover:bg-gray-200",
+              "data-[state=active]:border-2 data-[state=active]:border-blue-400",
               results?.submitted && results.passed && "bg-green-100 hover:bg-green-200",
               results?.submitted && !results?.passed && "bg-red-100 hover:bg-red-200"
             )}

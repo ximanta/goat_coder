@@ -8,7 +8,8 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { TestCases } from "@/components/codearena/test-cases"
 import languageMapping from '@/components/language_mapping.json'
 import { submitCode } from "@/services/code-submission"
-import { Loader2 } from "lucide-react"
+import { Loader2, Play } from "lucide-react"
+import { Timer } from "@/components/ui/timer"
 
 interface CodeEditorProps {
   code: string
@@ -283,12 +284,15 @@ export function CodeEditor({
             </Select>
             <Button 
               onClick={handleSubmit} 
-              size="lg" 
-              className="bg-green-600 hover:bg-green-700 text-white px-8"
+              size="sm"
+              variant="outline"
+              className="gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 border-2"
               disabled={isGenerating}
             >
-              Submit
+              <Play className="w-4 h-4" />
+              Run
             </Button>
+            <Timer />
           </div>
 
           <div className="flex-1 relative min-h-0 overflow-hidden">
