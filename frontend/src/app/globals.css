@@ -86,3 +86,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add these styles for fullscreen mode */
+:fullscreen {
+  background-color: white;
+}
+
+:-webkit-full-screen {
+  background-color: white;
+}
+
+:-ms-fullscreen {
+  background-color: white;
+}

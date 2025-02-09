@@ -1,14 +1,55 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ThumbsUp, ThumbsDown, Flag, Maximize2 } from "lucide-react"
+import { ThumbsUp, ThumbsDown, Flag, Maximize2, Minimize2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react"
 
 interface CommonCodeArenaProps {
   className?: string;
 }
 
 export function CommonCodeArena({ className }: CommonCodeArenaProps) {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Update fullscreen state when user uses Esc key or browser's full-screen exit
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(document.fullscreenElement !== null);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullScreen = async () => {
+    try {
+      if (!isFullscreen) {
+        // Get the root element (you might want to target a specific container)
+        const element = document.documentElement;
+        if (element.requestFullscreen) {
+          await element.requestFullscreen();
+        } else if ((element as any).webkitRequestFullscreen) { // Safari
+          await (element as any).webkitRequestFullscreen();
+        } else if ((element as any).msRequestFullscreen) { // IE11
+          await (element as any).msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if ((document as any).webkitExitFullscreen) { // Safari
+          await (document as any).webkitExitFullscreen();
+        } else if ((document as any).msExitFullscreen) { // IE11
+          await (document as any).msExitFullscreen();
+        }
+      }
+    } catch (error) {
+      console.error('Error toggling fullscreen:', error);
+    }
+  };
+
   return (
     <div className={cn(
       "flex items-center gap-2 bg-white/50 backdrop-blur-sm p-2 rounded-lg shadow-sm border border-gray-200",
@@ -47,9 +88,14 @@ export function CommonCodeArena({ className }: CommonCodeArenaProps) {
         variant="ghost"
         size="sm"
         className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-        title="Full Screen"
+        title={isFullscreen ? "Exit Full Screen" : "Full Screen"}
+        onClick={toggleFullScreen}
       >
-        <Maximize2 className="h-4 w-4" />
+        {isFullscreen ? (
+          <Minimize2 className="h-4 w-4" />
+        ) : (
+          <Maximize2 className="h-4 w-4" />
+        )}
       </Button>
     </div>
   )
