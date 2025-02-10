@@ -48,7 +48,10 @@ class JavaBoilerplateGenerator:
         for test_case in test_cases:
             fixed_inputs = []
             # Handle input values
-            for value, type_str in zip(test_case['input'], input_types):
+            for i, value in enumerate(test_case['input']):
+                # Get the type for this position, use the first type if it's an array
+                type_str = input_types[min(i, len(input_types) - 1)]
+                
                 if JavaBoilerplateGenerator.is_float_type(type_str):
                     # Only convert to float if the type is float/double
                     if isinstance(value, (int, float)):
