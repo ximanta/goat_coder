@@ -1,0 +1,45 @@
+{
+  "cross_language_mappings": {
+    "numeric": {
+      "java_to_python": {
+        "int": "int",
+        "Integer": "Optional[int]",
+        "double": "float",
+        "Double": "Optional[float]",
+        "long": "int",
+        "Long": "Optional[int]"
+      },
+      "python_to_java": {
+        "int": "int",
+        "Optional[int]": "Integer",
+        "float": "double",
+        "Optional[float]": "Double"
+      }
+    },
+    "text": {
+      "java_to_python": {
+        "String": "str",
+        "char": "str",
+        "Character": "str"
+      },
+      "python_to_java": {
+        "str": "String"
+      }
+    },
+    "arrays": {
+      "java_to_python": {
+        "int[]": "List[int]",
+        "String[]": "List[str]",
+        "double[]": "List[float]",
+        "boolean[]": "List[bool]",
+        "char[]": "List[str]"
+      },
+      "python_to_java": {
+        "List[int]": "int[]",
+        "List[str]": "String[]",
+        "List[float]": "double[]",
+        "List[bool]": "boolean[]"
+      }
+    }
+  }
+} 

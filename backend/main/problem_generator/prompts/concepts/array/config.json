@@ -1,0 +1,25 @@
+{
+  "problem_types": [
+    {
+      "category": "Array Basics",
+      "problems": [
+        {
+          "type": "Array Search",
+          "variations": [
+            "Find element in array",
+            "Count occurrences",
+            "Find unique elements"
+          ]
+        },
+        {
+          "type": "Array Modification",
+          "variations": [
+            "Reverse array",
+            "Rotate array",
+            "Remove duplicates"
+          ]
+        }
+      ]
+    }
+  ]
+} 

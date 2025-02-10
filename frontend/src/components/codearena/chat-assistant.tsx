@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { MessageCircle, X, Send, Loader2, RefreshCw } from "lucide-react"
+import { MessageCircle, X, Send, RefreshCw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { sendChatMessage } from "@/lib/codeassist-chat-api"
 import ReactMarkdown from 'react-markdown'
@@ -40,42 +40,95 @@ export default function ChatAssistant({ problemContext, resetTrigger = 0 }: Chat
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [multiline, setMultiline] = useState(false) // Tracks if we are in multiline mode.
   const contentRef = useRef<HTMLDivElement>(null)
+  const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
-  // Add effect to watch resetTrigger changes
+  // Clear messages when resetTrigger changes.
   useEffect(() => {
     if (resetTrigger > 0) {
       setMessages([]);
     }
   }, [resetTrigger]);
 
-  // Function to scroll to bottom of chat
+  // Auto-resize effect for the textarea.
+  useEffect(() => {
+    if (multiline && textAreaRef.current) {
+      // Reset the height to recalculate scrollHeight correctly.
+      textAreaRef.current.style.height = "auto";
+      const maxHeight = 80; // Maximum height (in pixels) ~ 3 lines; adjust if needed.
+      const newHeight = Math.min(textAreaRef.current.scrollHeight, maxHeight);
+      textAreaRef.current.style.height = newHeight + "px";
+      // Show scrollbar if content exceeds maxHeight.
+      textAreaRef.current.style.overflowY = textAreaRef.current.scrollHeight > maxHeight ? "auto" : "hidden";
+    }
+  }, [input, multiline]);
+
+  // Scrolls the chat content to the bottom.
   const scrollToBottom = () => {
     if (contentRef.current) {
-      contentRef.current.scrollTop = contentRef.current.scrollHeight
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!input.trim()) return
+  /**
+   * Handle keyDown events on the input/textarea.
+   *
+   * When NOT in multiline mode:
+   *  - Shift+Enter: Prevent default, switch to multiline mode, and insert a newline.
+   *
+   * When in multiline mode (textarea):
+   *  - Shift+Enter: Prevent default and insert a newline.
+   *  - Enter (without Shift): Prevent default and submit the form.
+   */
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (!multiline) {
+      // In single-line input: only intercept Shift+Enter.
+      if (e.key === "Enter" && e.shiftKey) {
+        e.preventDefault();
+        setMultiline(true);
+        setInput(prev => prev + "\n");
+      }
+      // For plain Enter, let the Input component's default behavior trigger form submission.
+    } else {
+      // In multiline mode (textarea):
+      if (e.key === "Enter") {
+        if (e.shiftKey) {
+          // Shift+Enter: Insert newline.
+          e.preventDefault();
+          setInput(prev => prev + "\n");
+        } else {
+          // Enter without shift: Submit the form.
+          e.preventDefault();
+          // Create a fake event object for handleSubmit.
+          handleSubmit({ preventDefault: () => {} } as React.FormEvent);
+        }
+      }
+    }
+  }
 
+  // Handles form submission.
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    // Create a user message.
     const userMessage: Message = {
       id: Date.now().toString(),
       content: input.trim(),
       role: 'user'
     }
-    setMessages(prev => [...prev, userMessage])
-    setInput('')
-    setIsLoading(true)
+    setMessages(prev => [...prev, userMessage]);
+    setInput(''); // Clear the input.
+    setIsLoading(true);
 
-    // Create a placeholder message for the assistant's response
-    const assistantMessageId = (Date.now() + 1).toString()
+    // Add a placeholder for the assistant's response.
+    const assistantMessageId = (Date.now() + 1).toString();
     setMessages(prev => [...prev, {
       id: assistantMessageId,
       content: '',
       role: 'assistant'
-    }])
+    }]);
 
     try {
       console.log('=== Sending Chat Message ===');
@@ -97,31 +150,31 @@ export default function ChatAssistant({ problemContext, resetTrigger = 0 }: Chat
           submissionResults: problemContext.submissionResults,
         },
         (chunk: string) => {
-          // Update the assistant's message with the new chunk
+          // Update assistant's message with each new chunk.
           setMessages(prev => prev.map(msg => 
             msg.id === assistantMessageId
               ? { ...msg, content: msg.content + chunk }
               : msg
-          ))
-          scrollToBottom()
+          ));
+          scrollToBottom();
         }
-      )
+      );
     } catch (error) {
-      // Update the assistant's message with the error
+      // On error, display a failure message.
       setMessages(prev => prev.map(msg => 
         msg.id === assistantMessageId
           ? { ...msg, content: "Sorry, I'm having trouble connecting to the server." }
           : msg
-      ))
+      ));
     } finally {
-      setIsLoading(false)
-      scrollToBottom()
+      setIsLoading(false);
+      scrollToBottom();
     }
   }
 
-  // Add this new function to handle reset
+  // Resets the chat messages.
   const handleReset = () => {
-    setMessages([])
+    setMessages([]);
   }
 
   return (
@@ -247,13 +300,29 @@ export default function ChatAssistant({ problemContext, resetTrigger = 0 }: Chat
 
         <CardFooter className="border-t border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800">
           <form onSubmit={handleSubmit} className="flex w-full gap-2">
-            <Input
-              placeholder="Ask your mentor..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-1 text-sm bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700"
-              disabled={isLoading}
-            />
+            {multiline ? (
+              // Render the textarea for multiline input.
+              <textarea
+                ref={textAreaRef}
+                placeholder="Ask your mentor..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                disabled={isLoading}
+                className="flex-1 text-sm bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 resize-none custom-scrollbar"
+                style={{ height: "auto", maxHeight: "5rem" }}
+              />
+            ) : (
+              // Render a single-line input by default.
+              <Input
+                placeholder="Ask your mentor..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-1 text-sm bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700"
+                disabled={isLoading}
+              />
+            )}
             <Button 
               type="submit" 
               size="icon" 
@@ -268,4 +337,3 @@ export default function ChatAssistant({ problemContext, resetTrigger = 0 }: Chat
     </>
   )
 }
-
