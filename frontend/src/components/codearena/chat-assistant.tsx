@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -32,14 +32,22 @@ interface ChatAssistantProps {
       results: any[];
     };
   };
+  resetTrigger?: number;
 }
 
-export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
+export default function ChatAssistant({ problemContext, resetTrigger = 0 }: ChatAssistantProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
+
+  // Add effect to watch resetTrigger changes
+  useEffect(() => {
+    if (resetTrigger > 0) {
+      setMessages([]);
+    }
+  }, [resetTrigger]);
 
   // Function to scroll to bottom of chat
   const scrollToBottom = () => {

@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import { Tag, ArrowRight } from "lucide-react"
 import ChatAssistant from "./chat-assistant"
 import { CommonCodeArena } from "./common-code-arena"
+import { useState } from "react"
 
 interface ProblemDescriptionProps {
   title?: string;
@@ -42,6 +43,13 @@ export function ProblemDescription({
   tags = [],
   chatContext
 }: ProblemDescriptionProps) {
+  const [resetTrigger, setResetTrigger] = useState(0);
+
+  const handleGenerateNewProblem = () => {
+    setResetTrigger(prev => prev + 1); // Increment reset trigger
+    onGenerateNewProblem();
+  };
+
   // Helper function to normalize difficulty
   const normalizeDifficulty = (diff: string): string => {
     const normalized = diff.toLowerCase();
@@ -71,7 +79,7 @@ export function ProblemDescription({
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl font-bold">{title}</h1>
             <Button 
-              onClick={onGenerateNewProblem}
+              onClick={handleGenerateNewProblem}
               className="bg-blue-50 hover:bg-blue-100 text-blue-600 border-none shadow-none gap-2 transition-colors"
               disabled={isGenerating}
             >
@@ -150,7 +158,10 @@ export function ProblemDescription({
 
       {/* Fixed position buttons container */}
       <div className="absolute bottom-4 right-4 flex flex-col gap-2 z-10">
-        <ChatAssistant problemContext={chatContext} />
+        <ChatAssistant 
+          problemContext={chatContext} 
+          resetTrigger={resetTrigger}
+        />
         <CommonCodeArena />
       </div>
 
