@@ -60,12 +60,13 @@ class JavaSubmissionGenerator:
             # Generate the method signature based on input/output structure
             param_list = []
             param_parsing = []
+            num_inputs = len(input_structure)
             for i, input_field in enumerate(input_structure):
                 field = input_field["Input_Field"].split()
                 java_type = self._convert_type_to_java(field[0])
                 param_name = to_java_name(field[1])
                 param_list.append(f"{java_type} {param_name}")
-                param_parsing.append(self._generate_input_parsing(java_type, param_name, i))
+                param_parsing.append(self._generate_input_parsing(java_type, param_name, i, num_inputs))
                 
             # Get return type
             output_field = output_structure["Output_Field"].split()
@@ -78,7 +79,7 @@ class JavaSubmissionGenerator:
             # Precompute the joined strings to avoid backslashes in f-string expressions
             input_parsing_code = "\n        ".join(param_parsing)
             function_params = ", ".join(param_list)
-            function_call_args = ", ".join(p.split()[-1] for p in param_list)
+            function_call_args = ", ".join([p.split()[-1] for p in param_list])
             
             # Remove any existing class/method declarations from source code
             code_body = re.sub(r'public.*?\{', '', source_code)
@@ -207,24 +208,97 @@ public class {class_name} {{
         
         return type_mapping.get(python_type, "Object")
 
-    def _generate_input_parsing(self, java_type: str, param_name: str, index: int) -> str:
+    def _generate_input_parsing(self, java_type: str, param_name: str, index: int, total_inputs: int) -> str:
         """Generate code to parse input based on type"""
-        if java_type == "int[]":
-            return f"""String[] input{index} = scanner.nextLine().split(" ");
-            int[] {param_name} = new int[input{index}.length];
-            for(int i = 0; i < input{index}.length; i++) {{
-                {param_name}[i] = Integer.parseInt(input{index}[i]);
-            }}"""
-        elif java_type == "String[]":
-            return f"String[] {param_name} = scanner.nextLine().split(" ");"
-        elif java_type == "int":
-            return f"int {param_name} = Integer.parseInt(scanner.nextLine());"
-        elif java_type == "double":
-            return f"double {param_name} = Double.parseDouble(scanner.nextLine());"
-        elif java_type == "String":
-            return f"String {param_name} = scanner.nextLine();"
+        if java_type.endswith("[]"):
+            # When there is only one input field, assume the array may be given on multiple lines.
+            if total_inputs == 1:
+                if java_type == "int[]":
+                    return (
+                       f"List<String> lines = new ArrayList<>();\n"
+                       f"        while(scanner.hasNextLine()){{\n"
+                       f"            String line = scanner.nextLine();\n"
+                       f"            if(line.trim().isEmpty()) break;\n"
+                       f"            lines.add(line);\n"
+                       f"        }}\n"
+                       f"        String allInput = String.join(\" \", lines);\n"
+                       f"        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split(\"\\\\s+\");\n"
+                       f"        int[] {param_name} = new int[tokens.length];\n"
+                       f"        for(int i = 0; i < tokens.length; i++) {{\n"
+                       f"            {param_name}[i] = Integer.parseInt(tokens[i]);\n"
+                       f"        }}"
+                    )
+                elif java_type == "String[]":
+                    return (
+                       f"List<String> lines = new ArrayList<>();\n"
+                       f"        while(scanner.hasNextLine()){{\n"
+                       f"            String line = scanner.nextLine();\n"
+                       f"            if(line.trim().isEmpty()) break;\n"
+                       f"            lines.add(line);\n"
+                       f"        }}\n"
+                       f"        String[] {param_name} = lines.toArray(new String[0]);"
+                    )
+                elif java_type == "double[]":
+                    return (
+                       f"List<String> lines = new ArrayList<>();\n"
+                       f"        while(scanner.hasNextLine()){{\n"
+                       f"            String line = scanner.nextLine();\n"
+                       f"            if(line.trim().isEmpty()) break;\n"
+                       f"            lines.add(line);\n"
+                       f"        }}\n"
+                       f"        String allInput = String.join(\" \", lines);\n"
+                       f"        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split(\"\\\\s+\");\n"
+                       f"        double[] {param_name} = new double[tokens.length];\n"
+                       f"        for(int i = 0; i < tokens.length; i++) {{\n"
+                       f"            {param_name}[i] = Double.parseDouble(tokens[i]);\n"
+                       f"        }}"
+                    )
+                else:
+                    # Fallback: treat as String[]
+                    return (
+                       f"List<String> lines = new ArrayList<>();\n"
+                       f"        while(scanner.hasNextLine()){{\n"
+                       f"            String line = scanner.nextLine();\n"
+                       f"            if(line.trim().isEmpty()) break;\n"
+                       f"            lines.add(line);\n"
+                       f"        }}\n"
+                       f"        {java_type} {param_name} = lines.toArray(new String[0]);"
+                    )
+            else:
+                # Multiple input fields – assume input for this field is on one line.
+                if java_type == "int[]":
+                    return (
+                       f"String[] input{index} = scanner.nextLine().split(\" \");\n"
+                       f"        int[] {param_name} = new int[input{index}.length];\n"
+                       f"        for(int i = 0; i < input{index}.length; i++) {{\n"
+                       f"            {param_name}[i] = Integer.parseInt(input{index}[i]);\n"
+                       f"        }}"
+                    )
+                elif java_type == "String[]":
+                    return f"String[] {param_name} = scanner.nextLine().split(\" \");"
+                elif java_type == "double[]":
+                    return (
+                       f"String[] input{index} = scanner.nextLine().split(\" \");\n"
+                       f"        double[] {param_name} = new double[input{index}.length];\n"
+                       f"        for(int i = 0; i < input{index}.length; i++) {{\n"
+                       f"            {param_name}[i] = Double.parseDouble(input{index}[i]);\n"
+                       f"        }}"
+                    )
+                else:
+                    # Fallback for array types not explicitly handled.
+                    return f"String[] {param_name} = scanner.nextLine().split(\" \");"
         else:
-            return f"String {param_name} = scanner.nextLine();"
+            # Non-array types – same as before.
+            if java_type == "int":
+                return f"int {param_name} = Integer.parseInt(scanner.nextLine());"
+            elif java_type == "double":
+                return f"double {param_name} = Double.parseDouble(scanner.nextLine());"
+            elif java_type == "String":
+                return f"String {param_name} = scanner.nextLine();"
+            elif java_type == "boolean":
+                return f"boolean {param_name} = Boolean.parseBoolean(scanner.nextLine());"
+            else:
+                return f"String {param_name} = scanner.nextLine();"
 
     def _generate_output_printing(self, return_type: str, var_name: str) -> str:
         """Generate code to print output based on type"""
@@ -233,8 +307,8 @@ public class {class_name} {{
         return f"System.out.println({var_name});"
 
     def _generate_submission_template(self, class_name: str, return_type: str, 
-                                    function_name: str, param_list: list, 
-                                    source_code: str, param_parsing: list) -> str:
+                                        function_name: str, param_list: list, 
+                                        source_code: str, param_parsing: list) -> str:
         """Generate the complete Java submission template"""
         
         # Join the parameters and parsing code
