@@ -4,7 +4,7 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { MessageCircle, X, Send, Loader2 } from "lucide-react"
+import { MessageCircle, X, Send, Loader2, RefreshCw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { sendChatMessage } from "@/lib/codeassist-chat-api"
 import ReactMarkdown from 'react-markdown'
@@ -111,6 +111,11 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
     }
   }
 
+  // Add this new function to handle reset
+  const handleReset = () => {
+    setMessages([])
+  }
+
   return (
     <>
       <Button
@@ -135,15 +140,27 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
               <MessageCircle className="h-5 w-5 text-blue-600" />
               <h3 className="font-semibold">Coding Mentor</h3>
             </div>
-            <Button
-              onClick={() => setIsOpen(false)}
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8"
-              aria-label="Close Problem Mentor"
-            >
-              <X className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-1">
+              <Button
+                onClick={handleReset}
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 hover:text-blue-600"
+                aria-label="Reset Chat"
+                title="Reset Chat"
+              >
+                <RefreshCw className="h-4 w-4" />
+              </Button>
+              <Button
+                onClick={() => setIsOpen(false)}
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8"
+                aria-label="Close Problem Mentor"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </CardHeader>
 
