@@ -31,7 +31,9 @@ class JavaBoilerplateGenerator:
         parts = input_field.strip().split()
         if len(parts) != 2:
             raise ValueError(f"Invalid input field format: {input_field}")
-        return parts[0], parts[1]
+        param_type = parts[0]
+        param_name = JavaBoilerplateGenerator.convert_to_java_name(parts[1])  # Convert to camelCase
+        return param_type, param_name
 
     @staticmethod
     def convert_to_java_boilerplate(structure: Dict) -> str:
