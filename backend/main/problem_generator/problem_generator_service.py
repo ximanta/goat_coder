@@ -386,6 +386,8 @@ class ProblemGeneratorService:
                     function_call={"name": "generate_programming_problem"}
                 )
                 logger.info("Received response from LLM")
+                logger.info("Raw LLM Response:")
+                logger.info(json.dumps(response.additional_kwargs, indent=2))
 
                 try:
                     if hasattr(response, 'additional_kwargs') and 'function_call' in response.additional_kwargs:

@@ -1,0 +1,39 @@
+{
+  "language_id": 4,
+  "problem_id": "123",
+  "structure": {
+    "problem_name": "find_unique_elements",
+    "function_name": "find_unique_elements",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] array"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[int] result"
+    }
+  },
+  "complete_source": "import java.util.*;\nimport java.util.regex.*;\n\npublic class Main {\n    public int[] findUniqueElements(int[] array) {\nLinkedHashMap<Integer, Integer> frequencyMap = new LinkedHashMap<>();\r\n    \r\n    // Count occurrences of each element\r\n    for (int num : array) {\r\n        frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);\r\n    }\r\n    \r\n    // Collect unique elements\r\n    List<Integer> uniqueList = new ArrayList<>();\r\n    for (int num : array) {\r\n        if (frequencyMap.get(num) == 1) {\r\n            uniqueList.add(num);\r\n        }\r\n    }\r\n    \r\n    // Convert list to array\r\n    return uniqueList.stream().mapToInt(i -> i).toArray();\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String[] input0 = scanner.nextLine().split(\" \");\n            int[] array = new int[input0.length];\n            for(int i = 0; i < input0.length; i++) {\n                array[i] = Integer.parseInt(input0[i]);\n            }\n        \n        // Call the solution function\n        int[] result = solution.findUniqueElements(array);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        \n        scanner.close();\n    }\n}",
+  "test_cases": [
+    {
+      "test_case_number": 1,
+      "input": "1\n2\n2\n3\n4\n4\n5",
+      "expected_output": "[1, 3, 5]"
+    },
+    {
+      "test_case_number": 2,
+      "input": "3\n3\n3\n3",
+      "expected_output": "[]"
+    },
+    {
+      "test_case_number": 3,
+      "input": "10\n20\n10\n30\n40\n30\n50",
+      "expected_output": "[20, 40, 50]"
+    },
+    {
+      "test_case_number": 4,
+      "input": "",
+      "expected_output": "[]"
+    }
+  ]
+}

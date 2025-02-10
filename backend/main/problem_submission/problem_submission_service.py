@@ -59,36 +59,43 @@ class ProblemSubmissionService:
             java_generator = JavaSubmissionGenerator()
             complete_source = java_generator.generate_submission(source_code, parsed_structure)
             
-            # Log the unencoded submission details
-            logger.info("=== Submission Details for Judge0 ===")
-            logger.info(f"Language ID: {language_id}")
-            logger.info("Complete Source Code:")
-            for i, line in enumerate(complete_source.split('\n'), 1):
-                logger.info(f"{i:3d} | {line}")
-            
-            encoded_source = self.encode_base64(complete_source)
+            # Save the submission details to a JSON file
+            submission_details = {
+                "language_id": language_id,
+                "problem_id": problem_id,
+                "structure": parsed_structure,
+                "complete_source": complete_source,
+                "test_cases": []
+            }
             
             # Prepare submissions for all test cases
             submissions = []
-            logger.info(f"\nProcessing {len(test_cases)} test cases:")
-            
             for i, test_case in enumerate(test_cases):
                 input_str = self.format_input_for_java(test_case['input'])
                 output_str = str(test_case['output'])
                 
-                logger.info(f"\nTest Case {i + 1}:")
-                logger.info(f"Input (unencoded): {input_str}")
-                logger.info(f"Expected Output (unencoded): {output_str}")
+                # Add test case details to submission_details
+                submission_details["test_cases"].append({
+                    "test_case_number": i + 1,
+                    "input": input_str,
+                    "expected_output": output_str
+                })
                 
                 submissions.append({
                     "language_id": language_id,
-                    "source_code": encoded_source,
+                    "source_code": self.encode_base64(complete_source),
                     "stdin": self.encode_base64(input_str),
                     "expected_output": self.encode_base64(output_str),
                     "callback_url": os.getenv("JUDGE0_CALLBACK_URL")
                 })
             
-            logger.info("\n=== End Submission Details ===")
+            # Save submission details to file
+            try:
+                with open('last_submission.json', 'w') as f:
+                    json.dump(submission_details, f, indent=2)
+                logger.info("Successfully saved submission details to last_submission.json")
+            except Exception as e:
+                logger.error(f"Failed to save last_submission.json: {str(e)}")
             
             # Submit batch request
             url = f"{self.judge0_base_url}/submissions/batch"

@@ -120,12 +120,13 @@ public class {class_name} {{
                 output_printing=self._generate_output_printing(return_type, 'result')
             )
             
-            # Add detailed logging of the generated submission
-            logger.info("=== Generated Java Submission ===")
-            logger.info("Generated submission code:")
-            for i, line in enumerate(submission.split('\n'), 1):
-                logger.info(f"{i:3d} | {line}")
-            logger.info("=== End Java Submission ===")
+            # Save the generated Java code to Main.java
+            try:
+                with open('Main.java', 'w') as f:
+                    f.write(submission.strip())
+                logger.info("Successfully saved generated Java code to Main.java")
+            except Exception as e:
+                logger.error(f"Failed to save Main.java: {str(e)}")
             
             return submission.strip()
         
