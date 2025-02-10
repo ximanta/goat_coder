@@ -3,43 +3,46 @@ import re
 import logging
 from ..utils.name_converter import to_java_name
 
+# Set up logging
 logger = logging.getLogger(__name__)
 
 class JavaSubmissionGeneratorException(Exception):
+    """Custom exception for errors during Java submission generation."""
     pass
 
 class JavaSubmissionGenerator:
     def generate_submission(self, source_code: str, problem_structure: Dict[str, Any]) -> str:
         """
-        Generates a complete Java submission by combining the source code with the problem structure.
-        
+        Generates a complete Java submission by combining the user's source code
+        with the problem structure details (function name, input/output details).
+
         Args:
-            source_code (str): The user's source code implementation
-            problem_structure (Dict[str, Any]): The problem structure containing function and input/output details
-            
+            source_code (str): The user's source code implementation.
+            problem_structure (Dict[str, Any]): Contains function and input/output details.
+
         Returns:
-            str: Complete Java code ready for compilation and execution
-            
+            str: Complete Java code ready for compilation and execution.
+
         Raises:
-            JavaSubmissionGeneratorException: If validation fails
+            JavaSubmissionGeneratorException: If validation fails.
         """
         try:
-            # Log incoming data
+            # Log incoming data for debugging.
             logger.info("Generating Java submission:")
             logger.info(f"Source code: {source_code}")
             logger.info(f"Problem structure: {problem_structure}")
             
-            # Validate problem structure
+            # Validate the structure of the problem JSON.
             self._validate_problem_structure(problem_structure)
             
-            # Validate source code
+            # Validate that the source code contains the expected function.
             self._validate_source_code(source_code, problem_structure)
             
-            # Convert function name to Java convention
+            # Convert the Python function name to Java's naming convention.
             python_function_name = problem_structure.get("function_name")
             java_function_name = to_java_name(python_function_name)
             
-            # Create a copy of the problem structure with the Java-style function name
+            # Update the problem structure to use the Java-style function name.
             java_problem_structure = {
                 **problem_structure,
                 "function_name": java_function_name
@@ -49,42 +52,45 @@ class JavaSubmissionGenerator:
             input_structure = java_problem_structure.get("input_structure")
             output_structure = java_problem_structure.get("output_structure")
             
-            # Log parsed components
+            # Log parsed components.
             logger.info(f"Function name: {function_name}")
             logger.info(f"Input structure: {input_structure}")
             logger.info(f"Output structure: {output_structure}")
             
-            # Create the class wrapper
+            # Define the class name for the generated Java code.
             class_name = "Main"
             
-            # Generate the method signature based on input/output structure
+            # Generate the method signature and input parsing code.
             param_list = []
             param_parsing = []
             num_inputs = len(input_structure)
             for i, input_field in enumerate(input_structure):
+                # Each input field is specified as "Type variableName".
                 field = input_field["Input_Field"].split()
                 java_type = self._convert_type_to_java(field[0])
                 param_name = to_java_name(field[1])
                 param_list.append(f"{java_type} {param_name}")
+                # Generate input parsing code for this parameter.
                 param_parsing.append(self._generate_input_parsing(java_type, param_name, i, num_inputs))
                 
-            # Get return type
+            # Determine the return type from the output structure.
             output_field = output_structure["Output_Field"].split()
             return_type = self._convert_type_to_java(output_field[0])
             
-            # Log generated components
+            # Log the generated method parameters and return type.
             logger.info(f"Parameter list: {param_list}")
             logger.info(f"Return type: {return_type}")
             
-            # Precompute the joined strings to avoid backslashes in f-string expressions
+            # Join the generated input parsing code lines.
             input_parsing_code = "\n        ".join(param_parsing)
             function_params = ", ".join(param_list)
             function_call_args = ", ".join([p.split()[-1] for p in param_list])
             
-            # Remove any existing class/method declarations from source code
+            # Remove any existing class or method wrappers from the user's source code.
             code_body = re.sub(r'public.*?\{', '', source_code)
             code_body = re.sub(r'\}[\s]*$', '', code_body)
             
+            # Create the final submission template.
             submission_template = """import java.util.*;
 import java.util.regex.*;
 
@@ -121,7 +127,7 @@ public class {class_name} {{
                 output_printing=self._generate_output_printing(return_type, 'result')
             )
             
-            # Save the generated Java code to Main.java
+            # Optionally, save the generated code to a file for debugging.
             try:
                 with open('Main.java', 'w') as f:
                     f.write(submission.strip())
@@ -156,23 +162,22 @@ public class {class_name} {{
     def _validate_source_code(self, source_code: str, problem_structure: Dict[str, Any]) -> None:
         """
         Validates that the source code contains the expected function name.
-        Converts Python-style function name to Java convention before checking.
+        Converts the Python-style function name to Java convention before checking.
         """
-        # Remove comments and whitespace
+        # Remove comments and extraneous whitespace.
         code = re.sub(r'//.*?\n|/\*.*?\*/', '', source_code, flags=re.S)
         code = code.strip()
 
-        # Extract function name and convert to Java convention
         function_name = problem_structure.get("function_name")
         if not function_name:
             raise JavaSubmissionGeneratorException("Missing function name in problem structure")
 
-        # Convert Python snake_case to Java camelCase
+        # Convert Python snake_case to Java camelCase.
         java_function_name = to_java_name(function_name)
         
         logger.info(f"Checking for function name: {java_function_name} (original: {function_name})")
 
-        # Check if the Java-style function name exists in the code
+        # Check if the Java-style function name exists in the code.
         if java_function_name not in code:
             raise JavaSubmissionGeneratorException(
                 f"Function '{java_function_name}' not found in source code"
@@ -181,23 +186,23 @@ public class {class_name} {{
     def _convert_type_to_java(self, python_type: str) -> str:
         """
         Converts Python type hints to Java type declarations.
+        For example, converts "List[int]" to "int[]" and "int" to "int".
         """
-        # Convert type to lowercase for case-insensitive matching
         python_type = python_type.lower()
         
-        # Handle List types first
+        # Handle list types first.
         if python_type.startswith("list["):
-            inner_type = python_type[5:-1]  # extract type inside List[]
+            inner_type = python_type[5:-1]  # Extract type inside List[]
             if inner_type == "int":
                 return "int[]"
-            elif inner_type == "str" or inner_type == "string":
+            elif inner_type in ("str", "string"):
                 return "String[]"
             elif inner_type == "float":
                 return "double[]"
             elif inner_type == "bool":
                 return "boolean[]"
         
-        # Handle simple types
+        # Mapping for simple types.
         type_mapping = {
             "str": "String",
             "string": "String",
@@ -209,9 +214,19 @@ public class {class_name} {{
         return type_mapping.get(python_type, "Object")
 
     def _generate_input_parsing(self, java_type: str, param_name: str, index: int, total_inputs: int) -> str:
-        """Generate code to parse input based on type"""
+        """
+        Generates Java code that parses input from the Scanner based on the type.
+        
+        For array types:
+         - If there is only one input field, we assume the input may be provided
+           over multiple lines. In that case, we loop until an empty line is encountered.
+         - If there are multiple input fields, we assume the input for this field is
+           on a single line. In that case, we check for an empty input line and produce
+           an empty array if needed.
+        For primitive types, we simply call the appropriate parsing method.
+        """
         if java_type.endswith("[]"):
-            # When there is only one input field, assume the array may be given on multiple lines.
+            # Multi-line array input if only one input field is expected.
             if total_inputs == 1:
                 if java_type == "int[]":
                     return (
@@ -254,7 +269,7 @@ public class {class_name} {{
                        f"        }}"
                     )
                 else:
-                    # Fallback: treat as String[]
+                    # Fallback for other array types, treating them as String arrays.
                     return (
                        f"List<String> lines = new ArrayList<>();\n"
                        f"        while(scanner.hasNextLine()){{\n"
@@ -265,30 +280,39 @@ public class {class_name} {{
                        f"        {java_type} {param_name} = lines.toArray(new String[0]);"
                     )
             else:
-                # Multiple input fields – assume input for this field is on one line.
+                # For multiple input fields, we assume the entire input for this field is on one line.
+                # First, read the line into a variable, then check if it is empty.
                 if java_type == "int[]":
                     return (
-                       f"String[] input{index} = scanner.nextLine().split(\" \");\n"
+                       f"String line{index} = scanner.nextLine();\n"
+                       f"        String[] input{index} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");\n"
                        f"        int[] {param_name} = new int[input{index}.length];\n"
                        f"        for(int i = 0; i < input{index}.length; i++) {{\n"
                        f"            {param_name}[i] = Integer.parseInt(input{index}[i]);\n"
                        f"        }}"
                     )
                 elif java_type == "String[]":
-                    return f"String[] {param_name} = scanner.nextLine().split(\" \");"
+                    return (
+                       f"String line{index} = scanner.nextLine();\n"
+                       f"        String[] {param_name} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");"
+                    )
                 elif java_type == "double[]":
                     return (
-                       f"String[] input{index} = scanner.nextLine().split(\" \");\n"
+                       f"String line{index} = scanner.nextLine();\n"
+                       f"        String[] input{index} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");\n"
                        f"        double[] {param_name} = new double[input{index}.length];\n"
                        f"        for(int i = 0; i < input{index}.length; i++) {{\n"
                        f"            {param_name}[i] = Double.parseDouble(input{index}[i]);\n"
                        f"        }}"
                     )
                 else:
-                    # Fallback for array types not explicitly handled.
-                    return f"String[] {param_name} = scanner.nextLine().split(\" \");"
+                    # Fallback for other array types.
+                    return (
+                       f"String line{index} = scanner.nextLine();\n"
+                       f"        String[] {param_name} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");"
+                    )
         else:
-            # Non-array types – same as before.
+            # For non-array (primitive) types, use the appropriate parsing methods.
             if java_type == "int":
                 return f"int {param_name} = Integer.parseInt(scanner.nextLine());"
             elif java_type == "double":
@@ -301,7 +325,11 @@ public class {class_name} {{
                 return f"String {param_name} = scanner.nextLine();"
 
     def _generate_output_printing(self, return_type: str, var_name: str) -> str:
-        """Generate code to print output based on type"""
+        """
+        Generates Java code to print the output based on its type.
+        
+        If the output is an array type, we use Arrays.toString(); otherwise, we print it directly.
+        """
         if return_type.endswith("[]"):
             return f"System.out.println(Arrays.toString({var_name}));"
         return f"System.out.println({var_name});"
@@ -309,9 +337,10 @@ public class {class_name} {{
     def _generate_submission_template(self, class_name: str, return_type: str, 
                                         function_name: str, param_list: list, 
                                         source_code: str, param_parsing: list) -> str:
-        """Generate the complete Java submission template"""
-        
-        # Join the parameters and parsing code
+        """
+        (Unused in this implementation) Generates the complete Java submission template.
+        """
+        # Join the parameters and input parsing code.
         function_params = ", ".join(param_list)
         input_parsing_code = "\n        ".join(param_parsing)
         function_call_args = ", ".join(p.split()[-1] for p in param_list)

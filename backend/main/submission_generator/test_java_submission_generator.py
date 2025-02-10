@@ -1,102 +1,217 @@
-import unittest
-from main.submission_generator.java_submission_generator import JavaSubmissionGenerator
+import os
+import re
+import pytest
 
-class TestJavaSubmissionGenerator(unittest.TestCase):
-    def setUp(self):
-        self.generator = JavaSubmissionGenerator()
+# Import the generator and its exception.
+# Adjust the import if your module path is different.
+from main.submission_generator.java_submission_generator import JavaSubmissionGenerator, JavaSubmissionGeneratorException
 
-    def test_array_operation_submission(self):
-        # Test case for array operation problem
-        source_code = """
-            if (operation.equals("insert")) {
-                int[] newArray = new int[array.length + 1];
-                System.arraycopy(array, 0, newArray, 0, array.length);
-                newArray[array.length] = element;
-                return newArray;
-            }
-            return array;
-        """
-        
-        problem_structure = {
-            "problem_name": "Array Operation Based on Command",
-            "function_name": "array_operation",
-            "input_structure": [
-                {"Input_Field": "List[int] array"},
-                {"Input_Field": "str operation"},
-                {"Input_Field": "int element"}
-            ],
-            "output_structure": {
-                "Output_Field": "List[int] result"
-            }
+# --- Helper Source Code Strings for Testing ---
+
+# Sample source code for a function that finds unique elements.
+FIND_UNIQUE_SOURCE = """
+public int[] findUniqueElements(int[] array) {
+    // A dummy implementation that simply returns the same array.
+    return array;
+}
+"""
+
+# Sample source code for a function that rotates an array.
+ROTATE_ARRAY_SOURCE = """
+public int[] rotateArray(int[] array, int k) {
+    // A dummy implementation that simply returns the same array.
+    return array;
+}
+"""
+
+# Sample source code for a function that squares an integer.
+SQUARE_SOURCE = """
+public int square(int x) {
+    return x * x;
+}
+"""
+
+# --- Test Cases ---
+
+def test_single_input_array():
+    """
+    Test the scenario with a single input field that is an array.
+    This simulates a problem like "find_unique_elements" where input is given over multiple lines.
+    The generated Java code should use a multi-line reading loop.
+    """
+    problem_structure = {
+        "function_name": "find_unique_elements",
+        "input_structure": [
+            {"Input_Field": "List[int] array"}
+        ],
+        "output_structure": {
+            "Output_Field": "List[int] result"
         }
-
-        expected_output = """import java.util.*;
-
-public class Solution {
-    public int[] array_operation(int[] array, String operation, int element) {
-            if (operation.equals("insert")) {
-                int[] newArray = new int[array.length + 1];
-                System.arraycopy(array, 0, newArray, 0, array.length);
-                newArray[array.length] = element;
-                return newArray;
-            }
-            return array;
-        
     }
-}"""
+    
+    generator = JavaSubmissionGenerator()
+    submission = generator.generate_submission(FIND_UNIQUE_SOURCE, problem_structure)
+    
+    # Check that the generated submission contains the multi-line reading code.
+    assert "while(scanner.hasNextLine())" in submission, "Expected multi-line input loop not found"
+    assert "lines.add(line);" in submission, "Expected adding of lines not found"
+    # Check that tokens splitting is handled with an empty-check.
+    assert "allInput.trim().isEmpty()" in submission, "Expected check for empty input not found"
+    # Also, check that the output printing uses Arrays.toString (because return type is an array).
+    assert "Arrays.toString(result)" in submission, "Expected output printing for arrays not found"
 
-        generated_code = self.generator.generate_submission(source_code, problem_structure)
-        self.assertEqual(generated_code.replace(" ", ""), expected_output.replace(" ", ""))
 
-    def test_type_conversion(self):
-        # Test various type conversions
-        test_cases = [
-            ("str", "String"),
-            ("int", "int"),
-            ("List[int]", "int[]"),
-            ("List[str]", "String[]"),
-            ("unknown_type", "Object")  # Default case
+def test_multiple_input_fields():
+    """
+    Test the scenario with multiple input fields.
+    For example, the "rotate_array" problem which has two input fields:
+    a List[int] array and an int k.
+    The generator should produce single-line parsing for the array input.
+    """
+    problem_structure = {
+        "function_name": "rotate_array",
+        "input_structure": [
+            {"Input_Field": "List[int] array"},
+            {"Input_Field": "int k"}
+        ],
+        "output_structure": {
+            "Output_Field": "List[int] result"
+        }
+    }
+    
+    generator = JavaSubmissionGenerator()
+    submission = generator.generate_submission(ROTATE_ARRAY_SOURCE, problem_structure)
+    
+    # For multiple input fields, the array input should be read from one line.
+    # The generated code should declare a variable like "String line0 = scanner.nextLine();"
+    assert re.search(r"String\s+line0\s*=\s*scanner\.nextLine\(\);", submission), "Expected single-line input reading for array not found"
+    
+    # Also, check that it checks for empty input before splitting.
+    assert "trim().isEmpty()" in submission, "Expected empty-line check for array input not found"
+    
+    # And check that the second input field is parsed correctly.
+    assert "int k = Integer.parseInt(scanner.nextLine());" in submission, "Expected parsing for int k not found"
+
+
+def test_non_array_input():
+    """
+    Test the scenario with a single input field that is a primitive type (non-array).
+    For example, a function that squares an integer.
+    """
+    problem_structure = {
+        "function_name": "square",
+        "input_structure": [
+            {"Input_Field": "int x"}
+        ],
+        "output_structure": {
+            "Output_Field": "int result"
+        }
+    }
+    
+    generator = JavaSubmissionGenerator()
+    submission = generator.generate_submission(SQUARE_SOURCE, problem_structure)
+    
+    # Check that the code uses Integer.parseInt for an int input.
+    assert "int x = Integer.parseInt(scanner.nextLine());" in submission, "Expected parsing for int input not found"
+    # Since the output is primitive (not an array), output printing should be a direct print.
+    assert "System.out.println(result);" in submission, "Expected direct output printing for primitive not found"
+
+
+def test_invalid_problem_structure_missing_field():
+    """
+    Test that the generator raises an exception if the problem structure
+    is missing a required field (e.g., output_structure).
+    """
+    # Missing output_structure.
+    problem_structure = {
+        "function_name": "square",
+        "input_structure": [
+            {"Input_Field": "int x"}
         ]
-
-        for python_type, expected_java_type in test_cases:
-            with self.subTest(python_type=python_type):
-                result = self.generator._convert_type_to_java(python_type)
-                self.assertEqual(result, expected_java_type)
-
-    def test_empty_source_code(self):
-        # Test with empty source code
-        problem_structure = {
-            "function_name": "test_function",
-            "input_structure": [
-                {"Input_Field": "int number"}
-            ],
-            "output_structure": {
-                "Output_Field": "int result"
-            }
-        }
-
-        generated_code = self.generator.generate_submission("", problem_structure)
-        expected_output = """public class Solution {
-    public int test_function(int number) {
-        
+        # output_structure is missing
     }
-}"""
-        self.assertEqual(generated_code.replace(" ", ""), expected_output.replace(" ", ""))
+    
+    generator = JavaSubmissionGenerator()
+    with pytest.raises(JavaSubmissionGeneratorException) as excinfo:
+        generator.generate_submission(SQUARE_SOURCE, problem_structure)
+    assert "Missing required field" in str(excinfo.value), "Expected missing field error"
 
-    def test_includes_required_imports(self):
-        # Test that generated code includes required imports
-        problem_structure = {
-            "function_name": "test_function",
-            "input_structure": [
-                {"Input_Field": "int number"}
-            ],
-            "output_structure": {
-                "Output_Field": "int result"
-            }
+
+def test_invalid_source_code_missing_function():
+    """
+    Test that the generator raises an exception when the source code
+    does not contain the expected function name.
+    """
+    problem_structure = {
+        "function_name": "square",
+        "input_structure": [
+            {"Input_Field": "int x"}
+        ],
+        "output_structure": {
+            "Output_Field": "int result"
         }
+    }
+    
+    # Source code that does not contain the function "square"
+    bad_source = """
+    public int notSquare(int x) {
+        return x * x;
+    }
+    """
+    
+    generator = JavaSubmissionGenerator()
+    with pytest.raises(JavaSubmissionGeneratorException) as excinfo:
+        generator.generate_submission(bad_source, problem_structure)
+    assert "Function 'square'" in str(excinfo.value), "Expected error for missing function name"
 
-        generated_code = self.generator.generate_submission("return 0;", problem_structure)
-        self.assertIn("import java.util.*;", generated_code)
 
-if __name__ == '__main__':
-    unittest.main() 
+def test_generated_file_saved(tmp_path):
+    """
+    Test that the generated submission file is saved as 'Main.java'.
+    We use pytest's tmp_path fixture to change the working directory temporarily.
+    """
+    # Change directory to a temporary directory.
+    os.chdir(tmp_path)
+    
+    problem_structure = {
+        "function_name": "square",
+        "input_structure": [
+            {"Input_Field": "int x"}
+        ],
+        "output_structure": {
+            "Output_Field": "int result"
+        }
+    }
+    
+    generator = JavaSubmissionGenerator()
+    submission = generator.generate_submission(SQUARE_SOURCE, problem_structure)
+    
+    # Check that the file Main.java exists and contains the submission.
+    main_file = tmp_path / "Main.java"
+    assert main_file.exists(), "Main.java file was not created"
+    content = main_file.read_text()
+    assert "public class Main" in content, "Main.java does not contain expected class declaration"
+
+
+def test_empty_line_for_multiple_input_array():
+    """
+    Test that for multiple input fields, an empty line is handled correctly.
+    The generated code should check if the input line is empty and assign an empty array.
+    """
+    problem_structure = {
+        "function_name": "rotate_array",
+        "input_structure": [
+            {"Input_Field": "List[int] array"},
+            {"Input_Field": "int k"}
+        ],
+        "output_structure": {
+            "Output_Field": "List[int] result"
+        }
+    }
+    
+    generator = JavaSubmissionGenerator()
+    submission = generator.generate_submission(ROTATE_ARRAY_SOURCE, problem_structure)
+    
+    # Look for the code that checks for an empty line.
+    pattern = r"line0\.trim\(\)\.isEmpty\(\)\s*\?\s*new String\[0\]"
+    assert re.search(pattern, submission), "Expected empty input check for array field in multiple input case not found"
