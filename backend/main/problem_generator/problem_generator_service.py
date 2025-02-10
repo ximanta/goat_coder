@@ -393,6 +393,38 @@ class ProblemGeneratorService:
                         if function_call and 'arguments' in function_call:
                             result = json.loads(function_call['arguments'])
                             
+                            # Fix float values in test cases if needed
+                            input_types = [
+                                field['Input Field'].split()[0] 
+                                for field in result['structure']['input_structure']
+                            ]
+                            output_type = result['structure']['output_structure']['Output Field'].split()[0]
+                            
+                            # Add logging before fixing float values
+                            logger.info("Original test cases before fixing floats:")
+                            logger.info(json.dumps(result['test_cases'], indent=2))
+                            
+                            # Use the new fix_float_values method and ensure it's properly formatted
+                            fixed_test_cases = JavaBoilerplateGenerator.fix_float_values(
+                                result['test_cases'],
+                                input_types,
+                                output_type
+                            )
+                            
+                            # Add logging after fixing float values
+                            logger.info("Fixed test cases:")
+                            logger.info(json.dumps(fixed_test_cases, indent=2))
+                            
+                            # Update the test cases in the result
+                            result['test_cases'] = [
+                                TestCase(input=test_case['input'], output=test_case['output']).model_dump()
+                                for test_case in fixed_test_cases
+                            ]
+                            
+                            # Log the final complete response
+                            logger.info("Complete response being sent to client:")
+                            logger.info(json.dumps(result, indent=2))
+
                             # Ensure the concept matches the input concept exactly
                             result['concept'] = concept
                             
@@ -428,7 +460,11 @@ class ProblemGeneratorService:
                             result['java_boilerplate'] = java_boilerplate
                             result['python_boilerplate'] = python_boilerplate
                             
-                            return Problem(**result).model_dump()
+                            final_response = Problem(**result).model_dump()
+                            logger.info("Final response after model conversion:")
+                            logger.info(json.dumps(final_response, indent=2))
+                            
+                            return final_response
                     
                     logger.error(f"Invalid response format: {response}")
                     raise ValueError("No valid function call in response")

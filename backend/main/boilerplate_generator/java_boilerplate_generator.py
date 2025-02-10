@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 
 class JavaBoilerplateGenerator:
     TYPE_MAPPING = {
@@ -36,6 +36,50 @@ class JavaBoilerplateGenerator:
         return param_type, param_name
 
     @staticmethod
+    def is_float_type(type_str: str) -> bool:
+        """Check if the type is float/double."""
+        return type_str.lower() in ['float', 'double']
+
+    @staticmethod
+    def fix_float_values(test_cases: List[Dict], input_types: List[str], output_type: str) -> List[Dict]:
+        """Fix float values in test cases to include decimal points."""
+        fixed_cases = []
+        
+        for test_case in test_cases:
+            fixed_inputs = []
+            # Handle input values
+            for value, type_str in zip(test_case['input'], input_types):
+                if JavaBoilerplateGenerator.is_float_type(type_str):
+                    # Only convert to float if the type is float/double
+                    if isinstance(value, (int, float)):
+                        float_value = float(value)
+                        # Add .0 only if it's a whole number
+                        if float_value.is_integer():
+                            value = float(f"{int(float_value)}.0")
+                        else:
+                            value = float_value
+                fixed_inputs.append(value)
+            
+            # Handle output value
+            fixed_output = test_case['output']
+            if JavaBoilerplateGenerator.is_float_type(output_type):
+                # Only convert to float if the output type is float/double
+                if isinstance(fixed_output, (int, float)):
+                    float_output = float(fixed_output)
+                    # Add .0 only if it's a whole number
+                    if float_output.is_integer():
+                        fixed_output = float(f"{int(float_output)}.0")
+                    else:
+                        fixed_output = float_output
+            
+            fixed_cases.append({
+                'input': fixed_inputs,
+                'output': fixed_output
+            })
+        
+        return fixed_cases
+
+    @staticmethod
     def convert_to_java_boilerplate(structure: Dict) -> str:
         """Convert problem structure to Java boilerplate code."""
         try:
@@ -63,7 +107,8 @@ class JavaBoilerplateGenerator:
 
             # Construct the boilerplate
             params_str = ", ".join(params)
-            boilerplate = f"""public {java_output_type} {function_name}({params_str}) {{
+            boilerplate = f"""/*DO NOT modify this method.*/
+public {java_output_type} {function_name}({params_str}) {{
     // Your implementation code goes here
     
     return null; // Replace with your return statement

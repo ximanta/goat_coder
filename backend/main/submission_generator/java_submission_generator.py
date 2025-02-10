@@ -63,7 +63,7 @@ class JavaSubmissionGenerator:
             for i, input_field in enumerate(input_structure):
                 field = input_field["Input_Field"].split()
                 java_type = self._convert_type_to_java(field[0])
-                param_name = field[1]
+                param_name = to_java_name(field[1])
                 param_list.append(f"{java_type} {param_name}")
                 param_parsing.append(self._generate_input_parsing(java_type, param_name, i))
                 
