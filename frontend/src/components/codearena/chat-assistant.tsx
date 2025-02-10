@@ -117,7 +117,7 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
         onClick={() => setIsOpen(!isOpen)}
         className="h-10 w-10 rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white fixed bottom-4 left-4 z-50"
         size="icon"
-        aria-label="Toggle Problem Mentor"
+        aria-label="Toggle Coding Mentor"
       >
         {isOpen ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </Button>
@@ -133,7 +133,7 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MessageCircle className="h-5 w-5 text-blue-600" />
-              <h3 className="font-semibold">Problem Mentor</h3>
+              <h3 className="font-semibold">Coding Mentor</h3>
             </div>
             <Button
               onClick={() => setIsOpen(false)}
@@ -149,13 +149,13 @@ export default function ChatAssistant({ problemContext }: ChatAssistantProps) {
 
         <CardContent 
           ref={contentRef}
-          className="flex-1 overflow-y-auto p-4 space-y-4 h-[calc(100%-8rem)]"
+          className="flex-1 overflow-y-auto p-4 space-y-4 h-[calc(100%-8rem)] custom-scrollbar"
         >
           {messages.length === 0 && (
             <div className="text-center py-8 space-y-2">
               <MessageCircle className="h-8 w-8 mx-auto text-blue-600/50" />
               <h4 className="font-semibold text-gray-600 dark:text-gray-400">
-                Welcome to Problem Mentor!
+                Welcome!! I'm your Coding Mentor!
               </h4>
               <p className="text-sm text-gray-500 dark:text-gray-500 max-w-sm mx-auto">
                 Ask any questions about the problem. I'm here to guide you through the solution process.

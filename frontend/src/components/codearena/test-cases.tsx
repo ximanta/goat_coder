@@ -93,38 +93,40 @@ export function TestCases({ testCases = [], results, structure, isGenerating }: 
   return (
     <div className="h-full">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
-        <TabsList className="grid w-full grid-cols-4 rounded-t-lg">
-          {testCases.map((_, index) => {
-            const testResult = results?.results[index];
-            const showIcon = results?.completed && testResult;
-            
-            return (
-              <TabsTrigger
-                key={`test${index + 1}`}
-                value={`test${index + 1}`}
-                className={cn(
-                  "text-sm p-2 border border-blue-200 bg-white",
-                  "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-b-0",
-                  "hover:bg-blue-50",
-                  "transition-colors",
-                  "flex items-center justify-center gap-2"
-                )}
-              >
-                <span>Test {index + 1}</span>
-                {showIcon && (
-                  testResult.passed ? (
-                    <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  ) : (
-                    <XCircle className="w-4 h-4 text-red-600" />
-                  )
-                )}
-              </TabsTrigger>
-            );
-          })}
+        <TabsList className="flex w-full rounded-t-lg overflow-x-auto custom-scrollbar">
+          <div className="flex-1 flex min-w-0">
+            {testCases.map((_, index) => {
+              const testResult = results?.results[index];
+              const showIcon = results?.completed && testResult;
+              
+              return (
+                <TabsTrigger
+                  key={`test${index + 1}`}
+                  value={`test${index + 1}`}
+                  className={cn(
+                    "flex-1 min-w-[100px] text-sm p-2 border border-blue-200 bg-white",
+                    "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-b-0",
+                    "hover:bg-blue-50",
+                    "transition-colors",
+                    "flex items-center justify-center gap-2"
+                  )}
+                >
+                  <span>Test {index + 1}</span>
+                  {showIcon && (
+                    testResult.passed ? (
+                      <CheckCircle2 className="w-4 h-4 text-green-600" />
+                    ) : (
+                      <XCircle className="w-4 h-4 text-red-600" />
+                    )
+                  )}
+                </TabsTrigger>
+              );
+            })}
+          </div>
           <TabsTrigger 
             value="results" 
             className={cn(
-              "text-sm p-2 border border-blue-200",
+              "min-w-[100px] text-sm p-2 border border-blue-200",
               "bg-gray-200",
               "data-[state=active]:bg-blue-100 data-[state=active]:text-gray-700 data-[state=active]:border-b-0",
               "hover:bg-gray-100",
