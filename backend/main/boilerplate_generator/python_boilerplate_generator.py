@@ -21,10 +21,31 @@ class PythonBoilerplateGenerator:
     @staticmethod
     def parse_input_field(input_field: str) -> tuple:
         """Parse input field string to get type and name."""
-        parts = input_field.strip().split()
-        if len(parts) != 2:
+        input_field = input_field.strip()
+        
+        # Handle case where the type contains spaces within brackets
+        # e.g., "List[List[Union[str, int]]] items1" or "Dict[str, int] result"
+        if '[' in input_field:
+            # Find the last closing bracket
+            last_bracket = input_field.rindex(']')
+            # Split after the last bracket
+            type_part = input_field[:last_bracket + 1]
+            name_part = input_field[last_bracket + 1:].strip()
+            
+            # If no name provided, use default
+            if not name_part:
+                name_part = "result"
+                
+            return type_part, name_part
+        
+        # Handle simple types without brackets
+        parts = input_field.split()
+        if len(parts) == 1:
+            return parts[0], "result"
+        elif len(parts) == 2:
+            return parts[0], parts[1]
+        else:
             raise ValueError(f"Invalid input field format: {input_field}")
-        return parts[0], parts[1]
 
     @staticmethod
     def convert_to_python_boilerplate(structure: Dict) -> str:

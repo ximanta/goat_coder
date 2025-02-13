@@ -50,24 +50,31 @@ class JavaBoilerplateGenerator:
     @staticmethod
     def parse_input_field(input_field: str) -> tuple:
         """Parse input field string to get type and name."""
-        parts = input_field.strip().split()
+        input_field = input_field.strip()
         
-        # Handle case where only type is provided (common in output_structure)
+        # Handle case where the type contains spaces within brackets
+        # e.g., "List[List[Union[str, int]]] items1" or "Dict[str, int] result"
+        if '[' in input_field:
+            # Find the last closing bracket
+            last_bracket = input_field.rindex(']')
+            # Split after the last bracket
+            type_part = input_field[:last_bracket + 1]
+            name_part = input_field[last_bracket + 1:].strip()
+            
+            # If no name provided, use default
+            if not name_part:
+                name_part = "result"
+                
+            return JavaBoilerplateGenerator.normalize_type(type_part), JavaBoilerplateGenerator.convert_to_java_name(name_part)
+        
+        # Handle simple types without brackets
+        parts = input_field.split()
         if len(parts) == 1:
-            param_type = JavaBoilerplateGenerator.normalize_type(parts[0])
-            param_name = "result"  # Default name for output parameter
+            return JavaBoilerplateGenerator.normalize_type(parts[0]), "result"
         elif len(parts) == 2:
-            param_type = JavaBoilerplateGenerator.normalize_type(parts[0])
-            param_name = JavaBoilerplateGenerator.convert_to_java_name(parts[1])
+            return JavaBoilerplateGenerator.normalize_type(parts[0]), JavaBoilerplateGenerator.convert_to_java_name(parts[1])
         else:
             raise ValueError(f"Invalid input field format: {input_field}")
-
-        # Handle untyped dict case by providing default type
-        if param_type == "Dict":
-            # Look at test cases to infer key and value types
-            param_type = "Dict[str, int]"  # Default to common case of str->int mapping
-            
-        return param_type, param_name
 
     @staticmethod
     def is_float_type(type_str: str) -> bool:
@@ -119,6 +126,41 @@ class JavaBoilerplateGenerator:
                 return JavaBoilerplateGenerator.TYPE_MAPPING.get(python_type, "List<Object>")
             return JavaBoilerplateGenerator.parse_complex_type(python_type)
         return JavaBoilerplateGenerator.TYPE_MAPPING.get(python_type, "Object")
+
+    @staticmethod
+    def infer_type_from_test_cases(structure: Dict, field_type: str) -> str:
+        """Infer more specific type information from test cases."""
+        if not field_type.startswith("Dict"):
+            return field_type
+            
+        if "test_cases" not in structure:
+            return field_type
+            
+        # For dictionaries, check the first test case
+        first_case = structure["test_cases"][0]
+        if not first_case:
+            return field_type
+            
+        # For output structure, look at output
+        if field_type == "Dict" or field_type.startswith("dict"):
+            output_dict = first_case.get("output", {})
+            if not output_dict:
+                return "Dict[str, Object]"  # Default if no test case data
+                
+            # Check all values in the dictionary
+            value_types = set()
+            for value in output_dict.values():
+                value_types.add(type(value).__name__)
+                
+            # If we have mixed types or non-primitive types, use Object
+            if len(value_types) > 1 or any(t not in ["int", "float", "str", "bool"] for t in value_types):
+                return "Dict[str, Object]"
+            
+            # If all values are of the same type, use that type
+            value_type = next(iter(value_types))
+            return f"Dict[str, {value_type}]"
+            
+        return field_type
 
     @staticmethod
     def fix_float_values(test_cases: List[Dict], input_types: List[str], output_type: str) -> List[Dict]:
@@ -177,23 +219,19 @@ class JavaBoilerplateGenerator:
                 structure["output_structure"][output_field_key]
             )
             
-            # Try to infer dict types from test cases if available
-            if output_type.startswith("Dict") and "test_cases" in structure:
-                first_output = structure["test_cases"][0]["output"]
-                if first_output:
-                    key_type = type(next(iter(first_output.keys()))).__name__
-                    value_type = type(next(iter(first_output.values()))).__name__
-                    output_type = f"Dict[{key_type}, {value_type}]"
-            
+            # Infer more specific type from test cases
+            output_type = JavaBoilerplateGenerator.infer_type_from_test_cases(structure, output_type)
             java_output_type = JavaBoilerplateGenerator.convert_to_java_type(output_type)
 
             # Parse input parameters
             params = []
-            input_field_key = "Input Field"  # Being explicit about the key
+            input_field_key = "Input Field"
             for input_field in structure["input_structure"]:
                 python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
                     input_field[input_field_key]
                 )
+                # Infer more specific type from test cases
+                python_type = JavaBoilerplateGenerator.infer_type_from_test_cases(structure, python_type)
                 java_type = JavaBoilerplateGenerator.convert_to_java_type(python_type)
                 params.append(f"{java_type} {param_name}")
 

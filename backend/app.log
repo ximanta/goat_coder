@@ -7596,3 +7596,1137 @@ FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_c
   "python_boilerplate": "from typing import List\n\ndef calculate_average_grades(student_records: Any) -> Any:\n    # Your implementation code goes here\n    pass"
 }
 2025-02-13 19:52:56,126 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Student Grade Records
+2025-02-13 20:15:07,195 - uvicorn.error - INFO - Started server process [15128]
+2025-02-13 20:15:07,196 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 20:15:07,198 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 20:16:01,508 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 20:16:01,509 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: HARD
+2025-02-13 20:16:02,818 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 20:16:02,819 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 20:16:02,820 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 20:16:02,826 - main.problem_generator.prompt_manager - INFO - Normalizing name: HARD
+2025-02-13 20:16:02,827 - main.problem_generator.prompt_manager - INFO - Normalized to: hard
+2025-02-13 20:16:02,828 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 20:16:02,829 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 20:16:07,377 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 20:16:07,422 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 20:16:07,423 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 20:16:07,424 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"HARD\",\"problem_title\":\"Merge Similar Items\",\"problem_statement\":\"You are given two lists of items, where each item is represented as a pair of a string and an integer. The first element of the pair is the item's name (a string), and the second element is the item's value (an integer). Your task is to merge these two lists into a single dictionary (or object), summing the values of items with the same name. If an item appears in only one list, it should still be included in the resulting dictionary with its corresponding value. Return the resulting dictionary sorted by item names in ascending order.\",\"test_cases\":[{\"input\":[[\"apple\",5],[\"orange\",3]],\"output\":{\"apple\":5,\"orange\":3}},{\"input\":[[\"banana\",2],[\"apple\",3],[\"banana\",1]],\"output\":{\"apple\":3,\"banana\":3}},{\"input\":[[\"grape\",10],[\"melon\",5]],\"output\":{\"grape\":10,\"melon\":5}},{\"input\":[[\"watermelon\",20],[\"grape\",10],[\"grape\",5]],\"output\":{\"grape\":15,\"watermelon\":20}},{\"input\":[[\"peach\",6],[\"peach\",3],[\"cherry\",1]],\"output\":{\"cherry\":1,\"peach\":9}}],\"tags\":[\"dictionaries\",\"arrays\",\"loops\",\"conditional_logic\",\"array_iteration\",\"data_types\"],\"structure\":{\"problem_name\":\"merge_similar_items\",\"function_name\":\"merge_similar_items\",\"input_structure\":[{\"Input Field\":\"List[List[Union[str, int]]] items1\"},{\"Input Field\":\"List[List[Union[str, int]]] items2\"}],\"output_structure\":{\"Output Field\":\"Dict[str, int] result\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 20:16:07,425 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 20:16:07,425 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        "apple",
+        5
+      ],
+      [
+        "orange",
+        3
+      ]
+    ],
+    "output": {
+      "apple": 5,
+      "orange": 3
+    }
+  },
+  {
+    "input": [
+      [
+        "banana",
+        2
+      ],
+      [
+        "apple",
+        3
+      ],
+      [
+        "banana",
+        1
+      ]
+    ],
+    "output": {
+      "apple": 3,
+      "banana": 3
+    }
+  },
+  {
+    "input": [
+      [
+        "grape",
+        10
+      ],
+      [
+        "melon",
+        5
+      ]
+    ],
+    "output": {
+      "grape": 10,
+      "melon": 5
+    }
+  },
+  {
+    "input": [
+      [
+        "watermelon",
+        20
+      ],
+      [
+        "grape",
+        10
+      ],
+      [
+        "grape",
+        5
+      ]
+    ],
+    "output": {
+      "grape": 15,
+      "watermelon": 20
+    }
+  },
+  {
+    "input": [
+      [
+        "peach",
+        6
+      ],
+      [
+        "peach",
+        3
+      ],
+      [
+        "cherry",
+        1
+      ]
+    ],
+    "output": {
+      "cherry": 1,
+      "peach": 9
+    }
+  }
+]
+2025-02-13 20:16:07,428 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 20:16:07,429 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        "apple",
+        5
+      ],
+      [
+        "orange",
+        3
+      ]
+    ],
+    "output": {
+      "apple": 5,
+      "orange": 3
+    }
+  },
+  {
+    "input": [
+      [
+        "banana",
+        2
+      ],
+      [
+        "apple",
+        3
+      ],
+      [
+        "banana",
+        1
+      ]
+    ],
+    "output": {
+      "apple": 3,
+      "banana": 3
+    }
+  },
+  {
+    "input": [
+      [
+        "grape",
+        10
+      ],
+      [
+        "melon",
+        5
+      ]
+    ],
+    "output": {
+      "grape": 10,
+      "melon": 5
+    }
+  },
+  {
+    "input": [
+      [
+        "watermelon",
+        20
+      ],
+      [
+        "grape",
+        10
+      ],
+      [
+        "grape",
+        5
+      ]
+    ],
+    "output": {
+      "grape": 15,
+      "watermelon": 20
+    }
+  },
+  {
+    "input": [
+      [
+        "peach",
+        6
+      ],
+      [
+        "peach",
+        3
+      ],
+      [
+        "cherry",
+        1
+      ]
+    ],
+    "output": {
+      "cherry": 1,
+      "peach": 9
+    }
+  }
+]
+2025-02-13 20:16:07,430 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 20:16:07,431 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "HARD",
+  "problem_title": "Merge Similar Items",
+  "problem_statement": "You are given two lists of items, where each item is represented as a pair of a string and an integer. The first element of the pair is the item's name (a string), and the second element is the item's value (an integer). Your task is to merge these two lists into a single dictionary (or object), summing the values of items with the same name. If an item appears in only one list, it should still be included in the resulting dictionary with its corresponding value. Return the resulting dictionary sorted by item names in ascending order.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          "apple",
+          5
+        ],
+        [
+          "orange",
+          3
+        ]
+      ],
+      "output": {
+        "apple": 5,
+        "orange": 3
+      }
+    },
+    {
+      "input": [
+        [
+          "banana",
+          2
+        ],
+        [
+          "apple",
+          3
+        ],
+        [
+          "banana",
+          1
+        ]
+      ],
+      "output": {
+        "apple": 3,
+        "banana": 3
+      }
+    },
+    {
+      "input": [
+        [
+          "grape",
+          10
+        ],
+        [
+          "melon",
+          5
+        ]
+      ],
+      "output": {
+        "grape": 10,
+        "melon": 5
+      }
+    },
+    {
+      "input": [
+        [
+          "watermelon",
+          20
+        ],
+        [
+          "grape",
+          10
+        ],
+        [
+          "grape",
+          5
+        ]
+      ],
+      "output": {
+        "grape": 15,
+        "watermelon": 20
+      }
+    },
+    {
+      "input": [
+        [
+          "peach",
+          6
+        ],
+        [
+          "peach",
+          3
+        ],
+        [
+          "cherry",
+          1
+        ]
+      ],
+      "output": {
+        "cherry": 1,
+        "peach": 9
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "arrays",
+    "loops",
+    "conditional_logic",
+    "array_iteration",
+    "data_types"
+  ],
+  "structure": {
+    "problem_name": "merge_similar_items",
+    "function_name": "merge_similar_items",
+    "input_structure": [
+      {
+        "Input Field": "List[List[Union[str, int]]] items1"
+      },
+      {
+        "Input Field": "List[List[Union[str, int]]] items2"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "Dict[str, int] result"
+    }
+  }
+}
+2025-02-13 20:16:07,435 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Merge Similar Items
+2025-02-13 20:16:07,436 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 211, in convert_to_java_boilerplate
+    output_type, output_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 63, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] result
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 245, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+2025-02-13 20:16:07,442 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"HARD","problem_title":"Merge Similar Items","problem_statement":"You are given two lists of items, where each item is represented as a pair of a string and an integer. The first element of the pair is the item\'s name (a string), and the second element is the item\'s value (an integer). Your task is to merge these two lists into a single dictionary (or object), summing the values of items with the same name. If an item appears in only one list, it should still be included in the resulting dictionary with its corresponding value. Return the resulting dictionary sorted by item names in ascending order.","test_cases":[{"input":[["apple",5],["orange",3]],"output":{"apple":5,"orange":3}},{"input":[["banana",2],["apple",3],["banana",1]],"output":{"apple":3,"banana":3}},{"input":[["grape",10],["melon",5]],"output":{"grape":10,"melon":5}},{"input":[["watermelon",20],["grape",10],["grape",5]],"output":{"grape":15,"watermelon":20}},{"input":[["peach",6],["peach",3],["cherry",1]],"output":{"cherry":1,"peach":9}}],"tags":["dictionaries","arrays","loops","conditional_logic","array_iteration","data_types"],"structure":{"problem_name":"merge_similar_items","function_name":"merge_similar_items","input_structure":[{"Input Field":"List[List[Union[str, int]]] items1"},{"Input Field":"List[List[Union[str, int]]] items2"}],"output_structure":{"Output Field":"Dict[str, int] result"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 367, 'prompt_tokens': 404, 'total_tokens': 771, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_f3927aa00d', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-55268b42-be81-4059-9149-f22c8d15b591-0' usage_metadata={'input_tokens': 404, 'output_tokens': 367, 'total_tokens': 771}
+2025-02-13 20:16:07,443 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 211, in convert_to_java_boilerplate
+    output_type, output_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 63, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] result
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 245, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+2025-02-13 20:16:07,445 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"HARD","problem_title":"Merge Similar Items","problem_statement":"You are given two lists of items, where each item is represented as a pair of a string and an integer. The first element of the pair is the item\'s name (a string), and the second element is the item\'s value (an integer). Your task is to merge these two lists into a single dictionary (or object), summing the values of items with the same name. If an item appears in only one list, it should still be included in the resulting dictionary with its corresponding value. Return the resulting dictionary sorted by item names in ascending order.","test_cases":[{"input":[["apple",5],["orange",3]],"output":{"apple":5,"orange":3}},{"input":[["banana",2],["apple",3],["banana",1]],"output":{"apple":3,"banana":3}},{"input":[["grape",10],["melon",5]],"output":{"grape":10,"melon":5}},{"input":[["watermelon",20],["grape",10],["grape",5]],"output":{"grape":15,"watermelon":20}},{"input":[["peach",6],["peach",3],["cherry",1]],"output":{"cherry":1,"peach":9}}],"tags":["dictionaries","arrays","loops","conditional_logic","array_iteration","data_types"],"structure":{"problem_name":"merge_similar_items","function_name":"merge_similar_items","input_structure":[{"Input Field":"List[List[Union[str, int]]] items1"},{"Input Field":"List[List[Union[str, int]]] items2"}],"output_structure":{"Output Field":"Dict[str, int] result"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 367, 'prompt_tokens': 404, 'total_tokens': 771, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_f3927aa00d', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-55268b42-be81-4059-9149-f22c8d15b591-0' usage_metadata={'input_tokens': 404, 'output_tokens': 367, 'total_tokens': 771}
+2025-02-13 20:16:07,446 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 211, in convert_to_java_boilerplate
+    output_type, output_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 63, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] result
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 245, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] result
+2025-02-13 20:17:12,805 - uvicorn.error - INFO - Started server process [26024]
+2025-02-13 20:17:12,807 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 20:17:12,808 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 20:17:54,417 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 20:17:54,418 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: MEDIUM
+2025-02-13 20:17:55,624 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 20:17:55,625 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 20:17:55,626 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 20:17:55,633 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-13 20:17:55,634 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-13 20:17:55,640 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 20:17:55,641 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 20:18:00,963 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 20:18:01,013 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 20:18:01,013 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 20:18:01,014 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"medium\",\"problem_title\":\"Product Inventory Management\",\"problem_statement\":\"You are tasked with managing the inventory of a store using a dictionary. The dictionary will store products as keys and their corresponding quantities as values. Your goal is to create a function that processes a list of transactions that either adds to or subtracts from the inventory. Each transaction is a list containing a product name (string), the quantity (integer), and the type of transaction (either 'add' or 'remove'). If a product is removed and the quantity exceeds the current inventory, it should not make any changes to the inventory. After processing all transactions, return the updated inventory as a dictionary.\",\"test_cases\":[{\"input\":[[\"apple\",5,\"add\"],[\"banana\",3,\"add\"],[\"apple\",2,\"remove\"],[\"banana\",5,\"remove\"],[\"orange\",10,\"add\"],[\"banana\",1,\"add\"]],\"output\":{\"apple\":3,\"banana\":4,\"orange\":10}},{\"input\":[[\"chocolate\",10,\"add\"],[\"cookies\",5,\"add\"],[\"chocolate\",5,\"remove\"],[\"cookies\",10,\"remove\"],[\"chocolate\",2,\"add\"],[\"chocolate\",10,\"remove\"]],\"output\":{\"chocolate\":0,\"cookies\":0}},{\"input\":[[\"pencil\",10,\"add\"],[\"pen\",5,\"add\"],[\"pencil\",15,\"remove\"],[\"pen\",2,\"remove\"],[\"eraser\",4,\"add\"],[\"pen\",10,\"remove\"]],\"output\":{\"pencil\":0,\"pen\":3,\"eraser\":4}}],\"tags\":[\"dictionaries\",\"array_manipulation\",\"conditional_logic\",\"loops\"],\"structure\":{\"problem_name\":\"manage_inventory\",\"function_name\":\"manage_inventory\",\"input_structure\":[{\"Input Field\":\"List[List[Union[str, int]]] transactions\"}],\"output_structure\":{\"Output Field\":\"Dict[str, int] inventory\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 20:18:01,015 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 20:18:01,016 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        "apple",
+        5,
+        "add"
+      ],
+      [
+        "banana",
+        3,
+        "add"
+      ],
+      [
+        "apple",
+        2,
+        "remove"
+      ],
+      [
+        "banana",
+        5,
+        "remove"
+      ],
+      [
+        "orange",
+        10,
+        "add"
+      ],
+      [
+        "banana",
+        1,
+        "add"
+      ]
+    ],
+    "output": {
+      "apple": 3,
+      "banana": 4,
+      "orange": 10
+    }
+  },
+  {
+    "input": [
+      [
+        "chocolate",
+        10,
+        "add"
+      ],
+      [
+        "cookies",
+        5,
+        "add"
+      ],
+      [
+        "chocolate",
+        5,
+        "remove"
+      ],
+      [
+        "cookies",
+        10,
+        "remove"
+      ],
+      [
+        "chocolate",
+        2,
+        "add"
+      ],
+      [
+        "chocolate",
+        10,
+        "remove"
+      ]
+    ],
+    "output": {
+      "chocolate": 0,
+      "cookies": 0
+    }
+  },
+  {
+    "input": [
+      [
+        "pencil",
+        10,
+        "add"
+      ],
+      [
+        "pen",
+        5,
+        "add"
+      ],
+      [
+        "pencil",
+        15,
+        "remove"
+      ],
+      [
+        "pen",
+        2,
+        "remove"
+      ],
+      [
+        "eraser",
+        4,
+        "add"
+      ],
+      [
+        "pen",
+        10,
+        "remove"
+      ]
+    ],
+    "output": {
+      "pencil": 0,
+      "pen": 3,
+      "eraser": 4
+    }
+  }
+]
+2025-02-13 20:18:01,020 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 20:18:01,021 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        "apple",
+        5,
+        "add"
+      ],
+      [
+        "banana",
+        3,
+        "add"
+      ],
+      [
+        "apple",
+        2,
+        "remove"
+      ],
+      [
+        "banana",
+        5,
+        "remove"
+      ],
+      [
+        "orange",
+        10,
+        "add"
+      ],
+      [
+        "banana",
+        1,
+        "add"
+      ]
+    ],
+    "output": {
+      "apple": 3,
+      "banana": 4,
+      "orange": 10
+    }
+  },
+  {
+    "input": [
+      [
+        "chocolate",
+        10,
+        "add"
+      ],
+      [
+        "cookies",
+        5,
+        "add"
+      ],
+      [
+        "chocolate",
+        5,
+        "remove"
+      ],
+      [
+        "cookies",
+        10,
+        "remove"
+      ],
+      [
+        "chocolate",
+        2,
+        "add"
+      ],
+      [
+        "chocolate",
+        10,
+        "remove"
+      ]
+    ],
+    "output": {
+      "chocolate": 0,
+      "cookies": 0
+    }
+  },
+  {
+    "input": [
+      [
+        "pencil",
+        10,
+        "add"
+      ],
+      [
+        "pen",
+        5,
+        "add"
+      ],
+      [
+        "pencil",
+        15,
+        "remove"
+      ],
+      [
+        "pen",
+        2,
+        "remove"
+      ],
+      [
+        "eraser",
+        4,
+        "add"
+      ],
+      [
+        "pen",
+        10,
+        "remove"
+      ]
+    ],
+    "output": {
+      "pencil": 0,
+      "pen": 3,
+      "eraser": 4
+    }
+  }
+]
+2025-02-13 20:18:01,024 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 20:18:01,025 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "medium",
+  "problem_title": "Product Inventory Management",
+  "problem_statement": "You are tasked with managing the inventory of a store using a dictionary. The dictionary will store products as keys and their corresponding quantities as values. Your goal is to create a function that processes a list of transactions that either adds to or subtracts from the inventory. Each transaction is a list containing a product name (string), the quantity (integer), and the type of transaction (either 'add' or 'remove'). If a product is removed and the quantity exceeds the current inventory, it should not make any changes to the inventory. After processing all transactions, return the updated inventory as a dictionary.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          "apple",
+          5,
+          "add"
+        ],
+        [
+          "banana",
+          3,
+          "add"
+        ],
+        [
+          "apple",
+          2,
+          "remove"
+        ],
+        [
+          "banana",
+          5,
+          "remove"
+        ],
+        [
+          "orange",
+          10,
+          "add"
+        ],
+        [
+          "banana",
+          1,
+          "add"
+        ]
+      ],
+      "output": {
+        "apple": 3,
+        "banana": 4,
+        "orange": 10
+      }
+    },
+    {
+      "input": [
+        [
+          "chocolate",
+          10,
+          "add"
+        ],
+        [
+          "cookies",
+          5,
+          "add"
+        ],
+        [
+          "chocolate",
+          5,
+          "remove"
+        ],
+        [
+          "cookies",
+          10,
+          "remove"
+        ],
+        [
+          "chocolate",
+          2,
+          "add"
+        ],
+        [
+          "chocolate",
+          10,
+          "remove"
+        ]
+      ],
+      "output": {
+        "chocolate": 0,
+        "cookies": 0
+      }
+    },
+    {
+      "input": [
+        [
+          "pencil",
+          10,
+          "add"
+        ],
+        [
+          "pen",
+          5,
+          "add"
+        ],
+        [
+          "pencil",
+          15,
+          "remove"
+        ],
+        [
+          "pen",
+          2,
+          "remove"
+        ],
+        [
+          "eraser",
+          4,
+          "add"
+        ],
+        [
+          "pen",
+          10,
+          "remove"
+        ]
+      ],
+      "output": {
+        "pencil": 0,
+        "pen": 3,
+        "eraser": 4
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "array_manipulation",
+    "conditional_logic",
+    "loops"
+  ],
+  "structure": {
+    "problem_name": "manage_inventory",
+    "function_name": "manage_inventory",
+    "input_structure": [
+      {
+        "Input Field": "List[List[Union[str, int]]] transactions"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "Dict[str, int] inventory"
+    }
+  }
+}
+2025-02-13 20:18:01,030 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Product Inventory Management
+2025-02-13 20:18:01,033 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 37, in convert_to_python_boilerplate
+    output_type, _ = PythonBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 26, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] inventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 497, in generate_problem
+    python_boilerplate = self.python_generator.convert_to_python_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 66, in convert_to_python_boilerplate
+    raise ValueError(f"Failed to generate Python boilerplate: {str(e)}")
+ValueError: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+2025-02-13 20:18:01,044 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"medium","problem_title":"Product Inventory Management","problem_statement":"You are tasked with managing the inventory of a store using a dictionary. The dictionary will store products as keys and their corresponding quantities as values. Your goal is to create a function that processes a list of transactions that either adds to or subtracts from the inventory. Each transaction is a list containing a product name (string), the quantity (integer), and the type of transaction (either \'add\' or \'remove\'). If a product is removed and the quantity exceeds the current inventory, it should not make any changes to the inventory. After processing all transactions, return the updated inventory as a dictionary.","test_cases":[{"input":[["apple",5,"add"],["banana",3,"add"],["apple",2,"remove"],["banana",5,"remove"],["orange",10,"add"],["banana",1,"add"]],"output":{"apple":3,"banana":4,"orange":10}},{"input":[["chocolate",10,"add"],["cookies",5,"add"],["chocolate",5,"remove"],["cookies",10,"remove"],["chocolate",2,"add"],["chocolate",10,"remove"]],"output":{"chocolate":0,"cookies":0}},{"input":[["pencil",10,"add"],["pen",5,"add"],["pencil",15,"remove"],["pen",2,"remove"],["eraser",4,"add"],["pen",10,"remove"]],"output":{"pencil":0,"pen":3,"eraser":4}}],"tags":["dictionaries","array_manipulation","conditional_logic","loops"],"structure":{"problem_name":"manage_inventory","function_name":"manage_inventory","input_structure":[{"Input Field":"List[List[Union[str, int]]] transactions"}],"output_structure":{"Output Field":"Dict[str, int] inventory"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 391, 'prompt_tokens': 405, 'total_tokens': 796, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-56408aac-b40f-4e1d-a207-8e9a5dc92cdd-0' usage_metadata={'input_tokens': 405, 'output_tokens': 391, 'total_tokens': 796}
+2025-02-13 20:18:01,045 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 37, in convert_to_python_boilerplate
+    output_type, _ = PythonBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 26, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] inventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 497, in generate_problem
+    python_boilerplate = self.python_generator.convert_to_python_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 66, in convert_to_python_boilerplate
+    raise ValueError(f"Failed to generate Python boilerplate: {str(e)}")
+ValueError: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+2025-02-13 20:18:01,046 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"medium","problem_title":"Product Inventory Management","problem_statement":"You are tasked with managing the inventory of a store using a dictionary. The dictionary will store products as keys and their corresponding quantities as values. Your goal is to create a function that processes a list of transactions that either adds to or subtracts from the inventory. Each transaction is a list containing a product name (string), the quantity (integer), and the type of transaction (either \'add\' or \'remove\'). If a product is removed and the quantity exceeds the current inventory, it should not make any changes to the inventory. After processing all transactions, return the updated inventory as a dictionary.","test_cases":[{"input":[["apple",5,"add"],["banana",3,"add"],["apple",2,"remove"],["banana",5,"remove"],["orange",10,"add"],["banana",1,"add"]],"output":{"apple":3,"banana":4,"orange":10}},{"input":[["chocolate",10,"add"],["cookies",5,"add"],["chocolate",5,"remove"],["cookies",10,"remove"],["chocolate",2,"add"],["chocolate",10,"remove"]],"output":{"chocolate":0,"cookies":0}},{"input":[["pencil",10,"add"],["pen",5,"add"],["pencil",15,"remove"],["pen",2,"remove"],["eraser",4,"add"],["pen",10,"remove"]],"output":{"pencil":0,"pen":3,"eraser":4}}],"tags":["dictionaries","array_manipulation","conditional_logic","loops"],"structure":{"problem_name":"manage_inventory","function_name":"manage_inventory","input_structure":[{"Input Field":"List[List[Union[str, int]]] transactions"}],"output_structure":{"Output Field":"Dict[str, int] inventory"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 391, 'prompt_tokens': 405, 'total_tokens': 796, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-56408aac-b40f-4e1d-a207-8e9a5dc92cdd-0' usage_metadata={'input_tokens': 405, 'output_tokens': 391, 'total_tokens': 796}
+2025-02-13 20:18:01,046 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 37, in convert_to_python_boilerplate
+    output_type, _ = PythonBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 26, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] inventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 497, in generate_problem
+    python_boilerplate = self.python_generator.convert_to_python_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\python_boilerplate_generator.py", line 66, in convert_to_python_boilerplate
+    raise ValueError(f"Failed to generate Python boilerplate: {str(e)}")
+ValueError: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Python boilerplate: Invalid input field format: Dict[str, int] inventory
+2025-02-13 20:19:22,191 - uvicorn.error - INFO - Started server process [13332]
+2025-02-13 20:19:22,192 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 20:19:22,193 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 20:19:35,688 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 20:19:35,689 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: MEDIUM
+2025-02-13 20:19:36,982 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 20:19:36,983 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 20:19:36,984 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 20:19:36,990 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-13 20:19:36,991 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-13 20:19:36,993 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 20:19:36,994 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 20:19:41,393 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 20:19:41,436 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 20:19:41,436 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 20:19:41,437 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"medium\",\"problem_title\":\"Counting Word Frequencies\",\"problem_statement\":\"Write a function that takes a string of words and returns a dictionary with the frequency of each word. The function should ignore case (treat 'Word' and 'word' as the same) and should not include any punctuation. In addition, the words should be sorted alphabetically in the resulting dictionary when returned.\",\"test_cases\":[{\"input\":[\"Hello world! This is a test. Hello world.\"],\"output\":{\"a\":1,\"hello\":2,\"is\":1,\"test\":1,\"this\":1,\"world\":2}},{\"input\":[\"Python is fun. Python is powerful!\"],\"output\":{\"fun\":1,\"is\":2,\"powerful\":1,\"python\":2}},{\"input\":[\"No punctuation, right? Yes! No.\"],\"output\":{\"no\":2,\"punctuation\":1,\"right\":1,\"yes\":1}}],\"tags\":[\"dictionaries\",\"string_manipulation\",\"case_insensitivity\",\"sorting\"],\"structure\":{\"problem_name\":\"count_word_frequencies\",\"function_name\":\"count_word_frequencies\",\"input_structure\":[{\"Input Field\":\"string text\"}],\"output_structure\":{\"Output Field\":\"dict\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 20:19:41,438 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 20:19:41,438 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello world! This is a test. Hello world."
+    ],
+    "output": {
+      "a": 1,
+      "hello": 2,
+      "is": 1,
+      "test": 1,
+      "this": 1,
+      "world": 2
+    }
+  },
+  {
+    "input": [
+      "Python is fun. Python is powerful!"
+    ],
+    "output": {
+      "fun": 1,
+      "is": 2,
+      "powerful": 1,
+      "python": 2
+    }
+  },
+  {
+    "input": [
+      "No punctuation, right? Yes! No."
+    ],
+    "output": {
+      "no": 2,
+      "punctuation": 1,
+      "right": 1,
+      "yes": 1
+    }
+  }
+]
+2025-02-13 20:19:41,439 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 20:19:41,439 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello world! This is a test. Hello world."
+    ],
+    "output": {
+      "a": 1,
+      "hello": 2,
+      "is": 1,
+      "test": 1,
+      "this": 1,
+      "world": 2
+    }
+  },
+  {
+    "input": [
+      "Python is fun. Python is powerful!"
+    ],
+    "output": {
+      "fun": 1,
+      "is": 2,
+      "powerful": 1,
+      "python": 2
+    }
+  },
+  {
+    "input": [
+      "No punctuation, right? Yes! No."
+    ],
+    "output": {
+      "no": 2,
+      "punctuation": 1,
+      "right": 1,
+      "yes": 1
+    }
+  }
+]
+2025-02-13 20:19:41,440 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 20:19:41,441 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "medium",
+  "problem_title": "Counting Word Frequencies",
+  "problem_statement": "Write a function that takes a string of words and returns a dictionary with the frequency of each word. The function should ignore case (treat 'Word' and 'word' as the same) and should not include any punctuation. In addition, the words should be sorted alphabetically in the resulting dictionary when returned.",
+  "test_cases": [
+    {
+      "input": [
+        "Hello world! This is a test. Hello world."
+      ],
+      "output": {
+        "a": 1,
+        "hello": 2,
+        "is": 1,
+        "test": 1,
+        "this": 1,
+        "world": 2
+      }
+    },
+    {
+      "input": [
+        "Python is fun. Python is powerful!"
+      ],
+      "output": {
+        "fun": 1,
+        "is": 2,
+        "powerful": 1,
+        "python": 2
+      }
+    },
+    {
+      "input": [
+        "No punctuation, right? Yes! No."
+      ],
+      "output": {
+        "no": 2,
+        "punctuation": 1,
+        "right": 1,
+        "yes": 1
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "string_manipulation",
+    "case_insensitivity",
+    "sorting"
+  ],
+  "structure": {
+    "problem_name": "count_word_frequencies",
+    "function_name": "count_word_frequencies",
+    "input_structure": [
+      {
+        "Input Field": "string text"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "dict"
+    }
+  }
+}
+2025-02-13 20:19:41,443 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Counting Word Frequencies
+2025-02-13 20:19:41,446 - main.problem_generator.problem_generator_service - INFO - Final response after model conversion:
+2025-02-13 20:19:41,447 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries data structure",
+  "difficulty": "medium",
+  "problem_title": "Counting Word Frequencies",
+  "problem_statement": "Write a function that takes a string of words and returns a dictionary with the frequency of each word. The function should ignore case (treat 'Word' and 'word' as the same) and should not include any punctuation. In addition, the words should be sorted alphabetically in the resulting dictionary when returned.",
+  "test_cases": [
+    {
+      "input": [
+        "Hello world! This is a test. Hello world."
+      ],
+      "output": {
+        "a": 1,
+        "hello": 2,
+        "is": 1,
+        "test": 1,
+        "this": 1,
+        "world": 2
+      }
+    },
+    {
+      "input": [
+        "Python is fun. Python is powerful!"
+      ],
+      "output": {
+        "fun": 1,
+        "is": 2,
+        "powerful": 1,
+        "python": 2
+      }
+    },
+    {
+      "input": [
+        "No punctuation, right? Yes! No."
+      ],
+      "output": {
+        "no": 2,
+        "punctuation": 1,
+        "right": 1,
+        "yes": 1
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "string_manipulation",
+    "case_insensitivity",
+    "sorting"
+  ],
+  "structure": {
+    "problem_name": "count_word_frequencies",
+    "function_name": "count_word_frequencies",
+    "input_structure": [
+      {
+        "Input_Field": "string text"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "dict"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic Map countWordFrequencies(String text) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef count_word_frequencies(text: str) -> Any:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-13 20:19:41,449 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Counting Word Frequencies
