@@ -10,3 +10,4 @@ langchain-community>=0.0.20
 pydantic-core==2.20.1
 openai>=1.12.0
 requests==2.31.0
+slowapi==0.1.9

@@ -1,38 +1,35 @@
 import java.util.*;
-import java.util.regex.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
 
 public class Main {
-    public int[] uniqueValues(int[] numbers) {
-/*DO NOT modify this method.*/
-
-    // Use a LinkedHashMap to preserve the order of insertion while counting frequencies.
-    Map<Integer, Integer> frequencyMap = new LinkedHashMap<>();
-    
-    // Count the occurrences of each number.
-    for (int num : numbers) {
-        frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
-    }
-    
-    // Create a list to hold the unique values (appear exactly once).
-    List<Integer> uniqueList = new ArrayList<>();
-    for (int num : numbers) {
-        if (frequencyMap.get(num) == 1) {
-            uniqueList.add(num);
-        }
-    }
-    
-    // If there are no unique values, return an empty array.
-    if (uniqueList.isEmpty()) {
-        return new int[0];
-    }
-    
-    // Convert the List<Integer> to an int[] array.
-    int[] result = new int[uniqueList.size()];
-    for (int i = 0; i < uniqueList.size(); i++) {
-        result[i] = uniqueList.get(i);
-    }
-    
-    return result;
+    public int[] filterPopularTracks(int[] ratings, int threshold) {
+/*DO NOT modify this method.*/
+
+    // First, count how many ratings are greater than the threshold.
+    int count = 0;
+    for (int rating : ratings) {
+        if (rating > threshold) {
+            count++;
+        }
+    }
+    
+    // Create a new array to store the ratings that exceed the threshold.
+    int[] popularTracks = new int[count];
+    int index = 0;
+    
+    // Add qualifying ratings to the new array.
+    for (int rating : ratings) {
+        if (rating > threshold) {
+            popularTracks[index++] = rating;
+        }
+    }
+    
+    // Return the array of popular tracks.
+    return popularTracks;
     }
 
     public static void main(String[] args) {
@@ -40,21 +37,16 @@ public class Main {
         Main solution = new Main();
         
         // Parse input
-        List<String> lines = new ArrayList<>();
-        while(scanner.hasNextLine()){
-            String line = scanner.nextLine();
-            if(line.trim().isEmpty()) break;
-            lines.add(line);
+        String line0 = scanner.nextLine();
+        String[] input0 = line0.trim().isEmpty() ? new String[0] : line0.split(" ");
+        int[] ratings = new int[input0.length];
+        for(int i = 0; i < input0.length; i++) {
+            ratings[i] = Integer.parseInt(input0[i]);
         }
-        String allInput = String.join(" ", lines);
-        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split("\\s+");
-        int[] numbers = new int[tokens.length];
-        for(int i = 0; i < tokens.length; i++) {
-            numbers[i] = Integer.parseInt(tokens[i]);
-        }
+        int threshold = Integer.parseInt(scanner.nextLine());
         
         // Call the solution function
-        int[] result = solution.uniqueValues(numbers);
+        int[] result = solution.filterPopularTracks(ratings, threshold);
         
         // Print the result
         System.out.println(Arrays.toString(result));

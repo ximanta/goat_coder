@@ -21,7 +21,9 @@ const Page = () => {
     { icon: <Network className="w-6 h-6" />, name: 'Data Structures', count: '200+ Problems', value: 'Data Structures' },
     { icon: <Brain className="w-6 h-6" />, name: 'Algorithms', count: '180+ Problems', value: 'Algorithms' },
     { icon: <Puzzle className="w-6 h-6" />, name: 'Problem Solving', count: '120+ Problems', value: 'Problem Solving' },
-    { icon: <Boxes  className="w-6 h-6" />, name: 'Array', count: '350+ Problems', value: 'Array' }
+    { icon: <Boxes  className="w-6 h-6" />, name: 'Array', count: '350+ Problems', value: 'Array'},
+    { icon: <CodeSquare className="w-6 h-6" />, name: 'Merge Sort', count: '250+ Problems', value: 'Merge Sort basic' }
+
   ];
 
   const features = [

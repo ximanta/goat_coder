@@ -92,7 +92,11 @@ class JavaSubmissionGenerator:
             
             # Create the final submission template.
             submission_template = """import java.util.*;
-import java.util.regex.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
 
 public class {class_name} {{
     public {return_type} {function_name}({function_params}) {{
@@ -334,40 +338,40 @@ public class {class_name} {{
             return f"System.out.println(Arrays.toString({var_name}));"
         return f"System.out.println({var_name});"
 
-    def _generate_submission_template(self, class_name: str, return_type: str, 
-                                        function_name: str, param_list: list, 
-                                        source_code: str, param_parsing: list) -> str:
-        """
-        (Unused in this implementation) Generates the complete Java submission template.
-        """
-        # Join the parameters and input parsing code.
-        function_params = ", ".join(param_list)
-        input_parsing_code = "\n        ".join(param_parsing)
-        function_call_args = ", ".join(p.split()[-1] for p in param_list)
+#     def _generate_submission_template(self, class_name: str, return_type: str, 
+#                                         function_name: str, param_list: list, 
+#                                         source_code: str, param_parsing: list) -> str:
+#         """
+#         (Unused in this implementation) Generates the complete Java submission template.
+#         """
+#         # Join the parameters and input parsing code.
+#         function_params = ", ".join(param_list)
+#         input_parsing_code = "\n        ".join(param_parsing)
+#         function_call_args = ", ".join(p.split()[-1] for p in param_list)
         
-        template = f"""import java.util.*;
-import java.util.regex.*;
+#         template = f"""import java.util.*;
+# import java.util.regex.*;
 
-public class {class_name} {{
-    public {return_type} {function_name}({function_params}) {{
-        {source_code}
-    }}
+# public class {class_name} {{
+#     public {return_type} {function_name}({function_params}) {{
+#         {source_code}
+#     }}
 
-    public static void main(String[] args) {{
-        Scanner scanner = new Scanner(System.in);
-        Solution solution = new Solution();
+#     public static void main(String[] args) {{
+#         Scanner scanner = new Scanner(System.in);
+#         Solution solution = new Solution();
         
-        // Parse input
-        {input_parsing_code}
+#         // Parse input
+#         {input_parsing_code}
         
-        // Call the solution function
-        {return_type} result = solution.{function_name}({function_call_args});
+#         // Call the solution function
+#         {return_type} result = solution.{function_name}({function_call_args});
         
-        // Print the result
-        System.out.println(result);
+#         // Print the result
+#         System.out.println(result);
         
-        scanner.close();
-    }}
-}}"""
-        
+#         scanner.close();
+#     }}
+# }}"""
+        console.log("java_submission_generator: Submission template geerated:", template)
         return template

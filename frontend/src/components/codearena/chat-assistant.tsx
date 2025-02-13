@@ -159,13 +159,23 @@ export default function ChatAssistant({ problemContext, resetTrigger = 0 }: Chat
           scrollToBottom();
         }
       );
-    } catch (error) {
-      // On error, display a failure message.
-      setMessages(prev => prev.map(msg => 
-        msg.id === assistantMessageId
-          ? { ...msg, content: "Sorry, I'm having trouble connecting to the server." }
-          : msg
-      ));
+    } catch (error: any) {
+      // Handle rate limit error specifically
+      if (error.status === 429) {
+        const errorData = await error.json();
+        setMessages(prev => prev.map(msg => 
+          msg.id === assistantMessageId
+            ? { ...msg, content: errorData.detail || "Rate limit exceeded. Please try again later." }
+            : msg
+        ));
+      } else {
+        // Handle other errors
+        setMessages(prev => prev.map(msg => 
+          msg.id === assistantMessageId
+            ? { ...msg, content: "Sorry, I'm having trouble connecting to the server." }
+            : msg
+        ));
+      }
     } finally {
       setIsLoading(false);
       scrollToBottom();

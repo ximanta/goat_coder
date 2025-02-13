@@ -2,38 +2,41 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "Unique Values in a List",
-    "function_name": "unique_values",
+    "problem_name": "filter_popular_tracks",
+    "function_name": "filter_popular_tracks",
     "input_structure": [
       {
-        "Input_Field": "List[int] numbers"
+        "Input_Field": "List[int] ratings"
+      },
+      {
+        "Input_Field": "int threshold"
       }
     ],
     "output_structure": {
-      "Output_Field": "List[int] unique_numbers"
+      "Output_Field": "List[int] result"
     }
   },
-  "complete_source": "import java.util.*;\nimport java.util.regex.*;\n\npublic class Main {\n    public int[] uniqueValues(int[] numbers) {\n/*DO NOT modify this method.*/\r\n\r\n    // Use a LinkedHashMap to preserve the order of insertion while counting frequencies.\r\n    Map<Integer, Integer> frequencyMap = new LinkedHashMap<>();\r\n    \r\n    // Count the occurrences of each number.\r\n    for (int num : numbers) {\r\n        frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);\r\n    }\r\n    \r\n    // Create a list to hold the unique values (appear exactly once).\r\n    List<Integer> uniqueList = new ArrayList<>();\r\n    for (int num : numbers) {\r\n        if (frequencyMap.get(num) == 1) {\r\n            uniqueList.add(num);\r\n        }\r\n    }\r\n    \r\n    // If there are no unique values, return an empty array.\r\n    if (uniqueList.isEmpty()) {\r\n        return new int[0];\r\n    }\r\n    \r\n    // Convert the List<Integer> to an int[] array.\r\n    int[] result = new int[uniqueList.size()];\r\n    for (int i = 0; i < uniqueList.size(); i++) {\r\n        result[i] = uniqueList.get(i);\r\n    }\r\n    \r\n    return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        List<String> lines = new ArrayList<>();\n        while(scanner.hasNextLine()){\n            String line = scanner.nextLine();\n            if(line.trim().isEmpty()) break;\n            lines.add(line);\n        }\n        String allInput = String.join(\" \", lines);\n        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split(\"\\\\s+\");\n        int[] numbers = new int[tokens.length];\n        for(int i = 0; i < tokens.length; i++) {\n            numbers[i] = Integer.parseInt(tokens[i]);\n        }\n        \n        // Call the solution function\n        int[] result = solution.uniqueValues(numbers);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        \n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n\npublic class Main {\n    public int[] filterPopularTracks(int[] ratings, int threshold) {\n/*DO NOT modify this method.*/\n\n    // First, count how many ratings are greater than the threshold.\n    int count = 0;\n    for (int rating : ratings) {\n        if (rating > threshold) {\n            count++;\n        }\n    }\n    \n    // Create a new array to store the ratings that exceed the threshold.\n    int[] popularTracks = new int[count];\n    int index = 0;\n    \n    // Add qualifying ratings to the new array.\n    for (int rating : ratings) {\n        if (rating > threshold) {\n            popularTracks[index++] = rating;\n        }\n    }\n    \n    // Return the array of popular tracks.\n    return popularTracks;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String line0 = scanner.nextLine();\n        String[] input0 = line0.trim().isEmpty() ? new String[0] : line0.split(\" \");\n        int[] ratings = new int[input0.length];\n        for(int i = 0; i < input0.length; i++) {\n            ratings[i] = Integer.parseInt(input0[i]);\n        }\n        int threshold = Integer.parseInt(scanner.nextLine());\n        \n        // Call the solution function\n        int[] result = solution.filterPopularTracks(ratings, threshold);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        \n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "1\n2\n3\n2\n1\n4\n5",
-      "expected_output": "[3, 4, 5]"
+      "input": "30 75 20 90 50\n50",
+      "expected_output": "[75, 90]"
     },
     {
       "test_case_number": 2,
-      "input": "5\n5\n5\n5\n5",
+      "input": "10 15 5 2 8\n10",
       "expected_output": "[]"
     },
     {
       "test_case_number": 3,
-      "input": "10\n20\n10\n30\n40\n30\n20\n50",
-      "expected_output": "[40, 50]"
+      "input": "100 95 85 60 70\n80",
+      "expected_output": "[100, 95, 85]"
     },
     {
       "test_case_number": 4,
-      "input": "1\n2\n3\n4\n5",
-      "expected_output": "[1, 2, 3, 4, 5]"
+      "input": "1 2 3 4 5\n3",
+      "expected_output": "[4, 5]"
     }
   ]
 }

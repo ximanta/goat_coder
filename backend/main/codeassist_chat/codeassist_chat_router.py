@@ -35,20 +35,43 @@ class ChatRequest(BaseModel):
     message: str
     context: ChatContext
 
+# Import the limiter instance.
+# Option 1: If you moved the limiter to a separate module (e.g., rate_limiter.py):
+# from main.rate_limiter import limiter
+# Option 2: Import it from app state if your project structure allows it.
+# For this example, we'll assume you have direct access to the limiter instance.
+from slowapi.util import get_remote_address
+from slowapi import Limiter
+from starlette.requests import Request
+
+# For demonstration purposes, we re-create a reference.
+# In a production project, it is best to centralize the limiter instance.
+from main.shared.rate_limiter import limiter
+
 @router.post("/chat")
-async def chat(request: ChatRequest):
+@limiter.limit("3/minute")  
+# Need to include request in the function for ratelimiting
+async def chat(request: Request, chat_request: ChatRequest):
+    """
+    Chat endpoint with rate limiting of 3 requests per minute
+    """
     try:
         logger.info("=== Chat Request ===")
-        logger.info(f"User ID: {request.context.userId}")
-        logger.info(f"Message: {request.message}")
+        logger.info(f"User ID: {chat_request.context.userId}")
+        logger.info(f"Message: {chat_request.message}")
+        
+        # Get the response generator
+        response_generator = chat_service.get_chat_response(
+            message=chat_request.message,
+            context=chat_request.context.model_dump()
+        )
         
         # Return a streaming response
         return StreamingResponse(
-            chat_service.get_chat_response(
-                message=request.message,
-                context=request.context.model_dump()
-            ),
-            media_type='text/event-stream'
+            response_generator,
+            media_type='text/event-stream',
+            headers={"X-RateLimit-Limit": "3",
+                    "X-RateLimit-Remaining": str(getattr(request.state, 'rate_limit_remaining', 3))}
         )
 
     except Exception as e:
