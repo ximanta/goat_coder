@@ -2,41 +2,33 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "filter_popular_tracks",
-    "function_name": "filter_popular_tracks",
+    "problem_name": "count_up_to_number",
+    "function_name": "count_up",
     "input_structure": [
       {
-        "Input_Field": "List[int] ratings"
-      },
-      {
-        "Input_Field": "int threshold"
+        "Input_Field": "int number"
       }
     ],
     "output_structure": {
       "Output_Field": "List[int] result"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n\npublic class Main {\n    public int[] filterPopularTracks(int[] ratings, int threshold) {\n/*DO NOT modify this method.*/\n\n    // First, count how many ratings are greater than the threshold.\n    int count = 0;\n    for (int rating : ratings) {\n        if (rating > threshold) {\n            count++;\n        }\n    }\n    \n    // Create a new array to store the ratings that exceed the threshold.\n    int[] popularTracks = new int[count];\n    int index = 0;\n    \n    // Add qualifying ratings to the new array.\n    for (int rating : ratings) {\n        if (rating > threshold) {\n            popularTracks[index++] = rating;\n        }\n    }\n    \n    // Return the array of popular tracks.\n    return popularTracks;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String line0 = scanner.nextLine();\n        String[] input0 = line0.trim().isEmpty() ? new String[0] : line0.split(\" \");\n        int[] ratings = new int[input0.length];\n        for(int i = 0; i < input0.length; i++) {\n            ratings[i] = Integer.parseInt(input0[i]);\n        }\n        int threshold = Integer.parseInt(scanner.nextLine());\n        \n        // Call the solution function\n        int[] result = solution.filterPopularTracks(ratings, threshold);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        \n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n\npublic class Main {\n    public int[] countUp(int number) {\n/*DO NOT modify this method.*/\r\n\r\n    // If the number is less than or equal to 0, return an empty array.\r\n    if (number <= 0) {\r\n        return new int[0];\r\n    }\r\n    \r\n    // Create an array of size 'number'\r\n    int[] result = new int[number];\r\n    \r\n    // Fill the array with values from 1 to number.\r\n    for (int i = 0; i < number; i++) {\r\n        result[i] = i + 1;\r\n    }\r\n    \r\n    // Return the populated array.\r\n    return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        int number = Integer.parseInt(scanner.nextLine());\n        \n        // Call the solution function\n        int[] result = solution.countUp(number);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        \n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "30 75 20 90 50\n50",
-      "expected_output": "[75, 90]"
+      "input": "5",
+      "expected_output": "[1, 2, 3, 4, 5]"
     },
     {
       "test_case_number": 2,
-      "input": "10 15 5 2 8\n10",
-      "expected_output": "[]"
+      "input": "3",
+      "expected_output": "[1, 2, 3]"
     },
     {
       "test_case_number": 3,
-      "input": "100 95 85 60 70\n80",
-      "expected_output": "[100, 95, 85]"
-    },
-    {
-      "test_case_number": 4,
-      "input": "1 2 3 4 5\n3",
-      "expected_output": "[4, 5]"
+      "input": "0",
+      "expected_output": "[]"
     }
   ]
 }

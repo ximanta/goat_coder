@@ -9,6 +9,7 @@ For EASY difficulty level, ensure:
    - Single operation or transformation
    - No nested loops required
    - No complex conditions
+   - No Dict types
    - Linear solution possible
 
 3. Test Cases:

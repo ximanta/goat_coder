@@ -10,13 +10,20 @@ class JavaBoilerplateGenerator:
         "float": "double",
         "str": "String",
         "bool": "boolean",
-        "string": "String"  # Handle cases where 'string' is used instead of 'str'
+        "string": "String",  # Handle cases where 'string' is used instead of 'str'
+        # Wrapper types for use in generic types like Dict
+        "_wrapper": {
+            "int": "Integer",
+            "float": "Double",
+            "str": "String",
+            "string": "String",
+            "bool": "Boolean"
+        },
+        "Dict": "Map",  # Base mapping for Dict type
+        "dict": "Map<String, Object>",  # Default mapping for untyped dict
+        "Union": "Object",  # Union types fall back to Object
+        "Any": "Object"    # Any type falls back to Object
     }
-
-    @staticmethod
-    def convert_to_java_type(python_type: str) -> str:
-        """Convert Python type notation to Java type notation."""
-        return JavaBoilerplateGenerator.TYPE_MAPPING.get(python_type, "Object")
 
     @staticmethod
     def convert_to_java_name(name: str) -> str:
@@ -26,19 +33,92 @@ class JavaBoilerplateGenerator:
         return words[0] + ''.join(word.capitalize() for word in words[1:])
 
     @staticmethod
+    def normalize_type(type_str: str) -> str:
+        """Normalize type strings to consistent format."""
+        # Convert dict[key, value] to Dict[key, value]
+        if type_str.lower().startswith("dict["):
+            inner_types = type_str[5:-1]  # Remove 'dict[' and ']'
+            return f"Dict[{inner_types}]"
+        # Convert 'dict' to 'Dict'
+        elif type_str.lower() == "dict":
+            return "Dict"
+        # Handle Union types
+        elif "Union[" in type_str:
+            return "Union"
+        return type_str
+
+    @staticmethod
     def parse_input_field(input_field: str) -> tuple:
         """Parse input field string to get type and name."""
         parts = input_field.strip().split()
-        if len(parts) != 2:
+        
+        # Handle case where only type is provided (common in output_structure)
+        if len(parts) == 1:
+            param_type = JavaBoilerplateGenerator.normalize_type(parts[0])
+            param_name = "result"  # Default name for output parameter
+        elif len(parts) == 2:
+            param_type = JavaBoilerplateGenerator.normalize_type(parts[0])
+            param_name = JavaBoilerplateGenerator.convert_to_java_name(parts[1])
+        else:
             raise ValueError(f"Invalid input field format: {input_field}")
-        param_type = parts[0]
-        param_name = JavaBoilerplateGenerator.convert_to_java_name(parts[1])  # Convert to camelCase
+
+        # Handle untyped dict case by providing default type
+        if param_type == "Dict":
+            # Look at test cases to infer key and value types
+            param_type = "Dict[str, int]"  # Default to common case of str->int mapping
+            
         return param_type, param_name
 
     @staticmethod
     def is_float_type(type_str: str) -> bool:
         """Check if the type is float/double."""
         return type_str.lower() in ['float', 'double']
+
+    @staticmethod
+    def get_wrapper_type(primitive_type: str) -> str:
+        """Get the Java wrapper type for a primitive type."""
+        wrapper_map = JavaBoilerplateGenerator.TYPE_MAPPING["_wrapper"]
+        return wrapper_map.get(primitive_type, primitive_type)
+
+    @staticmethod
+    def parse_complex_type(type_str: str) -> str:
+        """Parse complex types like Dict[key_type, value_type] and convert to Java type."""
+        if type_str.startswith("Dict["):
+            # Extract the key and value types from Dict[key_type, value_type]
+            inner_types = type_str[5:-1].split(", ")  # Remove 'Dict[' and ']', then split
+            if len(inner_types) == 2:
+                key_type = inner_types[0]
+                value_type = inner_types[1]
+                
+                # If value type contains Union or complex types, use Object
+                if "Union[" in value_type or "[" in value_type:
+                    value_type = "Object"
+                else:
+                    value_type = JavaBoilerplateGenerator.get_wrapper_type(value_type)
+                
+                # If key type contains Union or complex types, use String as default
+                if "Union[" in key_type or "[" in key_type:
+                    key_type = "String"
+                else:
+                    key_type = JavaBoilerplateGenerator.get_wrapper_type(key_type)
+                
+                base_type = JavaBoilerplateGenerator.TYPE_MAPPING["Dict"]
+                return f"{base_type}<{key_type}, {value_type}>"
+        elif "Union[" in type_str:
+            return "Object"  # Union types fall back to Object
+        return JavaBoilerplateGenerator.TYPE_MAPPING.get(type_str, "Object")
+
+    @staticmethod
+    def convert_to_java_type(python_type: str) -> str:
+        """Convert Python type notation to Java type notation."""
+        if "[" in python_type:  # Handle any complex type with brackets
+            if python_type.startswith("List["):
+                inner_type = python_type[5:-1]  # Remove 'List[' and ']'
+                if "Union[" in inner_type or "Dict[" in inner_type:
+                    return "List<Object>"  # Complex inner types fall back to Object
+                return JavaBoilerplateGenerator.TYPE_MAPPING.get(python_type, "List<Object>")
+            return JavaBoilerplateGenerator.parse_complex_type(python_type)
+        return JavaBoilerplateGenerator.TYPE_MAPPING.get(python_type, "Object")
 
     @staticmethod
     def fix_float_values(test_cases: List[Dict], input_types: List[str], output_type: str) -> List[Dict]:
@@ -92,10 +172,19 @@ class JavaBoilerplateGenerator:
             )
 
             # Parse output type
-            output_field_key = "Output Field"  # Changed from "Output_Field"
-            output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+            output_field_key = "Output Field"
+            output_type, output_name = JavaBoilerplateGenerator.parse_input_field(
                 structure["output_structure"][output_field_key]
             )
+            
+            # Try to infer dict types from test cases if available
+            if output_type.startswith("Dict") and "test_cases" in structure:
+                first_output = structure["test_cases"][0]["output"]
+                if first_output:
+                    key_type = type(next(iter(first_output.keys()))).__name__
+                    value_type = type(next(iter(first_output.values()))).__name__
+                    output_type = f"Dict[{key_type}, {value_type}]"
+            
             java_output_type = JavaBoilerplateGenerator.convert_to_java_type(output_type)
 
             # Parse input parameters

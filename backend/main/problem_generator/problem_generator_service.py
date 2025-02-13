@@ -18,10 +18,12 @@ import random
 
 logger = logging.getLogger(__name__)
 
+# Data model for test cases in programming problems
 class TestCase(BaseModel):
     input: List[Any] = Field(description="Input values for the test case")
     output: Any = Field(description="Expected output for the test case")
 
+# Data model for input parameter structure with custom field name handling
 class InputField(BaseModel):
     Input_Field: str = Field(description="Type and name of the input parameter", alias="Input Field")
     
@@ -29,6 +31,7 @@ class InputField(BaseModel):
         populate_by_name = True
         allow_population_by_field_name = True
 
+# Data model for output parameter structure with custom field name handling
 class OutputField(BaseModel):
     Output_Field: str = Field(description="Type and name of the output", alias="Output Field")
     
@@ -36,12 +39,14 @@ class OutputField(BaseModel):
         populate_by_name = True
         allow_population_by_field_name = True
 
+# Data model defining the structure of a programming problem
 class ProblemStructure(BaseModel):
     problem_name: str = Field(description="Name of the problem")
     function_name: str = Field(description="Name of the function to implement")
     input_structure: List[InputField] = Field(description="List of input parameters and their types")
     output_structure: OutputField = Field(description="Output parameter and its type")
 
+# Complete problem data model including all necessary information
 class Problem(BaseModel):
     concept: str = Field(description="The programming concept being tested")
     difficulty: str = Field(description="Difficulty level of the problem")
@@ -53,20 +58,24 @@ class Problem(BaseModel):
     java_boilerplate: str = Field(description="Java boilerplate code for the problem")
     python_boilerplate: str = Field(description="Python boilerplate code for the problem")
 
+# Data class for storing metadata about generated problems
 @dataclass
 class ProblemMetadata:
     concept: str
     complexity: str
     problem_title: str
-    problem_statement: str  # Store full problem statement
+    problem_statement: str
     timestamp: datetime
 
+# Cache system to prevent generating similar problems in a short time period
 class ProblemHistoryCache:
     def __init__(self, max_size=10):
+        """Initialize cache with maximum size and expiry time"""
         self.history = deque(maxlen=max_size)
         self.expiry_time = timedelta(hours=24)
 
     def add_problem(self, concept: str, complexity: str, problem_title: str, problem_statement: str):
+        """Add a new problem to the cache with current timestamp"""
         self.history.append(ProblemMetadata(
             concept=concept,
             complexity=complexity,
@@ -77,7 +86,7 @@ class ProblemHistoryCache:
         self._cleanup_old_entries()
 
     def get_recent_problems(self, concept: str, complexity: str) -> list[ProblemMetadata]:
-        """Return full ProblemMetadata objects instead of just titles"""
+        """Get list of recently generated problems matching concept and complexity"""
         self._cleanup_old_entries()
         return [
             p for p in self.history 
@@ -85,20 +94,23 @@ class ProblemHistoryCache:
         ]
 
     def _cleanup_old_entries(self):
+        """Remove expired entries from the cache"""
         now = datetime.now()
         self.history = deque(
             (p for p in self.history if now - p.timestamp < self.expiry_time),
             maxlen=self.history.maxlen
         )
 
+# Main service for generating programming problems
 class ProblemGeneratorService:
     def __init__(self):
+        """Initialize the problem generator with necessary components"""
         self.llm = AzureChatOpenAI(
             openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
             azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
             azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
             api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            temperature=0.9,
+            temperature=0.9,  # Higher temperature for more creative problem generation
         )
         self.problem_cache = ProblemHistoryCache()
         self.prompt_manager = PromptManager()
@@ -106,6 +118,7 @@ class ProblemGeneratorService:
         self.python_generator = PythonBoilerplateGenerator()
 
     def _create_avoid_problems_prompt(self, recent_problems: list[ProblemMetadata]) -> str:
+        """Create a prompt to help LLM avoid generating similar problems"""
         if not recent_problems:
             return ""
         
@@ -149,7 +162,7 @@ class ProblemGeneratorService:
         """
 
     def _extract_core_operation(self, title: str) -> str:
-        """Extract the core operation from a problem title"""
+        """Extract the main operation type from a problem title"""
         title_lower = title.lower()
         
         operations = {
@@ -173,6 +186,7 @@ class ProblemGeneratorService:
         return "unknown operation"
 
     def _get_beginner_problem_suggestions(self) -> str:
+        """Get suggestions for beginner-level programming problems"""
         return """
         For Basic Programming beginners, choose from these problem types:
         1. String Manipulation
@@ -218,6 +232,19 @@ class ProblemGeneratorService:
         """
 
     async def generate_problem(self, concept: str, complexity: str) -> Dict:
+        """
+        Generate a programming problem based on concept and complexity.
+        
+        Args:
+            concept (str): Programming concept to focus on
+            complexity (str): Desired difficulty level
+            
+        Returns:
+            Dict: Complete problem definition including structure and test cases
+            
+        Raises:
+            ValueError: If problem generation fails or invalid response received
+        """
         max_attempts = 3
         
         for attempt in range(max_attempts):
@@ -395,6 +422,7 @@ class ProblemGeneratorService:
                         if function_call and 'arguments' in function_call:
                             result = json.loads(function_call['arguments'])
                             
+
                             # Fix float values in test cases if needed
                             input_types = [
                                 field['Input Field'].split()[0] 
@@ -402,10 +430,12 @@ class ProblemGeneratorService:
                             ]
                             output_type = result['structure']['output_structure']['Output Field'].split()[0]
                             
+
                             # Add logging before fixing float values
                             logger.info("Original test cases before fixing floats:")
                             logger.info(json.dumps(result['test_cases'], indent=2))
                             
+
                             # Use the new fix_float_values method and ensure it's properly formatted
                             fixed_test_cases = JavaBoilerplateGenerator.fix_float_values(
                                 result['test_cases'],
@@ -413,16 +443,19 @@ class ProblemGeneratorService:
                                 output_type
                             )
                             
+
                             # Add logging after fixing float values
                             logger.info("Fixed test cases:")
                             logger.info(json.dumps(fixed_test_cases, indent=2))
                             
+
                             # Update the test cases in the result
                             result['test_cases'] = [
                                 TestCase(input=test_case['input'], output=test_case['output']).model_dump()
                                 for test_case in fixed_test_cases
                             ]
                             
+
                             # Log the final complete response
                             logger.info("Complete response being sent to client:")
                             logger.info(json.dumps(result, indent=2))
@@ -430,6 +463,7 @@ class ProblemGeneratorService:
                             # Ensure the concept matches the input concept exactly
                             result['concept'] = concept
                             
+
                             # Store full problem details
                             self.problem_cache.add_problem(
                                 concept=concept,
@@ -438,8 +472,10 @@ class ProblemGeneratorService:
                                 problem_statement=result['problem_statement']
                             )
                             
+
                             logger.info(f"Successfully parsed problem: {result.get('problem_title', 'Unknown Title')}")
                             
+
                             # Ensure structure has all required fields
                             if 'structure' in result:
                                 if 'problem_name' not in result['structure']:
@@ -455,27 +491,34 @@ class ProblemGeneratorService:
                                 if 'function_name' not in result['structure']:
                                     result['structure']['function_name'] = result['problem_title'].lower().replace(' ', '_')
                             
+
                             # Generate boilerplate code for both languages
                             java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
                             python_boilerplate = self.python_generator.convert_to_python_boilerplate(result['structure'])
                             
+
                             result['java_boilerplate'] = java_boilerplate
                             result['python_boilerplate'] = python_boilerplate
                             
+
                             final_response = Problem(**result).model_dump()
                             logger.info("Final response after model conversion:")
                             logger.info(json.dumps(final_response, indent=2))
                             
+
                             return final_response
                     
+
                     logger.error(f"Invalid response format: {response}")
                     raise ValueError("No valid function call in response")
                     
+
                 except json.JSONDecodeError as e:
                     logger.error(f"JSON decode error: {e}", exc_info=True)
                     logger.error(f"Response content: {response}")
                     raise ValueError(f"Failed to parse LLM response: {e}")
                     
+
                 except Exception as e:
                     logger.error(f"Error generating problem: {str(e)}", exc_info=True)
                     logger.error(f"Response: {response}")

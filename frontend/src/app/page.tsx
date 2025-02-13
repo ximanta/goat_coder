@@ -18,6 +18,8 @@ const Page = () => {
     { icon: <CodeSquare className="w-6 h-6" />, name: 'Programming Basics - Newbie', count: '250+ Problems', value: 'Basic Programming for Absolute Beginners' },
     { icon: <Code className="w-6 h-6" />, name: 'Programming Basics - Intermediate', count: '200+ Problems', value: 'Basic Programming for Intermediate Programmers with 0 yrs Experience' },
     { icon: <TextCursor className="w-6 h-6" />, name: 'String Handling', count: '150+ Problems', value: 'String Handling' },
+    { icon: <Code className="w-6 h-6" />, name: 'Dictionaries', count: '50+ Problems', value: 'Dictionaries data structure' },
+
     { icon: <Network className="w-6 h-6" />, name: 'Data Structures', count: '200+ Problems', value: 'Data Structures' },
     { icon: <Brain className="w-6 h-6" />, name: 'Algorithms', count: '180+ Problems', value: 'Algorithms' },
     { icon: <Puzzle className="w-6 h-6" />, name: 'Problem Solving', count: '120+ Problems', value: 'Problem Solving' },

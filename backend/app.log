@@ -4889,3 +4889,2710 @@ Input:
 Expected Output:
 []
 2025-02-13 18:26:42,570 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:00:31,360 - uvicorn.error - INFO - Started server process [26720]
+2025-02-13 19:00:31,361 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:00:31,363 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:02:18,548 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:02:18,549 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-13 19:02:19,502 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-13 19:02:19,503 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-13 19:02:19,505 - main.problem_generator.prompt_manager - INFO - Selected category: Control Flow (previous was: None)
+2025-02-13 19:02:19,507 - main.problem_generator.prompt_manager - INFO - Selected problem type: Conditional Logic (previous was: None)
+2025-02-13 19:02:19,545 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-13 19:02:19,546 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-13 19:02:19,551 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+            You are generating a problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginner...
+2025-02-13 19:02:19,551 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:02:21,791 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:02:21,841 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:02:21,841 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:02:21,842 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Control Flow\",\"difficulty\":\"EASY\",\"problem_title\":\"Check if a Number is Even or Odd\",\"problem_statement\":\"Write a program that checks whether a given number is even or odd. If the number is even, return \\\"Even\\\". If the number is odd, return \\\"Odd\\\".\",\"test_cases\":[{\"input\":[4],\"output\":\"Even\"},{\"input\":[7],\"output\":\"Odd\"},{\"input\":[0],\"output\":\"Even\"}],\"tags\":[\"conditional_logic\",\"numbers\"],\"structure\":{\"problem_name\":\"check_even_or_odd\",\"function_name\":\"check_even_or_odd\",\"input_structure\":[{\"Input Field\":\"int number\"}],\"output_structure\":{\"Output Field\":\"string result\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:02:21,843 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:02:21,844 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      4
+    ],
+    "output": "Even"
+  },
+  {
+    "input": [
+      7
+    ],
+    "output": "Odd"
+  },
+  {
+    "input": [
+      0
+    ],
+    "output": "Even"
+  }
+]
+2025-02-13 19:02:21,846 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:02:21,846 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      4
+    ],
+    "output": "Even"
+  },
+  {
+    "input": [
+      7
+    ],
+    "output": "Odd"
+  },
+  {
+    "input": [
+      0
+    ],
+    "output": "Even"
+  }
+]
+2025-02-13 19:02:21,849 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:02:21,850 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Control Flow",
+  "difficulty": "EASY",
+  "problem_title": "Check if a Number is Even or Odd",
+  "problem_statement": "Write a program that checks whether a given number is even or odd. If the number is even, return \"Even\". If the number is odd, return \"Odd\".",
+  "test_cases": [
+    {
+      "input": [
+        4
+      ],
+      "output": "Even"
+    },
+    {
+      "input": [
+        7
+      ],
+      "output": "Odd"
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": "Even"
+    }
+  ],
+  "tags": [
+    "conditional_logic",
+    "numbers"
+  ],
+  "structure": {
+    "problem_name": "check_even_or_odd",
+    "function_name": "check_even_or_odd",
+    "input_structure": [
+      {
+        "Input Field": "int number"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "string result"
+    }
+  }
+}
+2025-02-13 19:02:21,852 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Check if a Number is Even or Odd
+2025-02-13 19:02:21,854 - main.problem_generator.problem_generator_service - INFO - Final response after model conversion:
+2025-02-13 19:02:21,855 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "EASY",
+  "problem_title": "Check if a Number is Even or Odd",
+  "problem_statement": "Write a program that checks whether a given number is even or odd. If the number is even, return \"Even\". If the number is odd, return \"Odd\".",
+  "test_cases": [
+    {
+      "input": [
+        4
+      ],
+      "output": "Even"
+    },
+    {
+      "input": [
+        7
+      ],
+      "output": "Odd"
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": "Even"
+    }
+  ],
+  "tags": [
+    "conditional_logic",
+    "numbers"
+  ],
+  "structure": {
+    "problem_name": "check_even_or_odd",
+    "function_name": "check_even_or_odd",
+    "input_structure": [
+      {
+        "Input_Field": "int number"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "string result"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic String checkEvenOrOdd(int number) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef check_even_or_odd(number: int) -> str:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-13 19:02:21,856 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Check if a Number is Even or Odd
+2025-02-13 19:05:11,235 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-13 19:05:11,236 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-13 19:05:11,236 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-13 19:05:11,238 - main.problem_submission.problem_submission_route - INFO - Source code length: 252
+2025-02-13 19:05:11,238 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-13 19:05:11,239 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"check_even_or_odd","function_name":"check_even_or_odd","input_structure":[{"Input_Field":"int number"}],"output_structure":{"Output_Field":"string result"}}
+2025-02-13 19:05:11,239 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-13 19:05:11,240 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-13 19:05:11,240 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:05:11,240 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:05:11,240 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-13 19:05:11,241 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public String checkEvenOrOdd(int number) {
+    // Your implementation code goes here
+    String result="";
+    if(number%2==0)
+    return  "Even";
+    else
+    return "Odd"; // Replace with your return statement
+}
+2025-02-13 19:05:11,241 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'check_even_or_odd', 'function_name': 'check_even_or_odd', 'input_structure': [{'Input_Field': 'int number'}], 'output_structure': {'Output_Field': 'string result'}}
+2025-02-13 19:05:11,242 - main.submission_generator.java_submission_generator - INFO - Checking for function name: checkEvenOrOdd (original: check_even_or_odd)
+2025-02-13 19:05:11,242 - main.submission_generator.java_submission_generator - INFO - Function name: checkEvenOrOdd
+2025-02-13 19:05:11,243 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'int number'}]
+2025-02-13 19:05:11,243 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'string result'}
+2025-02-13 19:05:11,244 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['int number']
+2025-02-13 19:05:11,244 - main.submission_generator.java_submission_generator - INFO - Return type: String
+2025-02-13 19:05:11,249 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to Main.java
+2025-02-13 19:05:11,252 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to last_submission.json
+2025-02-13 19:05:11,253 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-13 19:05:11,253 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgU3RyaW5nIGNoZWNrRXZlbk9yT2RkKGludCBudW1iZXIpIHsKLypETyBOT1QgbW9kaWZ5IHRoaXMgbWV0aG9kLiovDQoNCiAgICAvLyBZb3VyIGltcGxlbWVudGF0aW9uIGNvZGUgZ29lcyBoZXJlDQogICAgU3RyaW5nIHJlc3VsdD0iIjsNCiAgICBpZihudW1iZXIlMj09MCkNCiAgICByZXR1cm4gICJFdmVuIjsNCiAgICBlbHNlDQogICAgcmV0dXJuICJPZGQiOyAvLyBSZXBsYWNlIHdpdGggeW91ciByZXR1cm4gc3RhdGVtZW50CiAgICB9CgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBpbnQgbnVtYmVyID0gSW50ZWdlci5wYXJzZUludChzY2FubmVyLm5leHRMaW5lKCkpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgU3RyaW5nIHJlc3VsdCA9IHNvbHV0aW9uLmNoZWNrRXZlbk9yT2RkKG51bWJlcik7CiAgICAgICAgCiAgICAgICAgLy8gUHJpbnQgdGhlIHJlc3VsdAogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihyZXN1bHQpOwogICAgICAgIAogICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgIH0KfQ==",
+      "stdin": "NA==",
+      "expected_output": "RXZlbg==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgU3RyaW5nIGNoZWNrRXZlbk9yT2RkKGludCBudW1iZXIpIHsKLypETyBOT1QgbW9kaWZ5IHRoaXMgbWV0aG9kLiovDQoNCiAgICAvLyBZb3VyIGltcGxlbWVudGF0aW9uIGNvZGUgZ29lcyBoZXJlDQogICAgU3RyaW5nIHJlc3VsdD0iIjsNCiAgICBpZihudW1iZXIlMj09MCkNCiAgICByZXR1cm4gICJFdmVuIjsNCiAgICBlbHNlDQogICAgcmV0dXJuICJPZGQiOyAvLyBSZXBsYWNlIHdpdGggeW91ciByZXR1cm4gc3RhdGVtZW50CiAgICB9CgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBpbnQgbnVtYmVyID0gSW50ZWdlci5wYXJzZUludChzY2FubmVyLm5leHRMaW5lKCkpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgU3RyaW5nIHJlc3VsdCA9IHNvbHV0aW9uLmNoZWNrRXZlbk9yT2RkKG51bWJlcik7CiAgICAgICAgCiAgICAgICAgLy8gUHJpbnQgdGhlIHJlc3VsdAogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihyZXN1bHQpOwogICAgICAgIAogICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgIH0KfQ==",
+      "stdin": "Nw==",
+      "expected_output": "T2Rk",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgU3RyaW5nIGNoZWNrRXZlbk9yT2RkKGludCBudW1iZXIpIHsKLypETyBOT1QgbW9kaWZ5IHRoaXMgbWV0aG9kLiovDQoNCiAgICAvLyBZb3VyIGltcGxlbWVudGF0aW9uIGNvZGUgZ29lcyBoZXJlDQogICAgU3RyaW5nIHJlc3VsdD0iIjsNCiAgICBpZihudW1iZXIlMj09MCkNCiAgICByZXR1cm4gICJFdmVuIjsNCiAgICBlbHNlDQogICAgcmV0dXJuICJPZGQiOyAvLyBSZXBsYWNlIHdpdGggeW91ciByZXR1cm4gc3RhdGVtZW50CiAgICB9CgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBpbnQgbnVtYmVyID0gSW50ZWdlci5wYXJzZUludChzY2FubmVyLm5leHRMaW5lKCkpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgU3RyaW5nIHJlc3VsdCA9IHNvbHV0aW9uLmNoZWNrRXZlbk9yT2RkKG51bWJlcik7CiAgICAgICAgCiAgICAgICAgLy8gUHJpbnQgdGhlIHJlc3VsdAogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihyZXN1bHQpOwogICAgICAgIAogICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgIH0KfQ==",
+      "stdin": "MA==",
+      "expected_output": "RXZlbg==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-13 19:05:12,505 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-13 19:05:12,506 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "996fe05b-bbd0-4a97-ba39-f3cbad4282e2"
+  },
+  {
+    "token": "e2c0ec55-1d82-45bf-aa5e-3b76320325cc"
+  },
+  {
+    "token": "f730eaca-6dc2-452b-9c29-c33aeed3c8e8"
+  }
+]
+2025-02-13 19:05:12,511 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '996fe05b-bbd0-4a97-ba39-f3cbad4282e2'}, {'token': 'e2c0ec55-1d82-45bf-aa5e-3b76320325cc'}, {'token': 'f730eaca-6dc2-452b-9c29-c33aeed3c8e8'}]
+2025-02-13 19:05:12,520 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-13 19:05:12,521 - main.problem_submission.problem_submission_route - INFO - Tokens: ['996fe05b-bbd0-4a97-ba39-f3cbad4282e2', 'e2c0ec55-1d82-45bf-aa5e-3b76320325cc', 'f730eaca-6dc2-452b-9c29-c33aeed3c8e8']
+2025-02-13 19:05:12,522 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-13 19:05:12,522 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:05:12,524 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:05:12,524 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 996fe05b-bbd0-4a97-ba39-f3cbad4282e2 ===
+2025-02-13 19:05:12,524 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-13 19:05:12,525 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/996fe05b-bbd0-4a97-ba39-f3cbad4282e2
+2025-02-13 19:05:13,549 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-13 19:05:13,550 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-13 19:05:13,550 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-13 19:05:13,551 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-13 19:05:13,551 - main.problem_submission.problem_submission_service - INFO - Stdout: Even
+
+2025-02-13 19:05:13,552 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-13 19:05:13,553 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-13 19:05:13,553 - main.problem_submission.problem_submission_service - INFO - Time: 0.069
+2025-02-13 19:05:13,555 - main.problem_submission.problem_submission_service - INFO - Memory: 19136
+2025-02-13 19:05:13,558 - main.problem_submission.problem_submission_service - INFO - === Polling Submission e2c0ec55-1d82-45bf-aa5e-3b76320325cc ===
+2025-02-13 19:05:13,559 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-13 19:05:13,560 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/e2c0ec55-1d82-45bf-aa5e-3b76320325cc
+2025-02-13 19:05:15,139 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-13 19:05:15,141 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-13 19:05:15,142 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-13 19:05:15,142 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-13 19:05:15,144 - main.problem_submission.problem_submission_service - INFO - Stdout: Odd
+
+2025-02-13 19:05:15,145 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-13 19:05:15,146 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-13 19:05:15,146 - main.problem_submission.problem_submission_service - INFO - Time: 0.088
+2025-02-13 19:05:15,147 - main.problem_submission.problem_submission_service - INFO - Memory: 28732
+2025-02-13 19:05:15,149 - main.problem_submission.problem_submission_service - INFO - === Polling Submission f730eaca-6dc2-452b-9c29-c33aeed3c8e8 ===
+2025-02-13 19:05:15,149 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-13 19:05:15,150 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/f730eaca-6dc2-452b-9c29-c33aeed3c8e8
+2025-02-13 19:05:16,323 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-13 19:05:16,325 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-13 19:05:16,325 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-13 19:05:16,326 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-13 19:05:16,327 - main.problem_submission.problem_submission_service - INFO - Stdout: Even
+
+2025-02-13 19:05:16,328 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-13 19:05:16,329 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-13 19:05:16,330 - main.problem_submission.problem_submission_service - INFO - Time: 0.069
+2025-02-13 19:05:16,330 - main.problem_submission.problem_submission_service - INFO - Memory: 19424
+2025-02-13 19:05:16,332 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-13 19:05:16,333 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-13 19:05:16,333 - main.problem_submission.problem_submission_route - INFO - All Passed: True
+2025-02-13 19:05:16,334 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-13 19:06:51,510 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:06:51,510 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-13 19:06:52,885 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-13 19:06:52,886 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-13 19:06:52,890 - main.problem_generator.prompt_manager - INFO - Selected category: Array Operations (previous was: None)
+2025-02-13 19:06:52,891 - main.problem_generator.prompt_manager - INFO - Selected problem type: Element Counting (previous was: None)
+2025-02-13 19:06:52,905 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-13 19:06:52,905 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-13 19:06:52,912 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+            You are generating a problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginner...
+2025-02-13 19:06:52,914 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:06:56,128 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:06:56,137 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:06:56,143 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:06:56,146 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Array Operations\",\"difficulty\":\"EASY\",\"problem_title\":\"Count Favorite Fruits\",\"problem_statement\":\"You are helping a store manager count how many customers chose each type of fruit as their favorite. The manager provides you with a list of favorite fruits from customers. Your task is to create a function that counts how many times each fruit appears in the list. \\n\\nYou will write a function called `count_favorite_fruits` that takes a list of strings (the fruit names) and returns a dictionary with each fruit and its count. \\n\\nFor example, if the input list is `['apple', 'banana', 'apple', 'orange', 'banana']`, the output should be `{'apple': 2, 'banana': 2, 'orange': 1}`.\",\"test_cases\":[{\"input\":[\"apple\",\"banana\",\"apple\",\"orange\",\"banana\"],\"output\":{\"apple\":2,\"banana\":2,\"orange\":1}},{\"input\":[\"strawberry\",\"kiwi\",\"kiwi\"],\"output\":{\"strawberry\":1,\"kiwi\":2}},{\"input\":[\"pear\",\"pear\",\"pear\"],\"output\":{\"pear\":3}}],\"tags\":[\"arrays\",\"counting\",\"array_iteration\"],\"structure\":{\"problem_name\":\"count_favorite_fruits\",\"function_name\":\"count_favorite_fruits\",\"input_structure\":[{\"Input Field\":\"List[str] fruits\"}],\"output_structure\":{\"Output Field\":\"Dict[str, int] fruit_count\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:06:56,148 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:06:56,149 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "apple",
+      "banana",
+      "apple",
+      "orange",
+      "banana"
+    ],
+    "output": {
+      "apple": 2,
+      "banana": 2,
+      "orange": 1
+    }
+  },
+  {
+    "input": [
+      "strawberry",
+      "kiwi",
+      "kiwi"
+    ],
+    "output": {
+      "strawberry": 1,
+      "kiwi": 2
+    }
+  },
+  {
+    "input": [
+      "pear",
+      "pear",
+      "pear"
+    ],
+    "output": {
+      "pear": 3
+    }
+  }
+]
+2025-02-13 19:06:56,151 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:06:56,154 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "apple",
+      "banana",
+      "apple",
+      "orange",
+      "banana"
+    ],
+    "output": {
+      "apple": 2,
+      "banana": 2,
+      "orange": 1
+    }
+  },
+  {
+    "input": [
+      "strawberry",
+      "kiwi",
+      "kiwi"
+    ],
+    "output": {
+      "strawberry": 1,
+      "kiwi": 2
+    }
+  },
+  {
+    "input": [
+      "pear",
+      "pear",
+      "pear"
+    ],
+    "output": {
+      "pear": 3
+    }
+  }
+]
+2025-02-13 19:06:56,159 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:06:56,160 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Array Operations",
+  "difficulty": "EASY",
+  "problem_title": "Count Favorite Fruits",
+  "problem_statement": "You are helping a store manager count how many customers chose each type of fruit as their favorite. The manager provides you with a list of favorite fruits from customers. Your task is to create a function that counts how many times each fruit appears in the list. \n\nYou will write a function called `count_favorite_fruits` that takes a list of strings (the fruit names) and returns a dictionary with each fruit and its count. \n\nFor example, if the input list is `['apple', 'banana', 'apple', 'orange', 'banana']`, the output should be `{'apple': 2, 'banana': 2, 'orange': 1}`.",
+  "test_cases": [
+    {
+      "input": [
+        "apple",
+        "banana",
+        "apple",
+        "orange",
+        "banana"
+      ],
+      "output": {
+        "apple": 2,
+        "banana": 2,
+        "orange": 1
+      }
+    },
+    {
+      "input": [
+        "strawberry",
+        "kiwi",
+        "kiwi"
+      ],
+      "output": {
+        "strawberry": 1,
+        "kiwi": 2
+      }
+    },
+    {
+      "input": [
+        "pear",
+        "pear",
+        "pear"
+      ],
+      "output": {
+        "pear": 3
+      }
+    }
+  ],
+  "tags": [
+    "arrays",
+    "counting",
+    "array_iteration"
+  ],
+  "structure": {
+    "problem_name": "count_favorite_fruits",
+    "function_name": "count_favorite_fruits",
+    "input_structure": [
+      {
+        "Input Field": "List[str] fruits"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "Dict[str, int] fruit_count"
+    }
+  }
+}
+2025-02-13 19:06:56,161 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Count Favorite Fruits
+2025-02-13 19:06:56,161 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 96, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 33, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] fruit_count
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 125, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+2025-02-13 19:06:56,176 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Array Operations","difficulty":"EASY","problem_title":"Count Favorite Fruits","problem_statement":"You are helping a store manager count how many customers chose each type of fruit as their favorite. The manager provides you with a list of favorite fruits from customers. Your task is to create a function that counts how many times each fruit appears in the list. \\n\\nYou will write a function called `count_favorite_fruits` that takes a list of strings (the fruit names) and returns a dictionary with each fruit and its count. \\n\\nFor example, if the input list is `[\'apple\', \'banana\', \'apple\', \'orange\', \'banana\']`, the output should be `{\'apple\': 2, \'banana\': 2, \'orange\': 1}`.","test_cases":[{"input":["apple","banana","apple","orange","banana"],"output":{"apple":2,"banana":2,"orange":1}},{"input":["strawberry","kiwi","kiwi"],"output":{"strawberry":1,"kiwi":2}},{"input":["pear","pear","pear"],"output":{"pear":3}}],"tags":["arrays","counting","array_iteration"],"structure":{"problem_name":"count_favorite_fruits","function_name":"count_favorite_fruits","input_structure":[{"Input Field":"List[str] fruits"}],"output_structure":{"Output Field":"Dict[str, int] fruit_count"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 297, 'prompt_tokens': 650, 'total_tokens': 947, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-c233092e-cf5a-4e28-8900-cd83246657cc-0' usage_metadata={'input_tokens': 650, 'output_tokens': 297, 'total_tokens': 947}
+2025-02-13 19:06:56,178 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 96, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 33, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] fruit_count
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 125, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+2025-02-13 19:06:56,180 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Array Operations","difficulty":"EASY","problem_title":"Count Favorite Fruits","problem_statement":"You are helping a store manager count how many customers chose each type of fruit as their favorite. The manager provides you with a list of favorite fruits from customers. Your task is to create a function that counts how many times each fruit appears in the list. \\n\\nYou will write a function called `count_favorite_fruits` that takes a list of strings (the fruit names) and returns a dictionary with each fruit and its count. \\n\\nFor example, if the input list is `[\'apple\', \'banana\', \'apple\', \'orange\', \'banana\']`, the output should be `{\'apple\': 2, \'banana\': 2, \'orange\': 1}`.","test_cases":[{"input":["apple","banana","apple","orange","banana"],"output":{"apple":2,"banana":2,"orange":1}},{"input":["strawberry","kiwi","kiwi"],"output":{"strawberry":1,"kiwi":2}},{"input":["pear","pear","pear"],"output":{"pear":3}}],"tags":["arrays","counting","array_iteration"],"structure":{"problem_name":"count_favorite_fruits","function_name":"count_favorite_fruits","input_structure":[{"Input Field":"List[str] fruits"}],"output_structure":{"Output Field":"Dict[str, int] fruit_count"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 297, 'prompt_tokens': 650, 'total_tokens': 947, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-c233092e-cf5a-4e28-8900-cd83246657cc-0' usage_metadata={'input_tokens': 650, 'output_tokens': 297, 'total_tokens': 947}
+2025-02-13 19:06:56,181 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 96, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 33, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: Dict[str, int] fruit_count
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 125, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: Dict[str, int] fruit_count
+2025-02-13 19:10:32,881 - uvicorn.error - INFO - Started server process [34740]
+2025-02-13 19:10:32,883 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:10:32,884 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:14:10,424 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:14:10,425 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-13 19:14:11,586 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-13 19:14:11,586 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-13 19:14:11,589 - main.problem_generator.prompt_manager - INFO - Selected category: Control Flow (previous was: None)
+2025-02-13 19:14:11,590 - main.problem_generator.prompt_manager - INFO - Selected problem type: Loops and Iterations (previous was: None)
+2025-02-13 19:14:11,631 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-13 19:14:11,632 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-13 19:14:11,637 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+            You are generating a problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginner...
+2025-02-13 19:14:11,638 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:14:17,570 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:14:17,622 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:14:17,623 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:14:17,624 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Control Flow\",\"difficulty\":\"EASY\",\"problem_title\":\"Count Up to a Number\",\"problem_statement\":\"Write a function that takes a number and returns a list of numbers starting from 1 up to that number. For example, if the input number is 5, the output should be [1, 2, 3, 4, 5]. If the input number is 0, the output should be an empty list. Make sure to include all numbers in the range, and do not include any additional numbers beyond the input.\",\"test_cases\":[{\"input\":[5],\"output\":[1,2,3,4,5]},{\"input\":[3],\"output\":[1,2,3]},{\"input\":[0],\"output\":[]}],\"tags\":[\"arrays\",\"control_flow\",\"loops\"],\"structure\":{\"problem_name\":\"count_up_to_number\",\"function_name\":\"count_up\",\"input_structure\":[{\"Input Field\":\"int number\"}],\"output_structure\":{\"Output Field\":\"List[int] result\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:14:17,625 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:14:17,626 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      5
+    ],
+    "output": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "input": [
+      3
+    ],
+    "output": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "input": [
+      0
+    ],
+    "output": []
+  }
+]
+2025-02-13 19:14:17,627 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:14:17,627 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      5
+    ],
+    "output": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "input": [
+      3
+    ],
+    "output": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "input": [
+      0
+    ],
+    "output": []
+  }
+]
+2025-02-13 19:14:17,628 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:14:17,629 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Control Flow",
+  "difficulty": "EASY",
+  "problem_title": "Count Up to a Number",
+  "problem_statement": "Write a function that takes a number and returns a list of numbers starting from 1 up to that number. For example, if the input number is 5, the output should be [1, 2, 3, 4, 5]. If the input number is 0, the output should be an empty list. Make sure to include all numbers in the range, and do not include any additional numbers beyond the input.",
+  "test_cases": [
+    {
+      "input": [
+        5
+      ],
+      "output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "input": [
+        3
+      ],
+      "output": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": []
+    }
+  ],
+  "tags": [
+    "arrays",
+    "control_flow",
+    "loops"
+  ],
+  "structure": {
+    "problem_name": "count_up_to_number",
+    "function_name": "count_up",
+    "input_structure": [
+      {
+        "Input Field": "int number"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "List[int] result"
+    }
+  }
+}
+2025-02-13 19:14:17,630 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Count Up to a Number
+2025-02-13 19:14:17,632 - main.problem_generator.problem_generator_service - INFO - Final response after model conversion:
+2025-02-13 19:14:17,632 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "EASY",
+  "problem_title": "Count Up to a Number",
+  "problem_statement": "Write a function that takes a number and returns a list of numbers starting from 1 up to that number. For example, if the input number is 5, the output should be [1, 2, 3, 4, 5]. If the input number is 0, the output should be an empty list. Make sure to include all numbers in the range, and do not include any additional numbers beyond the input.",
+  "test_cases": [
+    {
+      "input": [
+        5
+      ],
+      "output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "input": [
+        3
+      ],
+      "output": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": []
+    }
+  ],
+  "tags": [
+    "arrays",
+    "control_flow",
+    "loops"
+  ],
+  "structure": {
+    "problem_name": "count_up_to_number",
+    "function_name": "count_up",
+    "input_structure": [
+      {
+        "Input_Field": "int number"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[int] result"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic int[] countUp(int number) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef count_up(number: int) -> List[int]:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-13 19:14:17,634 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count Up to a Number
+2025-02-13 19:16:06,201 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-13 19:16:06,202 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-13 19:16:06,203 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-13 19:16:06,203 - main.problem_submission.problem_submission_route - INFO - Source code length: 481
+2025-02-13 19:16:06,204 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-13 19:16:06,204 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"count_up_to_number","function_name":"count_up","input_structure":[{"Input_Field":"int number"}],"output_structure":{"Output_Field":"List[int] result"}}
+2025-02-13 19:16:06,204 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-13 19:16:06,206 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-13 19:16:06,206 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:16:06,207 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:16:06,207 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-13 19:16:06,208 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public int[] countUp(int number) {
+    // If the number is less than or equal to 0, return an empty array.
+    if (number <= 0) {
+        return new int[0];
+    }
+    
+    // Create an array of size 'number'
+    int[] result = new int[number];
+    
+    // Fill the array with values from 1 to number.
+    for (int i = 0; i < number; i++) {
+        result[i] = i + 1;
+    }
+    
+    // Return the populated array.
+    return result;
+}
+2025-02-13 19:16:06,209 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'count_up_to_number', 'function_name': 'count_up', 'input_structure': [{'Input_Field': 'int number'}], 'output_structure': {'Output_Field': 'List[int] result'}}
+2025-02-13 19:16:06,210 - main.submission_generator.java_submission_generator - INFO - Checking for function name: countUp (original: count_up)
+2025-02-13 19:16:06,211 - main.submission_generator.java_submission_generator - INFO - Function name: countUp
+2025-02-13 19:16:06,211 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'int number'}]
+2025-02-13 19:16:06,211 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'List[int] result'}
+2025-02-13 19:16:06,211 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['int number']
+2025-02-13 19:16:06,212 - main.submission_generator.java_submission_generator - INFO - Return type: int[]
+2025-02-13 19:16:06,217 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to Main.java
+2025-02-13 19:16:06,219 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to last_submission.json
+2025-02-13 19:16:06,220 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-13 19:16:06,220 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgaW50W10gY291bnRVcChpbnQgbnVtYmVyKSB7Ci8qRE8gTk9UIG1vZGlmeSB0aGlzIG1ldGhvZC4qLw0KDQogICAgLy8gSWYgdGhlIG51bWJlciBpcyBsZXNzIHRoYW4gb3IgZXF1YWwgdG8gMCwgcmV0dXJuIGFuIGVtcHR5IGFycmF5Lg0KICAgIGlmIChudW1iZXIgPD0gMCkgew0KICAgICAgICByZXR1cm4gbmV3IGludFswXTsNCiAgICB9DQogICAgDQogICAgLy8gQ3JlYXRlIGFuIGFycmF5IG9mIHNpemUgJ251bWJlcicNCiAgICBpbnRbXSByZXN1bHQgPSBuZXcgaW50W251bWJlcl07DQogICAgDQogICAgLy8gRmlsbCB0aGUgYXJyYXkgd2l0aCB2YWx1ZXMgZnJvbSAxIHRvIG51bWJlci4NCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG51bWJlcjsgaSsrKSB7DQogICAgICAgIHJlc3VsdFtpXSA9IGkgKyAxOw0KICAgIH0NCiAgICANCiAgICAvLyBSZXR1cm4gdGhlIHBvcHVsYXRlZCBhcnJheS4NCiAgICByZXR1cm4gcmVzdWx0OwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgaW50IG51bWJlciA9IEludGVnZXIucGFyc2VJbnQoc2Nhbm5lci5uZXh0TGluZSgpKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludFtdIHJlc3VsdCA9IHNvbHV0aW9uLmNvdW50VXAobnVtYmVyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKEFycmF5cy50b1N0cmluZyhyZXN1bHQpKTsKICAgICAgICAKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "NQ==",
+      "expected_output": "WzEsIDIsIDMsIDQsIDVd",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgaW50W10gY291bnRVcChpbnQgbnVtYmVyKSB7Ci8qRE8gTk9UIG1vZGlmeSB0aGlzIG1ldGhvZC4qLw0KDQogICAgLy8gSWYgdGhlIG51bWJlciBpcyBsZXNzIHRoYW4gb3IgZXF1YWwgdG8gMCwgcmV0dXJuIGFuIGVtcHR5IGFycmF5Lg0KICAgIGlmIChudW1iZXIgPD0gMCkgew0KICAgICAgICByZXR1cm4gbmV3IGludFswXTsNCiAgICB9DQogICAgDQogICAgLy8gQ3JlYXRlIGFuIGFycmF5IG9mIHNpemUgJ251bWJlcicNCiAgICBpbnRbXSByZXN1bHQgPSBuZXcgaW50W251bWJlcl07DQogICAgDQogICAgLy8gRmlsbCB0aGUgYXJyYXkgd2l0aCB2YWx1ZXMgZnJvbSAxIHRvIG51bWJlci4NCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG51bWJlcjsgaSsrKSB7DQogICAgICAgIHJlc3VsdFtpXSA9IGkgKyAxOw0KICAgIH0NCiAgICANCiAgICAvLyBSZXR1cm4gdGhlIHBvcHVsYXRlZCBhcnJheS4NCiAgICByZXR1cm4gcmVzdWx0OwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgaW50IG51bWJlciA9IEludGVnZXIucGFyc2VJbnQoc2Nhbm5lci5uZXh0TGluZSgpKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludFtdIHJlc3VsdCA9IHNvbHV0aW9uLmNvdW50VXAobnVtYmVyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKEFycmF5cy50b1N0cmluZyhyZXN1bHQpKTsKICAgICAgICAKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "Mw==",
+      "expected_output": "WzEsIDIsIDNd",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgaW50W10gY291bnRVcChpbnQgbnVtYmVyKSB7Ci8qRE8gTk9UIG1vZGlmeSB0aGlzIG1ldGhvZC4qLw0KDQogICAgLy8gSWYgdGhlIG51bWJlciBpcyBsZXNzIHRoYW4gb3IgZXF1YWwgdG8gMCwgcmV0dXJuIGFuIGVtcHR5IGFycmF5Lg0KICAgIGlmIChudW1iZXIgPD0gMCkgew0KICAgICAgICByZXR1cm4gbmV3IGludFswXTsNCiAgICB9DQogICAgDQogICAgLy8gQ3JlYXRlIGFuIGFycmF5IG9mIHNpemUgJ251bWJlcicNCiAgICBpbnRbXSByZXN1bHQgPSBuZXcgaW50W251bWJlcl07DQogICAgDQogICAgLy8gRmlsbCB0aGUgYXJyYXkgd2l0aCB2YWx1ZXMgZnJvbSAxIHRvIG51bWJlci4NCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG51bWJlcjsgaSsrKSB7DQogICAgICAgIHJlc3VsdFtpXSA9IGkgKyAxOw0KICAgIH0NCiAgICANCiAgICAvLyBSZXR1cm4gdGhlIHBvcHVsYXRlZCBhcnJheS4NCiAgICByZXR1cm4gcmVzdWx0OwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgaW50IG51bWJlciA9IEludGVnZXIucGFyc2VJbnQoc2Nhbm5lci5uZXh0TGluZSgpKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludFtdIHJlc3VsdCA9IHNvbHV0aW9uLmNvdW50VXAobnVtYmVyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKEFycmF5cy50b1N0cmluZyhyZXN1bHQpKTsKICAgICAgICAKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "MA==",
+      "expected_output": "W10=",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-13 19:16:07,643 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-13 19:16:07,644 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "b6f8bf48-e015-4511-a293-5dec097034df"
+  },
+  {
+    "token": "782fe1a4-fb78-4d4a-a1c7-711387e745a6"
+  },
+  {
+    "token": "f68c10a9-6d27-421e-8ca0-811f9cc742e7"
+  }
+]
+2025-02-13 19:16:07,647 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': 'b6f8bf48-e015-4511-a293-5dec097034df'}, {'token': '782fe1a4-fb78-4d4a-a1c7-711387e745a6'}, {'token': 'f68c10a9-6d27-421e-8ca0-811f9cc742e7'}]
+2025-02-13 19:16:07,657 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-13 19:16:07,658 - main.problem_submission.problem_submission_route - INFO - Tokens: ['b6f8bf48-e015-4511-a293-5dec097034df', '782fe1a4-fb78-4d4a-a1c7-711387e745a6', 'f68c10a9-6d27-421e-8ca0-811f9cc742e7']
+2025-02-13 19:16:07,659 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-13 19:16:07,659 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:16:07,659 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-13 19:16:07,660 - main.problem_submission.problem_submission_service - INFO - === Polling Submission b6f8bf48-e015-4511-a293-5dec097034df ===
+2025-02-13 19:16:07,660 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-13 19:16:07,661 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/b6f8bf48-e015-4511-a293-5dec097034df
+2025-02-13 19:16:08,922 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-13 19:16:08,923 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-13 19:16:08,923 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-13 19:16:08,925 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-13 19:16:08,925 - main.problem_submission.problem_submission_service - INFO - Stdout: [1, 2, 3, 4, 5]
+
+2025-02-13 19:16:08,926 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-13 19:16:08,927 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-13 19:16:08,927 - main.problem_submission.problem_submission_service - INFO - Time: 0.08
+2025-02-13 19:16:08,928 - main.problem_submission.problem_submission_service - INFO - Memory: 19628
+2025-02-13 19:16:08,930 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 782fe1a4-fb78-4d4a-a1c7-711387e745a6 ===
+2025-02-13 19:16:08,931 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-13 19:16:08,932 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/782fe1a4-fb78-4d4a-a1c7-711387e745a6
+2025-02-13 19:16:10,119 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-13 19:16:10,120 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-13 19:16:10,121 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-13 19:16:10,121 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-13 19:16:10,122 - main.problem_submission.problem_submission_service - INFO - Stdout: [1, 2, 3]
+
+2025-02-13 19:16:10,123 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-13 19:16:10,123 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-13 19:16:10,124 - main.problem_submission.problem_submission_service - INFO - Time: 0.069
+2025-02-13 19:16:10,124 - main.problem_submission.problem_submission_service - INFO - Memory: 19284
+2025-02-13 19:16:10,127 - main.problem_submission.problem_submission_service - INFO - === Polling Submission f68c10a9-6d27-421e-8ca0-811f9cc742e7 ===
+2025-02-13 19:16:10,128 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-13 19:16:10,129 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/f68c10a9-6d27-421e-8ca0-811f9cc742e7
+2025-02-13 19:16:11,330 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-13 19:16:11,332 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-13 19:16:11,333 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-13 19:16:11,333 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-13 19:16:11,335 - main.problem_submission.problem_submission_service - INFO - Stdout: []
+
+2025-02-13 19:16:11,335 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-13 19:16:11,336 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-13 19:16:11,336 - main.problem_submission.problem_submission_service - INFO - Time: 0.079
+2025-02-13 19:16:11,337 - main.problem_submission.problem_submission_service - INFO - Memory: 19340
+2025-02-13 19:16:11,339 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-13 19:16:11,340 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-13 19:16:11,341 - main.problem_submission.problem_submission_route - INFO - All Passed: True
+2025-02-13 19:16:11,341 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-13 19:34:01,452 - uvicorn.error - INFO - Started server process [12364]
+2025-02-13 19:34:01,454 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:34:01,455 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:37:09,656 - uvicorn.error - INFO - Started server process [32292]
+2025-02-13 19:37:09,657 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:37:09,658 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:40:07,307 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:40:07,308 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: MEDIUM
+2025-02-13 19:40:08,665 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 19:40:08,665 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 19:40:08,667 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 19:40:08,673 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-13 19:40:08,673 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-13 19:40:08,675 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 19:40:08,676 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:40:08,680 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:40:08,681 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: EASY
+2025-02-13 19:40:09,926 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 19:40:09,926 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 19:40:09,929 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 19:40:09,930 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-13 19:40:09,931 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-13 19:40:09,935 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 19:40:09,936 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:40:13,299 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:40:13,366 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:40:13,367 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:40:13,368 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"EASY\",\"problem_title\":\"Count Character Frequencies\",\"problem_statement\":\"Write a function that takes a string as input and returns a dictionary where the keys are the characters in the string and the values are the number of times each character appears in the string. Ignore spaces and consider only alphabetical characters.\",\"test_cases\":[{\"input\":[\"hello world\"],\"output\":{\"h\":1,\"e\":1,\"l\":3,\"o\":2,\"w\":1,\"r\":1,\"d\":1}},{\"input\":[\"Programming\"],\"output\":{\"P\":1,\"r\":2,\"o\":1,\"g\":2,\"a\":1,\"m\":1,\"i\":1,\"n\":1}}],\"tags\":[\"dictionaries\",\"strings\",\"counting\",\"data_types\"],\"structure\":{\"problem_name\":\"count_character_frequencies\",\"function_name\":\"count_character_frequencies\",\"input_structure\":[{\"Input Field\":\"string input\"}],\"output_structure\":{\"Output Field\":\"dict\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:40:13,368 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:40:13,369 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello world"
+    ],
+    "output": {
+      "h": 1,
+      "e": 1,
+      "l": 3,
+      "o": 2,
+      "w": 1,
+      "r": 1,
+      "d": 1
+    }
+  },
+  {
+    "input": [
+      "Programming"
+    ],
+    "output": {
+      "P": 1,
+      "r": 2,
+      "o": 1,
+      "g": 2,
+      "a": 1,
+      "m": 1,
+      "i": 1,
+      "n": 1
+    }
+  }
+]
+2025-02-13 19:40:13,370 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:40:13,370 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello world"
+    ],
+    "output": {
+      "h": 1,
+      "e": 1,
+      "l": 3,
+      "o": 2,
+      "w": 1,
+      "r": 1,
+      "d": 1
+    }
+  },
+  {
+    "input": [
+      "Programming"
+    ],
+    "output": {
+      "P": 1,
+      "r": 2,
+      "o": 1,
+      "g": 2,
+      "a": 1,
+      "m": 1,
+      "i": 1,
+      "n": 1
+    }
+  }
+]
+2025-02-13 19:40:13,372 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:40:13,373 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "EASY",
+  "problem_title": "Count Character Frequencies",
+  "problem_statement": "Write a function that takes a string as input and returns a dictionary where the keys are the characters in the string and the values are the number of times each character appears in the string. Ignore spaces and consider only alphabetical characters.",
+  "test_cases": [
+    {
+      "input": [
+        "hello world"
+      ],
+      "output": {
+        "h": 1,
+        "e": 1,
+        "l": 3,
+        "o": 2,
+        "w": 1,
+        "r": 1,
+        "d": 1
+      }
+    },
+    {
+      "input": [
+        "Programming"
+      ],
+      "output": {
+        "P": 1,
+        "r": 2,
+        "o": 1,
+        "g": 2,
+        "a": 1,
+        "m": 1,
+        "i": 1,
+        "n": 1
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "strings",
+    "counting",
+    "data_types"
+  ],
+  "structure": {
+    "problem_name": "count_character_frequencies",
+    "function_name": "count_character_frequencies",
+    "input_structure": [
+      {
+        "Input Field": "string input"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "dict"
+    }
+  }
+}
+2025-02-13 19:40:13,374 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Count Character Frequencies
+2025-02-13 19:40:13,375 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Java boilerplate: Invalid input field format: dict
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 127, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 37, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 156, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict
+2025-02-13 19:40:13,379 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"EASY","problem_title":"Count Character Frequencies","problem_statement":"Write a function that takes a string as input and returns a dictionary where the keys are the characters in the string and the values are the number of times each character appears in the string. Ignore spaces and consider only alphabetical characters.","test_cases":[{"input":["hello world"],"output":{"h":1,"e":1,"l":3,"o":2,"w":1,"r":1,"d":1}},{"input":["Programming"],"output":{"P":1,"r":2,"o":1,"g":2,"a":1,"m":1,"i":1,"n":1}}],"tags":["dictionaries","strings","counting","data_types"],"structure":{"problem_name":"count_character_frequencies","function_name":"count_character_frequencies","input_structure":[{"Input Field":"string input"}],"output_structure":{"Output Field":"dict"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 200, 'prompt_tokens': 557, 'total_tokens': 757, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-43532abc-3dd3-4315-a0e5-9777cb6a3eef-0' usage_metadata={'input_tokens': 557, 'output_tokens': 200, 'total_tokens': 757}
+2025-02-13 19:40:13,380 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 127, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 37, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 156, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+2025-02-13 19:40:13,382 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"EASY","problem_title":"Count Character Frequencies","problem_statement":"Write a function that takes a string as input and returns a dictionary where the keys are the characters in the string and the values are the number of times each character appears in the string. Ignore spaces and consider only alphabetical characters.","test_cases":[{"input":["hello world"],"output":{"h":1,"e":1,"l":3,"o":2,"w":1,"r":1,"d":1}},{"input":["Programming"],"output":{"P":1,"r":2,"o":1,"g":2,"a":1,"m":1,"i":1,"n":1}}],"tags":["dictionaries","strings","counting","data_types"],"structure":{"problem_name":"count_character_frequencies","function_name":"count_character_frequencies","input_structure":[{"Input Field":"string input"}],"output_structure":{"Output Field":"dict"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 200, 'prompt_tokens': 557, 'total_tokens': 757, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-43532abc-3dd3-4315-a0e5-9777cb6a3eef-0' usage_metadata={'input_tokens': 557, 'output_tokens': 200, 'total_tokens': 757}
+2025-02-13 19:40:13,383 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 127, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 37, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 156, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+2025-02-13 19:40:15,434 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:40:15,439 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:40:15,440 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:40:15,440 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"medium\",\"problem_title\":\"Student Grade Management\",\"problem_statement\":\"You are tasked with creating a function that manages student grades. The function should accept a dictionary where the keys are student names (strings) and the values are lists of integers representing their grades. Your function should return a new dictionary with the student names as keys and their average grades as values. If a student has no grades, their average should be considered as 0. Round the average to two decimal places.\",\"test_cases\":[{\"input\":[{\"Alice\":[85, 82, 90],\"Bob\":[77, 80],\"Charlie\":[]}],\"output\":{\"Alice\":85.67,\"Bob\":78.50,\"Charlie\":0.00}},{\"input\":[{\"David\":[100, 95, 90],\"Eva\":[88],\"Frank\":[]}],\"output\":{\"David\":95.00,\"Eva\":88.00,\"Frank\":0.00}},{\"input\":[{\"George\":[],\"Hannah\":[92, 85, 87]}],\"output\":{\"George\":0.00,\"Hannah\":88.00}}],\"tags\":[\"dictionaries\",\"arrays\",\"numbers\",\"arithmetic\",\"conditional_logic\",\"data_types\"],\"structure\":{\"problem_name\":\"student_grade_management\",\"function_name\":\"calculate_average_grades\",\"input_structure\":[{\"Input Field\":\"dict students_grades\"}],\"output_structure\":{\"Output Field\":\"dict average_grades\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:40:15,441 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:40:15,442 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "Alice": [
+          85,
+          82,
+          90
+        ],
+        "Bob": [
+          77,
+          80
+        ],
+        "Charlie": []
+      }
+    ],
+    "output": {
+      "Alice": 85.67,
+      "Bob": 78.5,
+      "Charlie": 0.0
+    }
+  },
+  {
+    "input": [
+      {
+        "David": [
+          100,
+          95,
+          90
+        ],
+        "Eva": [
+          88
+        ],
+        "Frank": []
+      }
+    ],
+    "output": {
+      "David": 95.0,
+      "Eva": 88.0,
+      "Frank": 0.0
+    }
+  },
+  {
+    "input": [
+      {
+        "George": [],
+        "Hannah": [
+          92,
+          85,
+          87
+        ]
+      }
+    ],
+    "output": {
+      "George": 0.0,
+      "Hannah": 88.0
+    }
+  }
+]
+2025-02-13 19:40:15,444 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:40:15,445 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "Alice": [
+          85,
+          82,
+          90
+        ],
+        "Bob": [
+          77,
+          80
+        ],
+        "Charlie": []
+      }
+    ],
+    "output": {
+      "Alice": 85.67,
+      "Bob": 78.5,
+      "Charlie": 0.0
+    }
+  },
+  {
+    "input": [
+      {
+        "David": [
+          100,
+          95,
+          90
+        ],
+        "Eva": [
+          88
+        ],
+        "Frank": []
+      }
+    ],
+    "output": {
+      "David": 95.0,
+      "Eva": 88.0,
+      "Frank": 0.0
+    }
+  },
+  {
+    "input": [
+      {
+        "George": [],
+        "Hannah": [
+          92,
+          85,
+          87
+        ]
+      }
+    ],
+    "output": {
+      "George": 0.0,
+      "Hannah": 88.0
+    }
+  }
+]
+2025-02-13 19:40:15,447 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:40:15,449 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "medium",
+  "problem_title": "Student Grade Management",
+  "problem_statement": "You are tasked with creating a function that manages student grades. The function should accept a dictionary where the keys are student names (strings) and the values are lists of integers representing their grades. Your function should return a new dictionary with the student names as keys and their average grades as values. If a student has no grades, their average should be considered as 0. Round the average to two decimal places.",
+  "test_cases": [
+    {
+      "input": [
+        {
+          "Alice": [
+            85,
+            82,
+            90
+          ],
+          "Bob": [
+            77,
+            80
+          ],
+          "Charlie": []
+        }
+      ],
+      "output": {
+        "Alice": 85.67,
+        "Bob": 78.5,
+        "Charlie": 0.0
+      }
+    },
+    {
+      "input": [
+        {
+          "David": [
+            100,
+            95,
+            90
+          ],
+          "Eva": [
+            88
+          ],
+          "Frank": []
+        }
+      ],
+      "output": {
+        "David": 95.0,
+        "Eva": 88.0,
+        "Frank": 0.0
+      }
+    },
+    {
+      "input": [
+        {
+          "George": [],
+          "Hannah": [
+            92,
+            85,
+            87
+          ]
+        }
+      ],
+      "output": {
+        "George": 0.0,
+        "Hannah": 88.0
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "arrays",
+    "numbers",
+    "arithmetic",
+    "conditional_logic",
+    "data_types"
+  ],
+  "structure": {
+    "problem_name": "student_grade_management",
+    "function_name": "calculate_average_grades",
+    "input_structure": [
+      {
+        "Input Field": "dict students_grades"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "dict average_grades"
+    }
+  }
+}
+2025-02-13 19:40:15,451 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Student Grade Management
+2025-02-13 19:40:15,452 - main.problem_generator.problem_generator_service - INFO - Final response after model conversion:
+2025-02-13 19:40:15,453 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries data structure",
+  "difficulty": "medium",
+  "problem_title": "Student Grade Management",
+  "problem_statement": "You are tasked with creating a function that manages student grades. The function should accept a dictionary where the keys are student names (strings) and the values are lists of integers representing their grades. Your function should return a new dictionary with the student names as keys and their average grades as values. If a student has no grades, their average should be considered as 0. Round the average to two decimal places.",
+  "test_cases": [
+    {
+      "input": [
+        {
+          "Alice": [
+            85,
+            82,
+            90
+          ],
+          "Bob": [
+            77,
+            80
+          ],
+          "Charlie": []
+        }
+      ],
+      "output": {
+        "Alice": 85.67,
+        "Bob": 78.5,
+        "Charlie": 0.0
+      }
+    },
+    {
+      "input": [
+        {
+          "David": [
+            100,
+            95,
+            90
+          ],
+          "Eva": [
+            88
+          ],
+          "Frank": []
+        }
+      ],
+      "output": {
+        "David": 95.0,
+        "Eva": 88.0,
+        "Frank": 0.0
+      }
+    },
+    {
+      "input": [
+        {
+          "George": [],
+          "Hannah": [
+            92,
+            85,
+            87
+          ]
+        }
+      ],
+      "output": {
+        "George": 0.0,
+        "Hannah": 88.0
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "arrays",
+    "numbers",
+    "arithmetic",
+    "conditional_logic",
+    "data_types"
+  ],
+  "structure": {
+    "problem_name": "student_grade_management",
+    "function_name": "calculate_average_grades",
+    "input_structure": [
+      {
+        "Input_Field": "dict students_grades"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "dict average_grades"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic Object calculateAverageGrades(Object studentsGrades) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef calculate_average_grades(students_grades: Any) -> Any:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-13 19:40:15,455 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Student Grade Management
+2025-02-13 19:41:52,023 - uvicorn.error - INFO - Started server process [16464]
+2025-02-13 19:41:52,024 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:41:52,025 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:43:14,255 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:43:14,256 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: EASY
+2025-02-13 19:43:15,757 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 19:43:15,757 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 19:43:15,759 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 19:43:15,766 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-13 19:43:15,767 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-13 19:43:15,772 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 19:43:15,773 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:43:18,982 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:43:19,043 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:43:19,044 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:43:19,045 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"data structures\",\"difficulty\":\"easy\",\"problem_title\":\"Counting the Frequency of Characters in a String\",\"problem_statement\":\"Write a function that takes a string and returns a dictionary with each character as the key and its frequency as the value. Ignore spaces and consider only alphabetic characters.\",\"test_cases\":[{\"input\":[\"hello world\"],\"output\":{\"h\":1,\"e\":1,\"l\":3,\"o\":2,\"w\":1,\"r\":1,\"d\":1}},{\"input\":[\"character frequency\"],\"output\":{\"c\":2,\"h\":1,\"a\":1,\"r\":2,\"t\":1,\"e\":1,\"f\":1,\"q\":1,\"u\":1,\"n\":1,\"y\":1}},{\"input\":[\"data structures\"],\"output\":{\"d\":1,\"a\":2,\"t\":1,\"s\":2,\"r\":1,\"u\":1,\"c\":1,\"e\":1}}],\"tags\":[\"data_types\",\"dictionaries\",\"counting\",\"transformation\"],\"structure\":{\"problem_name\":\"count_character_frequency\",\"function_name\":\"count_character_frequency\",\"input_structure\":[{\"Input Field\":\"string input_string\"}],\"output_structure\":{\"Output Field\":\"dict\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:43:19,047 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:43:19,048 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello world"
+    ],
+    "output": {
+      "h": 1,
+      "e": 1,
+      "l": 3,
+      "o": 2,
+      "w": 1,
+      "r": 1,
+      "d": 1
+    }
+  },
+  {
+    "input": [
+      "character frequency"
+    ],
+    "output": {
+      "c": 2,
+      "h": 1,
+      "a": 1,
+      "r": 2,
+      "t": 1,
+      "e": 1,
+      "f": 1,
+      "q": 1,
+      "u": 1,
+      "n": 1,
+      "y": 1
+    }
+  },
+  {
+    "input": [
+      "data structures"
+    ],
+    "output": {
+      "d": 1,
+      "a": 2,
+      "t": 1,
+      "s": 2,
+      "r": 1,
+      "u": 1,
+      "c": 1,
+      "e": 1
+    }
+  }
+]
+2025-02-13 19:43:19,049 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:43:19,050 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello world"
+    ],
+    "output": {
+      "h": 1,
+      "e": 1,
+      "l": 3,
+      "o": 2,
+      "w": 1,
+      "r": 1,
+      "d": 1
+    }
+  },
+  {
+    "input": [
+      "character frequency"
+    ],
+    "output": {
+      "c": 2,
+      "h": 1,
+      "a": 1,
+      "r": 2,
+      "t": 1,
+      "e": 1,
+      "f": 1,
+      "q": 1,
+      "u": 1,
+      "n": 1,
+      "y": 1
+    }
+  },
+  {
+    "input": [
+      "data structures"
+    ],
+    "output": {
+      "d": 1,
+      "a": 2,
+      "t": 1,
+      "s": 2,
+      "r": 1,
+      "u": 1,
+      "c": 1,
+      "e": 1
+    }
+  }
+]
+2025-02-13 19:43:19,051 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:43:19,052 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "data structures",
+  "difficulty": "easy",
+  "problem_title": "Counting the Frequency of Characters in a String",
+  "problem_statement": "Write a function that takes a string and returns a dictionary with each character as the key and its frequency as the value. Ignore spaces and consider only alphabetic characters.",
+  "test_cases": [
+    {
+      "input": [
+        "hello world"
+      ],
+      "output": {
+        "h": 1,
+        "e": 1,
+        "l": 3,
+        "o": 2,
+        "w": 1,
+        "r": 1,
+        "d": 1
+      }
+    },
+    {
+      "input": [
+        "character frequency"
+      ],
+      "output": {
+        "c": 2,
+        "h": 1,
+        "a": 1,
+        "r": 2,
+        "t": 1,
+        "e": 1,
+        "f": 1,
+        "q": 1,
+        "u": 1,
+        "n": 1,
+        "y": 1
+      }
+    },
+    {
+      "input": [
+        "data structures"
+      ],
+      "output": {
+        "d": 1,
+        "a": 2,
+        "t": 1,
+        "s": 2,
+        "r": 1,
+        "u": 1,
+        "c": 1,
+        "e": 1
+      }
+    }
+  ],
+  "tags": [
+    "data_types",
+    "dictionaries",
+    "counting",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "count_character_frequency",
+    "function_name": "count_character_frequency",
+    "input_structure": [
+      {
+        "Input Field": "string input_string"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "dict"
+    }
+  }
+}
+2025-02-13 19:43:19,053 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Counting the Frequency of Characters in a String
+2025-02-13 19:43:19,055 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Java boilerplate: Invalid input field format: dict
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 133, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 38, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 162, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict
+2025-02-13 19:43:19,064 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"data structures","difficulty":"easy","problem_title":"Counting the Frequency of Characters in a String","problem_statement":"Write a function that takes a string and returns a dictionary with each character as the key and its frequency as the value. Ignore spaces and consider only alphabetic characters.","test_cases":[{"input":["hello world"],"output":{"h":1,"e":1,"l":3,"o":2,"w":1,"r":1,"d":1}},{"input":["character frequency"],"output":{"c":2,"h":1,"a":1,"r":2,"t":1,"e":1,"f":1,"q":1,"u":1,"n":1,"y":1}},{"input":["data structures"],"output":{"d":1,"a":2,"t":1,"s":2,"r":1,"u":1,"c":1,"e":1}}],"tags":["data_types","dictionaries","counting","transformation"],"structure":{"problem_name":"count_character_frequency","function_name":"count_character_frequency","input_structure":[{"Input Field":"string input_string"}],"output_structure":{"Output Field":"dict"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 245, 'prompt_tokens': 557, 'total_tokens': 802, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-b2f22966-43c7-4245-b9b5-f31fb5b9870d-0' usage_metadata={'input_tokens': 557, 'output_tokens': 245, 'total_tokens': 802}
+2025-02-13 19:43:19,066 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 133, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 38, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 162, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+2025-02-13 19:43:19,067 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"data structures","difficulty":"easy","problem_title":"Counting the Frequency of Characters in a String","problem_statement":"Write a function that takes a string and returns a dictionary with each character as the key and its frequency as the value. Ignore spaces and consider only alphabetic characters.","test_cases":[{"input":["hello world"],"output":{"h":1,"e":1,"l":3,"o":2,"w":1,"r":1,"d":1}},{"input":["character frequency"],"output":{"c":2,"h":1,"a":1,"r":2,"t":1,"e":1,"f":1,"q":1,"u":1,"n":1,"y":1}},{"input":["data structures"],"output":{"d":1,"a":2,"t":1,"s":2,"r":1,"u":1,"c":1,"e":1}}],"tags":["data_types","dictionaries","counting","transformation"],"structure":{"problem_name":"count_character_frequency","function_name":"count_character_frequency","input_structure":[{"Input Field":"string input_string"}],"output_structure":{"Output Field":"dict"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 245, 'prompt_tokens': 557, 'total_tokens': 802, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-b2f22966-43c7-4245-b9b5-f31fb5b9870d-0' usage_metadata={'input_tokens': 557, 'output_tokens': 245, 'total_tokens': 802}
+2025-02-13 19:43:19,068 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 133, in convert_to_java_boilerplate
+    output_type, _ = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 38, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 162, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict
+2025-02-13 19:46:07,973 - uvicorn.error - INFO - Started server process [37796]
+2025-02-13 19:46:07,975 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:46:07,976 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:47:07,543 - uvicorn.error - INFO - Shutting down
+2025-02-13 19:47:17,772 - uvicorn.error - INFO - Started server process [37852]
+2025-02-13 19:47:17,773 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:47:17,775 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:47:22,058 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:47:22,058 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: MEDIUM
+2025-02-13 19:47:22,915 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 19:47:22,915 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 19:47:22,917 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 19:47:22,923 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-13 19:47:22,923 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-13 19:47:22,925 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 19:47:22,925 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:47:27,682 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:47:27,723 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:47:27,724 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:47:27,725 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"medium\",\"problem_title\":\"Student Grade Tracker\",\"problem_statement\":\"You are tasked with creating a grade tracker for students. Given a dictionary that contains student names as keys and their grades as values, write a function that calculates the average grade for the class and returns a list of students who scored above the average. If no students scored above average, return an empty list.\",\"test_cases\":[{\"input\":[{\"Alice\":85,\"Bob\":78,\"Charlie\":92,\"David\":88,\"Eva\":71}],\"output\":[\"Alice\",\"Charlie\",\"David\"]},{\"input\":[{\"Frank\":60,\"Gina\":55,\"Holly\":50}],\"output\":[]},{\"input\":[{\"John\":75,\"Jake\":85,\"Jill\":90,\"Jen\":78}],\"output\":[\"Jake\",\"Jill\"]},{\"input\":[{\"Sam\":100,\"Mike\":100,\"Nina\":100}],\"output\":[\"Sam\",\"Mike\",\"Nina\"]},{\"input\":[{\"Tom\":45,\"Jerry\":65,\"Rick\":70}],\"output\":[\"Jerry\",\"Rick\"]}],\"tags\":[\"dictionaries\",\"data_types\",\"conditional_logic\",\"array_manipulation\"],\"structure\":{\"problem_name\":\"student_grade_tracker\",\"function_name\":\"calculate_average_grades\",\"input_structure\":[{\"Input Field\":\"dict[str, int] grades\"}],\"output_structure\":{\"Output Field\":\"List[str] above_average_students\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:47:27,726 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:47:27,726 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "Alice": 85,
+        "Bob": 78,
+        "Charlie": 92,
+        "David": 88,
+        "Eva": 71
+      }
+    ],
+    "output": [
+      "Alice",
+      "Charlie",
+      "David"
+    ]
+  },
+  {
+    "input": [
+      {
+        "Frank": 60,
+        "Gina": 55,
+        "Holly": 50
+      }
+    ],
+    "output": []
+  },
+  {
+    "input": [
+      {
+        "John": 75,
+        "Jake": 85,
+        "Jill": 90,
+        "Jen": 78
+      }
+    ],
+    "output": [
+      "Jake",
+      "Jill"
+    ]
+  },
+  {
+    "input": [
+      {
+        "Sam": 100,
+        "Mike": 100,
+        "Nina": 100
+      }
+    ],
+    "output": [
+      "Sam",
+      "Mike",
+      "Nina"
+    ]
+  },
+  {
+    "input": [
+      {
+        "Tom": 45,
+        "Jerry": 65,
+        "Rick": 70
+      }
+    ],
+    "output": [
+      "Jerry",
+      "Rick"
+    ]
+  }
+]
+2025-02-13 19:47:27,728 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:47:27,728 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "Alice": 85,
+        "Bob": 78,
+        "Charlie": 92,
+        "David": 88,
+        "Eva": 71
+      }
+    ],
+    "output": [
+      "Alice",
+      "Charlie",
+      "David"
+    ]
+  },
+  {
+    "input": [
+      {
+        "Frank": 60,
+        "Gina": 55,
+        "Holly": 50
+      }
+    ],
+    "output": []
+  },
+  {
+    "input": [
+      {
+        "John": 75,
+        "Jake": 85,
+        "Jill": 90,
+        "Jen": 78
+      }
+    ],
+    "output": [
+      "Jake",
+      "Jill"
+    ]
+  },
+  {
+    "input": [
+      {
+        "Sam": 100,
+        "Mike": 100,
+        "Nina": 100
+      }
+    ],
+    "output": [
+      "Sam",
+      "Mike",
+      "Nina"
+    ]
+  },
+  {
+    "input": [
+      {
+        "Tom": 45,
+        "Jerry": 65,
+        "Rick": 70
+      }
+    ],
+    "output": [
+      "Jerry",
+      "Rick"
+    ]
+  }
+]
+2025-02-13 19:47:27,729 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:47:27,730 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "medium",
+  "problem_title": "Student Grade Tracker",
+  "problem_statement": "You are tasked with creating a grade tracker for students. Given a dictionary that contains student names as keys and their grades as values, write a function that calculates the average grade for the class and returns a list of students who scored above the average. If no students scored above average, return an empty list.",
+  "test_cases": [
+    {
+      "input": [
+        {
+          "Alice": 85,
+          "Bob": 78,
+          "Charlie": 92,
+          "David": 88,
+          "Eva": 71
+        }
+      ],
+      "output": [
+        "Alice",
+        "Charlie",
+        "David"
+      ]
+    },
+    {
+      "input": [
+        {
+          "Frank": 60,
+          "Gina": 55,
+          "Holly": 50
+        }
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        {
+          "John": 75,
+          "Jake": 85,
+          "Jill": 90,
+          "Jen": 78
+        }
+      ],
+      "output": [
+        "Jake",
+        "Jill"
+      ]
+    },
+    {
+      "input": [
+        {
+          "Sam": 100,
+          "Mike": 100,
+          "Nina": 100
+        }
+      ],
+      "output": [
+        "Sam",
+        "Mike",
+        "Nina"
+      ]
+    },
+    {
+      "input": [
+        {
+          "Tom": 45,
+          "Jerry": 65,
+          "Rick": 70
+        }
+      ],
+      "output": [
+        "Jerry",
+        "Rick"
+      ]
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "data_types",
+    "conditional_logic",
+    "array_manipulation"
+  ],
+  "structure": {
+    "problem_name": "student_grade_tracker",
+    "function_name": "calculate_average_grades",
+    "input_structure": [
+      {
+        "Input Field": "dict[str, int] grades"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "List[str] above_average_students"
+    }
+  }
+}
+2025-02-13 19:47:27,732 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Student Grade Tracker
+2025-02-13 19:47:27,733 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 158, in convert_to_java_boilerplate
+    python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 46, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict[str, int] grades
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 178, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+2025-02-13 19:47:27,739 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"medium","problem_title":"Student Grade Tracker","problem_statement":"You are tasked with creating a grade tracker for students. Given a dictionary that contains student names as keys and their grades as values, write a function that calculates the average grade for the class and returns a list of students who scored above the average. If no students scored above average, return an empty list.","test_cases":[{"input":[{"Alice":85,"Bob":78,"Charlie":92,"David":88,"Eva":71}],"output":["Alice","Charlie","David"]},{"input":[{"Frank":60,"Gina":55,"Holly":50}],"output":[]},{"input":[{"John":75,"Jake":85,"Jill":90,"Jen":78}],"output":["Jake","Jill"]},{"input":[{"Sam":100,"Mike":100,"Nina":100}],"output":["Sam","Mike","Nina"]},{"input":[{"Tom":45,"Jerry":65,"Rick":70}],"output":["Jerry","Rick"]}],"tags":["dictionaries","data_types","conditional_logic","array_manipulation"],"structure":{"problem_name":"student_grade_tracker","function_name":"calculate_average_grades","input_structure":[{"Input Field":"dict[str, int] grades"}],"output_structure":{"Output Field":"List[str] above_average_students"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 282, 'prompt_tokens': 405, 'total_tokens': 687, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-bd3d0d90-eeab-4502-afef-4c5c3161996a-0' usage_metadata={'input_tokens': 405, 'output_tokens': 282, 'total_tokens': 687}
+2025-02-13 19:47:27,740 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 158, in convert_to_java_boilerplate
+    python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 46, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict[str, int] grades
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 178, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+2025-02-13 19:47:27,742 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"medium","problem_title":"Student Grade Tracker","problem_statement":"You are tasked with creating a grade tracker for students. Given a dictionary that contains student names as keys and their grades as values, write a function that calculates the average grade for the class and returns a list of students who scored above the average. If no students scored above average, return an empty list.","test_cases":[{"input":[{"Alice":85,"Bob":78,"Charlie":92,"David":88,"Eva":71}],"output":["Alice","Charlie","David"]},{"input":[{"Frank":60,"Gina":55,"Holly":50}],"output":[]},{"input":[{"John":75,"Jake":85,"Jill":90,"Jen":78}],"output":["Jake","Jill"]},{"input":[{"Sam":100,"Mike":100,"Nina":100}],"output":["Sam","Mike","Nina"]},{"input":[{"Tom":45,"Jerry":65,"Rick":70}],"output":["Jerry","Rick"]}],"tags":["dictionaries","data_types","conditional_logic","array_manipulation"],"structure":{"problem_name":"student_grade_tracker","function_name":"calculate_average_grades","input_structure":[{"Input Field":"dict[str, int] grades"}],"output_structure":{"Output Field":"List[str] above_average_students"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 282, 'prompt_tokens': 405, 'total_tokens': 687, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-bd3d0d90-eeab-4502-afef-4c5c3161996a-0' usage_metadata={'input_tokens': 405, 'output_tokens': 282, 'total_tokens': 687}
+2025-02-13 19:47:27,742 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 158, in convert_to_java_boilerplate
+    python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 46, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: dict[str, int] grades
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 178, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: dict[str, int] grades
+2025-02-13 19:48:41,581 - uvicorn.error - INFO - Started server process [31564]
+2025-02-13 19:48:41,583 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:48:41,585 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:49:02,372 - uvicorn.error - INFO - Shutting down
+2025-02-13 19:49:11,652 - uvicorn.error - INFO - Started server process [35172]
+2025-02-13 19:49:11,653 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:49:11,655 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:49:15,194 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:49:15,195 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: HARD
+2025-02-13 19:49:16,566 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 19:49:16,566 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 19:49:16,568 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 19:49:16,574 - main.problem_generator.prompt_manager - INFO - Normalizing name: HARD
+2025-02-13 19:49:16,575 - main.problem_generator.prompt_manager - INFO - Normalized to: hard
+2025-02-13 19:49:16,576 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 19:49:16,577 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:49:22,924 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:49:22,969 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:49:22,970 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:49:22,971 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"hard\",\"problem_title\":\"Inventory Management System\",\"problem_statement\":\"Design a function that manages an inventory system using a dictionary. The function should allow adding, updating, and removing items from the inventory. Each item in the inventory is represented as a dictionary entry with keys: 'name', 'quantity', and 'price'. The function should also return the total value of the inventory after each operation.\\n\\nThis function should be able to handle multiple operations in a single call, where the operations are provided as a list of dictionaries. Each operation dictionary should have a 'type' (which is either 'add', 'update', or 'remove') and the corresponding item details.\\n\\nExample input operations:\\n- {'type': 'add', 'name': 'Apple', 'quantity': 10, 'price': 0.5}\\n- {'type': 'remove', 'name': 'Apple', 'quantity': 5}\\n- {'type': 'update', 'name': 'Banana', 'quantity': 20, 'price': 0.3}\\n\\nThe function should handle cases where an item to be removed does not exist or where the quantity to remove exceeds the available quantity. It should also validate item inputs for correct data types and only process valid operations.\",\"test_cases\":[{\"input\":[{\"type\":\"add\",\"name\":\"Apple\",\"quantity\":10,\"price\":0.5},{\"type\":\"add\",\"name\":\"Banana\",\"quantity\":20,\"price\":0.3},{\"type\":\"remove\",\"name\":\"Apple\",\"quantity\":5},{\"type\":\"update\",\"name\":\"Banana\",\"quantity\":25,\"price\":0.4}],\"output\":14.5},{\"input\":[{\"type\":\"add\",\"name\":\"Orange\",\"quantity\":15,\"price\":0.6},{\"type\":\"remove\",\"name\":\"Banana\",\"quantity\":10},{\"type\":\"add\",\"name\":\"Grapes\",\"quantity\":5,\"price\":1.2}],\"output\":12.0},{\"input\":[{\"type\":\"remove\",\"name\":\"Mango\",\"quantity\":5},{\"type\":\"add\",\"name\":\"Apple\",\"quantity\":5,\"price\":0.5},{\"type\":\"update\",\"name\":\"Apple\",\"quantity\":0,\"price\":0.5}],\"output\":2.5}],\"tags\":[\"dictionaries\",\"data_types\",\"conditional_logic\",\"loops\",\"input_validation\"],\"structure\":{\"problem_name\":\"manage_inventory\",\"function_name\":\"manage_inventory\",\"input_structure\":[{\"Input Field\":\"List[Dict[str, Union[str, int, float]] ] operations\"}],\"output_structure\":{\"Output Field\":\"float total_value\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:49:22,973 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:49:22,974 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "type": "add",
+        "name": "Apple",
+        "quantity": 10,
+        "price": 0.5
+      },
+      {
+        "type": "add",
+        "name": "Banana",
+        "quantity": 20,
+        "price": 0.3
+      },
+      {
+        "type": "remove",
+        "name": "Apple",
+        "quantity": 5
+      },
+      {
+        "type": "update",
+        "name": "Banana",
+        "quantity": 25,
+        "price": 0.4
+      }
+    ],
+    "output": 14.5
+  },
+  {
+    "input": [
+      {
+        "type": "add",
+        "name": "Orange",
+        "quantity": 15,
+        "price": 0.6
+      },
+      {
+        "type": "remove",
+        "name": "Banana",
+        "quantity": 10
+      },
+      {
+        "type": "add",
+        "name": "Grapes",
+        "quantity": 5,
+        "price": 1.2
+      }
+    ],
+    "output": 12.0
+  },
+  {
+    "input": [
+      {
+        "type": "remove",
+        "name": "Mango",
+        "quantity": 5
+      },
+      {
+        "type": "add",
+        "name": "Apple",
+        "quantity": 5,
+        "price": 0.5
+      },
+      {
+        "type": "update",
+        "name": "Apple",
+        "quantity": 0,
+        "price": 0.5
+      }
+    ],
+    "output": 2.5
+  }
+]
+2025-02-13 19:49:22,976 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:49:22,978 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "type": "add",
+        "name": "Apple",
+        "quantity": 10,
+        "price": 0.5
+      },
+      {
+        "type": "add",
+        "name": "Banana",
+        "quantity": 20,
+        "price": 0.3
+      },
+      {
+        "type": "remove",
+        "name": "Apple",
+        "quantity": 5
+      },
+      {
+        "type": "update",
+        "name": "Banana",
+        "quantity": 25,
+        "price": 0.4
+      }
+    ],
+    "output": 14.5
+  },
+  {
+    "input": [
+      {
+        "type": "add",
+        "name": "Orange",
+        "quantity": 15,
+        "price": 0.6
+      },
+      {
+        "type": "remove",
+        "name": "Banana",
+        "quantity": 10
+      },
+      {
+        "type": "add",
+        "name": "Grapes",
+        "quantity": 5,
+        "price": 1.2
+      }
+    ],
+    "output": 12.0
+  },
+  {
+    "input": [
+      {
+        "type": "remove",
+        "name": "Mango",
+        "quantity": 5
+      },
+      {
+        "type": "add",
+        "name": "Apple",
+        "quantity": 5,
+        "price": 0.5
+      },
+      {
+        "type": "update",
+        "name": "Apple",
+        "quantity": 0,
+        "price": 0.5
+      }
+    ],
+    "output": 2.5
+  }
+]
+2025-02-13 19:49:22,980 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:49:22,981 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "hard",
+  "problem_title": "Inventory Management System",
+  "problem_statement": "Design a function that manages an inventory system using a dictionary. The function should allow adding, updating, and removing items from the inventory. Each item in the inventory is represented as a dictionary entry with keys: 'name', 'quantity', and 'price'. The function should also return the total value of the inventory after each operation.\n\nThis function should be able to handle multiple operations in a single call, where the operations are provided as a list of dictionaries. Each operation dictionary should have a 'type' (which is either 'add', 'update', or 'remove') and the corresponding item details.\n\nExample input operations:\n- {'type': 'add', 'name': 'Apple', 'quantity': 10, 'price': 0.5}\n- {'type': 'remove', 'name': 'Apple', 'quantity': 5}\n- {'type': 'update', 'name': 'Banana', 'quantity': 20, 'price': 0.3}\n\nThe function should handle cases where an item to be removed does not exist or where the quantity to remove exceeds the available quantity. It should also validate item inputs for correct data types and only process valid operations.",
+  "test_cases": [
+    {
+      "input": [
+        {
+          "type": "add",
+          "name": "Apple",
+          "quantity": 10,
+          "price": 0.5
+        },
+        {
+          "type": "add",
+          "name": "Banana",
+          "quantity": 20,
+          "price": 0.3
+        },
+        {
+          "type": "remove",
+          "name": "Apple",
+          "quantity": 5
+        },
+        {
+          "type": "update",
+          "name": "Banana",
+          "quantity": 25,
+          "price": 0.4
+        }
+      ],
+      "output": 14.5
+    },
+    {
+      "input": [
+        {
+          "type": "add",
+          "name": "Orange",
+          "quantity": 15,
+          "price": 0.6
+        },
+        {
+          "type": "remove",
+          "name": "Banana",
+          "quantity": 10
+        },
+        {
+          "type": "add",
+          "name": "Grapes",
+          "quantity": 5,
+          "price": 1.2
+        }
+      ],
+      "output": 12.0
+    },
+    {
+      "input": [
+        {
+          "type": "remove",
+          "name": "Mango",
+          "quantity": 5
+        },
+        {
+          "type": "add",
+          "name": "Apple",
+          "quantity": 5,
+          "price": 0.5
+        },
+        {
+          "type": "update",
+          "name": "Apple",
+          "quantity": 0,
+          "price": 0.5
+        }
+      ],
+      "output": 2.5
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "data_types",
+    "conditional_logic",
+    "loops",
+    "input_validation"
+  ],
+  "structure": {
+    "problem_name": "manage_inventory",
+    "function_name": "manage_inventory",
+    "input_structure": [
+      {
+        "Input Field": "List[Dict[str, Union[str, int, float]] ] operations"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "float total_value"
+    }
+  }
+}
+2025-02-13 19:49:22,982 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Inventory Management System
+2025-02-13 19:49:22,983 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 170, in convert_to_java_boilerplate
+    python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 58, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 190, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+2025-02-13 19:49:22,989 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"hard","problem_title":"Inventory Management System","problem_statement":"Design a function that manages an inventory system using a dictionary. The function should allow adding, updating, and removing items from the inventory. Each item in the inventory is represented as a dictionary entry with keys: \'name\', \'quantity\', and \'price\'. The function should also return the total value of the inventory after each operation.\\n\\nThis function should be able to handle multiple operations in a single call, where the operations are provided as a list of dictionaries. Each operation dictionary should have a \'type\' (which is either \'add\', \'update\', or \'remove\') and the corresponding item details.\\n\\nExample input operations:\\n- {\'type\': \'add\', \'name\': \'Apple\', \'quantity\': 10, \'price\': 0.5}\\n- {\'type\': \'remove\', \'name\': \'Apple\', \'quantity\': 5}\\n- {\'type\': \'update\', \'name\': \'Banana\', \'quantity\': 20, \'price\': 0.3}\\n\\nThe function should handle cases where an item to be removed does not exist or where the quantity to remove exceeds the available quantity. It should also validate item inputs for correct data types and only process valid operations.","test_cases":[{"input":[{"type":"add","name":"Apple","quantity":10,"price":0.5},{"type":"add","name":"Banana","quantity":20,"price":0.3},{"type":"remove","name":"Apple","quantity":5},{"type":"update","name":"Banana","quantity":25,"price":0.4}],"output":14.5},{"input":[{"type":"add","name":"Orange","quantity":15,"price":0.6},{"type":"remove","name":"Banana","quantity":10},{"type":"add","name":"Grapes","quantity":5,"price":1.2}],"output":12.0},{"input":[{"type":"remove","name":"Mango","quantity":5},{"type":"add","name":"Apple","quantity":5,"price":0.5},{"type":"update","name":"Apple","quantity":0,"price":0.5}],"output":2.5}],"tags":["dictionaries","data_types","conditional_logic","loops","input_validation"],"structure":{"problem_name":"manage_inventory","function_name":"manage_inventory","input_structure":[{"Input Field":"List[Dict[str, Union[str, int, float]] ] operations"}],"output_structure":{"Output Field":"float total_value"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 536, 'prompt_tokens': 404, 'total_tokens': 940, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-b73a14cb-c7e7-48b1-8471-18d0a79eeb8e-0' usage_metadata={'input_tokens': 404, 'output_tokens': 536, 'total_tokens': 940}
+2025-02-13 19:49:22,992 - main.problem_generator.problem_generator_service - ERROR - Error generating problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 170, in convert_to_java_boilerplate
+    python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 58, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 190, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+2025-02-13 19:49:22,993 - main.problem_generator.problem_generator_service - ERROR - Response: content='' additional_kwargs={'function_call': {'arguments': '{"concept":"Dictionaries","difficulty":"hard","problem_title":"Inventory Management System","problem_statement":"Design a function that manages an inventory system using a dictionary. The function should allow adding, updating, and removing items from the inventory. Each item in the inventory is represented as a dictionary entry with keys: \'name\', \'quantity\', and \'price\'. The function should also return the total value of the inventory after each operation.\\n\\nThis function should be able to handle multiple operations in a single call, where the operations are provided as a list of dictionaries. Each operation dictionary should have a \'type\' (which is either \'add\', \'update\', or \'remove\') and the corresponding item details.\\n\\nExample input operations:\\n- {\'type\': \'add\', \'name\': \'Apple\', \'quantity\': 10, \'price\': 0.5}\\n- {\'type\': \'remove\', \'name\': \'Apple\', \'quantity\': 5}\\n- {\'type\': \'update\', \'name\': \'Banana\', \'quantity\': 20, \'price\': 0.3}\\n\\nThe function should handle cases where an item to be removed does not exist or where the quantity to remove exceeds the available quantity. It should also validate item inputs for correct data types and only process valid operations.","test_cases":[{"input":[{"type":"add","name":"Apple","quantity":10,"price":0.5},{"type":"add","name":"Banana","quantity":20,"price":0.3},{"type":"remove","name":"Apple","quantity":5},{"type":"update","name":"Banana","quantity":25,"price":0.4}],"output":14.5},{"input":[{"type":"add","name":"Orange","quantity":15,"price":0.6},{"type":"remove","name":"Banana","quantity":10},{"type":"add","name":"Grapes","quantity":5,"price":1.2}],"output":12.0},{"input":[{"type":"remove","name":"Mango","quantity":5},{"type":"add","name":"Apple","quantity":5,"price":0.5},{"type":"update","name":"Apple","quantity":0,"price":0.5}],"output":2.5}],"tags":["dictionaries","data_types","conditional_logic","loops","input_validation"],"structure":{"problem_name":"manage_inventory","function_name":"manage_inventory","input_structure":[{"Input Field":"List[Dict[str, Union[str, int, float]] ] operations"}],"output_structure":{"Output Field":"float total_value"}}}', 'name': 'generate_programming_problem'}} response_metadata={'token_usage': {'completion_tokens': 536, 'prompt_tokens': 404, 'total_tokens': 940, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_b045b4af17', 'prompt_filter_results': [{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'jailbreak': {'filtered': False, 'detected': False}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}], 'finish_reason': 'stop', 'logprobs': None, 'content_filter_results': {}} id='run-b73a14cb-c7e7-48b1-8471-18d0a79eeb8e-0' usage_metadata={'input_tokens': 404, 'output_tokens': 536, 'total_tokens': 940}
+2025-02-13 19:49:22,995 - main.problem_generator.problem_generator_route - ERROR - Error generating problem: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 170, in convert_to_java_boilerplate
+    python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 58, in parse_input_field
+    raise ValueError(f"Invalid input field format: {input_field}")
+ValueError: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 496, in generate_problem
+    java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
+  File "D:\ai_projects\goat_coder\backend\.\main\boilerplate_generator\java_boilerplate_generator.py", line 190, in convert_to_java_boilerplate
+    raise ValueError(f"Failed to generate Java boilerplate: {str(e)}")
+ValueError: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 525, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_route.py", line 28, in generate_problem
+    problem = await service.generate_problem(request.concept, request.complexity)
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\problem_generator_service.py", line 532, in generate_problem
+    raise ValueError(f"Failed to generate problem: {str(e)}")
+ValueError: Failed to generate problem: Failed to generate problem: Failed to generate Java boilerplate: Invalid input field format: List[Dict[str, Union[str, int, float]] ] operations
+2025-02-13 19:52:15,563 - uvicorn.error - INFO - Started server process [17472]
+2025-02-13 19:52:15,564 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-13 19:52:15,566 - uvicorn.error - INFO - Application startup complete.
+2025-02-13 19:52:50,537 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-13 19:52:50,539 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Dictionaries data structure, complexity: MEDIUM
+2025-02-13 19:52:51,854 - main.problem_generator.prompt_manager - INFO - Normalizing name: Dictionaries data structure
+2025-02-13 19:52:51,855 - main.problem_generator.prompt_manager - INFO - Normalized to: dictionaries_data_structure
+2025-02-13 19:52:51,863 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 54, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\dictionaries_data_structure\\config.json'
+2025-02-13 19:52:51,870 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-13 19:52:51,871 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-13 19:52:51,874 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-13 19:52:51,875 - main.problem_generator.problem_generator_service - INFO - Sending request to LLM
+2025-02-13 19:52:56,072 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-13 19:52:56,115 - main.problem_generator.problem_generator_service - INFO - Received response from LLM
+2025-02-13 19:52:56,116 - main.problem_generator.problem_generator_service - INFO - Raw LLM Response:
+2025-02-13 19:52:56,116 - main.problem_generator.problem_generator_service - INFO - {
+  "function_call": {
+    "arguments": "{\"concept\":\"Dictionaries\",\"difficulty\":\"medium\",\"problem_title\":\"Student Grade Records\",\"problem_statement\":\"You are tasked with creating a function to manage the grades of students in a class. Each student is associated with a dictionary that contains their name and grades for different subjects. Your goal is to write a function that takes in a list of student records (dictionaries) and returns a new dictionary with student names as keys and their average grades as values. The function should handle cases where a student may not have any grades recorded.\\n\\nFor example, given the input of student records, the function should compute the average for each student. If a student has no grades, their average should be recorded as 'N/A'.\",\"test_cases\":[{\"input\":[{\"name\":\"John\",\"grades\":[80, 90, 100]},{\"name\":\"Doe\",\"grades\":[70, 87]},{\"name\":\"Jane\",\"grades\":[]}],\"output\":{\"John\":90.0,\"Doe\":78.5,\"Jane\":\"N/A\"}},{\"input\":[{\"name\":\"Alice\",\"grades\":[95, 85, 75]},{\"name\":\"Bob\",\"grades\":[100, 90, 88]},{\"name\":\"Charlie\",\"grades\":[]},{\"name\":\"David\",\"grades\":[65]}],\"output\":{\"Alice\":85.0,\"Bob\":92.66666666666667,\"Charlie\":\"N/A\",\"David\":65.0}}],\"tags\":[\"dictionaries\",\"arrays\",\"loops\",\"conditional_logic\",\"data_types\"],\"structure\":{\"problem_name\":\"student_grade_records\",\"function_name\":\"calculate_average_grades\",\"input_structure\":[{\"Input Field\":\"List[dict] student_records\"}],\"output_structure\":{\"Output Field\":\"dict average_grades\"}}}",
+    "name": "generate_programming_problem"
+  }
+}
+2025-02-13 19:52:56,117 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-13 19:52:56,118 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "name": "John",
+        "grades": [
+          80,
+          90,
+          100
+        ]
+      },
+      {
+        "name": "Doe",
+        "grades": [
+          70,
+          87
+        ]
+      },
+      {
+        "name": "Jane",
+        "grades": []
+      }
+    ],
+    "output": {
+      "John": 90.0,
+      "Doe": 78.5,
+      "Jane": "N/A"
+    }
+  },
+  {
+    "input": [
+      {
+        "name": "Alice",
+        "grades": [
+          95,
+          85,
+          75
+        ]
+      },
+      {
+        "name": "Bob",
+        "grades": [
+          100,
+          90,
+          88
+        ]
+      },
+      {
+        "name": "Charlie",
+        "grades": []
+      },
+      {
+        "name": "David",
+        "grades": [
+          65
+        ]
+      }
+    ],
+    "output": {
+      "Alice": 85.0,
+      "Bob": 92.66666666666667,
+      "Charlie": "N/A",
+      "David": 65.0
+    }
+  }
+]
+2025-02-13 19:52:56,119 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-13 19:52:56,121 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      {
+        "name": "John",
+        "grades": [
+          80,
+          90,
+          100
+        ]
+      },
+      {
+        "name": "Doe",
+        "grades": [
+          70,
+          87
+        ]
+      },
+      {
+        "name": "Jane",
+        "grades": []
+      }
+    ],
+    "output": {
+      "John": 90.0,
+      "Doe": 78.5,
+      "Jane": "N/A"
+    }
+  },
+  {
+    "input": [
+      {
+        "name": "Alice",
+        "grades": [
+          95,
+          85,
+          75
+        ]
+      },
+      {
+        "name": "Bob",
+        "grades": [
+          100,
+          90,
+          88
+        ]
+      },
+      {
+        "name": "Charlie",
+        "grades": []
+      },
+      {
+        "name": "David",
+        "grades": [
+          65
+        ]
+      }
+    ],
+    "output": {
+      "Alice": 85.0,
+      "Bob": 92.66666666666667,
+      "Charlie": "N/A",
+      "David": 65.0
+    }
+  }
+]
+2025-02-13 19:52:56,121 - main.problem_generator.problem_generator_service - INFO - Complete response being sent to client:
+2025-02-13 19:52:56,123 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries",
+  "difficulty": "medium",
+  "problem_title": "Student Grade Records",
+  "problem_statement": "You are tasked with creating a function to manage the grades of students in a class. Each student is associated with a dictionary that contains their name and grades for different subjects. Your goal is to write a function that takes in a list of student records (dictionaries) and returns a new dictionary with student names as keys and their average grades as values. The function should handle cases where a student may not have any grades recorded.\n\nFor example, given the input of student records, the function should compute the average for each student. If a student has no grades, their average should be recorded as 'N/A'.",
+  "test_cases": [
+    {
+      "input": [
+        {
+          "name": "John",
+          "grades": [
+            80,
+            90,
+            100
+          ]
+        },
+        {
+          "name": "Doe",
+          "grades": [
+            70,
+            87
+          ]
+        },
+        {
+          "name": "Jane",
+          "grades": []
+        }
+      ],
+      "output": {
+        "John": 90.0,
+        "Doe": 78.5,
+        "Jane": "N/A"
+      }
+    },
+    {
+      "input": [
+        {
+          "name": "Alice",
+          "grades": [
+            95,
+            85,
+            75
+          ]
+        },
+        {
+          "name": "Bob",
+          "grades": [
+            100,
+            90,
+            88
+          ]
+        },
+        {
+          "name": "Charlie",
+          "grades": []
+        },
+        {
+          "name": "David",
+          "grades": [
+            65
+          ]
+        }
+      ],
+      "output": {
+        "Alice": 85.0,
+        "Bob": 92.66666666666667,
+        "Charlie": "N/A",
+        "David": 65.0
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "arrays",
+    "loops",
+    "conditional_logic",
+    "data_types"
+  ],
+  "structure": {
+    "problem_name": "student_grade_records",
+    "function_name": "calculate_average_grades",
+    "input_structure": [
+      {
+        "Input Field": "List[dict] student_records"
+      }
+    ],
+    "output_structure": {
+      "Output Field": "dict average_grades"
+    }
+  }
+}
+2025-02-13 19:52:56,124 - main.problem_generator.problem_generator_service - INFO - Successfully parsed problem: Student Grade Records
+2025-02-13 19:52:56,124 - main.problem_generator.problem_generator_service - INFO - Final response after model conversion:
+2025-02-13 19:52:56,125 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Dictionaries data structure",
+  "difficulty": "medium",
+  "problem_title": "Student Grade Records",
+  "problem_statement": "You are tasked with creating a function to manage the grades of students in a class. Each student is associated with a dictionary that contains their name and grades for different subjects. Your goal is to write a function that takes in a list of student records (dictionaries) and returns a new dictionary with student names as keys and their average grades as values. The function should handle cases where a student may not have any grades recorded.\n\nFor example, given the input of student records, the function should compute the average for each student. If a student has no grades, their average should be recorded as 'N/A'.",
+  "test_cases": [
+    {
+      "input": [
+        {
+          "name": "John",
+          "grades": [
+            80,
+            90,
+            100
+          ]
+        },
+        {
+          "name": "Doe",
+          "grades": [
+            70,
+            87
+          ]
+        },
+        {
+          "name": "Jane",
+          "grades": []
+        }
+      ],
+      "output": {
+        "John": 90.0,
+        "Doe": 78.5,
+        "Jane": "N/A"
+      }
+    },
+    {
+      "input": [
+        {
+          "name": "Alice",
+          "grades": [
+            95,
+            85,
+            75
+          ]
+        },
+        {
+          "name": "Bob",
+          "grades": [
+            100,
+            90,
+            88
+          ]
+        },
+        {
+          "name": "Charlie",
+          "grades": []
+        },
+        {
+          "name": "David",
+          "grades": [
+            65
+          ]
+        }
+      ],
+      "output": {
+        "Alice": 85.0,
+        "Bob": 92.66666666666667,
+        "Charlie": "N/A",
+        "David": 65.0
+      }
+    }
+  ],
+  "tags": [
+    "dictionaries",
+    "arrays",
+    "loops",
+    "conditional_logic",
+    "data_types"
+  ],
+  "structure": {
+    "problem_name": "student_grade_records",
+    "function_name": "calculate_average_grades",
+    "input_structure": [
+      {
+        "Input_Field": "List[dict] student_records"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "dict average_grades"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic Map<String, Integer> calculateAverageGrades(List<Object> studentRecords) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef calculate_average_grades(student_records: Any) -> Any:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-13 19:52:56,126 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Student Grade Records
