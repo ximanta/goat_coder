@@ -51,16 +51,20 @@ class PromptManager:
             concept_path = self._normalize_name(concept)
             config_path = self.concepts_path / concept_path / "config.json"
             
+            logger.info(f"Loading config from: {config_path}")
             with config_path.open() as f:
                 config = json.load(f)
+            logger.info(f"Loaded config with {len(config['problem_types'])} problem type categories")
             
             # Get available categories excluding the last used one
             available_categories = [
                 cat for cat in config["problem_types"] 
                 if cat["category"] != self.last_used['category']
             ]
+            logger.info(f"Found {len(available_categories)} available categories (excluding last used: {self.last_used['category']})")
             
             if not available_categories:
+                logger.info("No new categories available, using all categories")
                 available_categories = config["problem_types"]
             
             # Select category and update last used

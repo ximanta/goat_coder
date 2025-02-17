@@ -1,7 +1,9 @@
 from typing import Dict, Any
 import re
 import logging
-from ..utils.name_converter import to_java_name
+import json
+import os
+from ..utils.name_converter import to_java_name  # Fix duplicate import line
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -11,6 +13,11 @@ class JavaSubmissionGeneratorException(Exception):
     pass
 
 class JavaSubmissionGenerator:
+    def __init__(self):
+        # Add a debug directory for saving generated files
+        self.debug_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'debug')
+        os.makedirs(self.debug_dir, exist_ok=True)
+
     def generate_submission(self, source_code: str, problem_structure: Dict[str, Any]) -> str:
         """
         Generates a complete Java submission by combining the user's source code
@@ -97,7 +104,7 @@ class JavaSubmissionGenerator:
             import java.time.*;
             import java.math.*;
             import java.util.regex.*;
-
+            
 public class {class_name} {{
     public {return_type} {function_name}({function_params}) {{
 {source_code}
@@ -115,7 +122,6 @@ public class {class_name} {{
         
         // Print the result
         {output_printing}
-        
         scanner.close();
     }}
 }}"""
@@ -131,16 +137,21 @@ public class {class_name} {{
                 output_printing=self._generate_output_printing(return_type, 'result')
             )
             
-            # Optionally, save the generated code to a file for debugging.
+            # Save the generated code to a file for debugging with full path
+            debug_file_path = os.path.join(self.debug_dir, 'Main.java')
             try:
-                with open('Main.java', 'w') as f:
+                with open(debug_file_path, 'w', encoding='utf-8') as f:
                     f.write(submission.strip())
-                logger.info("Successfully saved generated Java code to Main.java")
+                logger.info(f"Successfully saved generated Java code to {debug_file_path}")
+                # Also log the content being written
+                logger.info("Content being written to file:")
+                logger.info(submission.strip())
             except Exception as e:
-                logger.error(f"Failed to save Main.java: {str(e)}")
+                logger.error(f"Failed to save {debug_file_path}: {str(e)}")
             
+            logger.info("=== Generated Java Submission ===")
+            logger.info(f"Generated submission:\n{submission}")
             return submission.strip()
-        
         except Exception as e:
             logger.error(f"Error generating Java submission: {str(e)}")
             raise
@@ -159,7 +170,7 @@ public class {class_name} {{
         
         if not isinstance(problem_structure["output_structure"], dict):
             raise JavaSubmissionGeneratorException("output_structure must be a dictionary")
-            
+        
         if "Output_Field" not in problem_structure["output_structure"]:
             raise JavaSubmissionGeneratorException("output_structure must contain Output_Field")
 
@@ -193,7 +204,7 @@ public class {class_name} {{
         For example, converts "List[int]" to "int[]" and "int" to "int".
         """
         python_type = python_type.lower()
-        
+
         # Handle list types first.
         if python_type.startswith("list["):
             inner_type = python_type[5:-1]  # Extract type inside List[]
@@ -338,6 +349,19 @@ public class {class_name} {{
             return f"System.out.println(Arrays.toString({var_name}));"
         return f"System.out.println({var_name});"
 
+    def format_input(self, input_data: list) -> str:
+        """Format input data for Java program stdin"""
+        formatted_inputs = []
+        for item in input_data:
+            if isinstance(item, list):
+                # Join array elements with spaces for Java input
+                formatted_inputs.append(" ".join(str(x) for x in item))
+            else:
+                formatted_inputs.append(str(item))
+        
+        # Join different inputs with newlines
+        return "\n".join(formatted_inputs)
+
 #     def _generate_submission_template(self, class_name: str, return_type: str, 
 #                                         function_name: str, param_list: list, 
 #                                         source_code: str, param_parsing: list) -> str:
@@ -351,12 +375,10 @@ public class {class_name} {{
         
 #         template = f"""import java.util.*;
 # import java.util.regex.*;
-
 # public class {class_name} {{
 #     public {return_type} {function_name}({function_params}) {{
 #         {source_code}
 #     }}
-
 #     public static void main(String[] args) {{
 #         Scanner scanner = new Scanner(System.in);
 #         Solution solution = new Solution();
@@ -373,5 +395,5 @@ public class {class_name} {{
 #         scanner.close();
 #     }}
 # }}"""
-        console.log("java_submission_generator: Submission template geerated:", template)
-        return template
+#         console.log("java_submission_generator: Submission template geerated:", template)
+#         return template

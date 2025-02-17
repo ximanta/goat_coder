@@ -37,20 +37,6 @@ class ProblemSubmissionService:
         """Convert string to base64"""
         return base64.b64encode(str(text).encode()).decode()
 
-    def format_input_for_java(self, input_data: list) -> str:
-        """Format input data for Java program stdin"""
-        # For arrays, join elements with spaces
-        formatted_inputs = []
-        for item in input_data:
-            if isinstance(item, list):
-                # Join array elements with spaces for Java input
-                formatted_inputs.append(" ".join(str(x) for x in item))
-            else:
-                formatted_inputs.append(str(item))
-        
-        # Join different inputs with newlines
-        return "\n".join(formatted_inputs)
-
     async def submit_code(self, language_id: int, source_code: str, problem_id: str, structure: str, test_cases: list):
         try:
             parsed_structure = json.loads(structure) if isinstance(structure, str) else structure
@@ -59,7 +45,9 @@ class ProblemSubmissionService:
             java_generator = JavaSubmissionGenerator()
             complete_source = java_generator.generate_submission(source_code, parsed_structure)
             
-            # Save the submission details to a JSON file
+            # Save the submission details to a JSON file - using the same debug directory
+            debug_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'debug')
+            os.makedirs(debug_dir, exist_ok=True)
             submission_details = {
                 "language_id": language_id,
                 "problem_id": problem_id,
@@ -71,7 +59,7 @@ class ProblemSubmissionService:
             # Prepare submissions for all test cases
             submissions = []
             for i, test_case in enumerate(test_cases):
-                input_str = self.format_input_for_java(test_case['input'])
+                input_str = java_generator.format_input(test_case['input'])  # Use generator's method
                 output_str = str(test_case['output'])
                 
                 # Add test case details to submission_details
@@ -89,11 +77,12 @@ class ProblemSubmissionService:
                     "callback_url": os.getenv("JUDGE0_CALLBACK_URL")
                 })
             
-            # Save submission details to file
+            # Save submission details to file in debug directory
             try:
-                with open('last_submission.json', 'w') as f:
+                debug_file_path = os.path.join(debug_dir, 'last_submission.json')
+                with open(debug_file_path, 'w') as f:
                     json.dump(submission_details, f, indent=2)
-                logger.info("Successfully saved submission details to last_submission.json")
+                logger.info(f"Successfully saved submission details to {debug_file_path}")
             except Exception as e:
                 logger.error(f"Failed to save last_submission.json: {str(e)}")
             

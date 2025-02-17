@@ -2,33 +2,43 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "count_up_to_number",
-    "function_name": "count_up",
+    "problem_name": "find_longest_palindrome",
+    "function_name": "find_longest_palindrome",
     "input_structure": [
       {
-        "Input_Field": "int number"
+        "Input_Field": "List[str] strings"
       }
     ],
     "output_structure": {
-      "Output_Field": "List[int] result"
+      "Output_Field": "str result"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n\npublic class Main {\n    public int[] countUp(int number) {\n/*DO NOT modify this method.*/\r\n\r\n    // If the number is less than or equal to 0, return an empty array.\r\n    if (number <= 0) {\r\n        return new int[0];\r\n    }\r\n    \r\n    // Create an array of size 'number'\r\n    int[] result = new int[number];\r\n    \r\n    // Fill the array with values from 1 to number.\r\n    for (int i = 0; i < number; i++) {\r\n        result[i] = i + 1;\r\n    }\r\n    \r\n    // Return the populated array.\r\n    return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        int number = Integer.parseInt(scanner.nextLine());\n        \n        // Call the solution function\n        int[] result = solution.countUp(number);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        \n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n    public String findLongestPalindrome(String[] strings) {\n/*DO NOT modify this method.*/\n\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        List<String> lines = new ArrayList<>();\n        while(scanner.hasNextLine()){\n            String line = scanner.nextLine();\n            if(line.trim().isEmpty()) break;\n            lines.add(line);\n        }\n        String[] strings = lines.toArray(new String[0]);\n        \n        // Call the solution function\n        String result = solution.findLongestPalindrome(strings);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "5",
-      "expected_output": "[1, 2, 3, 4, 5]"
+      "input": "hello\nracecar\nworld\nmadam\napple",
+      "expected_output": "racecar"
     },
     {
       "test_case_number": 2,
-      "input": "3",
-      "expected_output": "[1, 2, 3]"
+      "input": "noon\ncivic\ndeified\nlevel\nradar",
+      "expected_output": "deified"
     },
     {
       "test_case_number": 3,
-      "input": "0",
-      "expected_output": "[]"
+      "input": "python\njava\njavascript\ntypescript",
+      "expected_output": ""
+    },
+    {
+      "test_case_number": 4,
+      "input": "a\nb\ncba\nabc\naa",
+      "expected_output": "aa"
+    },
+    {
+      "test_case_number": 5,
+      "input": "abba\nabcba\nabba\nxyz",
+      "expected_output": "abcba"
     }
   ]
 }
