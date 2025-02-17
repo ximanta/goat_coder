@@ -2,43 +2,33 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "find_longest_distinct_subarray",
-    "function_name": "find_longest_distinct_subarray",
+    "problem_name": "sum_even_numbers",
+    "function_name": "sum_even_numbers",
     "input_structure": [
       {
-        "Input_Field": "List[int] array"
+        "Input_Field": "List[int] numbers"
       }
     ],
     "output_structure": {
-      "Output_Field": "int length"
+      "Output_Field": "int result"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n    public int findLongestDistinctSubarray(int[] array) {\nif (array == null || array.length == 0) {\r\n        return 0;\r\n    }\r\n    \r\n    int left = 0, right = 0;\r\n    int maxLength = 0;\r\n    HashSet<Integer> seen = new HashSet<>();\r\n    \r\n    while (right < array.length) {\r\n        // If the current element is not in the set, add it and update maxLength.\r\n        if (!seen.contains(array[right])) {\r\n            seen.add(array[right]);\r\n            maxLength = Math.max(maxLength, right - left + 1);\r\n            right++;\r\n        } else {\r\n            // If it's already in the set, remove the element at 'left' and move the left pointer.\r\n            seen.remove(array[left]);\r\n            left++;\r\n        }\r\n    }\r\n    \r\n    return maxLength;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        List<String> lines = new ArrayList<>();\n        while(scanner.hasNextLine()){\n            String line = scanner.nextLine();\n            if(line.trim().isEmpty()) break;\n            lines.add(line);\n        }\n        String allInput = String.join(\" \", lines);\n        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split(\"\\\\s+\");\n        int[] array = new int[tokens.length];\n        for(int i = 0; i < tokens.length; i++) {\n            array[i] = Integer.parseInt(tokens[i]);\n        }\n        \n        // Call the solution function\n        int result = solution.findLongestDistinctSubarray(array);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n    public Integer sumEvenNumbers(List<Integer> numbers) {\n/*DO NOT modify this method.*/\r\n\r\n    int sum = 0;\r\n    for (int number : numbers) {\r\n        if (number % 2 == 0) {\r\n            sum += number;\r\n        }\r\n    }\r\n    return sum;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        List<Integer> numbers = new ArrayList<>();\n        while (scanner.hasNextLine()) {\n            String line = scanner.nextLine().trim();\n            if (line.isEmpty()) break;\n            String[] parts = line.split(\"\\\\s+\");\n            for (String part : parts) {\n                numbers.add(Integer.parseInt(part));\n            }\n        }\n        \n        // Call the solution function\n        Integer result = solution.sumEvenNumbers(numbers);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "1\n2\n3\n4\n5\n1\n2\n3",
-      "expected_output": "5"
-    },
-    {
-      "test_case_number": 2,
-      "input": "1\n1\n1\n1\n1",
-      "expected_output": "1"
-    },
-    {
-      "test_case_number": 3,
-      "input": "5\n1\n3\n5\n2\n1\n3\n4\n2",
+      "input": "1\n2\n3\n4\n5",
       "expected_output": "6"
     },
     {
-      "test_case_number": 4,
-      "input": "",
+      "test_case_number": 2,
+      "input": "1\n3\n5",
       "expected_output": "0"
     },
     {
-      "test_case_number": 5,
-      "input": "10\n20\n30\n10\n20\n30\n40\n50",
-      "expected_output": "5"
+      "test_case_number": 3,
+      "input": "2\n4\n6\n8\n10",
+      "expected_output": "30"
     }
   ]
 }

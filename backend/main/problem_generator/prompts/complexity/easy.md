@@ -1,3 +1,14 @@
+You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
 For EASY difficulty level, ensure:
 
 1. Input Parameters:
@@ -9,8 +20,9 @@ For EASY difficulty level, ensure:
    - Single operation or transformation
    - No nested loops required
    - No complex conditions
-   - No Dict types
    - Linear solution possible
 
 3. Test Cases:
-   - 2-3 simple test cases
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+
+

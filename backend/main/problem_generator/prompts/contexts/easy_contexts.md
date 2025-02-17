@@ -1,4 +1,4 @@
-Use these real-world contexts:
+<!-- Use these real-world contexts:
 - Gaming scores and achievements
 - Social media post analysis
 - School grade calculations
@@ -6,4 +6,4 @@ Use these real-world contexts:
 - Shopping and inventory
 - Music playlist management
 - Text message analysis
-- Sports statistics 
+- Sports statistics  -->

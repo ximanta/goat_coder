@@ -117,120 +117,7 @@ class ProblemGeneratorService:
         self.java_generator = JavaBoilerplateGenerator()
         self.python_generator = PythonBoilerplateGenerator()
 
-    def _create_avoid_problems_prompt(self, recent_problems: list[ProblemMetadata]) -> str:
-        """Create a prompt to help LLM avoid generating similar problems"""
-        if not recent_problems:
-            return ""
-        
-        # Load forbidden operations from config
-        concept_path = self._normalize_name(recent_problems[0].concept)
-        config_file = Path(__file__).parent / "prompts" / "concepts" / concept_path / "config.json"
-        forbidden_ops = []
-        
-        if config_file.exists():
-            with config_file.open() as f:
-                config = json.load(f)
-                for category in config.get("forbidden_operations", {}).values():
-                    forbidden_ops.extend(category)
-        
-        problems_str = "\n\n".join(
-            f"""Previously Generated Problem #{i+1}:
-            Title: {p.problem_title}
-            Statement: {p.problem_statement}
-            Core Operation: {self._extract_core_operation(p.problem_title)}
-            ---"""
-            for i, p in enumerate(recent_problems)
-        )
-        
-        return f"""
-        IMPORTANT: You have previously generated these problems:
-
-        {problems_str}
-
-        ABSOLUTELY DO NOT generate problems that:
-        1. Use any of these operations: {', '.join(forbidden_ops)}
-        2. Are variations of arithmetic calculations
-        3. Are simple counting problems
-        4. Involve basic mathematical operations
-
-        Instead, focus on:
-        - String manipulation (reverse, replace, transform)
-        - Pattern matching
-        - Data validation
-        - Array transformations
-        - Logic operations
-        """
-
-    def _extract_core_operation(self, title: str) -> str:
-        """Extract the main operation type from a problem title"""
-        title_lower = title.lower()
-        
-        operations = {
-            "count": "counting operation",
-            "find": "finding/searching operation",
-            "convert": "conversion operation",
-            "transform": "transformation operation",
-            "check": "validation operation",
-            "validate": "validation operation",
-            "reverse": "reversal operation",
-            "maximum": "max/min operation",
-            "minimum": "max/min operation",
-            "longest": "max/min operation",
-            "shortest": "max/min operation"
-        }
-        
-        for key, operation in operations.items():
-            if key in title_lower:
-                return operation
-                
-        return "unknown operation"
-
-    def _get_beginner_problem_suggestions(self) -> str:
-        """Get suggestions for beginner-level programming problems"""
-        return """
-        For Basic Programming beginners, choose from these problem types:
-        1. String Manipulation
-           - Reverse a string
-           - Count specific characters
-           - Convert case (upper/lower)
-           - Find longest word in a sentence
-           
-        2. Simple Array Operations
-           - Find maximum/minimum
-           - Count elements matching condition
-           - Find first/last occurrence
-           - Check if element exists
-           
-        3. Number Patterns
-           - Check even/odd patterns
-           - Count digits
-           - Check number properties (palindrome, perfect number)
-           - Convert number to digits array
-           
-        4. Basic Logic
-           - Temperature conversion
-           - Time conversion
-           - Distance conversion
-           - Simple scoring systems
-           
-        5. Character Patterns
-           - Check vowels/consonants
-           - Convert letter to position
-           - Simple character patterns
-           - Basic input validation
-
-        IMPORTANT: For each category, create unique variations and real-world contexts.
-        Example contexts:
-        - Gaming scores
-        - Social media posts
-        - School grades
-        - Sports statistics
-        - Weather data
-        - Shopping calculations
-        - Music playlist management
-        - Text message analysis
-        """
-
+ 
     async def generate_problem(self, concept: str, complexity: str) -> Dict:
         """
         Generate a programming problem based on concept and complexity.
@@ -254,7 +141,6 @@ class ProblemGeneratorService:
                 
                 # Get recent problems to avoid
                 recent_problems = self.problem_cache.get_recent_problems(concept, complexity)
-                avoid_prompt = self._create_avoid_problems_prompt(recent_problems)
                 
                 # Get concept and complexity specific prompts
                 concept_prompt = self.prompt_manager.get_concept_prompt(concept)
@@ -267,12 +153,9 @@ class ProblemGeneratorService:
                 
                 # Combine prompts
                 combined_prompt = f"""
-                {avoid_prompt}
-
-                {concept_prompt}
-
+                
                 {complexity_prompt}
-
+                {concept_prompt}            
                 {context_prompt}
                 """
 
@@ -392,7 +275,8 @@ class ProblemGeneratorService:
                                         "properties": {
                                             "Output Field": {
                                                 "type": "string",
-                                                "description": "Type and name of the output (e.g., 'List[int] result')"
+                                                "description": "Type and name of the output (e.g., 'List[int] result'). Only 1 concrete output - No 'Output Field': 'int or str result'",
+                                                  "pattern": "^(?!.*\\bor\\b).*$"
                                             }
                                         },
                                         "required": ["Output Field"]
@@ -406,16 +290,21 @@ class ProblemGeneratorService:
                     }
                 }]
 
-                logger.info("Sending request to LLM")
+                # Add detailed logging of what's being sent to LLM
+                logger.info("=== LLM Request Details ===")
+                logger.info("Messages being sent to LLM:")
+                for msg in messages:
+                    logger.info(f"Role: {msg['role']}")
+                    logger.info(f"Content: {msg['content']}\n")
+
+
+           
                 response = await self.llm.ainvoke(
                     messages,
                     functions=functions,
                     function_call={"name": "generate_programming_problem"}
                 )
-                logger.info("Received response from LLM")
-                logger.info("Raw LLM Response:")
-                logger.info(json.dumps(response.additional_kwargs, indent=2))
-
+     
                 try:
                     if hasattr(response, 'additional_kwargs') and 'function_call' in response.additional_kwargs:
                         function_call = response.additional_kwargs['function_call']
@@ -456,10 +345,7 @@ class ProblemGeneratorService:
                             ]
                             
 
-                            # Log the final complete response
-                            logger.info("Complete response being sent to client:")
-                            logger.info(json.dumps(result, indent=2))
-
+                    
                             # Ensure the concept matches the input concept exactly
                             result['concept'] = concept
                             
@@ -470,11 +356,9 @@ class ProblemGeneratorService:
                                 complexity=complexity,
                                 problem_title=result['problem_title'],
                                 problem_statement=result['problem_statement']
-                            )
-                            
+                            )                          
 
-                            logger.info(f"Successfully parsed problem: {result.get('problem_title', 'Unknown Title')}")
-                            
+                           
 
                             # Ensure structure has all required fields
                             if 'structure' in result:
@@ -502,7 +386,7 @@ class ProblemGeneratorService:
                             
 
                             final_response = Problem(**result).model_dump()
-                            logger.info("Final response after model conversion:")
+                            logger.info("Final response after language conversion:")
                             logger.info(json.dumps(final_response, indent=2))
                             
 

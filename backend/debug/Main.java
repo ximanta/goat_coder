@@ -6,29 +6,16 @@ import java.util.*;
             import java.util.regex.*;
             
 public class Main {
-    public int findLongestDistinctSubarray(int[] array) {
-if (array == null || array.length == 0) {
-        return 0;
-    }
-    
-    int left = 0, right = 0;
-    int maxLength = 0;
-    HashSet<Integer> seen = new HashSet<>();
-    
-    while (right < array.length) {
-        // If the current element is not in the set, add it and update maxLength.
-        if (!seen.contains(array[right])) {
-            seen.add(array[right]);
-            maxLength = Math.max(maxLength, right - left + 1);
-            right++;
-        } else {
-            // If it's already in the set, remove the element at 'left' and move the left pointer.
-            seen.remove(array[left]);
-            left++;
+    public Integer sumEvenNumbers(List<Integer> numbers) {
+/*DO NOT modify this method.*/
+
+    int sum = 0;
+    for (int number : numbers) {
+        if (number % 2 == 0) {
+            sum += number;
         }
     }
-    
-    return maxLength;
+    return sum;
     }
 
     public static void main(String[] args) {
@@ -36,21 +23,18 @@ if (array == null || array.length == 0) {
         Main solution = new Main();
         
         // Parse input
-        List<String> lines = new ArrayList<>();
-        while(scanner.hasNextLine()){
-            String line = scanner.nextLine();
-            if(line.trim().isEmpty()) break;
-            lines.add(line);
-        }
-        String allInput = String.join(" ", lines);
-        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split("\\s+");
-        int[] array = new int[tokens.length];
-        for(int i = 0; i < tokens.length; i++) {
-            array[i] = Integer.parseInt(tokens[i]);
+        List<Integer> numbers = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine().trim();
+            if (line.isEmpty()) break;
+            String[] parts = line.split("\\s+");
+            for (String part : parts) {
+                numbers.add(Integer.parseInt(part));
+            }
         }
         
         // Call the solution function
-        int result = solution.findLongestDistinctSubarray(array);
+        Integer result = solution.sumEvenNumbers(numbers);
         
         // Print the result
         System.out.println(result);

@@ -96,19 +96,10 @@ class PromptManager:
               └─ Problem Type: {problem['type']} (from {len(available_problems)} available)
                   └─ Variation: {variation} (from {len(problem['variations'])} available)
             """)
-            
-            # Load main prompt with fallback
-            main_prompt = ""
-            main_prompt_path = self.concepts_path / concept_path / "main_prompt.md"
-            
-            if main_prompt_path.exists():
-                main_prompt = main_prompt_path.read_text().strip()
-            else:
-                logger.warning(f"Main prompt not found at: {main_prompt_path}")
-                main_prompt = "Generate a programming problem suitable for beginners."
+                     
             
             return f"""
-            {main_prompt}
+        
 
             For this problem, use this specific type:
             Category: {category["category"]}
@@ -131,14 +122,13 @@ class PromptManager:
 
     def get_context_prompt(self, concept: str, complexity: str) -> Optional[str]:
         """Get context-specific prompt based on concept and complexity"""
-        if "beginner" in concept.lower():
-            return self._read_prompt_file(self.contexts_path / "beginner_contexts.md")
-        elif complexity.lower() == "easy":
-            return self._read_prompt_file(self.contexts_path / "beginner_contexts.md")
+   
+        if complexity.lower() == "easy":
+            return self._read_prompt_file(self.contexts_path / "easy_contexts.md")
         elif complexity.lower() == "medium":
-            return self._read_prompt_file(self.contexts_path / "intermediate_contexts.md")
+            return self._read_prompt_file(self.contexts_path / "medium_contexts.md")
         else:
-            return self._read_prompt_file(self.contexts_path / "advanced_contexts.md")
+            return self._read_prompt_file(self.contexts_path / "hard_contexts.md")
 
     def get_problem_components(self, concept: str, complexity: str) -> Dict[str, Any]:
         # Normalize concept name for file paths
@@ -146,9 +136,9 @@ class PromptManager:
         
         # Load all components
         config = self._load_json(f"concepts/{concept_path}/config.json")
-        main_prompt = self._read_file(f"concepts/{concept_path}/main_prompt.md")
-        constraints = self._read_file(f"complexity/{complexity.lower()}/constraints.md")
-        contexts = self._load_json("contexts/problem_contexts.json")
+        # main_prompt = self._read_file(f"concepts/{concept_path}/main_prompt.md")
+        # constraints = self._read_file(f"complexity/{complexity.lower()}/constraints.md")
+        # contexts = self._load_json("contexts/problem_contexts.json")
         
         # Randomly select problem type and context
         selected_type = self._select_random_problem(config["problem_types"])

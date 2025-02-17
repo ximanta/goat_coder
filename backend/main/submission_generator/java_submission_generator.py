@@ -201,29 +201,45 @@ public class {class_name} {{
     def _convert_type_to_java(self, python_type: str) -> str:
         """
         Converts Python type hints to Java type declarations.
-        For example, converts "List[int]" to "int[]" and "int" to "int".
         """
         python_type = python_type.lower()
+        
+        # Handle dictionary/map types
+        if python_type.startswith("dict[") or python_type.startswith("map["):
+            # Extract key and value types from dict[str, list[int]] format
+            inner_types = python_type[python_type.find("[")+1:python_type.rfind("]")]
+            key_type, value_type = [t.strip() for t in inner_types.split(",", 1)]
+            
+            # Convert the key and value types
+            java_key_type = self._convert_type_to_java(key_type)
+            java_value_type = self._convert_type_to_java(value_type)
+            
+            return f"Map<{java_key_type}, {java_value_type}>"
 
-        # Handle list types first.
+        # Handle list types
         if python_type.startswith("list["):
             inner_type = python_type[5:-1]  # Extract type inside List[]
             if inner_type == "int":
-                return "int[]"
+                return "List<Integer>"  # Changed from int[] to List<Integer>
             elif inner_type in ("str", "string"):
-                return "String[]"
+                return "List<String>"   # Changed from String[] to List<String>
             elif inner_type == "float":
-                return "double[]"
+                return "List<Double>"   # Changed from double[] to List<Double>
             elif inner_type == "bool":
-                return "boolean[]"
-        
-        # Mapping for simple types.
+                return "List<Boolean>"  # Changed from boolean[] to List<Boolean>
+            else:
+                # Try to convert the inner type recursively
+                java_inner_type = self._convert_type_to_java(inner_type)
+                return f"List<{java_inner_type}>"
+
+        # Mapping for simple types
         type_mapping = {
             "str": "String",
             "string": "String",
-            "int": "int",
-            "float": "double",
-            "bool": "boolean"
+            "int": "Integer",  # Changed from int to Integer for consistency
+            "float": "Double", # Changed from double to Double for consistency
+            "bool": "Boolean", # Changed from boolean to Boolean for consistency
+            "object": "Object"
         }
         
         return type_mapping.get(python_type, "Object")
@@ -231,113 +247,54 @@ public class {class_name} {{
     def _generate_input_parsing(self, java_type: str, param_name: str, index: int, total_inputs: int) -> str:
         """
         Generates Java code that parses input from the Scanner based on the type.
-        
-        For array types:
-         - If there is only one input field, we assume the input may be provided
-           over multiple lines. In that case, we loop until an empty line is encountered.
-         - If there are multiple input fields, we assume the input for this field is
-           on a single line. In that case, we check for an empty input line and produce
-           an empty array if needed.
-        For primitive types, we simply call the appropriate parsing method.
         """
-        if java_type.endswith("[]"):
-            # Multi-line array input if only one input field is expected.
-            if total_inputs == 1:
-                if java_type == "int[]":
-                    return (
-                       f"List<String> lines = new ArrayList<>();\n"
-                       f"        while(scanner.hasNextLine()){{\n"
-                       f"            String line = scanner.nextLine();\n"
-                       f"            if(line.trim().isEmpty()) break;\n"
-                       f"            lines.add(line);\n"
-                       f"        }}\n"
-                       f"        String allInput = String.join(\" \", lines);\n"
-                       f"        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split(\"\\\\s+\");\n"
-                       f"        int[] {param_name} = new int[tokens.length];\n"
-                       f"        for(int i = 0; i < tokens.length; i++) {{\n"
-                       f"            {param_name}[i] = Integer.parseInt(tokens[i]);\n"
-                       f"        }}"
-                    )
-                elif java_type == "String[]":
-                    return (
-                       f"List<String> lines = new ArrayList<>();\n"
-                       f"        while(scanner.hasNextLine()){{\n"
-                       f"            String line = scanner.nextLine();\n"
-                       f"            if(line.trim().isEmpty()) break;\n"
-                       f"            lines.add(line);\n"
-                       f"        }}\n"
-                       f"        String[] {param_name} = lines.toArray(new String[0]);"
-                    )
-                elif java_type == "double[]":
-                    return (
-                       f"List<String> lines = new ArrayList<>();\n"
-                       f"        while(scanner.hasNextLine()){{\n"
-                       f"            String line = scanner.nextLine();\n"
-                       f"            if(line.trim().isEmpty()) break;\n"
-                       f"            lines.add(line);\n"
-                       f"        }}\n"
-                       f"        String allInput = String.join(\" \", lines);\n"
-                       f"        String[] tokens = allInput.trim().isEmpty() ? new String[0] : allInput.split(\"\\\\s+\");\n"
-                       f"        double[] {param_name} = new double[tokens.length];\n"
-                       f"        for(int i = 0; i < tokens.length; i++) {{\n"
-                       f"            {param_name}[i] = Double.parseDouble(tokens[i]);\n"
-                       f"        }}"
-                    )
-                else:
-                    # Fallback for other array types, treating them as String arrays.
-                    return (
-                       f"List<String> lines = new ArrayList<>();\n"
-                       f"        while(scanner.hasNextLine()){{\n"
-                       f"            String line = scanner.nextLine();\n"
-                       f"            if(line.trim().isEmpty()) break;\n"
-                       f"            lines.add(line);\n"
-                       f"        }}\n"
-                       f"        {java_type} {param_name} = lines.toArray(new String[0]);"
-                    )
-            else:
-                # For multiple input fields, we assume the entire input for this field is on one line.
-                # First, read the line into a variable, then check if it is empty.
-                if java_type == "int[]":
-                    return (
-                       f"String line{index} = scanner.nextLine();\n"
-                       f"        String[] input{index} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");\n"
-                       f"        int[] {param_name} = new int[input{index}.length];\n"
-                       f"        for(int i = 0; i < input{index}.length; i++) {{\n"
-                       f"            {param_name}[i] = Integer.parseInt(input{index}[i]);\n"
-                       f"        }}"
-                    )
-                elif java_type == "String[]":
-                    return (
-                       f"String line{index} = scanner.nextLine();\n"
-                       f"        String[] {param_name} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");"
-                    )
-                elif java_type == "double[]":
-                    return (
-                       f"String line{index} = scanner.nextLine();\n"
-                       f"        String[] input{index} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");\n"
-                       f"        double[] {param_name} = new double[input{index}.length];\n"
-                       f"        for(int i = 0; i < input{index}.length; i++) {{\n"
-                       f"            {param_name}[i] = Double.parseDouble(input{index}[i]);\n"
-                       f"        }}"
-                    )
-                else:
-                    # Fallback for other array types.
-                    return (
-                       f"String line{index} = scanner.nextLine();\n"
-                       f"        String[] {param_name} = line{index}.trim().isEmpty() ? new String[0] : line{index}.split(\" \");"
-                    )
-        else:
-            # For non-array (primitive) types, use the appropriate parsing methods.
-            if java_type == "int":
-                return f"int {param_name} = Integer.parseInt(scanner.nextLine());"
-            elif java_type == "double":
-                return f"double {param_name} = Double.parseDouble(scanner.nextLine());"
-            elif java_type == "String":
-                return f"String {param_name} = scanner.nextLine();"
-            elif java_type == "boolean":
-                return f"boolean {param_name} = Boolean.parseBoolean(scanner.nextLine());"
-            else:
-                return f"String {param_name} = scanner.nextLine();"
+        # Handle Map types
+        if java_type.startswith("Map<"):
+            return (
+                f"Map{java_type[3:]} {param_name} = new HashMap<>();\n"
+                f"        while (scanner.hasNextLine()) {{\n"
+                f"            String line = scanner.nextLine().trim();\n"
+                f"            if (line.isEmpty()) break;\n"
+                f"            String[] parts = line.split(\":\", 2);\n"
+                f"            if (parts.length == 2) {{\n"
+                f"                String key = parts[0].trim();\n"
+                f"                String[] values = parts[1].trim().split(\"\\\\s+\");\n"
+                f"                List<Integer> scores = new ArrayList<>();\n"
+                f"                for (String val : values) {{\n"
+                f"                    scores.add(Integer.parseInt(val));\n"
+                f"                }}\n"
+                f"                {param_name}.put(key, scores);\n"
+                f"            }}\n"
+                f"        }}"
+            )
+
+        # Handle List types
+        if java_type.startswith("List<"):
+            inner_type = java_type[5:-1]  # Extract type between List< and >
+            return (
+                f"List<{inner_type}> {param_name} = new ArrayList<>();\n"
+                f"        while (scanner.hasNextLine()) {{\n"
+                f"            String line = scanner.nextLine().trim();\n"
+                f"            if (line.isEmpty()) break;\n"
+                f"            String[] parts = line.split(\"\\\\s+\");\n"
+                f"            for (String part : parts) {{\n"
+                f"                {param_name}.add({self._parse_value(inner_type, 'part')});\n"
+                f"            }}\n"
+                f"        }}"
+            )
+
+        # For primitive types, use the existing code
+        return super()._generate_input_parsing(java_type, param_name, index, total_inputs)
+
+    def _parse_value(self, java_type: str, var_name: str) -> str:
+        """Helper method to generate parsing code for different types"""
+        type_parsing = {
+            "Integer": f"Integer.parseInt({var_name})",
+            "Double": f"Double.parseDouble({var_name})",
+            "Boolean": f"Boolean.parseBoolean({var_name})",
+            "String": var_name
+        }
+        return type_parsing.get(java_type, var_name)
 
     def _generate_output_printing(self, return_type: str, var_name: str) -> str:
         """
