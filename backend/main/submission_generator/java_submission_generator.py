@@ -94,9 +94,9 @@ class JavaSubmissionGenerator:
             function_call_args = ", ".join([p.split()[-1] for p in param_list])
             
             # Remove any existing class or method wrappers from the user's source code.
-            code_body = re.sub(r'public.*?\{', '', source_code)
-            code_body = re.sub(r'\}[\s]*$', '', code_body)
-            
+            # code_body = re.sub(r'public.*?\{', '', source_code)
+            # code_body = re.sub(r'\}[\s]*$', '', code_body)
+            code_body=source_code
             # Create the final submission template.
             submission_template = """import java.util.*;
             import java.io.*;
@@ -106,9 +106,9 @@ class JavaSubmissionGenerator:
             import java.util.regex.*;
             
 public class {class_name} {{
-    public {return_type} {function_name}({function_params}) {{
+
 {source_code}
-    }}
+
 
     public static void main(String[] args) {{
         Scanner scanner = new Scanner(System.in);
