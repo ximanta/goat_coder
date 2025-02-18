@@ -271,6 +271,16 @@ public class {class_name} {{
         # Handle array types
         if java_type.endswith("[]"):
             base_type = java_type[:-2]
+            parse_method = ""
+            if base_type == "int":
+                parse_method = "Integer.parseInt"
+            elif base_type == "double":
+                parse_method = "Double.parseDouble"
+            elif base_type == "boolean":
+                parse_method = "Boolean.parseBoolean"
+            else:
+                parse_method = ""  # String doesn't need parsing
+                
             return (
                 f"String line = scanner.hasNextLine() ? scanner.nextLine().trim() : \"\";\n"
                 f"        {java_type} {param_name};\n"
@@ -280,7 +290,7 @@ public class {class_name} {{
                 f"            String[] allItems = line.split(\"\\\\s+\");\n"
                 f"            {param_name} = new {base_type}[allItems.length];\n"
                 f"            for (int i = 0; i < allItems.length; i++) {{\n"
-                f"                {param_name}[i] = {self._parse_value(base_type, 'allItems[i].trim()')};\n"
+                f"                {param_name}[i] = {parse_method}(allItems[i].trim());\n"
                 f"            }}\n"
                 f"        }}"
             )
@@ -317,8 +327,8 @@ public class {class_name} {{
     def format_input(self, input_data: list) -> str:
         """
         Format input data for Java program stdin.
-        - Array elements should be space-separated on one line
-        - Multiple scalar parameters should be on separate lines
+        - For array inputs: elements should be space-separated on one line
+        - For multiple separate inputs: each parameter on a new line
         """
         formatted_inputs = []
         for item in input_data:

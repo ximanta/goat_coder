@@ -7,13 +7,13 @@ import java.util.*;
             
 public class Main {
 
-public double calculateTotalPrice(double originalPrice, double taxRate) {
-    // Calculate the tax amount (taxRate is a percentage, so divide by 100)
-    double taxAmount = originalPrice * (taxRate / 100.0);
-    // Calculate the total price by adding the original price and tax amount
-    double totalPrice = originalPrice + taxAmount;
-    // Round the total price to two decimal places
-    return Math.round(totalPrice * 100.0) / 100.0;
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
 }
 
 
@@ -22,11 +22,20 @@ public double calculateTotalPrice(double originalPrice, double taxRate) {
         Main solution = new Main();
         
         // Parse input
-        double originalPrice = Double.parseDouble(scanner.nextLine());
-        double taxRate = Double.parseDouble(scanner.nextLine());
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = Double.parseDouble(allItems[i].trim());
+            }
+        }
         
         // Call the solution function
-        double result = solution.calculateTotalPrice(originalPrice, taxRate);
+        double result = solution.calculateTotalPrice(prices);
         
         // Print the result
         System.out.println(result);

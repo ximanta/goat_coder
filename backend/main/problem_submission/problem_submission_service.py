@@ -72,22 +72,29 @@ class ProblemSubmissionService:
             # Prepare submissions for all test cases
             submissions = []
             for i, test_case in enumerate(test_cases):
-                # Don't modify the input list structure
-                input_str = java_generator.format_input(test_case['input'])
-                
+                # For array inputs, ensure they're passed as a list to format_input
+                input_data = test_case['input']
+                if isinstance(input_data, (list, tuple)):
+                    # Already in correct format
+                    input_str = java_generator.format_input([input_data])
+                else:
+                    # Convert space/newline separated string to list if needed
+                    if isinstance(input_data, str):
+                        # Split by any whitespace and convert to appropriate type
+                        values = [float(x) for x in input_data.split()]
+                        input_str = java_generator.format_input([values])
+                    else:
+                        input_str = java_generator.format_input([input_data])
+
                 # Format expected output based on type
                 expected = test_case['output']
                 if isinstance(expected, bool):
                     output_str = str(expected).lower()
                 elif isinstance(expected, list):
-                    # Format array output in Java style - no quotes for strings
                     output_str = "[" + ", ".join(str(x) for x in expected) + "]"
                 else:
-                    # For float/double outputs, ensure decimal point is present
-                    if is_float_output and isinstance(expected, (int, float)):
-                        output_str = f"{float(expected):.1f}"  # Force decimal point
-                    else:
-                        output_str = str(expected)
+                    # Keep the original number format without any modifications
+                    output_str = str(expected)
 
                 # Log the formatted input for debugging
                 logger.info(f"Test case {i+1} input formatted as: {repr(input_str)}")

@@ -6,32 +6,29 @@
     "function_name": "calculate_total_price",
     "input_structure": [
       {
-        "Input_Field": "float original_price"
-      },
-      {
-        "Input_Field": "float tax_rate"
+        "Input_Field": "List[float] prices"
       }
     ],
     "output_structure": {
-      "Output_Field": "float total_price"
+      "Output_Field": "float total"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n\npublic double calculateTotalPrice(double originalPrice, double taxRate) {\r\n    // Calculate the tax amount (taxRate is a percentage, so divide by 100)\r\n    double taxAmount = originalPrice * (taxRate / 100.0);\r\n    // Calculate the total price by adding the original price and tax amount\r\n    double totalPrice = originalPrice + taxAmount;\r\n    // Round the total price to two decimal places\r\n    return Math.round(totalPrice * 100.0) / 100.0;\r\n}\n\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        double originalPrice = Double.parseDouble(scanner.nextLine());\n        double taxRate = Double.parseDouble(scanner.nextLine());\n        \n        // Call the solution function\n        double result = solution.calculateTotalPrice(originalPrice, taxRate);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n\n/*DO NOT modify this method.*/\r\npublic double calculateTotalPrice(double[] prices) {\r\n    double total = 0.0;\r\n    for (double price : prices) {\r\n        total += price;\r\n    }\r\n    return total;\r\n}\n\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : \"\";\n        double[] prices;\n        if (line.isEmpty()) {\n            prices = new double[0];\n        } else {\n            String[] allItems = line.split(\"\\\\s+\");\n            prices = new double[allItems.length];\n            for (int i = 0; i < allItems.length; i++) {\n                prices[i] = Double.parseDouble(allItems[i].trim());\n            }\n        }\n        \n        // Call the solution function\n        double result = solution.calculateTotalPrice(prices);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "100\n5",
-      "expected_output": "105.0"
+      "input": "10.5 20 5.75",
+      "expected_output": "36.25"
     },
     {
       "test_case_number": 2,
-      "input": "50\n10",
-      "expected_output": "55.0"
+      "input": "3.99 2.49 7.99",
+      "expected_output": "14.47"
     },
     {
       "test_case_number": 3,
-      "input": "0\n20",
-      "expected_output": "0.0"
+      "input": "",
+      "expected_output": "0"
     }
   ]
 }
