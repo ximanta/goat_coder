@@ -22350,3 +22350,1006 @@ public class Main {
 2025-02-18 15:57:57,187 - main.problem_submission.problem_submission_route - INFO - Completed: True
 2025-02-18 15:57:57,188 - main.problem_submission.problem_submission_route - INFO - All Passed: False
 2025-02-18 15:57:57,188 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 18:51:11,253 - uvicorn.error - INFO - Started server process [27988]
+2025-02-18 18:51:11,255 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 18:51:11,256 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 18:51:17,131 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 18:51:17,132 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-18 18:51:18,301 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-18 18:51:18,301 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-18 18:51:18,302 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-18 18:51:18,304 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-18 18:51:18,305 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-18 18:51:18,305 - main.problem_generator.prompt_manager - INFO - Selected category: String Operations (previous was: None)
+2025-02-18 18:51:18,305 - main.problem_generator.prompt_manager - INFO - Selected problem type: String Validation (previous was: None)
+2025-02-18 18:51:18,345 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-18 18:51:18,346 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-18 18:51:18,350 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: String Validation
+            Suggested Variation: Check if password ...
+2025-02-18 18:51:18,351 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 18:51:18,352 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 18:51:18,352 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 18:51:18,353 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: String Validation
+            Suggested Variation: Check if password meets requirements
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-18 18:51:18,353 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 18:51:18,354 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Basic Programming for Absolute Beginners
+
+2025-02-18 18:51:20,855 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 18:51:20,906 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 18:51:20,906 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "I am feeling very happy today!"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Today is a great day."
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "Happy birthday to you!"
+    ],
+    "output": true
+  }
+]
+2025-02-18 18:51:20,908 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 18:51:20,909 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "I am feeling very happy today!"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Today is a great day."
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "Happy birthday to you!"
+    ],
+    "output": true
+  }
+]
+2025-02-18 18:51:20,910 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 18:51:20,910 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "Easy",
+  "problem_title": "Check for Happy Message",
+  "problem_statement": "Create a function called `is_happy_message` that checks if a message contains the word 'happy'. The function should return true if the word is present and false otherwise. You can assume that the message is a single string and is not empty.",
+  "test_cases": [
+    {
+      "input": [
+        "I am feeling very happy today!"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "Today is a great day."
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "Happy birthday to you!"
+      ],
+      "output": true
+    }
+  ],
+  "tags": [
+    "strings",
+    "input_validation",
+    "conditional_logic"
+  ],
+  "structure": {
+    "problem_name": "Check for Happy Message",
+    "function_name": "is_happy_message",
+    "input_structure": [
+      {
+        "Input_Field": "string message"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "bool result"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic boolean isHappyMessage(String message) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef is_happy_message(message: str) -> bool:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 18:51:20,912 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Check for Happy Message
+2025-02-18 18:53:00,863 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 18:53:00,863 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 18:53:00,864 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 18:53:00,865 - main.problem_submission.problem_submission_route - INFO - Source code length: 184
+2025-02-18 18:53:00,865 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 18:53:00,866 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 18:53:00,866 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 18:53:00,867 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 18:53:00,867 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 18:53:00,868 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 18:53:00,869 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 18:53:00,871 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 18:53:00,871 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'Check for Happy Message', 'function_name': 'is_happy_message', 'input_structure': [{'Input_Field': 'string message'}], 'output_structure': {'Output_Field': 'bool result'}}
+2025-02-18 18:53:00,872 - main.submission_generator.java_submission_generator - INFO - Checking for function name: isHappyMessage (original: is_happy_message)
+2025-02-18 18:53:00,872 - main.submission_generator.java_submission_generator - INFO - Function name: isHappyMessage
+2025-02-18 18:53:00,872 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}]
+2025-02-18 18:53:00,873 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'bool result'}
+2025-02-18 18:53:00,873 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String message']
+2025-02-18 18:53:00,874 - main.submission_generator.java_submission_generator - INFO - Return type: Boolean
+2025-02-18 18:53:00,876 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 18:53:00,876 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 18:53:00,876 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 18:53:00,877 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 18:53:00,877 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 18:53:00,879 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 18:53:00,880 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 18:53:00,881 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SSBhbSBmZWVsaW5nIHZlcnkgaGFwcHkgdG9kYXkh",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "VG9kYXkgaXMgYSBncmVhdCBkYXku",
+      "expected_output": "RmFsc2U=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SGFwcHkgYmlydGhkYXkgdG8geW91IQ==",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 18:53:02,118 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 18:53:02,118 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "9c88a982-6f42-4f51-a8f4-17038e84e70c"
+  },
+  {
+    "token": "2639b1e4-b096-4373-8fa6-ec27557880e4"
+  },
+  {
+    "token": "e451c37b-b49c-4154-9488-b09be52b747c"
+  }
+]
+2025-02-18 18:53:02,122 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '9c88a982-6f42-4f51-a8f4-17038e84e70c'}, {'token': '2639b1e4-b096-4373-8fa6-ec27557880e4'}, {'token': 'e451c37b-b49c-4154-9488-b09be52b747c'}]
+2025-02-18 18:53:02,133 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 18:53:02,133 - main.problem_submission.problem_submission_route - INFO - Tokens: ['9c88a982-6f42-4f51-a8f4-17038e84e70c', '2639b1e4-b096-4373-8fa6-ec27557880e4', 'e451c37b-b49c-4154-9488-b09be52b747c']
+2025-02-18 18:53:02,135 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 18:53:02,135 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 18:53:02,136 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 18:53:02,136 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 9c88a982-6f42-4f51-a8f4-17038e84e70c ===
+2025-02-18 18:53:02,137 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 18:53:02,137 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/9c88a982-6f42-4f51-a8f4-17038e84e70c
+2025-02-18 18:53:03,192 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 18:53:03,194 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 18:53:03,195 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 18:53:03,196 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 18:53:03,197 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 18:53:03,197 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 18:53:03,198 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 18:53:03,198 - main.problem_submission.problem_submission_service - INFO - Time: 0.074
+2025-02-18 18:53:03,199 - main.problem_submission.problem_submission_service - INFO - Memory: 19368
+2025-02-18 18:53:03,201 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 2639b1e4-b096-4373-8fa6-ec27557880e4 ===
+2025-02-18 18:53:03,202 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 18:53:03,202 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/2639b1e4-b096-4373-8fa6-ec27557880e4
+2025-02-18 18:53:04,557 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 18:53:04,558 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 18:53:04,559 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 18:53:04,560 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 18:53:04,560 - main.problem_submission.problem_submission_service - INFO - Stdout: false
+
+2025-02-18 18:53:04,561 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 18:53:04,562 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 18:53:04,562 - main.problem_submission.problem_submission_service - INFO - Time: 0.072
+2025-02-18 18:53:04,563 - main.problem_submission.problem_submission_service - INFO - Memory: 19524
+2025-02-18 18:53:04,565 - main.problem_submission.problem_submission_service - INFO - === Polling Submission e451c37b-b49c-4154-9488-b09be52b747c ===
+2025-02-18 18:53:04,566 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 18:53:04,567 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/e451c37b-b49c-4154-9488-b09be52b747c
+2025-02-18 18:53:05,759 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 18:53:05,760 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 18:53:05,760 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 18:53:05,761 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 18:53:05,762 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 18:53:05,762 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 18:53:05,763 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 18:53:05,763 - main.problem_submission.problem_submission_service - INFO - Time: 0.074
+2025-02-18 18:53:05,763 - main.problem_submission.problem_submission_service - INFO - Memory: 19024
+2025-02-18 18:53:05,766 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 18:53:05,767 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 18:53:05,767 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 18:53:05,768 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 19:09:41,910 - uvicorn.error - INFO - Started server process [31544]
+2025-02-18 19:09:41,910 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:09:41,911 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:09:57,371 - uvicorn.error - INFO - Started server process [17352]
+2025-02-18 19:09:57,372 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:09:57,373 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:10:02,478 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 19:10:02,479 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 19:10:02,480 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 19:10:02,480 - main.problem_submission.problem_submission_route - INFO - Source code length: 184
+2025-02-18 19:10:02,481 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 19:10:02,482 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 19:10:02,483 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 19:10:02,484 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 19:10:02,485 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:10:02,486 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:10:02,486 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 19:10:02,487 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 19:10:02,488 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 19:10:02,489 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 19:10:02,489 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 19:10:02,490 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "I am feeling very happy today!"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Today is a great day."
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "Happy birthday to you!"
+    ],
+    "output": true
+  }
+]
+2025-02-18 19:10:02,492 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 19:10:02,493 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 19:10:02,494 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 19:10:02,495 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'Check for Happy Message', 'function_name': 'is_happy_message', 'input_structure': [{'Input_Field': 'string message'}], 'output_structure': {'Output_Field': 'bool result'}}
+2025-02-18 19:10:02,497 - main.submission_generator.java_submission_generator - INFO - Checking for function name: isHappyMessage (original: is_happy_message)
+2025-02-18 19:10:02,497 - main.submission_generator.java_submission_generator - INFO - Function name: isHappyMessage
+2025-02-18 19:10:02,498 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}]
+2025-02-18 19:10:02,499 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'bool result'}
+2025-02-18 19:10:02,499 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String message']
+2025-02-18 19:10:02,500 - main.submission_generator.java_submission_generator - INFO - Return type: Boolean
+2025-02-18 19:10:02,504 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 19:10:02,505 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 19:10:02,505 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 19:10:02,507 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 19:10:02,507 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 19:10:02,512 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 19:10:02,514 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 19:10:02,515 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SSBhbSBmZWVsaW5nIHZlcnkgaGFwcHkgdG9kYXkh",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "VG9kYXkgaXMgYSBncmVhdCBkYXku",
+      "expected_output": "RmFsc2U=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SGFwcHkgYmlydGhkYXkgdG8geW91IQ==",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 19:10:03,921 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 19:10:03,922 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "49793c7e-3d58-4018-ade3-37880f580198"
+  },
+  {
+    "token": "ff8259c0-6f99-4ae7-b631-e5a6c820fa3c"
+  },
+  {
+    "token": "d9ede596-d82c-4cbd-99fb-89e3761a78bc"
+  }
+]
+2025-02-18 19:10:03,925 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '49793c7e-3d58-4018-ade3-37880f580198'}, {'token': 'ff8259c0-6f99-4ae7-b631-e5a6c820fa3c'}, {'token': 'd9ede596-d82c-4cbd-99fb-89e3761a78bc'}]
+2025-02-18 19:10:03,936 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 19:10:03,937 - main.problem_submission.problem_submission_route - INFO - Tokens: ['49793c7e-3d58-4018-ade3-37880f580198', 'ff8259c0-6f99-4ae7-b631-e5a6c820fa3c', 'd9ede596-d82c-4cbd-99fb-89e3761a78bc']
+2025-02-18 19:10:03,938 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 19:10:03,939 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:10:03,940 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:10:03,940 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 49793c7e-3d58-4018-ade3-37880f580198 ===
+2025-02-18 19:10:03,941 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:10:03,942 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/49793c7e-3d58-4018-ade3-37880f580198
+2025-02-18 19:10:05,084 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:10:05,085 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:10:05,086 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 19:10:05,087 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:10:05,088 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 19:10:05,089 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:10:05,090 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:10:05,091 - main.problem_submission.problem_submission_service - INFO - Time: 0.096
+2025-02-18 19:10:05,092 - main.problem_submission.problem_submission_service - INFO - Memory: 21496
+2025-02-18 19:10:05,095 - main.problem_submission.problem_submission_service - INFO - === Polling Submission ff8259c0-6f99-4ae7-b631-e5a6c820fa3c ===
+2025-02-18 19:10:05,095 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:10:05,096 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/ff8259c0-6f99-4ae7-b631-e5a6c820fa3c
+2025-02-18 19:10:06,218 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:10:06,219 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:10:06,220 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 19:10:06,221 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:10:06,221 - main.problem_submission.problem_submission_service - INFO - Stdout: false
+
+2025-02-18 19:10:06,222 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:10:06,223 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:10:06,223 - main.problem_submission.problem_submission_service - INFO - Time: 0.088
+2025-02-18 19:10:06,224 - main.problem_submission.problem_submission_service - INFO - Memory: 19008
+2025-02-18 19:10:06,228 - main.problem_submission.problem_submission_service - INFO - === Polling Submission d9ede596-d82c-4cbd-99fb-89e3761a78bc ===
+2025-02-18 19:10:06,228 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:10:06,229 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/d9ede596-d82c-4cbd-99fb-89e3761a78bc
+2025-02-18 19:10:07,291 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:10:07,292 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:10:07,293 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 19:10:07,294 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:10:07,295 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 19:10:07,295 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:10:07,296 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:10:07,296 - main.problem_submission.problem_submission_service - INFO - Time: 0.088
+2025-02-18 19:10:07,297 - main.problem_submission.problem_submission_service - INFO - Memory: 20040
+2025-02-18 19:10:07,298 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 19:10:07,299 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 19:10:07,299 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 19:10:07,299 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 19:16:25,947 - uvicorn.error - INFO - Started server process [29996]
+2025-02-18 19:16:25,949 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:16:25,950 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:18:06,920 - uvicorn.error - INFO - Started server process [16992]
+2025-02-18 19:18:06,921 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:18:06,922 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:19:15,654 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 19:19:15,655 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 19:19:15,656 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 19:19:15,656 - main.problem_submission.problem_submission_route - INFO - Source code length: 184
+2025-02-18 19:19:15,656 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 19:19:15,657 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 19:19:15,658 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 19:19:15,658 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 19:19:15,659 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:19:15,659 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:19:15,660 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 19:19:15,661 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 19:19:15,661 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 19:19:15,662 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 19:19:15,663 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 19:19:15,663 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "I am feeling very happy today!"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Today is a great day."
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "Happy birthday to you!"
+    ],
+    "output": true
+  }
+]
+2025-02-18 19:19:15,664 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 19:19:15,666 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 19:19:15,667 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 19:19:15,667 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'Check for Happy Message', 'function_name': 'is_happy_message', 'input_structure': [{'Input_Field': 'string message'}], 'output_structure': {'Output_Field': 'bool result'}}
+2025-02-18 19:19:15,668 - main.submission_generator.java_submission_generator - INFO - Checking for function name: isHappyMessage (original: is_happy_message)
+2025-02-18 19:19:15,669 - main.submission_generator.java_submission_generator - INFO - Function name: isHappyMessage
+2025-02-18 19:19:15,669 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}]
+2025-02-18 19:19:15,669 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'bool result'}
+2025-02-18 19:19:15,670 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String message']
+2025-02-18 19:19:15,670 - main.submission_generator.java_submission_generator - INFO - Return type: Boolean
+2025-02-18 19:19:15,673 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 19:19:15,674 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 19:19:15,675 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 19:19:15,675 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 19:19:15,676 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 19:19:15,679 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 19:19:15,679 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 19:19:15,680 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SSBhbSBmZWVsaW5nIHZlcnkgaGFwcHkgdG9kYXkh",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "VG9kYXkgaXMgYSBncmVhdCBkYXku",
+      "expected_output": "RmFsc2U=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SGFwcHkgYmlydGhkYXkgdG8geW91IQ==",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 19:19:16,982 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 19:19:16,983 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "df761681-afcc-440e-a6c6-634abab5b7a4"
+  },
+  {
+    "token": "55787064-2ee3-4247-a804-637bd45a5867"
+  },
+  {
+    "token": "43d1049c-5cc9-46e4-b620-afba2019a086"
+  }
+]
+2025-02-18 19:19:16,985 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': 'df761681-afcc-440e-a6c6-634abab5b7a4'}, {'token': '55787064-2ee3-4247-a804-637bd45a5867'}, {'token': '43d1049c-5cc9-46e4-b620-afba2019a086'}]
+2025-02-18 19:19:16,995 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 19:19:16,996 - main.problem_submission.problem_submission_route - INFO - Tokens: ['df761681-afcc-440e-a6c6-634abab5b7a4', '55787064-2ee3-4247-a804-637bd45a5867', '43d1049c-5cc9-46e4-b620-afba2019a086']
+2025-02-18 19:19:16,996 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 19:19:16,996 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:19:16,997 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:19:16,997 - main.problem_submission.problem_submission_service - INFO - === Polling Submission df761681-afcc-440e-a6c6-634abab5b7a4 ===
+2025-02-18 19:19:16,998 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:19:16,998 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/df761681-afcc-440e-a6c6-634abab5b7a4
+2025-02-18 19:19:18,136 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:19:18,137 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:19:18,138 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 19:19:18,138 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:19:18,139 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 19:19:18,139 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:19:18,140 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:19:18,141 - main.problem_submission.problem_submission_service - INFO - Time: 0.069
+2025-02-18 19:19:18,141 - main.problem_submission.problem_submission_service - INFO - Memory: 19996
+2025-02-18 19:19:18,144 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 55787064-2ee3-4247-a804-637bd45a5867 ===
+2025-02-18 19:19:18,145 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:19:18,145 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/55787064-2ee3-4247-a804-637bd45a5867
+2025-02-18 19:19:19,232 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:19:19,233 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:19:19,234 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 19:19:19,235 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:19:19,235 - main.problem_submission.problem_submission_service - INFO - Stdout: false
+
+2025-02-18 19:19:19,236 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:19:19,236 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:19:19,237 - main.problem_submission.problem_submission_service - INFO - Time: 0.109
+2025-02-18 19:19:19,238 - main.problem_submission.problem_submission_service - INFO - Memory: 44456
+2025-02-18 19:19:19,242 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 43d1049c-5cc9-46e4-b620-afba2019a086 ===
+2025-02-18 19:19:19,243 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:19:19,244 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/43d1049c-5cc9-46e4-b620-afba2019a086
+2025-02-18 19:19:20,362 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:19:20,364 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:19:20,364 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 19:19:20,365 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:19:20,367 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 19:19:20,368 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:19:20,369 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:19:20,370 - main.problem_submission.problem_submission_service - INFO - Time: 0.107
+2025-02-18 19:19:20,371 - main.problem_submission.problem_submission_service - INFO - Memory: 38212
+2025-02-18 19:19:20,374 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 19:19:20,375 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 19:19:20,376 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 19:19:20,376 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 19:27:15,338 - uvicorn.error - INFO - Started server process [28760]
+2025-02-18 19:27:15,339 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:27:15,339 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:27:23,445 - uvicorn.error - INFO - Started server process [5116]
+2025-02-18 19:27:23,447 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:27:23,448 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:27:34,472 - uvicorn.error - INFO - Started server process [23392]
+2025-02-18 19:27:34,473 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:27:34,474 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:28:12,541 - uvicorn.error - INFO - Started server process [28692]
+2025-02-18 19:28:12,542 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 19:28:12,543 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 19:28:19,637 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 19:28:19,638 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 19:28:19,639 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 19:28:19,640 - main.problem_submission.problem_submission_route - INFO - Source code length: 184
+2025-02-18 19:28:19,640 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 19:28:19,641 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 19:28:19,641 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 19:28:19,642 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 19:28:19,643 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:28:19,643 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:28:19,644 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 19:28:19,644 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 19:28:19,645 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 19:28:19,645 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 19:28:19,646 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"Check for Happy Message","function_name":"is_happy_message","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-18 19:28:19,646 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "I am feeling very happy today!"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Today is a great day."
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "Happy birthday to you!"
+    ],
+    "output": true
+  }
+]
+2025-02-18 19:28:19,647 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 19:28:19,647 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 19:28:19,648 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public boolean isHappyMessage(String message) {
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+}
+2025-02-18 19:28:19,648 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'Check for Happy Message', 'function_name': 'is_happy_message', 'input_structure': [{'Input_Field': 'string message'}], 'output_structure': {'Output_Field': 'bool result'}}
+2025-02-18 19:28:19,648 - main.submission_generator.java_submission_generator - INFO - Checking for function name: isHappyMessage (original: is_happy_message)
+2025-02-18 19:28:19,649 - main.submission_generator.java_submission_generator - INFO - Function name: isHappyMessage
+2025-02-18 19:28:19,649 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}]
+2025-02-18 19:28:19,649 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'bool result'}
+2025-02-18 19:28:19,650 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String message']
+2025-02-18 19:28:19,650 - main.submission_generator.java_submission_generator - INFO - Return type: Boolean
+2025-02-18 19:28:19,651 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 19:28:19,652 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 19:28:19,652 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 19:28:19,653 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 19:28:19,653 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Boolean isHappyMessage(String message) {
+/*DO NOT modify this method.*/
+
+    // Your implementation code goes here
+    
+    return message.toLowerCase().contains("happy");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        Boolean result = solution.isHappyMessage(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 19:28:19,656 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 19:28:19,656 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 19:28:19,657 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SSBhbSBmZWVsaW5nIHZlcnkgaGFwcHkgdG9kYXkh",
+      "expected_output": "dHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "VG9kYXkgaXMgYSBncmVhdCBkYXku",
+      "expected_output": "ZmFsc2U=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgQm9vbGVhbiBpc0hhcHB5TWVzc2FnZShTdHJpbmcgbWVzc2FnZSkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUNCiAgICANCiAgICByZXR1cm4gbWVzc2FnZS50b0xvd2VyQ2FzZSgpLmNvbnRhaW5zKCJoYXBweSIpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIG1lc3NhZ2UgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBCb29sZWFuIHJlc3VsdCA9IHNvbHV0aW9uLmlzSGFwcHlNZXNzYWdlKG1lc3NhZ2UpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "SGFwcHkgYmlydGhkYXkgdG8geW91IQ==",
+      "expected_output": "dHJ1ZQ==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 19:28:20,954 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 19:28:20,955 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "42196ecc-d509-41ac-81d2-cc4ea6672052"
+  },
+  {
+    "token": "5cd4c8ee-a92b-4f9b-b961-ecd9894ad78a"
+  },
+  {
+    "token": "87a34d5a-f25d-4d01-86b7-0592cb6c7ddf"
+  }
+]
+2025-02-18 19:28:20,959 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '42196ecc-d509-41ac-81d2-cc4ea6672052'}, {'token': '5cd4c8ee-a92b-4f9b-b961-ecd9894ad78a'}, {'token': '87a34d5a-f25d-4d01-86b7-0592cb6c7ddf'}]
+2025-02-18 19:28:20,968 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 19:28:20,968 - main.problem_submission.problem_submission_route - INFO - Tokens: ['42196ecc-d509-41ac-81d2-cc4ea6672052', '5cd4c8ee-a92b-4f9b-b961-ecd9894ad78a', '87a34d5a-f25d-4d01-86b7-0592cb6c7ddf']
+2025-02-18 19:28:20,969 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 19:28:20,969 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:28:20,970 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 19:28:20,970 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 42196ecc-d509-41ac-81d2-cc4ea6672052 ===
+2025-02-18 19:28:20,971 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:28:20,971 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/42196ecc-d509-41ac-81d2-cc4ea6672052
+2025-02-18 19:28:22,111 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:28:22,113 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:28:22,113 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 19:28:22,114 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:28:22,115 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 19:28:22,116 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:28:22,117 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:28:22,117 - main.problem_submission.problem_submission_service - INFO - Time: 0.071
+2025-02-18 19:28:22,118 - main.problem_submission.problem_submission_service - INFO - Memory: 19168
+2025-02-18 19:28:22,122 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 5cd4c8ee-a92b-4f9b-b961-ecd9894ad78a ===
+2025-02-18 19:28:22,123 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:28:22,123 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/5cd4c8ee-a92b-4f9b-b961-ecd9894ad78a
+2025-02-18 19:28:23,393 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:28:23,393 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:28:23,394 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 19:28:23,395 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:28:23,395 - main.problem_submission.problem_submission_service - INFO - Stdout: false
+
+2025-02-18 19:28:23,396 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:28:23,397 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:28:23,397 - main.problem_submission.problem_submission_service - INFO - Time: 0.071
+2025-02-18 19:28:23,398 - main.problem_submission.problem_submission_service - INFO - Memory: 18996
+2025-02-18 19:28:23,402 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 87a34d5a-f25d-4d01-86b7-0592cb6c7ddf ===
+2025-02-18 19:28:23,403 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 19:28:23,404 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/87a34d5a-f25d-4d01-86b7-0592cb6c7ddf
+2025-02-18 19:28:24,442 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 19:28:24,443 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 19:28:24,445 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 19:28:24,446 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 19:28:24,447 - main.problem_submission.problem_submission_service - INFO - Stdout: true
+
+2025-02-18 19:28:24,448 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 19:28:24,448 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 19:28:24,449 - main.problem_submission.problem_submission_service - INFO - Time: 0.069
+2025-02-18 19:28:24,449 - main.problem_submission.problem_submission_service - INFO - Memory: 19636
+2025-02-18 19:28:24,451 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 19:28:24,452 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 19:28:24,452 - main.problem_submission.problem_submission_route - INFO - All Passed: True
+2025-02-18 19:28:24,453 - main.problem_submission.problem_submission_route - INFO - Results count: 3

@@ -39,6 +39,15 @@ class ProblemSubmissionService:
 
     async def submit_code(self, language_id: int, source_code: str, problem_id: str, structure: str, test_cases: list):
         try:
+            # Log received request body
+            logger.info("=== Received Submit Code Request ===")
+            logger.info(f"Language ID: {language_id}")
+            logger.info(f"Problem ID: {problem_id}")
+            logger.info(f"Source Code:\n{source_code}")
+            logger.info(f"Structure:\n{structure}")
+            logger.info(f"Test Cases:\n{json.dumps(test_cases, indent=2)}")
+            logger.info("=====================================")
+
             parsed_structure = json.loads(structure) if isinstance(structure, str) else structure
             
             # Generate complete Java submission
@@ -59,9 +68,15 @@ class ProblemSubmissionService:
             # Prepare submissions for all test cases
             submissions = []
             for i, test_case in enumerate(test_cases):
-                input_str = java_generator.format_input(test_case['input'])  # Use generator's method
-                output_str = str(test_case['output'])
+                input_str = java_generator.format_input(test_case['input'])
+                # output_str = str(test_case['output'])  # Here's where the conversion happens.lower()  # Convert to lowercase
                 
+                #Temp fix to handle Java lowercase boolean
+                expected = test_case['output']
+                if isinstance(expected, bool):
+                    output_str = str(expected).lower()
+                else:
+                    output_str = str(expected)
                 # Add test case details to submission_details
                 submission_details["test_cases"].append({
                     "test_case_number": i + 1,

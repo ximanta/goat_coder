@@ -2,33 +2,33 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "count_vowels",
-    "function_name": "count_vowels",
+    "problem_name": "Check for Happy Message",
+    "function_name": "is_happy_message",
     "input_structure": [
       {
-        "Input_Field": "string text"
+        "Input_Field": "string message"
       }
     ],
     "output_structure": {
-      "Output_Field": "int count"
+      "Output_Field": "bool result"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n    public Integer countVowels(String text) {\n/*DO NOT modify this method.*/\r\n\r\n    int count = 0;\r\n    // Loop through each character in the string.\r\n    for (int i = 0; i < text.length(); i++) {\r\n        char c = Character.toLowerCase(text.charAt(i));\r\n        // Check if the character is a vowel.\r\n        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {\r\n            count++;\r\n        }\r\n    }\r\n    return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String text = scanner.nextLine();\n        \n        // Call the solution function\n        Integer result = solution.countVowels(text);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n    public Boolean isHappyMessage(String message) {\n/*DO NOT modify this method.*/\r\n\r\n    // Your implementation code goes here\r\n    \r\n    return message.toLowerCase().contains(\"happy\");\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String message = scanner.nextLine();\n        \n        // Call the solution function\n        Boolean result = solution.isHappyMessage(message);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "hello",
-      "expected_output": "2"
+      "input": "I am feeling very happy today!",
+      "expected_output": "true"
     },
     {
       "test_case_number": 2,
-      "input": "OpenAI",
-      "expected_output": "3"
+      "input": "Today is a great day.",
+      "expected_output": "false"
     },
     {
       "test_case_number": 3,
-      "input": "xyz",
-      "expected_output": "0"
+      "input": "Happy birthday to you!",
+      "expected_output": "true"
     }
   ]
 }
