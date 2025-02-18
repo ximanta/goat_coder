@@ -2,33 +2,36 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "reshuffle_shopping_list",
-    "function_name": "reshuffle_list",
+    "problem_name": "calculate_total_price",
+    "function_name": "calculate_total_price",
     "input_structure": [
       {
-        "Input_Field": "List[str] items"
+        "Input_Field": "float original_price"
+      },
+      {
+        "Input_Field": "float tax_rate"
       }
     ],
     "output_structure": {
-      "Output_Field": "List[str] new_list"
+      "Output_Field": "float total_price"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n\n/*DO NOT modify this method.*/\r\npublic String[] reshuffleList(String[] items) {\r\n    // If the array is null or has 0 or 1 item, return it as is.\r\n    if (items == null || items.length <= 1) {\r\n        return items;\r\n    }\r\n    \r\n    // Create a new array to hold the reshuffled list.\r\n    String[] reshuffled = new String[items.length];\r\n    \r\n    // Move the last item to the front.\r\n    reshuffled[0] = items[items.length - 1];\r\n    \r\n    // Shift the remaining items one position to the right.\r\n    for (int i = 0; i < items.length - 1; i++) {\r\n        reshuffled[i + 1] = items[i];\r\n    }\r\n    \r\n    return reshuffled;\r\n}\n\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : \"\";\n        String[] items;\n        if (line.isEmpty()) {\n            items = new String[0];\n        } else {\n            String[] allItems = line.split(\"\\\\s+\");\n            items = new String[allItems.length];\n            for (int i = 0; i < allItems.length; i++) {\n                items[i] = allItems[i].trim();\n            }\n        }\n        \n        // Call the solution function\n        String[] result = solution.reshuffleList(items);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n\npublic double calculateTotalPrice(double originalPrice, double taxRate) {\r\n    // Calculate the tax amount (taxRate is a percentage, so divide by 100)\r\n    double taxAmount = originalPrice * (taxRate / 100.0);\r\n    // Calculate the total price by adding the original price and tax amount\r\n    double totalPrice = originalPrice + taxAmount;\r\n    // Round the total price to two decimal places\r\n    return Math.round(totalPrice * 100.0) / 100.0;\r\n}\n\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        double originalPrice = Double.parseDouble(scanner.nextLine());\n        double taxRate = Double.parseDouble(scanner.nextLine());\n        \n        // Call the solution function\n        double result = solution.calculateTotalPrice(originalPrice, taxRate);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "apples bananas carrots dates",
-      "expected_output": "[dates, apples, bananas, carrots]"
+      "input": "100\n5",
+      "expected_output": "105.0"
     },
     {
       "test_case_number": 2,
-      "input": "milk",
-      "expected_output": "[milk]"
+      "input": "50\n10",
+      "expected_output": "55.0"
     },
     {
       "test_case_number": 3,
-      "input": "",
-      "expected_output": "[]"
+      "input": "0\n20",
+      "expected_output": "0.0"
     }
   ]
 }

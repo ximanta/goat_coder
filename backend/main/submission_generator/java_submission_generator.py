@@ -315,20 +315,22 @@ public class {class_name} {{
         return f"System.out.println({var_name});"
 
     def format_input(self, input_data: list) -> str:
-        """Format input data for Java program stdin"""
+        """
+        Format input data for Java program stdin.
+        - Array elements should be space-separated on one line
+        - Multiple scalar parameters should be on separate lines
+        """
         formatted_inputs = []
         for item in input_data:
             if isinstance(item, list):
-                # Format array items with spaces between elements
-                formatted_items = []
-                for x in item:
-                    if isinstance(x, str):
-                        formatted_items.append(x)
-                    else:
-                        formatted_items.append(str(x))
-                # Join with spaces instead of commas
+                # Array elements stay space-separated on one line
+                formatted_items = [str(x) for x in item]
                 formatted_inputs.append(" ".join(formatted_items))
+            elif len(input_data) > 1:
+                # Multiple scalar parameters each get their own line
+                formatted_inputs.append(str(item))
             else:
+                # Single scalar parameter
                 formatted_inputs.append(str(item))
         
         return "\n".join(formatted_inputs)

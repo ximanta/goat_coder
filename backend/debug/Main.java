@@ -7,25 +7,13 @@ import java.util.*;
             
 public class Main {
 
-/*DO NOT modify this method.*/
-public String[] reshuffleList(String[] items) {
-    // If the array is null or has 0 or 1 item, return it as is.
-    if (items == null || items.length <= 1) {
-        return items;
-    }
-    
-    // Create a new array to hold the reshuffled list.
-    String[] reshuffled = new String[items.length];
-    
-    // Move the last item to the front.
-    reshuffled[0] = items[items.length - 1];
-    
-    // Shift the remaining items one position to the right.
-    for (int i = 0; i < items.length - 1; i++) {
-        reshuffled[i + 1] = items[i];
-    }
-    
-    return reshuffled;
+public double calculateTotalPrice(double originalPrice, double taxRate) {
+    // Calculate the tax amount (taxRate is a percentage, so divide by 100)
+    double taxAmount = originalPrice * (taxRate / 100.0);
+    // Calculate the total price by adding the original price and tax amount
+    double totalPrice = originalPrice + taxAmount;
+    // Round the total price to two decimal places
+    return Math.round(totalPrice * 100.0) / 100.0;
 }
 
 
@@ -34,23 +22,14 @@ public String[] reshuffleList(String[] items) {
         Main solution = new Main();
         
         // Parse input
-        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
-        String[] items;
-        if (line.isEmpty()) {
-            items = new String[0];
-        } else {
-            String[] allItems = line.split("\\s+");
-            items = new String[allItems.length];
-            for (int i = 0; i < allItems.length; i++) {
-                items[i] = allItems[i].trim();
-            }
-        }
+        double originalPrice = Double.parseDouble(scanner.nextLine());
+        double taxRate = Double.parseDouble(scanner.nextLine());
         
         // Call the solution function
-        String[] result = solution.reshuffleList(items);
+        double result = solution.calculateTotalPrice(originalPrice, taxRate);
         
         // Print the result
-        System.out.println(Arrays.toString(result));
+        System.out.println(result);
         scanner.close();
     }
 }

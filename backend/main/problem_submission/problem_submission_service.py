@@ -65,16 +65,15 @@ class ProblemSubmissionService:
                 "test_cases": []
             }
             
+            # Get output type from structure to handle float/double formatting
+            output_type = parsed_structure["output_structure"]["Output_Field"].split()[0].lower()
+            is_float_output = output_type in ["float", "double"]
+            
             # Prepare submissions for all test cases
             submissions = []
             for i, test_case in enumerate(test_cases):
-                # Flatten input list if it's a list inside a list
-                input_data = test_case['input']
-                if len(input_data) == 1 and isinstance(input_data[0], list):
-                    input_data = input_data[0]
-                
-                # Now generate input string
-                input_str = java_generator.format_input([input_data])
+                # Don't modify the input list structure
+                input_str = java_generator.format_input(test_case['input'])
                 
                 # Format expected output based on type
                 expected = test_case['output']
@@ -84,7 +83,16 @@ class ProblemSubmissionService:
                     # Format array output in Java style - no quotes for strings
                     output_str = "[" + ", ".join(str(x) for x in expected) + "]"
                 else:
-                    output_str = str(expected)
+                    # For float/double outputs, ensure decimal point is present
+                    if is_float_output and isinstance(expected, (int, float)):
+                        output_str = f"{float(expected):.1f}"  # Force decimal point
+                    else:
+                        output_str = str(expected)
+
+                # Log the formatted input for debugging
+                logger.info(f"Test case {i+1} input formatted as: {repr(input_str)}")
+                # Log the formatted output for debugging
+                logger.info(f"Test case {i+1} output formatted as: {repr(output_str)}")
 
                 # Add test case details to submission_details
                 submission_details["test_cases"].append({
