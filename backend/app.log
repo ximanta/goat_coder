@@ -30507,3 +30507,1098 @@ public double calculateTotalPrice(double[] prices) {
 2025-02-18 21:39:09,111 - main.problem_submission.problem_submission_route - INFO - Completed: True
 2025-02-18 21:39:09,112 - main.problem_submission.problem_submission_route - INFO - All Passed: False
 2025-02-18 21:39:09,113 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 21:44:20,731 - uvicorn.error - INFO - Started server process [23900]
+2025-02-18 21:44:20,732 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:44:20,733 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:44:31,206 - uvicorn.error - INFO - Started server process [25044]
+2025-02-18 21:44:31,208 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:44:31,209 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:44:46,511 - uvicorn.error - INFO - Started server process [29184]
+2025-02-18 21:44:46,512 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:44:46,514 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:50:39,451 - uvicorn.error - INFO - Started server process [30708]
+2025-02-18 21:50:39,452 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:50:39,454 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:52:23,951 - uvicorn.error - INFO - Started server process [14528]
+2025-02-18 21:52:23,952 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:52:23,954 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:52:23,968 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 21:52:23,969 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 21:52:23,969 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 21:52:23,970 - main.problem_submission.problem_submission_route - INFO - Source code length: 198
+2025-02-18 21:52:23,970 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 21:52:23,971 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 21:52:23,971 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 21:52:23,972 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 21:52:23,973 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:52:23,973 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:52:23,974 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 21:52:23,974 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 21:52:23,975 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 21:52:23,976 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 21:52:23,976 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 21:52:23,977 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      10.5,
+      20,
+      5.75
+    ],
+    "output": 36.25
+  },
+  {
+    "input": [
+      3.99,
+      2.49,
+      7.99
+    ],
+    "output": 14.47
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-18 21:52:23,978 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 21:52:23,979 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 21:52:23,980 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 21:52:23,980 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'calculate_total_price', 'function_name': 'calculate_total_price', 'input_structure': [{'Input_Field': 'List[float] prices'}], 'output_structure': {'Output_Field': 'float total'}}
+2025-02-18 21:52:23,981 - main.submission_generator.java_submission_generator - INFO - Checking for function name: calculateTotalPrice (original: calculate_total_price)
+2025-02-18 21:52:23,981 - main.submission_generator.java_submission_generator - INFO - Function name: calculateTotalPrice
+2025-02-18 21:52:23,981 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'List[float] prices'}]
+2025-02-18 21:52:23,982 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'float total'}
+2025-02-18 21:52:23,982 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['double[] prices']
+2025-02-18 21:52:23,983 - main.submission_generator.java_submission_generator - INFO - Return type: double
+2025-02-18 21:52:23,986 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 21:52:23,986 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 21:52:23,987 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = Double.parseDouble(allItems[i].trim());
+            }
+        }
+        
+        // Call the solution function
+        double result = solution.calculateTotalPrice(prices);
+        
+        // Print the result
+        System.out.println(String.valueOf(result));
+        scanner.close();
+    }
+}
+2025-02-18 21:52:23,988 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 21:52:23,988 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = Double.parseDouble(allItems[i].trim());
+            }
+        }
+        
+        // Call the solution function
+        double result = solution.calculateTotalPrice(prices);
+        
+        // Print the result
+        System.out.println(String.valueOf(result));
+        scanner.close();
+    }
+}
+2025-02-18 21:52:23,990 - main.problem_submission.problem_submission_service - INFO - Test case 1 input formatted as: None
+2025-02-18 21:52:23,990 - main.problem_submission.problem_submission_service - INFO - Test case 1 output formatted as: '36.25'
+2025-02-18 21:52:23,991 - main.problem_submission.problem_submission_service - INFO - Test case 2 input formatted as: None
+2025-02-18 21:52:23,992 - main.problem_submission.problem_submission_service - INFO - Test case 2 output formatted as: '14.47'
+2025-02-18 21:52:23,992 - main.problem_submission.problem_submission_service - INFO - Test case 3 input formatted as: None
+2025-02-18 21:52:23,993 - main.problem_submission.problem_submission_service - INFO - Test case 3 output formatted as: '0'
+2025-02-18 21:52:23,995 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 21:52:23,996 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 21:52:23,997 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gRG91YmxlLnBhcnNlRG91YmxlKGFsbEl0ZW1zW2ldLnRyaW0oKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBkb3VibGUgcmVzdWx0ID0gc29sdXRpb24uY2FsY3VsYXRlVG90YWxQcmljZShwcmljZXMpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oU3RyaW5nLnZhbHVlT2YocmVzdWx0KSk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "Tm9uZQ==",
+      "expected_output": "MzYuMjU=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gRG91YmxlLnBhcnNlRG91YmxlKGFsbEl0ZW1zW2ldLnRyaW0oKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBkb3VibGUgcmVzdWx0ID0gc29sdXRpb24uY2FsY3VsYXRlVG90YWxQcmljZShwcmljZXMpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oU3RyaW5nLnZhbHVlT2YocmVzdWx0KSk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "Tm9uZQ==",
+      "expected_output": "MTQuNDc=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gRG91YmxlLnBhcnNlRG91YmxlKGFsbEl0ZW1zW2ldLnRyaW0oKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBkb3VibGUgcmVzdWx0ID0gc29sdXRpb24uY2FsY3VsYXRlVG90YWxQcmljZShwcmljZXMpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oU3RyaW5nLnZhbHVlT2YocmVzdWx0KSk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "Tm9uZQ==",
+      "expected_output": "MA==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 21:52:24,930 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 21:52:24,931 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "f314ab6d-605d-4921-9384-f358dc245b22"
+  },
+  {
+    "token": "0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9"
+  },
+  {
+    "token": "b94e9441-4b3e-4dd3-bd54-965b3e564f83"
+  }
+]
+2025-02-18 21:52:24,935 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': 'f314ab6d-605d-4921-9384-f358dc245b22'}, {'token': '0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9'}, {'token': 'b94e9441-4b3e-4dd3-bd54-965b3e564f83'}]
+2025-02-18 21:52:24,946 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 21:52:24,947 - main.problem_submission.problem_submission_route - INFO - Tokens: ['f314ab6d-605d-4921-9384-f358dc245b22', '0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9', 'b94e9441-4b3e-4dd3-bd54-965b3e564f83']
+2025-02-18 21:52:24,948 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 21:52:24,948 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:52:24,949 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:52:24,949 - main.problem_submission.problem_submission_service - INFO - === Polling Submission f314ab6d-605d-4921-9384-f358dc245b22 ===
+2025-02-18 21:52:24,950 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:52:24,950 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/f314ab6d-605d-4921-9384-f358dc245b22
+2025-02-18 21:52:25,903 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:52:25,904 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:52:25,905 - main.problem_submission.problem_submission_service - INFO - Status: Processing
+2025-02-18 21:52:25,905 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 21:52:25,906 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:52:25,907 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 21:52:25,908 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-18 21:52:25,909 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-18 21:52:25,909 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-18 21:52:25,911 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9 ===
+2025-02-18 21:52:25,911 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:52:25,912 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9
+2025-02-18 21:52:27,031 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:52:27,032 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:52:27,032 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-18 21:52:27,033 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 21:52:27,035 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:52:27,035 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.lang.NumberFormatException: For input string: "None"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:549)
+	at Main.main(Main.java:33)
+
+2025-02-18 21:52:27,036 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-18 21:52:27,037 - main.problem_submission.problem_submission_service - INFO - Time: 0.071
+2025-02-18 21:52:27,039 - main.problem_submission.problem_submission_service - INFO - Memory: 19992
+2025-02-18 21:52:27,041 - main.problem_submission.problem_submission_service - INFO - === Polling Submission b94e9441-4b3e-4dd3-bd54-965b3e564f83 ===
+2025-02-18 21:52:27,043 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:52:27,044 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/b94e9441-4b3e-4dd3-bd54-965b3e564f83
+2025-02-18 21:52:28,157 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:52:28,159 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:52:28,159 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-18 21:52:28,161 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 21:52:28,162 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:52:28,163 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.lang.NumberFormatException: For input string: "None"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:549)
+	at Main.main(Main.java:33)
+
+2025-02-18 21:52:28,164 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-18 21:52:28,165 - main.problem_submission.problem_submission_service - INFO - Time: 0.073
+2025-02-18 21:52:28,165 - main.problem_submission.problem_submission_service - INFO - Memory: 19440
+2025-02-18 21:52:28,167 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 21:52:28,168 - main.problem_submission.problem_submission_route - INFO - Completed: False
+2025-02-18 21:52:28,169 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 21:52:28,169 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 21:52:30,177 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 21:52:30,178 - main.problem_submission.problem_submission_route - INFO - Tokens: ['f314ab6d-605d-4921-9384-f358dc245b22', '0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9', 'b94e9441-4b3e-4dd3-bd54-965b3e564f83']
+2025-02-18 21:52:30,179 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 21:52:30,179 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:52:30,181 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:52:30,181 - main.problem_submission.problem_submission_service - INFO - === Polling Submission f314ab6d-605d-4921-9384-f358dc245b22 ===
+2025-02-18 21:52:30,182 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:52:30,182 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/f314ab6d-605d-4921-9384-f358dc245b22
+2025-02-18 21:52:31,537 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:52:31,538 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:52:31,539 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-18 21:52:31,540 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 21:52:31,540 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:52:31,541 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.lang.NumberFormatException: For input string: "None"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:549)
+	at Main.main(Main.java:33)
+
+2025-02-18 21:52:31,541 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-18 21:52:31,542 - main.problem_submission.problem_submission_service - INFO - Time: 0.091
+2025-02-18 21:52:31,543 - main.problem_submission.problem_submission_service - INFO - Memory: 20184
+2025-02-18 21:52:31,544 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9 ===
+2025-02-18 21:52:31,545 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:52:31,547 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/0f7e6a1f-31ed-4312-8b8c-8e3a005a3fe9
+2025-02-18 21:52:32,668 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:52:32,669 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:52:32,670 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-18 21:52:32,671 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 21:52:32,672 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:52:32,673 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.lang.NumberFormatException: For input string: "None"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:549)
+	at Main.main(Main.java:33)
+
+2025-02-18 21:52:32,673 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-18 21:52:32,674 - main.problem_submission.problem_submission_service - INFO - Time: 0.071
+2025-02-18 21:52:32,674 - main.problem_submission.problem_submission_service - INFO - Memory: 19992
+2025-02-18 21:52:32,678 - main.problem_submission.problem_submission_service - INFO - === Polling Submission b94e9441-4b3e-4dd3-bd54-965b3e564f83 ===
+2025-02-18 21:52:32,679 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:52:32,680 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/b94e9441-4b3e-4dd3-bd54-965b3e564f83
+2025-02-18 21:52:33,738 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:52:33,739 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:52:33,740 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-18 21:52:33,740 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 21:52:33,741 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:52:33,742 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.lang.NumberFormatException: For input string: "None"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:549)
+	at Main.main(Main.java:33)
+
+2025-02-18 21:52:33,742 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-18 21:52:33,743 - main.problem_submission.problem_submission_service - INFO - Time: 0.073
+2025-02-18 21:52:33,743 - main.problem_submission.problem_submission_service - INFO - Memory: 19440
+2025-02-18 21:52:33,746 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 21:52:33,747 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 21:52:33,747 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 21:52:33,748 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 21:53:02,017 - uvicorn.error - INFO - Started server process [27792]
+2025-02-18 21:53:02,018 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:53:02,019 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:53:27,168 - uvicorn.error - INFO - Started server process [19044]
+2025-02-18 21:53:27,170 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 21:53:27,171 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 21:53:27,184 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 21:53:27,184 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 21:53:27,184 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 21:53:27,184 - main.problem_submission.problem_submission_route - INFO - Source code length: 198
+2025-02-18 21:53:27,184 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 21:53:27,185 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 21:53:27,185 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 21:53:27,186 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 21:53:27,186 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:53:27,187 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:53:27,187 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 21:53:27,188 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 21:53:27,188 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 21:53:27,188 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 21:53:27,189 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 21:53:27,189 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      10.5,
+      20,
+      5.75
+    ],
+    "output": 36.25
+  },
+  {
+    "input": [
+      3.99,
+      2.49,
+      7.99
+    ],
+    "output": 14.47
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-18 21:53:27,190 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 21:53:27,191 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 21:53:27,191 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 21:53:27,192 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'calculate_total_price', 'function_name': 'calculate_total_price', 'input_structure': [{'Input_Field': 'List[float] prices'}], 'output_structure': {'Output_Field': 'float total'}}
+2025-02-18 21:53:27,193 - main.submission_generator.java_submission_generator - INFO - Checking for function name: calculateTotalPrice (original: calculate_total_price)
+2025-02-18 21:53:27,193 - main.submission_generator.java_submission_generator - INFO - Function name: calculateTotalPrice
+2025-02-18 21:53:27,194 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'List[float] prices'}]
+2025-02-18 21:53:27,195 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'float total'}
+2025-02-18 21:53:27,195 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['double[] prices']
+2025-02-18 21:53:27,196 - main.submission_generator.java_submission_generator - INFO - Return type: double
+2025-02-18 21:53:27,199 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 21:53:27,199 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 21:53:27,200 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = allItems[i].trim();
+            }
+        }
+        
+        // Call the solution function
+        double result = solution.calculateTotalPrice(prices);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 21:53:27,200 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 21:53:27,201 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = allItems[i].trim();
+            }
+        }
+        
+        // Call the solution function
+        double result = solution.calculateTotalPrice(prices);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 21:53:27,202 - main.problem_submission.problem_submission_service - INFO - Test case 1 input formatted as: '10.5 20 5.75'
+2025-02-18 21:53:27,202 - main.problem_submission.problem_submission_service - INFO - Test case 1 output formatted as: '36.25'
+2025-02-18 21:53:27,202 - main.problem_submission.problem_submission_service - INFO - Test case 2 input formatted as: '3.99 2.49 7.99'
+2025-02-18 21:53:27,203 - main.problem_submission.problem_submission_service - INFO - Test case 2 output formatted as: '14.47'
+2025-02-18 21:53:27,203 - main.problem_submission.problem_submission_service - INFO - Test case 3 input formatted as: ''
+2025-02-18 21:53:27,203 - main.problem_submission.problem_submission_service - INFO - Test case 3 output formatted as: '0'
+2025-02-18 21:53:27,206 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 21:53:27,206 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 21:53:27,207 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gYWxsSXRlbXNbaV0udHJpbSgpOwogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgZG91YmxlIHJlc3VsdCA9IHNvbHV0aW9uLmNhbGN1bGF0ZVRvdGFsUHJpY2UocHJpY2VzKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "MTAuNSAyMCA1Ljc1",
+      "expected_output": "MzYuMjU=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gYWxsSXRlbXNbaV0udHJpbSgpOwogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgZG91YmxlIHJlc3VsdCA9IHNvbHV0aW9uLmNhbGN1bGF0ZVRvdGFsUHJpY2UocHJpY2VzKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "My45OSAyLjQ5IDcuOTk=",
+      "expected_output": "MTQuNDc=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gYWxsSXRlbXNbaV0udHJpbSgpOwogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgZG91YmxlIHJlc3VsdCA9IHNvbHV0aW9uLmNhbGN1bGF0ZVRvdGFsUHJpY2UocHJpY2VzKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "",
+      "expected_output": "MA==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 21:53:28,299 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 21:53:28,300 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "99f1627b-cb0c-4eb6-b9d7-0ef8baa83ab8"
+  },
+  {
+    "token": "97e4b4d2-6081-4cf0-b8d0-a64956c27833"
+  },
+  {
+    "token": "5574c424-f10a-4909-b3fe-cec9cf321209"
+  }
+]
+2025-02-18 21:53:28,303 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '99f1627b-cb0c-4eb6-b9d7-0ef8baa83ab8'}, {'token': '97e4b4d2-6081-4cf0-b8d0-a64956c27833'}, {'token': '5574c424-f10a-4909-b3fe-cec9cf321209'}]
+2025-02-18 21:53:28,312 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 21:53:28,313 - main.problem_submission.problem_submission_route - INFO - Tokens: ['99f1627b-cb0c-4eb6-b9d7-0ef8baa83ab8', '97e4b4d2-6081-4cf0-b8d0-a64956c27833', '5574c424-f10a-4909-b3fe-cec9cf321209']
+2025-02-18 21:53:28,314 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 21:53:28,314 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:53:28,315 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 21:53:28,316 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 99f1627b-cb0c-4eb6-b9d7-0ef8baa83ab8 ===
+2025-02-18 21:53:28,316 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:53:28,317 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/99f1627b-cb0c-4eb6-b9d7-0ef8baa83ab8
+2025-02-18 21:53:29,258 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:53:29,259 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:53:29,260 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-18 21:53:29,260 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:33: error: incompatible types: String cannot be converted to double
+                prices[i] = allItems[i].trim();
+                                            ^
+1 error
+
+2025-02-18 21:53:29,262 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:53:29,262 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 21:53:29,263 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-18 21:53:29,263 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-18 21:53:29,263 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-18 21:53:29,266 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 97e4b4d2-6081-4cf0-b8d0-a64956c27833 ===
+2025-02-18 21:53:29,266 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:53:29,267 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/97e4b4d2-6081-4cf0-b8d0-a64956c27833
+2025-02-18 21:53:30,210 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:53:30,211 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:53:30,212 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-18 21:53:30,212 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:33: error: incompatible types: String cannot be converted to double
+                prices[i] = allItems[i].trim();
+                                            ^
+1 error
+
+2025-02-18 21:53:30,213 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:53:30,213 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 21:53:30,214 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-18 21:53:30,215 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-18 21:53:30,216 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-18 21:53:30,219 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 5574c424-f10a-4909-b3fe-cec9cf321209 ===
+2025-02-18 21:53:30,220 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 21:53:30,221 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/5574c424-f10a-4909-b3fe-cec9cf321209
+2025-02-18 21:53:31,435 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 21:53:31,436 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 21:53:31,437 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-18 21:53:31,438 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:33: error: incompatible types: String cannot be converted to double
+                prices[i] = allItems[i].trim();
+                                            ^
+1 error
+
+2025-02-18 21:53:31,439 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-18 21:53:31,440 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 21:53:31,441 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-18 21:53:31,441 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-18 21:53:31,442 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-18 21:53:31,443 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 21:53:31,444 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 21:53:31,445 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 21:53:31,446 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 22:07:49,151 - uvicorn.error - INFO - Started server process [26552]
+2025-02-18 22:07:49,152 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 22:07:49,154 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 22:07:57,442 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 22:07:57,443 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 22:07:57,444 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 22:07:57,444 - main.problem_submission.problem_submission_route - INFO - Source code length: 198
+2025-02-18 22:07:57,445 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 22:07:57,445 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 22:07:57,446 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 22:07:57,446 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 22:07:57,447 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 22:07:57,447 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 22:07:57,448 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 22:07:57,448 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 22:07:57,449 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 22:07:57,449 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 22:07:57,450 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 22:07:57,450 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      10.5,
+      20,
+      5.75
+    ],
+    "output": 36.25
+  },
+  {
+    "input": [
+      3.99,
+      2.49,
+      7.99
+    ],
+    "output": 14.47
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-18 22:07:57,451 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 22:07:57,452 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 22:07:57,452 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 22:07:57,453 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'calculate_total_price', 'function_name': 'calculate_total_price', 'input_structure': [{'Input_Field': 'List[float] prices'}], 'output_structure': {'Output_Field': 'float total'}}
+2025-02-18 22:07:57,453 - main.submission_generator.java_submission_generator - INFO - Checking for function name: calculateTotalPrice (original: calculate_total_price)
+2025-02-18 22:07:57,454 - main.submission_generator.java_submission_generator - INFO - Function name: calculateTotalPrice
+2025-02-18 22:07:57,454 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'List[float] prices'}]
+2025-02-18 22:07:57,455 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'float total'}
+2025-02-18 22:07:57,455 - main.submission_generator.java_submission_generator - ERROR - Error generating Java submission: 'JavaSubmissionGenerator' object has no attribute '_parse_value'
+2025-02-18 22:07:57,456 - main.problem_submission.problem_submission_service - ERROR - 5. Failed to generate Java submission: 'JavaSubmissionGenerator' object has no attribute '_parse_value'
+2025-02-18 22:07:57,456 - main.problem_submission.problem_submission_route - ERROR - Error in submit_problem: Failed to generate Java submission: 'JavaSubmissionGenerator' object has no attribute '_parse_value'
+2025-02-18 22:08:19,711 - uvicorn.error - INFO - Started server process [30088]
+2025-02-18 22:08:19,712 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 22:08:19,715 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 22:09:28,713 - uvicorn.error - INFO - Started server process [3820]
+2025-02-18 22:09:28,714 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 22:09:28,715 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 22:09:34,021 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 22:09:34,022 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 22:09:34,023 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 22:09:34,024 - main.problem_submission.problem_submission_route - INFO - Source code length: 198
+2025-02-18 22:09:34,025 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 22:09:34,026 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 22:09:34,027 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 22:09:34,027 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 22:09:34,028 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 22:09:34,030 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 22:09:34,030 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-18 22:09:34,031 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-18 22:09:34,031 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-18 22:09:34,032 - main.problem_submission.problem_submission_service - INFO - Source Code:
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 22:09:34,033 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"calculate_total_price","function_name":"calculate_total_price","input_structure":[{"Input_Field":"List[float] prices"}],"output_structure":{"Output_Field":"float total"}}
+2025-02-18 22:09:34,034 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      10.5,
+      20,
+      5.75
+    ],
+    "output": 36.25
+  },
+  {
+    "input": [
+      3.99,
+      2.49,
+      7.99
+    ],
+    "output": 14.47
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-18 22:09:34,035 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-18 22:09:34,037 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 22:09:34,038 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+2025-02-18 22:09:34,038 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'calculate_total_price', 'function_name': 'calculate_total_price', 'input_structure': [{'Input_Field': 'List[float] prices'}], 'output_structure': {'Output_Field': 'float total'}}
+2025-02-18 22:09:34,039 - main.submission_generator.java_submission_generator - INFO - Checking for function name: calculateTotalPrice (original: calculate_total_price)
+2025-02-18 22:09:34,040 - main.submission_generator.java_submission_generator - INFO - Function name: calculateTotalPrice
+2025-02-18 22:09:34,041 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'List[float] prices'}]
+2025-02-18 22:09:34,041 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'float total'}
+2025-02-18 22:09:34,042 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['double[] prices']
+2025-02-18 22:09:34,043 - main.submission_generator.java_submission_generator - INFO - Return type: double
+2025-02-18 22:09:34,046 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 22:09:34,047 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 22:09:34,047 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = Double.parseDouble(allItems[i].trim());
+            }
+        }
+        
+        // Call the solution function
+        double result = solution.calculateTotalPrice(prices);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 22:09:34,049 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 22:09:34,049 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+/*DO NOT modify this method.*/
+public double calculateTotalPrice(double[] prices) {
+    double total = 0.0;
+    for (double price : prices) {
+        total += price;
+    }
+    return total;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        double[] prices;
+        if (line.isEmpty()) {
+            prices = new double[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            prices = new double[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                prices[i] = Double.parseDouble(allItems[i].trim());
+            }
+        }
+        
+        // Call the solution function
+        double result = solution.calculateTotalPrice(prices);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 22:09:34,051 - main.problem_submission.problem_submission_service - INFO - Test case 1 input formatted as: '10.5 20 5.75'
+2025-02-18 22:09:34,052 - main.problem_submission.problem_submission_service - INFO - Test case 1 output formatted as: '36.25'
+2025-02-18 22:09:34,052 - main.problem_submission.problem_submission_service - INFO - Test case 2 input formatted as: '3.99 2.49 7.99'
+2025-02-18 22:09:34,053 - main.problem_submission.problem_submission_service - INFO - Test case 2 output formatted as: '14.47'
+2025-02-18 22:09:34,054 - main.problem_submission.problem_submission_service - INFO - Test case 3 input formatted as: ''
+2025-02-18 22:09:34,055 - main.problem_submission.problem_submission_service - INFO - Test case 3 output formatted as: '0'
+2025-02-18 22:09:34,058 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 22:09:34,058 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 22:09:34,060 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gRG91YmxlLnBhcnNlRG91YmxlKGFsbEl0ZW1zW2ldLnRyaW0oKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBkb3VibGUgcmVzdWx0ID0gc29sdXRpb24uY2FsY3VsYXRlVG90YWxQcmljZShwcmljZXMpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "MTAuNSAyMCA1Ljc1",
+      "expected_output": "MzYuMjU=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gRG91YmxlLnBhcnNlRG91YmxlKGFsbEl0ZW1zW2ldLnRyaW0oKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBkb3VibGUgcmVzdWx0ID0gc29sdXRpb24uY2FsY3VsYXRlVG90YWxQcmljZShwcmljZXMpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "My45OSAyLjQ5IDcuOTk=",
+      "expected_output": "MTQuNDc=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCnB1YmxpYyBkb3VibGUgY2FsY3VsYXRlVG90YWxQcmljZShkb3VibGVbXSBwcmljZXMpIHsNCiAgICBkb3VibGUgdG90YWwgPSAwLjA7DQogICAgZm9yIChkb3VibGUgcHJpY2UgOiBwcmljZXMpIHsNCiAgICAgICAgdG90YWwgKz0gcHJpY2U7DQogICAgfQ0KICAgIHJldHVybiB0b3RhbDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbGluZSA9IHNjYW5uZXIuaGFzTmV4dExpbmUoKSA/IHNjYW5uZXIubmV4dExpbmUoKS50cmltKCkgOiAiIjsKICAgICAgICBkb3VibGVbXSBwcmljZXM7CiAgICAgICAgaWYgKGxpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgU3RyaW5nW10gYWxsSXRlbXMgPSBsaW5lLnNwbGl0KCJcXHMrIik7CiAgICAgICAgICAgIHByaWNlcyA9IG5ldyBkb3VibGVbYWxsSXRlbXMubGVuZ3RoXTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBhbGxJdGVtcy5sZW5ndGg7IGkrKykgewogICAgICAgICAgICAgICAgcHJpY2VzW2ldID0gRG91YmxlLnBhcnNlRG91YmxlKGFsbEl0ZW1zW2ldLnRyaW0oKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBkb3VibGUgcmVzdWx0ID0gc29sdXRpb24uY2FsY3VsYXRlVG90YWxQcmljZShwcmljZXMpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "",
+      "expected_output": "MA==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 22:09:35,510 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 22:09:35,511 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "d1204cdf-5114-4152-86bd-65d1fe053e7f"
+  },
+  {
+    "token": "2cbf219e-8f56-4de9-9a4e-0ba02f580d2c"
+  },
+  {
+    "token": "27e29afa-6aac-4ea8-8d57-34a978a7dde7"
+  }
+]
+2025-02-18 22:09:35,515 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': 'd1204cdf-5114-4152-86bd-65d1fe053e7f'}, {'token': '2cbf219e-8f56-4de9-9a4e-0ba02f580d2c'}, {'token': '27e29afa-6aac-4ea8-8d57-34a978a7dde7'}]
+2025-02-18 22:09:35,527 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 22:09:35,528 - main.problem_submission.problem_submission_route - INFO - Tokens: ['d1204cdf-5114-4152-86bd-65d1fe053e7f', '2cbf219e-8f56-4de9-9a4e-0ba02f580d2c', '27e29afa-6aac-4ea8-8d57-34a978a7dde7']
+2025-02-18 22:09:35,528 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 22:09:35,529 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 22:09:35,529 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 22:09:35,529 - main.problem_submission.problem_submission_service - INFO - === Polling Submission d1204cdf-5114-4152-86bd-65d1fe053e7f ===
+2025-02-18 22:09:35,530 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 22:09:35,530 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/d1204cdf-5114-4152-86bd-65d1fe053e7f
+2025-02-18 22:09:36,701 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 22:09:36,702 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 22:09:36,703 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 22:09:36,704 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 22:09:36,705 - main.problem_submission.problem_submission_service - INFO - Stdout: 36.25
+
+2025-02-18 22:09:36,707 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 22:09:36,708 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 22:09:36,709 - main.problem_submission.problem_submission_service - INFO - Time: 0.07
+2025-02-18 22:09:36,710 - main.problem_submission.problem_submission_service - INFO - Memory: 19276
+2025-02-18 22:09:36,713 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 2cbf219e-8f56-4de9-9a4e-0ba02f580d2c ===
+2025-02-18 22:09:36,714 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 22:09:36,715 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/2cbf219e-8f56-4de9-9a4e-0ba02f580d2c
+2025-02-18 22:09:37,930 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 22:09:37,932 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 22:09:37,933 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 22:09:37,933 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 22:09:37,934 - main.problem_submission.problem_submission_service - INFO - Stdout: 14.47
+
+2025-02-18 22:09:37,934 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 22:09:37,934 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 22:09:37,935 - main.problem_submission.problem_submission_service - INFO - Time: 0.07
+2025-02-18 22:09:37,936 - main.problem_submission.problem_submission_service - INFO - Memory: 18712
+2025-02-18 22:09:37,938 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 27e29afa-6aac-4ea8-8d57-34a978a7dde7 ===
+2025-02-18 22:09:37,939 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 22:09:37,940 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/27e29afa-6aac-4ea8-8d57-34a978a7dde7
+2025-02-18 22:09:38,961 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 22:09:38,962 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 22:09:38,962 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 22:09:38,963 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 22:09:38,964 - main.problem_submission.problem_submission_service - INFO - Stdout: 0.0
+
+2025-02-18 22:09:38,965 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 22:09:38,966 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 22:09:38,967 - main.problem_submission.problem_submission_service - INFO - Time: 0.07
+2025-02-18 22:09:38,967 - main.problem_submission.problem_submission_service - INFO - Memory: 19724
+2025-02-18 22:09:38,969 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 22:09:38,970 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 22:09:38,970 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 22:09:38,970 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-18 22:09:46,768 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 22:09:46,770 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-18 22:09:48,052 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-18 22:09:48,053 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-18 22:09:48,053 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-18 22:09:48,058 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-18 22:09:48,059 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-18 22:09:48,060 - main.problem_generator.prompt_manager - INFO - Selected category: Array Operations (previous was: None)
+2025-02-18 22:09:48,061 - main.problem_generator.prompt_manager - INFO - Selected problem type: Array Transformation (previous was: None)
+2025-02-18 22:09:48,118 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-18 22:09:48,119 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-18 22:09:48,125 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Array Transformation
+            Suggested Variation: Format all phone...
+2025-02-18 22:09:48,125 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 22:09:48,126 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 22:09:48,127 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 22:09:48,128 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Array Transformation
+            Suggested Variation: Format all phone numbers in list
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-18 22:09:48,129 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 22:09:48,129 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Basic Programming for Absolute Beginners
+
+2025-02-18 22:09:50,935 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 22:09:50,981 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 22:09:50,982 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      10,
+      20,
+      30
+    ],
+    "output": 60
+  },
+  {
+    "input": [
+      5,
+      15,
+      25,
+      35,
+      45
+    ],
+    "output": 125
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-18 22:09:50,983 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 22:09:50,984 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      10,
+      20,
+      30
+    ],
+    "output": 60
+  },
+  {
+    "input": [
+      5,
+      15,
+      25,
+      35,
+      45
+    ],
+    "output": 125
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-18 22:09:50,985 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 22:09:50,986 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "easy",
+  "problem_title": "Calculate Total Score",
+  "problem_statement": "You are playing a game where you earn points for different achievements. You will receive a list of scores from various achievements, and you need to calculate the total score. Write a function that takes a list of integers representing the scores and returns the sum of all the scores. If the list is empty, return 0.",
+  "test_cases": [
+    {
+      "input": [
+        10,
+        20,
+        30
+      ],
+      "output": 60
+    },
+    {
+      "input": [
+        5,
+        15,
+        25,
+        35,
+        45
+      ],
+      "output": 125
+    },
+    {
+      "input": [],
+      "output": 0
+    }
+  ],
+  "tags": [
+    "arrays",
+    "numbers",
+    "array_manipulation"
+  ],
+  "structure": {
+    "problem_name": "calculate_total_score",
+    "function_name": "calculateTotalScore",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] scores"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int totalScore"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic int calculateTotalScore(int[] scores) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef calculateTotalScore(scores: List[int]) -> int:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 22:09:50,987 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Calculate Total Score
