@@ -20968,3 +20968,1385 @@ For EASY difficulty level, ensure:
 2025-02-17 19:44:39,304 - uvicorn.error - INFO - Started server process [28608]
 2025-02-17 19:44:39,305 - uvicorn.error - INFO - Waiting for application startup.
 2025-02-17 19:44:39,307 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 09:19:34,319 - uvicorn.error - INFO - Shutting down
+2025-02-18 09:19:34,427 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-02-18 09:19:34,430 - uvicorn.error - INFO - Application shutdown complete.
+2025-02-18 09:19:34,431 - uvicorn.error - INFO - Finished server process [28608]
+2025-02-18 15:34:56,455 - uvicorn.error - INFO - Started server process [29172]
+2025-02-18 15:34:56,457 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 15:34:56,458 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 15:35:58,051 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 15:35:58,052 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-18 15:35:59,148 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-18 15:35:59,149 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-18 15:35:59,150 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-18 15:35:59,158 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-18 15:35:59,158 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-18 15:35:59,159 - main.problem_generator.prompt_manager - INFO - Selected category: Basic Arithmetic (previous was: None)
+2025-02-18 15:35:59,160 - main.problem_generator.prompt_manager - INFO - Selected problem type: Simple Calculations (previous was: None)
+2025-02-18 15:35:59,220 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-18 15:35:59,221 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-18 15:35:59,235 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Basic Arithmetic
+            Problem Type: Simple Calculations
+            Suggested Variation: Calculate total p...
+2025-02-18 15:35:59,236 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 15:35:59,236 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 15:35:59,238 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 15:35:59,238 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Basic Arithmetic
+            Problem Type: Simple Calculations
+            Suggested Variation: Calculate total points in a game
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-18 15:35:59,240 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 15:35:59,242 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Basic Programming for Absolute Beginners
+
+2025-02-18 15:35:59,245 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 15:35:59,245 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-18 15:36:00,382 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-18 15:36:00,383 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-18 15:36:00,384 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-18 15:36:00,387 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-18 15:36:00,387 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-18 15:36:00,388 - main.problem_generator.prompt_manager - INFO - Selected category: String Operations (previous was: None)
+2025-02-18 15:36:00,389 - main.problem_generator.prompt_manager - INFO - Selected problem type: Character Analysis (previous was: None)
+2025-02-18 15:36:00,397 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-18 15:36:00,398 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-18 15:36:00,400 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: Character Analysis
+            Suggested Variation: Count vowels in a...
+2025-02-18 15:36:00,400 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 15:36:00,400 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 15:36:00,400 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 15:36:00,401 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: Character Analysis
+            Suggested Variation: Count vowels in a username
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-18 15:36:00,401 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 15:36:00,401 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Basic Programming for Absolute Beginners
+
+2025-02-18 15:36:02,973 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 15:36:03,034 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 15:36:03,035 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      10.5,
+      20.0,
+      5.75
+    ],
+    "output": 36.25
+  },
+  {
+    "input": [
+      15.99,
+      3.5,
+      25.75,
+      12.3
+    ],
+    "output": 57.54
+  },
+  {
+    "input": [],
+    "output": 0.0
+  }
+]
+2025-02-18 15:36:03,037 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 15:36:03,037 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      10.5,
+      20.0,
+      5.75
+    ],
+    "output": 36.25
+  },
+  {
+    "input": [
+      15.99,
+      3.5,
+      25.75,
+      12.3
+    ],
+    "output": 57.54
+  },
+  {
+    "input": [],
+    "output": 0.0
+  }
+]
+2025-02-18 15:36:03,049 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 15:36:03,051 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "Easy",
+  "problem_title": "Calculate the Total Cost of Shopping Items",
+  "problem_statement": "You are at a store and have a list of items you want to buy along with their respective prices. Write a function that calculates the total cost of all the items in your shopping list. You will receive a list of prices, and your task is to sum them up to find the total cost.",
+  "test_cases": [
+    {
+      "input": [
+        10.5,
+        20.0,
+        5.75
+      ],
+      "output": 36.25
+    },
+    {
+      "input": [
+        15.99,
+        3.5,
+        25.75,
+        12.3
+      ],
+      "output": 57.54
+    },
+    {
+      "input": [],
+      "output": 0.0
+    }
+  ],
+  "tags": [
+    "arithmetic",
+    "arrays",
+    "counting"
+  ],
+  "structure": {
+    "problem_name": "calculate_total_cost",
+    "function_name": "calculate_total_cost",
+    "input_structure": [
+      {
+        "Input_Field": "List[float] prices"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "float total_cost"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic double calculateTotalCost(double[] prices) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef calculate_total_cost(prices: List[float]) -> float:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 15:36:03,052 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Calculate the Total Cost of Shopping Items
+2025-02-18 15:36:03,385 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 15:36:03,389 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 15:36:03,389 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello, World! 123"
+    ],
+    "output": 4
+  },
+  {
+    "input": [
+      "NoSpecialCharsHere"
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      "!@# $%^ &*()"
+    ],
+    "output": 10
+  }
+]
+2025-02-18 15:36:03,391 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 15:36:03,391 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello, World! 123"
+    ],
+    "output": 4
+  },
+  {
+    "input": [
+      "NoSpecialCharsHere"
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      "!@# $%^ &*()"
+    ],
+    "output": 10
+  }
+]
+2025-02-18 15:36:03,392 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 15:36:03,393 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "Easy",
+  "problem_title": "Count Special Characters in a Message",
+  "problem_statement": "You are creating a social media app and want to analyze user messages. Your task is to write a function that counts the number of special characters in a given message. Special characters are defined as any character that is not a letter or a number (e.g., @, #, $, %, &, etc.). \n\nWrite a function called `count_special_characters` that accepts a string `message` and returns the total count of these special characters.",
+  "test_cases": [
+    {
+      "input": [
+        "Hello, World! 123"
+      ],
+      "output": 4
+    },
+    {
+      "input": [
+        "NoSpecialCharsHere"
+      ],
+      "output": 0
+    },
+    {
+      "input": [
+        "!@# $%^ &*()"
+      ],
+      "output": 10
+    }
+  ],
+  "tags": [
+    "strings",
+    "counting",
+    "string_manipulation"
+  ],
+  "structure": {
+    "problem_name": "Count Special Characters in a Message",
+    "function_name": "count_special_characters",
+    "input_structure": [
+      {
+        "Input_Field": "string message"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int result"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic int countSpecialCharacters(String message) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef count_special_characters(message: str) -> int:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 15:36:03,395 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count Special Characters in a Message
+2025-02-18 15:36:29,979 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 15:36:29,980 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-18 15:36:31,107 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-18 15:36:31,108 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-18 15:36:31,109 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-18 15:36:31,111 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-18 15:36:31,112 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-18 15:36:31,112 - main.problem_generator.prompt_manager - INFO - Selected category: String Operations (previous was: None)
+2025-02-18 15:36:31,113 - main.problem_generator.prompt_manager - INFO - Selected problem type: String Transformation (previous was: None)
+2025-02-18 15:36:31,123 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-18 15:36:31,124 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-18 15:36:31,128 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: String Transformation
+            Suggested Variation: Truncate strin...
+2025-02-18 15:36:31,128 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 15:36:31,129 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 15:36:31,129 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 15:36:31,130 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: String Transformation
+            Suggested Variation: Truncate string to specific length
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-18 15:36:31,131 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 15:36:31,131 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Basic Programming for Absolute Beginners
+
+2025-02-18 15:36:33,936 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 15:36:33,942 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 15:36:33,943 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello, how are you?",
+      "10"
+    ],
+    "output": "Hello, ho..."
+  },
+  {
+    "input": [
+      "I love programming!",
+      "20"
+    ],
+    "output": "I love programming!"
+  },
+  {
+    "input": [
+      "Hi!",
+      "2"
+    ],
+    "output": "Hi..."
+  }
+]
+2025-02-18 15:36:33,943 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 15:36:33,945 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello, how are you?",
+      "10"
+    ],
+    "output": "Hello, ho..."
+  },
+  {
+    "input": [
+      "I love programming!",
+      "20"
+    ],
+    "output": "I love programming!"
+  },
+  {
+    "input": [
+      "Hi!",
+      "2"
+    ],
+    "output": "Hi..."
+  }
+]
+2025-02-18 15:36:33,946 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 15:36:33,947 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "Easy",
+  "problem_title": "Shorten Your Message",
+  "problem_statement": "Imagine you are using a messaging app where you can only send short messages. Your friends have asked you to help them make their messages shorter. Create a function that takes a message and a maximum length and returns the message shortened to that length. If the message is longer than the specified length, it should be cut off at that length and an ellipsis ('...') should be added at the end. If the message is shorter or equal to the maximum length, return it unchanged.",
+  "test_cases": [
+    {
+      "input": [
+        "Hello, how are you?",
+        "10"
+      ],
+      "output": "Hello, ho..."
+    },
+    {
+      "input": [
+        "I love programming!",
+        "20"
+      ],
+      "output": "I love programming!"
+    },
+    {
+      "input": [
+        "Hi!",
+        "2"
+      ],
+      "output": "Hi..."
+    }
+  ],
+  "tags": [
+    "strings",
+    "string_manipulation",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "shorten_message",
+    "function_name": "shorten_message",
+    "input_structure": [
+      {
+        "Input_Field": "string message"
+      },
+      {
+        "Input_Field": "int max_length"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "string result"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic String shortenMessage(String message, int maxLength) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef shorten_message(message: str, max_length: int) -> str:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 15:36:33,948 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Shorten Your Message
+2025-02-18 15:37:41,943 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 15:37:41,944 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 15:37:41,944 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 15:37:41,945 - main.problem_submission.problem_submission_route - INFO - Source code length: 367
+2025-02-18 15:37:41,945 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 15:37:41,946 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"shorten_message","function_name":"shorten_message","input_structure":[{"Input_Field":"string message"},{"Input_Field":"int max_length"}],"output_structure":{"Output_Field":"string result"}}
+2025-02-18 15:37:41,946 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 15:37:41,946 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 15:37:41,947 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:37:41,947 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:37:41,949 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 15:37:41,949 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public String shortenMessage(String message, int maxLength) {
+    // If the message is longer than maxLength, truncate it and append an ellipsis.
+    if (message.length() > maxLength) {
+        return message.substring(0, maxLength) + "...";
+    }
+    // Otherwise, return the original message unchanged.
+    return message;
+}
+
+2025-02-18 15:37:41,950 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'shorten_message', 'function_name': 'shorten_message', 'input_structure': [{'Input_Field': 'string message'}, {'Input_Field': 'int max_length'}], 'output_structure': {'Output_Field': 'string result'}}
+2025-02-18 15:37:41,950 - main.submission_generator.java_submission_generator - INFO - Checking for function name: shortenMessage (original: shorten_message)
+2025-02-18 15:37:41,951 - main.submission_generator.java_submission_generator - INFO - Function name: shortenMessage
+2025-02-18 15:37:41,952 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}, {'Input_Field': 'int max_length'}]
+2025-02-18 15:37:41,952 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'string result'}
+2025-02-18 15:37:41,953 - main.submission_generator.java_submission_generator - ERROR - Error generating Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:37:41,953 - main.problem_submission.problem_submission_service - ERROR - 5. Failed to generate Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:37:41,954 - main.problem_submission.problem_submission_route - ERROR - Error in submit_problem: Failed to generate Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:38:01,008 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 15:38:01,009 - main.problem_generator.problem_generator_route - INFO - Received request - concept: String Handling, complexity: MEDIUM
+2025-02-18 15:38:02,158 - main.problem_generator.prompt_manager - INFO - Normalizing name: String Handling
+2025-02-18 15:38:02,159 - main.problem_generator.prompt_manager - INFO - Normalized to: string_handling
+2025-02-18 15:38:02,160 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\string_handling\config.json
+2025-02-18 15:38:02,161 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\string_handling\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\string_handling\\config.json'
+2025-02-18 15:38:02,182 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-18 15:38:02,182 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-18 15:38:02,199 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-18 15:38:02,200 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 15:38:02,200 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 15:38:02,201 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 15:38:02,201 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for medium experienced programmers with 1-3 years of experience.
+For MEDIUM difficulty level, ensure:
+
+Input Parameters:
+
+2-3 parameters
+May include more complex types (arrays, lists, simple objects)
+May require working with multiple arrays simultaneously
+
+
+Problem Scope:
+
+Multiple operations or transformations
+May require nested loops
+More complex conditionals allowed
+May involve working with simple data structures (stacks, queues, basic trees)
+May require multiple steps to solve
+Time complexity: O(n log n) or better typically expected
+Space complexity: O(n) typically expected
+
+
+Test Cases:
+
+2 test cases covering normal scenarios
+Include 1 edge case (empty inputs, boundary values)
+<!-- Include at least one larger input example -->
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                Use these medium-complexity real-world contexts:
+
+- Gaming Systems
+- Social Network Analysis
+- Education Systems
+- Weather Prediction
+- E-commerce Systems
+- Media Content Management
+- Sports Analytics
+    -- Player performance prediction
+    -- Team composition optimization
+    -- Game strategy analysis
+    -- Tournament bracket generation
+- Financial Applications
+    -- Budget tracking with categorization
+    -- Investment portfolio balancing
+    -- Expense pattern analysis
+    -- Simple stock trend calculations
+
+2025-02-18 15:38:02,203 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 15:38:02,203 - main.problem_generator.problem_generator_service - INFO - Content: Generate a MEDIUM difficulty problem about String Handling
+
+2025-02-18 15:38:02,208 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 15:38:02,208 - main.problem_generator.problem_generator_route - INFO - Received request - concept: String Handling, complexity: HARD
+2025-02-18 15:38:03,478 - main.problem_generator.prompt_manager - INFO - Normalizing name: String Handling
+2025-02-18 15:38:03,479 - main.problem_generator.prompt_manager - INFO - Normalized to: string_handling
+2025-02-18 15:38:03,479 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\string_handling\config.json
+2025-02-18 15:38:03,481 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\string_handling\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\string_handling\\config.json'
+2025-02-18 15:38:03,482 - main.problem_generator.prompt_manager - INFO - Normalizing name: HARD
+2025-02-18 15:38:03,483 - main.problem_generator.prompt_manager - INFO - Normalized to: hard
+2025-02-18 15:38:03,506 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-18 15:38:03,507 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 15:38:03,508 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 15:38:03,509 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 15:38:03,509 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for  experienced programmers with 3+ years of experience.
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                You are generating a single file coding problem for  experienced programmers with 3 + years of experience.
+
+2025-02-18 15:38:03,510 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 15:38:03,511 - main.problem_generator.problem_generator_service - INFO - Content: Generate a HARD difficulty problem about String Handling
+
+2025-02-18 15:38:06,271 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 15:38:06,276 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 15:38:06,277 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "character"
+    ],
+    "output": 5
+  },
+  {
+    "input": [
+      "bbabcbcab"
+    ],
+    "output": 7
+  },
+  {
+    "input": [
+      "abdbca"
+    ],
+    "output": 5
+  },
+  {
+    "input": [
+      "cbbd"
+    ],
+    "output": 2
+  },
+  {
+    "input": [
+      "a"
+    ],
+    "output": 1
+  }
+]
+2025-02-18 15:38:06,278 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 15:38:06,279 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "character"
+    ],
+    "output": 5
+  },
+  {
+    "input": [
+      "bbabcbcab"
+    ],
+    "output": 7
+  },
+  {
+    "input": [
+      "abdbca"
+    ],
+    "output": 5
+  },
+  {
+    "input": [
+      "cbbd"
+    ],
+    "output": 2
+  },
+  {
+    "input": [
+      "a"
+    ],
+    "output": 1
+  }
+]
+2025-02-18 15:38:06,280 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 15:38:06,282 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "String Handling",
+  "difficulty": "hard",
+  "problem_title": "Longest Palindromic Subsequence",
+  "problem_statement": "Given a string s, find the length of the longest subsequence of s that is also a palindrome. A subsequence is a sequence derived from another sequence where some elements may be deleted without changing the order of the remaining elements. A palindrome is a word that reads the same backward as forward. \n\nFor instance, if the input string is \"character\", then the longest palindromic subsequence would be \"carac\" or \"cec\" and the length would be 5.",
+  "test_cases": [
+    {
+      "input": [
+        "character"
+      ],
+      "output": 5
+    },
+    {
+      "input": [
+        "bbabcbcab"
+      ],
+      "output": 7
+    },
+    {
+      "input": [
+        "abdbca"
+      ],
+      "output": 5
+    },
+    {
+      "input": [
+        "cbbd"
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "output": 1
+    }
+  ],
+  "tags": [
+    "strings",
+    "string_manipulation",
+    "searching",
+    "counting",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "longest_palindromic_subsequence",
+    "function_name": "longest_palindromic_subsequence",
+    "input_structure": [
+      {
+        "Input_Field": "string s"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int result"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic int longestPalindromicSubsequence(String s) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef longest_palindromic_subsequence(s: str) -> int:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 15:38:06,283 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Longest Palindromic Subsequence
+2025-02-18 15:38:08,150 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 15:38:08,155 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 15:38:08,156 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        "hello world",
+        "this world is great",
+        "hello everyone",
+        "great things are happening",
+        "world of programming"
+      ]
+    ],
+    "output": {
+      "common_words": {
+        "hello": 2,
+        "world": 3,
+        "great": 2
+      },
+      "transformed_sentences": [
+        "Hello World",
+        "This World Is Great",
+        "Hello Everyone",
+        "Great Things Are Happening",
+        "World Of Programming"
+      ]
+    }
+  },
+  {
+    "input": [
+      [
+        "hello",
+        "world! this is a test."
+      ]
+    ],
+    "output": {
+      "common_words": {
+        "hello": 1,
+        "this": 1,
+        "is": 1,
+        "a": 1,
+        "test": 1,
+        "world": 1
+      },
+      "transformed_sentences": [
+        "Hello",
+        "World! This Is A Test."
+      ]
+    }
+  },
+  {
+    "input": [
+      []
+    ],
+    "output": {
+      "common_words": {},
+      "transformed_sentences": []
+    }
+  }
+]
+2025-02-18 15:38:08,158 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 15:38:08,159 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        "hello world",
+        "this world is great",
+        "hello everyone",
+        "great things are happening",
+        "world of programming"
+      ]
+    ],
+    "output": {
+      "common_words": {
+        "hello": 2,
+        "world": 3,
+        "great": 2
+      },
+      "transformed_sentences": [
+        "Hello World",
+        "This World Is Great",
+        "Hello Everyone",
+        "Great Things Are Happening",
+        "World Of Programming"
+      ]
+    }
+  },
+  {
+    "input": [
+      [
+        "hello",
+        "world! this is a test."
+      ]
+    ],
+    "output": {
+      "common_words": {
+        "hello": 1,
+        "this": 1,
+        "is": 1,
+        "a": 1,
+        "test": 1,
+        "world": 1
+      },
+      "transformed_sentences": [
+        "Hello",
+        "World! This Is A Test."
+      ]
+    }
+  },
+  {
+    "input": [
+      []
+    ],
+    "output": {
+      "common_words": {},
+      "transformed_sentences": []
+    }
+  }
+]
+2025-02-18 15:38:08,161 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 15:38:08,162 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "String Handling",
+  "difficulty": "MEDIUM",
+  "problem_title": "Analyze and Transform Text",
+  "problem_statement": "You are tasked with analyzing a list of sentences to find the most common words and create a transformation of the text by capitalizing the first letter of each word. Write a function that takes a list of strings (sentences) and returns a dictionary containing the most common words (including their counts) and a new list of transformed sentences with capitalized first letters. The transformation should ignore punctuation and be case insensitive. If there are no sentences, return an empty dictionary and an empty list.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          "hello world",
+          "this world is great",
+          "hello everyone",
+          "great things are happening",
+          "world of programming"
+        ]
+      ],
+      "output": {
+        "common_words": {
+          "hello": 2,
+          "world": 3,
+          "great": 2
+        },
+        "transformed_sentences": [
+          "Hello World",
+          "This World Is Great",
+          "Hello Everyone",
+          "Great Things Are Happening",
+          "World Of Programming"
+        ]
+      }
+    },
+    {
+      "input": [
+        [
+          "hello",
+          "world! this is a test."
+        ]
+      ],
+      "output": {
+        "common_words": {
+          "hello": 1,
+          "this": 1,
+          "is": 1,
+          "a": 1,
+          "test": 1,
+          "world": 1
+        },
+        "transformed_sentences": [
+          "Hello",
+          "World! This Is A Test."
+        ]
+      }
+    },
+    {
+      "input": [
+        []
+      ],
+      "output": {
+        "common_words": {},
+        "transformed_sentences": []
+      }
+    }
+  ],
+  "tags": [
+    "strings",
+    "array_iteration",
+    "array_manipulation",
+    "counting",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "analyze_and_transform_text",
+    "function_name": "analyze_and_transform",
+    "input_structure": [
+      {
+        "Input_Field": "List[str] sentences"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "Tuple[Dict[str, int], List[str]]"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic Object analyzeAndTransform(String[] sentences) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef analyze_and_transform(sentences: List[str]) -> Any:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 15:38:08,164 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Analyze and Transform Text
+2025-02-18 15:40:11,430 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-18 15:40:11,431 - main.problem_generator.problem_generator_route - INFO - Received request - concept: String Handling, complexity: EASY
+2025-02-18 15:40:12,389 - main.problem_generator.prompt_manager - INFO - Normalizing name: String Handling
+2025-02-18 15:40:12,389 - main.problem_generator.prompt_manager - INFO - Normalized to: string_handling
+2025-02-18 15:40:12,390 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\string_handling\config.json
+2025-02-18 15:40:12,391 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\string_handling\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\string_handling\\config.json'
+2025-02-18 15:40:12,392 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-18 15:40:12,392 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-18 15:40:12,396 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-18 15:40:12,397 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-18 15:40:12,398 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-18 15:40:12,398 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-18 15:40:12,399 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-18 15:40:12,399 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-18 15:40:12,400 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about String Handling
+
+2025-02-18 15:40:14,321 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-18 15:40:14,325 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-18 15:40:14,326 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello"
+    ],
+    "output": 2
+  },
+  {
+    "input": [
+      "OpenAI"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "xyz"
+    ],
+    "output": 0
+  }
+]
+2025-02-18 15:40:14,327 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-18 15:40:14,327 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello"
+    ],
+    "output": 2
+  },
+  {
+    "input": [
+      "OpenAI"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "xyz"
+    ],
+    "output": 0
+  }
+]
+2025-02-18 15:40:14,329 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-18 15:40:14,330 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "String Handling",
+  "difficulty": "EASY",
+  "problem_title": "Count Vowels in a String",
+  "problem_statement": "Write a function that counts the number of vowels in a given string. A vowel is defined as 'a', 'e', 'i', 'o', or 'u', regardless of case (uppercase or lowercase).",
+  "test_cases": [
+    {
+      "input": [
+        "hello"
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        "OpenAI"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "xyz"
+      ],
+      "output": 0
+    }
+  ],
+  "tags": [
+    "strings",
+    "counting",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "count_vowels",
+    "function_name": "count_vowels",
+    "input_structure": [
+      {
+        "Input_Field": "string text"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int count"
+    }
+  },
+  "java_boilerplate": "/*DO NOT modify this method.*/\npublic int countVowels(String text) {\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n}",
+  "python_boilerplate": "from typing import List\n\ndef count_vowels(text: str) -> int:\n    # Your implementation code goes here\n    pass"
+}
+2025-02-18 15:40:14,331 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count Vowels in a String
+2025-02-18 15:40:19,265 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 15:40:19,266 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 15:40:19,266 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 15:40:19,267 - main.problem_submission.problem_submission_route - INFO - Source code length: 172
+2025-02-18 15:40:19,267 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 15:40:19,268 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"count_vowels","function_name":"count_vowels","input_structure":[{"Input_Field":"string text"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-18 15:40:19,268 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 15:40:19,268 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 15:40:19,269 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:40:19,269 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:40:19,270 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 15:40:19,271 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public int countVowels(String text) {
+    // Your implementation code goes here
+    
+    return null; // Replace with your return statement
+}
+2025-02-18 15:40:19,271 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'count_vowels', 'function_name': 'count_vowels', 'input_structure': [{'Input_Field': 'string text'}], 'output_structure': {'Output_Field': 'int count'}}
+2025-02-18 15:40:19,272 - main.submission_generator.java_submission_generator - INFO - Checking for function name: countVowels (original: count_vowels)
+2025-02-18 15:40:19,272 - main.submission_generator.java_submission_generator - INFO - Function name: countVowels
+2025-02-18 15:40:19,273 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string text'}]
+2025-02-18 15:40:19,273 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'int count'}
+2025-02-18 15:40:19,274 - main.submission_generator.java_submission_generator - ERROR - Error generating Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:40:19,274 - main.problem_submission.problem_submission_service - ERROR - 5. Failed to generate Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:40:19,275 - main.problem_submission.problem_submission_route - ERROR - Error in submit_problem: Failed to generate Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:40:21,761 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 15:40:21,762 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 15:40:21,762 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 15:40:21,762 - main.problem_submission.problem_submission_route - INFO - Source code length: 172
+2025-02-18 15:40:21,763 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 15:40:21,763 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"count_vowels","function_name":"count_vowels","input_structure":[{"Input_Field":"string text"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-18 15:40:21,764 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 15:40:21,764 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 15:40:21,764 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:40:21,765 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:40:21,766 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 15:40:21,766 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public int countVowels(String text) {
+    // Your implementation code goes here
+    
+    return null; // Replace with your return statement
+}
+2025-02-18 15:40:21,767 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'count_vowels', 'function_name': 'count_vowels', 'input_structure': [{'Input_Field': 'string text'}], 'output_structure': {'Output_Field': 'int count'}}
+2025-02-18 15:40:21,767 - main.submission_generator.java_submission_generator - INFO - Checking for function name: countVowels (original: count_vowels)
+2025-02-18 15:40:21,768 - main.submission_generator.java_submission_generator - INFO - Function name: countVowels
+2025-02-18 15:40:21,768 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string text'}]
+2025-02-18 15:40:21,768 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'int count'}
+2025-02-18 15:40:21,769 - main.submission_generator.java_submission_generator - ERROR - Error generating Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:40:21,769 - main.problem_submission.problem_submission_service - ERROR - 5. Failed to generate Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:40:21,770 - main.problem_submission.problem_submission_route - ERROR - Error in submit_problem: Failed to generate Java submission: 'super' object has no attribute '_generate_input_parsing'
+2025-02-18 15:52:47,116 - uvicorn.error - INFO - Started server process [11812]
+2025-02-18 15:52:47,117 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 15:52:47,119 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 15:57:05,662 - uvicorn.error - INFO - Started server process [24444]
+2025-02-18 15:57:05,663 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 15:57:05,664 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 15:57:12,950 - uvicorn.error - INFO - Started server process [29380]
+2025-02-18 15:57:12,951 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-18 15:57:12,952 - uvicorn.error - INFO - Application startup complete.
+2025-02-18 15:57:51,022 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-18 15:57:51,023 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-18 15:57:51,024 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-18 15:57:51,025 - main.problem_submission.problem_submission_route - INFO - Source code length: 428
+2025-02-18 15:57:51,025 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-18 15:57:51,026 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"count_vowels","function_name":"count_vowels","input_structure":[{"Input_Field":"string text"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-18 15:57:51,027 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-18 15:57:51,028 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 15:57:51,028 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:57:51,029 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:57:51,030 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-18 15:57:51,031 - main.submission_generator.java_submission_generator - INFO - Source code: /*DO NOT modify this method.*/
+public int countVowels(String text) {
+    int count = 0;
+    // Loop through each character in the string.
+    for (int i = 0; i < text.length(); i++) {
+        char c = Character.toLowerCase(text.charAt(i));
+        // Check if the character is a vowel.
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            count++;
+        }
+    }
+    return count;
+}
+
+2025-02-18 15:57:51,033 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'count_vowels', 'function_name': 'count_vowels', 'input_structure': [{'Input_Field': 'string text'}], 'output_structure': {'Output_Field': 'int count'}}
+2025-02-18 15:57:51,034 - main.submission_generator.java_submission_generator - INFO - Checking for function name: countVowels (original: count_vowels)
+2025-02-18 15:57:51,034 - main.submission_generator.java_submission_generator - INFO - Function name: countVowels
+2025-02-18 15:57:51,035 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string text'}]
+2025-02-18 15:57:51,036 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'int count'}
+2025-02-18 15:57:51,036 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String text']
+2025-02-18 15:57:51,037 - main.submission_generator.java_submission_generator - INFO - Return type: Integer
+2025-02-18 15:57:51,041 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-18 15:57:51,041 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-18 15:57:51,042 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Integer countVowels(String text) {
+/*DO NOT modify this method.*/
+
+    int count = 0;
+    // Loop through each character in the string.
+    for (int i = 0; i < text.length(); i++) {
+        char c = Character.toLowerCase(text.charAt(i));
+        // Check if the character is a vowel.
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            count++;
+        }
+    }
+    return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String text = scanner.nextLine();
+        
+        // Call the solution function
+        Integer result = solution.countVowels(text);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 15:57:51,043 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-18 15:57:51,043 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+    public Integer countVowels(String text) {
+/*DO NOT modify this method.*/
+
+    int count = 0;
+    // Loop through each character in the string.
+    for (int i = 0; i < text.length(); i++) {
+        char c = Character.toLowerCase(text.charAt(i));
+        // Check if the character is a vowel.
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            count++;
+        }
+    }
+    return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String text = scanner.nextLine();
+        
+        // Call the solution function
+        Integer result = solution.countVowels(text);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-18 15:57:51,049 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-18 15:57:51,050 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-18 15:57:51,052 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgSW50ZWdlciBjb3VudFZvd2VscyhTdHJpbmcgdGV4dCkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIGludCBjb3VudCA9IDA7DQogICAgLy8gTG9vcCB0aHJvdWdoIGVhY2ggY2hhcmFjdGVyIGluIHRoZSBzdHJpbmcuDQogICAgZm9yIChpbnQgaSA9IDA7IGkgPCB0ZXh0Lmxlbmd0aCgpOyBpKyspIHsNCiAgICAgICAgY2hhciBjID0gQ2hhcmFjdGVyLnRvTG93ZXJDYXNlKHRleHQuY2hhckF0KGkpKTsNCiAgICAgICAgLy8gQ2hlY2sgaWYgdGhlIGNoYXJhY3RlciBpcyBhIHZvd2VsLg0KICAgICAgICBpZiAoYyA9PSAnYScgfHwgYyA9PSAnZScgfHwgYyA9PSAnaScgfHwgYyA9PSAnbycgfHwgYyA9PSAndScpIHsNCiAgICAgICAgICAgIGNvdW50Kys7DQogICAgICAgIH0NCiAgICB9DQogICAgcmV0dXJuIGNvdW50OwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIHRleHQgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBJbnRlZ2VyIHJlc3VsdCA9IHNvbHV0aW9uLmNvdW50Vm93ZWxzKHRleHQpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "aGVsbG8=",
+      "expected_output": "Mg==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgSW50ZWdlciBjb3VudFZvd2VscyhTdHJpbmcgdGV4dCkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIGludCBjb3VudCA9IDA7DQogICAgLy8gTG9vcCB0aHJvdWdoIGVhY2ggY2hhcmFjdGVyIGluIHRoZSBzdHJpbmcuDQogICAgZm9yIChpbnQgaSA9IDA7IGkgPCB0ZXh0Lmxlbmd0aCgpOyBpKyspIHsNCiAgICAgICAgY2hhciBjID0gQ2hhcmFjdGVyLnRvTG93ZXJDYXNlKHRleHQuY2hhckF0KGkpKTsNCiAgICAgICAgLy8gQ2hlY2sgaWYgdGhlIGNoYXJhY3RlciBpcyBhIHZvd2VsLg0KICAgICAgICBpZiAoYyA9PSAnYScgfHwgYyA9PSAnZScgfHwgYyA9PSAnaScgfHwgYyA9PSAnbycgfHwgYyA9PSAndScpIHsNCiAgICAgICAgICAgIGNvdW50Kys7DQogICAgICAgIH0NCiAgICB9DQogICAgcmV0dXJuIGNvdW50OwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIHRleHQgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBJbnRlZ2VyIHJlc3VsdCA9IHNvbHV0aW9uLmNvdW50Vm93ZWxzKHRleHQpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "T3BlbkFJ",
+      "expected_output": "Mw==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CiAgICBwdWJsaWMgSW50ZWdlciBjb3VudFZvd2VscyhTdHJpbmcgdGV4dCkgewovKkRPIE5PVCBtb2RpZnkgdGhpcyBtZXRob2QuKi8NCg0KICAgIGludCBjb3VudCA9IDA7DQogICAgLy8gTG9vcCB0aHJvdWdoIGVhY2ggY2hhcmFjdGVyIGluIHRoZSBzdHJpbmcuDQogICAgZm9yIChpbnQgaSA9IDA7IGkgPCB0ZXh0Lmxlbmd0aCgpOyBpKyspIHsNCiAgICAgICAgY2hhciBjID0gQ2hhcmFjdGVyLnRvTG93ZXJDYXNlKHRleHQuY2hhckF0KGkpKTsNCiAgICAgICAgLy8gQ2hlY2sgaWYgdGhlIGNoYXJhY3RlciBpcyBhIHZvd2VsLg0KICAgICAgICBpZiAoYyA9PSAnYScgfHwgYyA9PSAnZScgfHwgYyA9PSAnaScgfHwgYyA9PSAnbycgfHwgYyA9PSAndScpIHsNCiAgICAgICAgICAgIGNvdW50Kys7DQogICAgICAgIH0NCiAgICB9DQogICAgcmV0dXJuIGNvdW50OwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBtYWluKFN0cmluZ1tdIGFyZ3MpIHsKICAgICAgICBTY2FubmVyIHNjYW5uZXIgPSBuZXcgU2Nhbm5lcihTeXN0ZW0uaW4pOwogICAgICAgIE1haW4gc29sdXRpb24gPSBuZXcgTWFpbigpOwogICAgICAgIAogICAgICAgIC8vIFBhcnNlIGlucHV0CiAgICAgICAgU3RyaW5nIHRleHQgPSBzY2FubmVyLm5leHRMaW5lKCk7CiAgICAgICAgCiAgICAgICAgLy8gQ2FsbCB0aGUgc29sdXRpb24gZnVuY3Rpb24KICAgICAgICBJbnRlZ2VyIHJlc3VsdCA9IHNvbHV0aW9uLmNvdW50Vm93ZWxzKHRleHQpOwogICAgICAgIAogICAgICAgIC8vIFByaW50IHRoZSByZXN1bHQKICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4ocmVzdWx0KTsKICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICB9Cn0=",
+      "stdin": "eHl6",
+      "expected_output": "MA==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-18 15:57:53,669 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-18 15:57:53,670 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "7a575fa8-68e0-432c-988c-18e8f9a43de9"
+  },
+  {
+    "token": "eccae022-0b8d-4e3d-b9c3-491b5150ad2e"
+  },
+  {
+    "token": "2444b88e-9de3-41eb-b54a-9560e0b5ff42"
+  }
+]
+2025-02-18 15:57:53,672 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '7a575fa8-68e0-432c-988c-18e8f9a43de9'}, {'token': 'eccae022-0b8d-4e3d-b9c3-491b5150ad2e'}, {'token': '2444b88e-9de3-41eb-b54a-9560e0b5ff42'}]
+2025-02-18 15:57:53,684 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-18 15:57:53,685 - main.problem_submission.problem_submission_route - INFO - Tokens: ['7a575fa8-68e0-432c-988c-18e8f9a43de9', 'eccae022-0b8d-4e3d-b9c3-491b5150ad2e', '2444b88e-9de3-41eb-b54a-9560e0b5ff42']
+2025-02-18 15:57:53,686 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-18 15:57:53,686 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:57:53,687 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-18 15:57:53,688 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 7a575fa8-68e0-432c-988c-18e8f9a43de9 ===
+2025-02-18 15:57:53,689 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 15:57:53,690 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/7a575fa8-68e0-432c-988c-18e8f9a43de9
+2025-02-18 15:57:54,886 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 15:57:54,887 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 15:57:54,888 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 15:57:54,889 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 15:57:54,890 - main.problem_submission.problem_submission_service - INFO - Stdout: 2
+
+2025-02-18 15:57:54,890 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 15:57:54,891 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 15:57:54,891 - main.problem_submission.problem_submission_service - INFO - Time: 0.096
+2025-02-18 15:57:54,892 - main.problem_submission.problem_submission_service - INFO - Memory: 41500
+2025-02-18 15:57:54,896 - main.problem_submission.problem_submission_service - INFO - === Polling Submission eccae022-0b8d-4e3d-b9c3-491b5150ad2e ===
+2025-02-18 15:57:54,898 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 15:57:54,898 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/eccae022-0b8d-4e3d-b9c3-491b5150ad2e
+2025-02-18 15:57:56,027 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 15:57:56,028 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 15:57:56,029 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-18 15:57:56,030 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 15:57:56,031 - main.problem_submission.problem_submission_service - INFO - Stdout: 4
+
+2025-02-18 15:57:56,032 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 15:57:56,033 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 15:57:56,033 - main.problem_submission.problem_submission_service - INFO - Time: 0.098
+2025-02-18 15:57:56,034 - main.problem_submission.problem_submission_service - INFO - Memory: 42360
+2025-02-18 15:57:56,037 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 2444b88e-9de3-41eb-b54a-9560e0b5ff42 ===
+2025-02-18 15:57:56,038 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-18 15:57:56,039 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/2444b88e-9de3-41eb-b54a-9560e0b5ff42
+2025-02-18 15:57:57,178 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-18 15:57:57,179 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-18 15:57:57,180 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-18 15:57:57,181 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-18 15:57:57,181 - main.problem_submission.problem_submission_service - INFO - Stdout: 0
+
+2025-02-18 15:57:57,182 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-18 15:57:57,182 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-18 15:57:57,183 - main.problem_submission.problem_submission_service - INFO - Time: 0.051
+2025-02-18 15:57:57,184 - main.problem_submission.problem_submission_service - INFO - Memory: 18084
+2025-02-18 15:57:57,186 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-18 15:57:57,187 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-18 15:57:57,188 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-18 15:57:57,188 - main.problem_submission.problem_submission_route - INFO - Results count: 3

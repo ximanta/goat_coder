@@ -6,16 +6,19 @@ import java.util.*;
             import java.util.regex.*;
             
 public class Main {
-    public Integer sumEvenNumbers(List<Integer> numbers) {
+    public Integer countVowels(String text) {
 /*DO NOT modify this method.*/
 
-    int sum = 0;
-    for (int number : numbers) {
-        if (number % 2 == 0) {
-            sum += number;
+    int count = 0;
+    // Loop through each character in the string.
+    for (int i = 0; i < text.length(); i++) {
+        char c = Character.toLowerCase(text.charAt(i));
+        // Check if the character is a vowel.
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            count++;
         }
     }
-    return sum;
+    return count;
     }
 
     public static void main(String[] args) {
@@ -23,18 +26,10 @@ public class Main {
         Main solution = new Main();
         
         // Parse input
-        List<Integer> numbers = new ArrayList<>();
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) break;
-            String[] parts = line.split("\\s+");
-            for (String part : parts) {
-                numbers.add(Integer.parseInt(part));
-            }
-        }
+        String text = scanner.nextLine();
         
         // Call the solution function
-        Integer result = solution.sumEvenNumbers(numbers);
+        Integer result = solution.countVowels(text);
         
         // Print the result
         System.out.println(result);

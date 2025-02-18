@@ -283,8 +283,15 @@ public class {class_name} {{
                 f"        }}"
             )
 
-        # For primitive types, use the existing code
-        return super()._generate_input_parsing(java_type, param_name, index, total_inputs)
+        # Handle simple types
+        type_parsing = {
+            "String": f"String {param_name} = scanner.nextLine();",
+            "Integer": f"Integer {param_name} = Integer.parseInt(scanner.nextLine());",
+            "Double": f"Double {param_name} = Double.parseDouble(scanner.nextLine());",
+            "Boolean": f"Boolean {param_name} = Boolean.parseBoolean(scanner.nextLine());",
+        }
+        
+        return type_parsing.get(java_type, f"String {param_name} = scanner.nextLine();")
 
     def _parse_value(self, java_type: str, var_name: str) -> str:
         """Helper method to generate parsing code for different types"""
