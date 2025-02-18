@@ -68,15 +68,24 @@ class ProblemSubmissionService:
             # Prepare submissions for all test cases
             submissions = []
             for i, test_case in enumerate(test_cases):
-                input_str = java_generator.format_input(test_case['input'])
-                # output_str = str(test_case['output'])  # Here's where the conversion happens.lower()  # Convert to lowercase
+                # Flatten input list if it's a list inside a list
+                input_data = test_case['input']
+                if len(input_data) == 1 and isinstance(input_data[0], list):
+                    input_data = input_data[0]
                 
-                #Temp fix to handle Java lowercase boolean
+                # Now generate input string
+                input_str = java_generator.format_input([input_data])
+                
+                # Format expected output based on type
                 expected = test_case['output']
                 if isinstance(expected, bool):
                     output_str = str(expected).lower()
+                elif isinstance(expected, list):
+                    # Format array output in Java style - no quotes for strings
+                    output_str = "[" + ", ".join(str(x) for x in expected) + "]"
                 else:
                     output_str = str(expected)
+
                 # Add test case details to submission_details
                 submission_details["test_cases"].append({
                     "test_case_number": i + 1,

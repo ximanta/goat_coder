@@ -162,7 +162,7 @@ public class {class_name} {{
         """
         required_fields = ["function_name", "input_structure", "output_structure"]
         for field in required_fields:
-            if field not in problem_structure:
+            if (field not in problem_structure):
                 raise JavaSubmissionGeneratorException(f"Missing required field: {field}")
         
         if not isinstance(problem_structure["input_structure"], list):
@@ -216,29 +216,29 @@ public class {class_name} {{
             
             return f"Map<{java_key_type}, {java_value_type}>"
 
-        # Handle list types
+        # Handle list types - now converting to arrays
         if python_type.startswith("list["):
             inner_type = python_type[5:-1]  # Extract type inside List[]
             if inner_type == "int":
-                return "List<Integer>"  # Changed from int[] to List<Integer>
+                return "int[]"
             elif inner_type in ("str", "string"):
-                return "List<String>"   # Changed from String[] to List<String>
+                return "String[]"
             elif inner_type == "float":
-                return "List<Double>"   # Changed from double[] to List<Double>
+                return "double[]"
             elif inner_type == "bool":
-                return "List<Boolean>"  # Changed from boolean[] to List<Boolean>
+                return "boolean[]"
             else:
                 # Try to convert the inner type recursively
                 java_inner_type = self._convert_type_to_java(inner_type)
-                return f"List<{java_inner_type}>"
+                return f"{java_inner_type}[]"
 
         # Mapping for simple types
         type_mapping = {
             "str": "String",
             "string": "String",
-            "int": "Integer",  # Changed from int to Integer for consistency
-            "float": "Double", # Changed from double to Double for consistency
-            "bool": "Boolean", # Changed from boolean to Boolean for consistency
+            "int": "int",        # Changed back to primitive
+            "float": "double",   # Changed back to primitive
+            "bool": "boolean",   # Changed back to primitive
             "object": "Object"
         }
         
@@ -268,17 +268,19 @@ public class {class_name} {{
                 f"        }}"
             )
 
-        # Handle List types
-        if java_type.startswith("List<"):
-            inner_type = java_type[5:-1]  # Extract type between List< and >
+        # Handle array types
+        if java_type.endswith("[]"):
+            base_type = java_type[:-2]
             return (
-                f"List<{inner_type}> {param_name} = new ArrayList<>();\n"
-                f"        while (scanner.hasNextLine()) {{\n"
-                f"            String line = scanner.nextLine().trim();\n"
-                f"            if (line.isEmpty()) break;\n"
-                f"            String[] parts = line.split(\"\\\\s+\");\n"
-                f"            for (String part : parts) {{\n"
-                f"                {param_name}.add({self._parse_value(inner_type, 'part')});\n"
+                f"String line = scanner.hasNextLine() ? scanner.nextLine().trim() : \"\";\n"
+                f"        {java_type} {param_name};\n"
+                f"        if (line.isEmpty()) {{\n"
+                f"            {param_name} = new {base_type}[0];\n"
+                f"        }} else {{\n"
+                f"            String[] allItems = line.split(\"\\\\s+\");\n"
+                f"            {param_name} = new {base_type}[allItems.length];\n"
+                f"            for (int i = 0; i < allItems.length; i++) {{\n"
+                f"                {param_name}[i] = {self._parse_value(base_type, 'allItems[i].trim()')};\n"
                 f"            }}\n"
                 f"        }}"
             )
@@ -286,9 +288,9 @@ public class {class_name} {{
         # Handle simple types
         type_parsing = {
             "String": f"String {param_name} = scanner.nextLine();",
-            "Integer": f"Integer {param_name} = Integer.parseInt(scanner.nextLine());",
-            "Double": f"Double {param_name} = Double.parseDouble(scanner.nextLine());",
-            "Boolean": f"Boolean {param_name} = Boolean.parseBoolean(scanner.nextLine());",
+            "int": f"int {param_name} = Integer.parseInt(scanner.nextLine());",
+            "double": f"double {param_name} = Double.parseDouble(scanner.nextLine());",
+            "boolean": f"boolean {param_name} = Boolean.parseBoolean(scanner.nextLine());",
         }
         
         return type_parsing.get(java_type, f"String {param_name} = scanner.nextLine();")
@@ -306,10 +308,9 @@ public class {class_name} {{
     def _generate_output_printing(self, return_type: str, var_name: str) -> str:
         """
         Generates Java code to print the output based on its type.
-        
-        If the output is an array type, we use Arrays.toString(); otherwise, we print it directly.
+        Just prints the array contents directly without Python-style formatting.
         """
-        if return_type.endswith("[]"):
+        if (return_type.endswith("[]")):
             return f"System.out.println(Arrays.toString({var_name}));"
         return f"System.out.println({var_name});"
 
@@ -318,12 +319,18 @@ public class {class_name} {{
         formatted_inputs = []
         for item in input_data:
             if isinstance(item, list):
-                # Join array elements with spaces for Java input
-                formatted_inputs.append(" ".join(str(x) for x in item))
+                # Format array items with spaces between elements
+                formatted_items = []
+                for x in item:
+                    if isinstance(x, str):
+                        formatted_items.append(x)
+                    else:
+                        formatted_items.append(str(x))
+                # Join with spaces instead of commas
+                formatted_inputs.append(" ".join(formatted_items))
             else:
                 formatted_inputs.append(str(item))
         
-        # Join different inputs with newlines
         return "\n".join(formatted_inputs)
 
 #     def _generate_submission_template(self, class_name: str, return_type: str, 

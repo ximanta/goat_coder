@@ -34,21 +34,23 @@ public String[] reshuffleList(String[] items) {
         Main solution = new Main();
         
         // Parse input
-        List<String> items = new ArrayList<>();
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) break;
-            String[] parts = line.split("\\s+");
-            for (String part : parts) {
-                items.add(part);
+        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
+        String[] items;
+        if (line.isEmpty()) {
+            items = new String[0];
+        } else {
+            String[] allItems = line.split("\\s+");
+            items = new String[allItems.length];
+            for (int i = 0; i < allItems.length; i++) {
+                items[i] = allItems[i].trim();
             }
         }
         
         // Call the solution function
-        List<String> result = solution.reshuffleList(items);
+        String[] result = solution.reshuffleList(items);
         
         // Print the result
-        System.out.println(result);
+        System.out.println(Arrays.toString(result));
         scanner.close();
     }
 }

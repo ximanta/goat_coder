@@ -2,43 +2,33 @@
   "language_id": 4,
   "problem_id": "123",
   "structure": {
-    "problem_name": "find_longest_palindrome",
-    "function_name": "find_longest_palindrome",
+    "problem_name": "reshuffle_shopping_list",
+    "function_name": "reshuffle_list",
     "input_structure": [
       {
-        "Input_Field": "List[str] strings"
+        "Input_Field": "List[str] items"
       }
     ],
     "output_structure": {
-      "Output_Field": "str result"
+      "Output_Field": "List[str] new_list"
     }
   },
-  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n    public String findLongestPalindrome(String[] strings) {\n/*DO NOT modify this method.*/\n\n    // Your implementation code goes here\n    \n    return null; // Replace with your return statement\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        List<String> lines = new ArrayList<>();\n        while(scanner.hasNextLine()){\n            String line = scanner.nextLine();\n            if(line.trim().isEmpty()) break;\n            lines.add(line);\n        }\n        String[] strings = lines.toArray(new String[0]);\n        \n        // Call the solution function\n        String result = solution.findLongestPalindrome(strings);\n        \n        // Print the result\n        System.out.println(result);\n        scanner.close();\n    }\n}",
+  "complete_source": "import java.util.*;\n            import java.io.*;\n            import java.text.*;\n            import java.time.*;\n            import java.math.*;\n            import java.util.regex.*;\n            \npublic class Main {\n\n/*DO NOT modify this method.*/\r\npublic String[] reshuffleList(String[] items) {\r\n    // If the array is null or has 0 or 1 item, return it as is.\r\n    if (items == null || items.length <= 1) {\r\n        return items;\r\n    }\r\n    \r\n    // Create a new array to hold the reshuffled list.\r\n    String[] reshuffled = new String[items.length];\r\n    \r\n    // Move the last item to the front.\r\n    reshuffled[0] = items[items.length - 1];\r\n    \r\n    // Shift the remaining items one position to the right.\r\n    for (int i = 0; i < items.length - 1; i++) {\r\n        reshuffled[i + 1] = items[i];\r\n    }\r\n    \r\n    return reshuffled;\r\n}\n\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Main solution = new Main();\n        \n        // Parse input\n        String[] items_str = scanner.nextLine().trim().split(\"\\\\s+\");\n        String[] items = new String[items_str.length];\n        for (int i = 0; i < items_str.length; i++) {\n            items[i] = items_str[i];\n        }\n        \n        // Call the solution function\n        String[] result = solution.reshuffleList(items);\n        \n        // Print the result\n        System.out.println(Arrays.toString(result));\n        scanner.close();\n    }\n}",
   "test_cases": [
     {
       "test_case_number": 1,
-      "input": "hello\nracecar\nworld\nmadam\napple",
-      "expected_output": "racecar"
+      "input": "apples\nbananas\ncarrots\ndates",
+      "expected_output": "['dates', 'apples', 'bananas', 'carrots']"
     },
     {
       "test_case_number": 2,
-      "input": "noon\ncivic\ndeified\nlevel\nradar",
-      "expected_output": "deified"
+      "input": "milk",
+      "expected_output": "['milk']"
     },
     {
       "test_case_number": 3,
-      "input": "python\njava\njavascript\ntypescript",
-      "expected_output": ""
-    },
-    {
-      "test_case_number": 4,
-      "input": "a\nb\ncba\nabc\naa",
-      "expected_output": "aa"
-    },
-    {
-      "test_case_number": 5,
-      "input": "abba\nabcba\nabba\nxyz",
-      "expected_output": "abcba"
+      "input": "",
+      "expected_output": "[]"
     }
   ]
 }
