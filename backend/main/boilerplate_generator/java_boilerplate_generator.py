@@ -1,6 +1,7 @@
-from typing import Dict, List
+from typing import Dict, List, Any, Tuple
+from .base_generator import BaseBoilerplateGenerator
 
-class JavaBoilerplateGenerator:
+class JavaBoilerplateGenerator(BaseBoilerplateGenerator):
     TYPE_MAPPING = {
         "List[int]": "int[]",
         "List[float]": "double[]",
@@ -65,14 +66,14 @@ class JavaBoilerplateGenerator:
             if not name_part:
                 name_part = "result"
                 
-            return JavaBoilerplateGenerator.normalize_type(type_part), JavaBoilerplateGenerator.convert_to_java_name(name_part)
+            return type_part, name_part
         
         # Handle simple types without brackets
         parts = input_field.split()
         if len(parts) == 1:
-            return JavaBoilerplateGenerator.normalize_type(parts[0]), "result"
+            return parts[0], "result"
         elif len(parts) == 2:
-            return JavaBoilerplateGenerator.normalize_type(parts[0]), JavaBoilerplateGenerator.convert_to_java_name(parts[1])
+            return parts[0], parts[1]
         else:
             raise ValueError(f"Invalid input field format: {input_field}")
 
@@ -204,49 +205,119 @@ class JavaBoilerplateGenerator:
         
         return fixed_cases
 
-    @staticmethod
-    def convert_to_java_boilerplate(structure: Dict) -> str:
+    def convert_type(self, type_str: str) -> str:
+        """Convert generic type to Java type."""
+        return self.TYPE_MAPPING.get(type_str, "Object")
+
+    def parse_input_field(self, input_field: str) -> Tuple[str, str]:
+        """Parse input field string to get type and name."""
+        input_field = input_field.strip()
+        
+        # Handle case where the type contains spaces within brackets
+        # e.g., "List[List[Union[str, int]]] items1" or "Dict[str, int] result"
+        if '[' in input_field:
+            # Find the last closing bracket
+            last_bracket = input_field.rindex(']')
+            # Split after the last bracket
+            type_part = input_field[:last_bracket + 1]
+            name_part = input_field[last_bracket + 1:].strip()
+            
+            # If no name provided, use default
+            if not name_part:
+                name_part = "result"
+                
+            return type_part, name_part
+        
+        # Handle simple types without brackets
+        parts = input_field.split()
+        if len(parts) == 1:
+            return parts[0], "result"
+        elif len(parts) == 2:
+            return parts[0], parts[1]
+        else:
+            raise ValueError(f"Invalid input field format: {input_field}")
+
+    def generate_boilerplate(self, structure: Dict) -> str:
+        """Generate Java boilerplate code."""
+        return self.convert_to_java_boilerplate(structure)
+
+    def convert_to_java_boilerplate(self, structure: Dict) -> str:
         """Convert problem structure to Java boilerplate code."""
         try:
             # Get function name in Java convention
-            function_name = JavaBoilerplateGenerator.convert_to_java_name(
-                structure["function_name"]
-            )
-
-            # Parse output type
-            output_field_key = "Output Field"
-            output_type, output_name = JavaBoilerplateGenerator.parse_input_field(
-                structure["output_structure"][output_field_key]
-            )
+            function_name = self.convert_to_java_name(structure["function_name"])
             
-            # Infer more specific type from test cases
-            output_type = JavaBoilerplateGenerator.infer_type_from_test_cases(structure, output_type)
-            java_output_type = JavaBoilerplateGenerator.convert_to_java_type(output_type)
+            # Parse output type
+            output_type, _ = self.parse_input_field(
+                structure["output_structure"]["Output Field"]
+            )
+            java_output_type = self.convert_type(output_type)
 
             # Parse input parameters
             params = []
-            input_field_key = "Input Field"
             for input_field in structure["input_structure"]:
-                python_type, param_name = JavaBoilerplateGenerator.parse_input_field(
-                    input_field[input_field_key]
+                java_type, param_name = self.parse_input_field(
+                    input_field["Input Field"]
                 )
-                # Infer more specific type from test cases
-                python_type = JavaBoilerplateGenerator.infer_type_from_test_cases(structure, python_type)
-                java_type = JavaBoilerplateGenerator.convert_to_java_type(python_type)
-                params.append(f"{java_type} {param_name}")
+                type_hint = self.convert_type(java_type)
+                params.append(f"{type_hint} {param_name}")
 
             # Construct the boilerplate
-            params_str = ", ".join(params)
-            boilerplate = f"""/*DO NOT modify this method.*/
-public {java_output_type} {function_name}({params_str}) {{
+            boilerplate = f"""public {java_output_type} {function_name}({", ".join(params)}) {{
     // Your implementation code goes here
-    
-    return null; // Replace with your return statement
+    return null;  // Replace with actual return value
 }}"""
-            
             return boilerplate
 
         except Exception as e:
             print(f"Structure received: {structure}")  # Add debug logging
             print(f"Error details: {str(e)}")  # Add more detailed error logging
             raise ValueError(f"Failed to generate Java boilerplate: {str(e)}") 
+
+    def generate_test_case(self, test_case: Dict, function_name: str) -> str:
+        """Generate Java test case."""
+        # Implementation needed
+        input_values = test_case.get("input", [])
+        expected_output = test_case.get("output")
+        
+        test_case_str = f"""
+    @Test
+    public void test{function_name}Case{test_case.get('id', 1)}() {{
+        // Arrange
+        {self._format_input_values(input_values)}
+        
+        // Act
+        {self._format_function_call(function_name, input_values)}
+        
+        // Assert
+        assertEquals({expected_output}, result);
+    }}
+"""
+        return test_case_str
+
+    def get_imports(self) -> List[str]:
+        """Get required Java imports."""
+        return [
+            "import java.util.*;",
+            "import java.util.stream.*;",
+            "import java.io.*;",
+            "import org.junit.Test;",
+            "import static org.junit.Assert.*;"
+        ]
+
+    def _format_input_values(self, input_values: List[Any]) -> str:
+        """Format input values for test case."""
+        formatted_inputs = []
+        for i, value in enumerate(input_values):
+            if isinstance(value, list):
+                formatted_inputs.append(f"int[] input{i+1} = {str(value).replace('[', '{').replace(']', '}')};")
+            elif isinstance(value, str):
+                formatted_inputs.append(f'String input{i+1} = "{value}";')
+            else:
+                formatted_inputs.append(f"{type(value).__name__} input{i+1} = {value};")
+        return "\n        ".join(formatted_inputs)
+
+    def _format_function_call(self, function_name: str, input_values: List[Any]) -> str:
+        """Format function call for test case."""
+        inputs = [f"input{i+1}" for i in range(len(input_values))]
+        return f"var result = {function_name}({', '.join(inputs)});"

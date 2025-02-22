@@ -21,6 +21,6 @@ Space complexity: O(n) typically expected
 
 Test Cases:
 
-2 test cases covering normal scenarios
-Include 1 edge case (empty inputs, boundary values)
+4 test cases covering normal scenarios
+Include 2 edge case (empty inputs, boundary values)
 <!-- Include at least one larger input example -->

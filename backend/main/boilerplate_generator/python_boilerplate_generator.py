@@ -1,6 +1,7 @@
-from typing import Dict
+from typing import Dict, List, Any, Tuple
+from .base_generator import BaseBoilerplateGenerator
 
-class PythonBoilerplateGenerator:
+class PythonBoilerplateGenerator(BaseBoilerplateGenerator):
     TYPE_MAPPING = {
         "List[int]": "List[int]",
         "List[float]": "List[float]",
@@ -13,13 +14,11 @@ class PythonBoilerplateGenerator:
         "string": "str"  # Handle cases where 'string' is used instead of 'str'
     }
 
-    @staticmethod
-    def convert_to_python_type(type_str: str) -> str:
-        """Convert type notation to Python type hint notation."""
-        return PythonBoilerplateGenerator.TYPE_MAPPING.get(type_str, "Any")
+    def convert_type(self, type_str: str) -> str:
+        """Convert generic type to Python type."""
+        return self.TYPE_MAPPING.get(type_str, "Any")
 
-    @staticmethod
-    def parse_input_field(input_field: str) -> tuple:
+    def parse_input_field(self, input_field: str) -> Tuple[str, str]:
         """Parse input field string to get type and name."""
         input_field = input_field.strip()
         
@@ -47,41 +46,72 @@ class PythonBoilerplateGenerator:
         else:
             raise ValueError(f"Invalid input field format: {input_field}")
 
-    @staticmethod
-    def convert_to_python_boilerplate(structure: Dict) -> str:
-        """Convert problem structure to Python boilerplate code."""
+    def generate_boilerplate(self, structure: Dict) -> str:
+        """Generate Python boilerplate code."""
         try:
             # Get function name (Python uses snake_case, so no conversion needed)
             function_name = structure["function_name"]
-
+            
             # Parse output type
-            output_type, _ = PythonBoilerplateGenerator.parse_input_field(
+            output_type, _ = self.parse_input_field(
                 structure["output_structure"]["Output Field"]
             )
-            python_output_type = PythonBoilerplateGenerator.convert_to_python_type(output_type)
+            python_output_type = self.convert_type(output_type)
 
             # Parse input parameters
             params = []
             param_types = []
             for input_field in structure["input_structure"]:
-                python_type, param_name = PythonBoilerplateGenerator.parse_input_field(
+                python_type, param_name = self.parse_input_field(
                     input_field["Input Field"]
                 )
-                type_hint = PythonBoilerplateGenerator.convert_to_python_type(python_type)
+                type_hint = self.convert_type(python_type)
                 params.append(param_name)
                 param_types.append(f"{param_name}: {type_hint}")
 
-            # Construct the boilerplate with type hints
-            params_str = ", ".join(param_types)
-            boilerplate = f"""from typing import List
-
-def {function_name}({params_str}) -> {python_output_type}:
-    # Your implementation code goes here
-    pass"""
+            # Generate function definition without imports by default
+            boilerplate = f"def {function_name}({', '.join(param_types)}) -> {python_output_type}:\n"
+            boilerplate += "    # Write your code here\n"
+            boilerplate += "    pass"
             
             return boilerplate
-
+            
         except Exception as e:
             print(f"Structure received: {structure}")  # Add debug logging
             print(f"Error details: {str(e)}")  # Add more detailed error logging
-            raise ValueError(f"Failed to generate Python boilerplate: {str(e)}") 
+            raise ValueError(f"Failed to generate Python boilerplate: {str(e)}")
+
+    def generate_test_case(self, test_case: Dict, function_name: str) -> str:
+        """Generate Python test case."""
+        input_values = test_case.get("input", [])
+        expected_output = test_case.get("output")
+        
+        test_case_str = f"""
+    def test_{function_name}_case_{test_case.get('id', 1)}(self):
+        # Arrange
+        {self._format_input_values(input_values)}
+        
+        # Act
+        result = {function_name}({', '.join(f'input{i+1}' for i in range(len(input_values)))})
+        
+        # Assert
+        self.assertEqual({expected_output}, result)
+"""
+        return test_case_str
+
+    def get_imports(self) -> List[str]:
+        """Get required Python imports."""
+        # Return an empty list by default - imports will be added only when explicitly needed
+        return []
+
+    def _format_input_values(self, input_values: List[Any]) -> str:
+        """Format input values for test case."""
+        formatted_inputs = []
+        for i, value in enumerate(input_values):
+            if isinstance(value, list):
+                formatted_inputs.append(f"input{i+1} = {value}")
+            elif isinstance(value, str):
+                formatted_inputs.append(f'input{i+1} = "{value}"')
+            else:
+                formatted_inputs.append(f"input{i+1} = {value}")
+        return "\n        ".join(formatted_inputs)

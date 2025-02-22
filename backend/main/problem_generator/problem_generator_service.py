@@ -3,6 +3,7 @@ import json
 from typing import List, Dict, Any, Optional
 from langchain_openai import AzureChatOpenAI
 from pydantic import BaseModel, Field
+from ..boilerplate_generator.generator_factory import BoilerplateGeneratorFactory, Language
 from ..boilerplate_generator.java_boilerplate_generator import JavaBoilerplateGenerator
 from ..boilerplate_generator.python_boilerplate_generator import PythonBoilerplateGenerator
 import logging
@@ -58,48 +59,6 @@ class Problem(BaseModel):
     java_boilerplate: str = Field(description="Java boilerplate code for the problem")
     python_boilerplate: str = Field(description="Python boilerplate code for the problem")
 
-# Data class for storing metadata about generated problems
-@dataclass
-class ProblemMetadata:
-    concept: str
-    complexity: str
-    problem_title: str
-    problem_statement: str
-    timestamp: datetime
-
-# Cache system to prevent generating similar problems in a short time period
-class ProblemHistoryCache:
-    def __init__(self, max_size=10):
-        """Initialize cache with maximum size and expiry time"""
-        self.history = deque(maxlen=max_size)
-        self.expiry_time = timedelta(hours=24)
-
-    def add_problem(self, concept: str, complexity: str, problem_title: str, problem_statement: str):
-        """Add a new problem to the cache with current timestamp"""
-        self.history.append(ProblemMetadata(
-            concept=concept,
-            complexity=complexity,
-            problem_title=problem_title,
-            problem_statement=problem_statement,
-            timestamp=datetime.now()
-        ))
-        self._cleanup_old_entries()
-
-    def get_recent_problems(self, concept: str, complexity: str) -> list[ProblemMetadata]:
-        """Get list of recently generated problems matching concept and complexity"""
-        self._cleanup_old_entries()
-        return [
-            p for p in self.history 
-            if p.concept == concept and p.complexity == complexity
-        ]
-
-    def _cleanup_old_entries(self):
-        """Remove expired entries from the cache"""
-        now = datetime.now()
-        self.history = deque(
-            (p for p in self.history if now - p.timestamp < self.expiry_time),
-            maxlen=self.history.maxlen
-        )
 
 # Main service for generating programming problems
 class ProblemGeneratorService:
@@ -112,19 +71,17 @@ class ProblemGeneratorService:
             api_key=os.getenv("AZURE_OPENAI_API_KEY"),
             temperature=0.9,  # Higher temperature for more creative problem generation
         )
-        self.problem_cache = ProblemHistoryCache()
+    
         self.prompt_manager = PromptManager()
-        self.java_generator = JavaBoilerplateGenerator()
-        self.python_generator = PythonBoilerplateGenerator()
 
- 
-    async def generate_problem(self, concept: str, complexity: str) -> Dict:
+    async def generate_problem(self, concept: str, complexity: str, language: Language = Language.JAVA) -> Dict:
         """
         Generate a programming problem based on concept and complexity.
         
         Args:
             concept (str): Programming concept to focus on
             complexity (str): Desired difficulty level
+            language (Language): Target programming language (default: Java)
             
         Returns:
             Dict: Complete problem definition including structure and test cases
@@ -132,6 +89,9 @@ class ProblemGeneratorService:
         Raises:
             ValueError: If problem generation fails or invalid response received
         """
+        # Get the appropriate generator
+        generator = BoilerplateGeneratorFactory.get_generator(language)
+        
         max_attempts = 3
         
         for attempt in range(max_attempts):
@@ -139,8 +99,7 @@ class ProblemGeneratorService:
                 # Add some randomness to the seed on each attempt
                 random.seed(os.urandom(8))
                 
-                # Get recent problems to avoid
-                recent_problems = self.problem_cache.get_recent_problems(concept, complexity)
+         
                 
                 # Get concept and complexity specific prompts
                 concept_prompt = self.prompt_manager.get_concept_prompt(concept)
@@ -157,6 +116,7 @@ class ProblemGeneratorService:
                 {complexity_prompt}
                 {concept_prompt}            
                 {context_prompt}
+
                 """
 
                 messages = [
@@ -350,14 +310,7 @@ class ProblemGeneratorService:
                             result['concept'] = concept
                             
 
-                            # Store full problem details
-                            self.problem_cache.add_problem(
-                                concept=concept,
-                                complexity=complexity,
-                                problem_title=result['problem_title'],
-                                problem_statement=result['problem_statement']
-                            )                          
-
+                        
                            
 
                             # Ensure structure has all required fields
@@ -377,13 +330,11 @@ class ProblemGeneratorService:
                             
 
                             # Generate boilerplate code for both languages
-                            java_boilerplate = self.java_generator.convert_to_java_boilerplate(result['structure'])
-                            python_boilerplate = self.python_generator.convert_to_python_boilerplate(result['structure'])
-                            
+                            java_generator = BoilerplateGeneratorFactory.get_generator(Language.JAVA)
+                            python_generator = BoilerplateGeneratorFactory.get_generator(Language.PYTHON)
 
-                            result['java_boilerplate'] = java_boilerplate
-                            result['python_boilerplate'] = python_boilerplate
-                            
+                            result['java_boilerplate'] = java_generator.generate_boilerplate(result['structure'])
+                            result['python_boilerplate'] = python_generator.generate_boilerplate(result['structure'])
 
                             final_response = Problem(**result).model_dump()
                             logger.info("Final response after language conversion:")

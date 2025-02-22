@@ -347,38 +347,3 @@ public class {class_name} {{
         
         return "\n".join(formatted_inputs)
 
-#     def _generate_submission_template(self, class_name: str, return_type: str, 
-#                                         function_name: str, param_list: list, 
-#                                         source_code: str, param_parsing: list) -> str:
-#         """
-#         (Unused in this implementation) Generates the complete Java submission template.
-#         """
-#         # Join the parameters and input parsing code.
-#         function_params = ", ".join(param_list)
-#         input_parsing_code = "\n        ".join(param_parsing)
-#         function_call_args = ", ".join(p.split()[-1] for p in param_list)
-        
-#         template = f"""import java.util.*;
-# import java.util.regex.*;
-# public class {class_name} {{
-#     public {return_type} {function_name}({function_params}) {{
-#         {source_code}
-#     }}
-#     public static void main(String[] args) {{
-#         Scanner scanner = new Scanner(System.in);
-#         Solution solution = new Solution();
-        
-#         // Parse input
-#         {input_parsing_code}
-        
-#         // Call the solution function
-#         {return_type} result = solution.{function_name}({function_call_args});
-        
-#         // Print the result
-#         System.out.println(result);
-        
-#         scanner.close();
-#     }}
-# }}"""
-#         console.log("java_submission_generator: Submission template geerated:", template)
-#         return template

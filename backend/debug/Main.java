@@ -7,13 +7,13 @@ import java.util.*;
             
 public class Main {
 
-/*DO NOT modify this method.*/
-public double calculateTotalPrice(double[] prices) {
-    double total = 0.0;
-    for (double price : prices) {
-        total += price;
+public int[] adjustInventory(int[] quantities) {
+    // Iterate through each product quantity and add one
+    for (int i = 0; i < quantities.length; i++) {
+        quantities[i] += 1;
     }
-    return total;
+    // Return the updated list of quantities
+    return quantities;
 }
 
 
@@ -23,22 +23,22 @@ public double calculateTotalPrice(double[] prices) {
         
         // Parse input
         String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
-        double[] prices;
+        int[] quantities;
         if (line.isEmpty()) {
-            prices = new double[0];
+            quantities = new int[0];
         } else {
             String[] allItems = line.split("\\s+");
-            prices = new double[allItems.length];
+            quantities = new int[allItems.length];
             for (int i = 0; i < allItems.length; i++) {
-                prices[i] = Double.parseDouble(allItems[i].trim());
+                quantities[i] = Integer.parseInt(allItems[i].trim());
             }
         }
         
         // Call the solution function
-        double result = solution.calculateTotalPrice(prices);
+        int[] result = solution.adjustInventory(quantities);
         
         // Print the result
-        System.out.println(result);
+        System.out.println(Arrays.toString(result));
         scanner.close();
     }
 }

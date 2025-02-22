@@ -16,11 +16,11 @@ const Page = () => {
 
   const categories = [
     { icon: <CodeSquare className="w-6 h-6" />, name: 'Programming Basics - Newbie', count: '250+ Problems', value: 'Basic Programming for Absolute Beginners' },
-    { icon: <TextCursor className="w-6 h-6" />, name: 'String Handling', count: '150+ Problems', value: 'String Handling' },
-    // { icon: <Code className="w-6 h-6" />, name: 'Dictionaries', count: '50+ Problems', value: 'Dictionaries data structure' },
+    { icon: <TextCursor className="w-6 h-6" />, name: 'String Handling', count: '150+ Problems', value: 'Simple String handling' },
+    { icon: <CodeSquare className="w-6 h-6" />, name: 'Data Structures', count: '250+ Problems', value: 'Data Structures for Beginners' },
     { icon: <Code className="w-6 h-6" />, name: 'Array Search', count: '50+ Problems', value: 'Array Search' },
-    { icon: <Network className="w-6 h-6" />, name: 'Data Structures', count: '200+ Problems', value: 'Data Structures' },
-    { icon: <Boxes  className="w-6 h-6" />, name: 'Array', count: '350+ Problems', value: 'Arrays'},
+
+    { icon: <Code className="w-6 h-6" />, name: 'Algorithms', count: '150+ Problems', value: 'Algorithms Basics' }
 
   ];
 
