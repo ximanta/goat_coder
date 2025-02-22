@@ -5,6 +5,7 @@ import json
 import logging
 from dotenv import load_dotenv
 from ..submission_generator.java_submission_generator import JavaSubmissionGenerator
+from ..submission_generator.judge0_test_case_generator import Judge0TestCaseGenerator
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -35,7 +36,7 @@ class ProblemSubmissionService:
 
     def encode_base64(self, text: str) -> str:
         """Convert string to base64"""
-        return base64.b64encode(str(text).encode()).decode()
+        return base64.b64encode(text.encode()).decode()
 
     async def submit_code(self, language_id: int, source_code: str, problem_id: str, structure: str, test_cases: list):
         try:
@@ -50,72 +51,44 @@ class ProblemSubmissionService:
 
             parsed_structure = json.loads(structure) if isinstance(structure, str) else structure
             
-            # Generate complete Java submission
+            # Initialize generators
             java_generator = JavaSubmissionGenerator()
+            judge0_generator = Judge0TestCaseGenerator()
+
+            # Generate complete Java submission
             complete_source = java_generator.generate_submission(source_code, parsed_structure)
             
-            # Save the submission details to a JSON file - using the same debug directory
+            # Create debug directory if it doesn't exist
             debug_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'debug')
             os.makedirs(debug_dir, exist_ok=True)
+
+            # Initialize submission details for debug
             submission_details = {
                 "language_id": language_id,
                 "problem_id": problem_id,
                 "structure": parsed_structure,
-                "complete_source": complete_source,
                 "test_cases": []
             }
-            
-            # Get output type from structure to handle float/double formatting
-            output_type = parsed_structure["output_structure"]["Output_Field"].split()[0].lower()
-            is_float_output = output_type in ["float", "double"]
-            
-            # Prepare submissions for all test cases
+
+            # Format test cases using Judge0TestCaseGenerator
+            formatted_test_cases = judge0_generator.generate_test_cases(test_cases, parsed_structure)
+
+            # Prepare submissions list for batch submission
             submissions = []
-            for i, test_case in enumerate(test_cases):
-                # For array inputs, ensure they're passed as a list to format_input
-                input_data = test_case['input']
-                if isinstance(input_data, (list, tuple)):
-                    # Already in correct format
-                    input_str = java_generator.format_input([input_data])
-                else:
-                    # Convert space/newline separated string to list if needed
-                    if isinstance(input_data, str):
-                        # Split by any whitespace and convert to appropriate type
-                        values = [float(x) for x in input_data.split()]
-                        input_str = java_generator.format_input([values])
-                    else:
-                        input_str = java_generator.format_input([input_data])
 
-                # Format expected output based on type
-                expected = test_case['output']
-                if isinstance(expected, bool):
-                    output_str = str(expected).lower()
-                elif isinstance(expected, list):
-                    output_str = "[" + ", ".join(str(x) for x in expected) + "]"
-                else:
-                    # Keep the original number format without any modifications
-                    output_str = str(expected)
-
-                # Log the formatted input for debugging
-                logger.info(f"Test case {i+1} input formatted as: {repr(input_str)}")
-                # Log the formatted output for debugging
-                logger.info(f"Test case {i+1} output formatted as: {repr(output_str)}")
-
-                # Add test case details to submission_details
-                submission_details["test_cases"].append({
-                    "test_case_number": i + 1,
-                    "input": input_str,
-                    "expected_output": output_str
-                })
-                
+            # Add each test case to submissions
+            for test_case in formatted_test_cases:
                 submissions.append({
                     "language_id": language_id,
                     "source_code": self.encode_base64(complete_source),
-                    "stdin": self.encode_base64(input_str),
-                    "expected_output": self.encode_base64(output_str),
+                    "stdin": self.encode_base64(test_case["input"]),
+                    "expected_output": self.encode_base64(test_case["expected_output"]),
                     "callback_url": os.getenv("JUDGE0_CALLBACK_URL")
                 })
-            
+                
+                # Add to submission details for debug
+                submission_details["test_cases"].append(test_case)
+
             # Save submission details to file in debug directory
             try:
                 debug_file_path = os.path.join(debug_dir, 'last_submission.json')

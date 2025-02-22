@@ -7,13 +7,15 @@ import java.util.*;
             
 public class Main {
 
-public int[] adjustInventory(int[] quantities) {
-    // Iterate through each product quantity and add one
-    for (int i = 0; i < quantities.length; i++) {
-        quantities[i] += 1;
+public double calculateAverageScore(int[] scores) {
+    if (scores == null || scores.length == 0) {
+        return 0;
     }
-    // Return the updated list of quantities
-    return quantities;
+    int sum = 0;
+    for (int score : scores) {
+        sum += score;
+    }
+    return (double) sum / scores.length;
 }
 
 
@@ -22,23 +24,17 @@ public int[] adjustInventory(int[] quantities) {
         Main solution = new Main();
         
         // Parse input
-        String line = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
-        int[] quantities;
-        if (line.isEmpty()) {
-            quantities = new int[0];
-        } else {
-            String[] allItems = line.split("\\s+");
-            quantities = new int[allItems.length];
-            for (int i = 0; i < allItems.length; i++) {
-                quantities[i] = Integer.parseInt(allItems[i].trim());
-            }
+        String[] scoresStr = scanner.nextLine().split(" ");
+        int[] scores = new int[scoresStr.length];
+        for (int i = 0; i < scoresStr.length; i++) {
+            scores[i] = Integer.parseInt(scoresStr[i]);
         }
         
         // Call the solution function
-        int[] result = solution.adjustInventory(quantities);
+        double result = solution.calculateAverageScore(scores);
         
         // Print the result
-        System.out.println(Arrays.toString(result));
+        System.out.println(result);
         scanner.close();
     }
 }
