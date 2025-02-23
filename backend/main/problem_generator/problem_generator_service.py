@@ -126,7 +126,7 @@ class ProblemGeneratorService:
                     },
                     {
                         "role": "user",
-                        "content": f"Generate a {complexity} difficulty problem about {concept}"
+                        "content": f"Generate a {complexity} difficulty problem about {concept_prompt}"
                     }
                 ]
 

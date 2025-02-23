@@ -46334,3 +46334,3050 @@ public double calculateAverageScore(int[] scores) {
 2025-02-22 19:12:35,608 - main.problem_submission.problem_submission_route - INFO - Completed: True
 2025-02-22 19:12:35,608 - main.problem_submission.problem_submission_route - INFO - All Passed: False
 2025-02-22 19:12:35,609 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-22 19:32:05,963 - uvicorn.error - INFO - Started server process [26560]
+2025-02-22 19:32:05,964 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-22 19:32:05,966 - uvicorn.error - INFO - Application startup complete.
+2025-02-22 19:32:11,400 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-22 19:32:11,400 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-22 19:32:11,401 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-22 19:32:11,401 - main.problem_submission.problem_submission_route - INFO - Source code length: 251
+2025-02-22 19:32:11,402 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-22 19:32:11,402 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"Calculate Average Score","function_name":"calculate_average_score","input_structure":[{"Input_Field":"List[int] scores"}],"output_structure":{"Output_Field":"float average"}}
+2025-02-22 19:32:11,403 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-22 19:32:11,404 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-22 19:32:11,404 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:32:11,404 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:32:11,405 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-22 19:32:11,405 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-22 19:32:11,406 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-22 19:32:11,406 - main.problem_submission.problem_submission_service - INFO - Source Code:
+public double calculateAverageScore(int[] scores) {
+    if (scores == null || scores.length == 0) {
+        return 0;
+    }
+    int sum = 0;
+    for (int score : scores) {
+        sum += score;
+    }
+    return (double) sum / scores.length;
+}
+2025-02-22 19:32:11,407 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"Calculate Average Score","function_name":"calculate_average_score","input_structure":[{"Input_Field":"List[int] scores"}],"output_structure":{"Output_Field":"float average"}}
+2025-02-22 19:32:11,408 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      90,
+      80,
+      70,
+      100
+    ],
+    "output": 85
+  },
+  {
+    "input": [
+      50,
+      60,
+      70
+    ],
+    "output": 60
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-22 19:32:11,408 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-22 19:32:11,409 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-22 19:32:11,411 - main.submission_generator.java_submission_generator - INFO - Source code: public double calculateAverageScore(int[] scores) {
+    if (scores == null || scores.length == 0) {
+        return 0;
+    }
+    int sum = 0;
+    for (int score : scores) {
+        sum += score;
+    }
+    return (double) sum / scores.length;
+}
+2025-02-22 19:32:11,411 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'Calculate Average Score', 'function_name': 'calculate_average_score', 'input_structure': [{'Input_Field': 'List[int] scores'}], 'output_structure': {'Output_Field': 'float average'}}
+2025-02-22 19:32:11,412 - main.submission_generator.java_submission_generator - INFO - Checking for function name: calculateAverageScore (original: calculate_average_score)
+2025-02-22 19:32:11,412 - main.submission_generator.java_submission_generator - INFO - Function name: calculateAverageScore
+2025-02-22 19:32:11,412 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'List[int] scores'}]
+2025-02-22 19:32:11,414 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'float average'}
+2025-02-22 19:32:11,415 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['int[] scores']
+2025-02-22 19:32:11,416 - main.submission_generator.java_submission_generator - INFO - Return type: double
+2025-02-22 19:32:11,419 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-22 19:32:11,419 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-22 19:32:11,420 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+import java.io.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+public double calculateAverageScore(int[] scores) {
+    if (scores == null || scores.length == 0) {
+        return 0;
+    }
+    int sum = 0;
+    for (int score : scores) {
+        sum += score;
+    }
+    return (double) sum / scores.length;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Determine default output value based on the return type
+        String defaultValue;
+        if ("double".equals("double") || "double".equals("float")) {
+            defaultValue = "0.0";
+        } else if ("double".equals("int") || "double".equals("long") ||
+                   "double".equals("short") || "double".equals("byte")) {
+            defaultValue = "0";
+        } else if ("double".equals("boolean")) {
+            defaultValue = "false";
+        } else if ("double".equals("String")) {
+            defaultValue = "";
+        } else {
+            defaultValue = "null";
+        }
+        
+        // Check for empty input
+        if (!scanner.hasNextLine()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        String inputLine = scanner.nextLine().trim();
+        if (inputLine.equals("[]") || inputLine.isEmpty()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        
+        // Parse input
+        String[] scoresStr = inputLine.split(" ");
+        int[] scores = new int[scoresStr.length];
+        for (int i = 0; i < scoresStr.length; i++) {
+            scores[i] = Integer.parseInt(scoresStr[i]);
+        }
+        
+        // Call the solution function
+        double result = solution.calculateAverageScore(scores);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-22 19:32:11,421 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-22 19:32:11,422 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+import java.io.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+public double calculateAverageScore(int[] scores) {
+    if (scores == null || scores.length == 0) {
+        return 0;
+    }
+    int sum = 0;
+    for (int score : scores) {
+        sum += score;
+    }
+    return (double) sum / scores.length;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Determine default output value based on the return type
+        String defaultValue;
+        if ("double".equals("double") || "double".equals("float")) {
+            defaultValue = "0.0";
+        } else if ("double".equals("int") || "double".equals("long") ||
+                   "double".equals("short") || "double".equals("byte")) {
+            defaultValue = "0";
+        } else if ("double".equals("boolean")) {
+            defaultValue = "false";
+        } else if ("double".equals("String")) {
+            defaultValue = "";
+        } else {
+            defaultValue = "null";
+        }
+        
+        // Check for empty input
+        if (!scanner.hasNextLine()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        String inputLine = scanner.nextLine().trim();
+        if (inputLine.equals("[]") || inputLine.isEmpty()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        
+        // Parse input
+        String[] scoresStr = inputLine.split(" ");
+        int[] scores = new int[scoresStr.length];
+        for (int i = 0; i < scoresStr.length; i++) {
+            scores[i] = Integer.parseInt(scoresStr[i]);
+        }
+        
+        // Call the solution function
+        double result = solution.calculateAverageScore(scores);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+
+2025-02-22 19:32:11,425 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-22 19:32:11,426 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-22 19:32:11,427 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwppbXBvcnQgamF2YS5pby4qOwppbXBvcnQgamF2YS50ZXh0Lio7CmltcG9ydCBqYXZhLnRpbWUuKjsKaW1wb3J0IGphdmEubWF0aC4qOwppbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgZG91YmxlIGNhbGN1bGF0ZUF2ZXJhZ2VTY29yZShpbnRbXSBzY29yZXMpIHsNCiAgICBpZiAoc2NvcmVzID09IG51bGwgfHwgc2NvcmVzLmxlbmd0aCA9PSAwKSB7DQogICAgICAgIHJldHVybiAwOw0KICAgIH0NCiAgICBpbnQgc3VtID0gMDsNCiAgICBmb3IgKGludCBzY29yZSA6IHNjb3Jlcykgew0KICAgICAgICBzdW0gKz0gc2NvcmU7DQogICAgfQ0KICAgIHJldHVybiAoZG91YmxlKSBzdW0gLyBzY29yZXMubGVuZ3RoOw0KfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBEZXRlcm1pbmUgZGVmYXVsdCBvdXRwdXQgdmFsdWUgYmFzZWQgb24gdGhlIHJldHVybiB0eXBlCiAgICAgICAgU3RyaW5nIGRlZmF1bHRWYWx1ZTsKICAgICAgICBpZiAoImRvdWJsZSIuZXF1YWxzKCJkb3VibGUiKSB8fCAiZG91YmxlIi5lcXVhbHMoImZsb2F0IikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIjAuMCI7CiAgICAgICAgfSBlbHNlIGlmICgiZG91YmxlIi5lcXVhbHMoImludCIpIHx8ICJkb3VibGUiLmVxdWFscygibG9uZyIpIHx8CiAgICAgICAgICAgICAgICAgICAiZG91YmxlIi5lcXVhbHMoInNob3J0IikgfHwgImRvdWJsZSIuZXF1YWxzKCJieXRlIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIjAiOwogICAgICAgIH0gZWxzZSBpZiAoImRvdWJsZSIuZXF1YWxzKCJib29sZWFuIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gImZhbHNlIjsKICAgICAgICB9IGVsc2UgaWYgKCJkb3VibGUiLmVxdWFscygiU3RyaW5nIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIiI7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIm51bGwiOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBDaGVjayBmb3IgZW1wdHkgaW5wdXQKICAgICAgICBpZiAoIXNjYW5uZXIuaGFzTmV4dExpbmUoKSkgewogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oZGVmYXVsdFZhbHVlKTsKICAgICAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgICAgICAgICByZXR1cm47CiAgICAgICAgfQogICAgICAgIFN0cmluZyBpbnB1dExpbmUgPSBzY2FubmVyLm5leHRMaW5lKCkudHJpbSgpOwogICAgICAgIGlmIChpbnB1dExpbmUuZXF1YWxzKCJbXSIpIHx8IGlucHV0TGluZS5pc0VtcHR5KCkpIHsKICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKGRlZmF1bHRWYWx1ZSk7CiAgICAgICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZ1tdIHNjb3Jlc1N0ciA9IGlucHV0TGluZS5zcGxpdCgiICIpOwogICAgICAgIGludFtdIHNjb3JlcyA9IG5ldyBpbnRbc2NvcmVzU3RyLmxlbmd0aF07CiAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBzY29yZXNTdHIubGVuZ3RoOyBpKyspIHsKICAgICAgICAgICAgc2NvcmVzW2ldID0gSW50ZWdlci5wYXJzZUludChzY29yZXNTdHJbaV0pOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGRvdWJsZSByZXN1bHQgPSBzb2x1dGlvbi5jYWxjdWxhdGVBdmVyYWdlU2NvcmUoc2NvcmVzKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "OTAgODAgNzAgMTAw",
+      "expected_output": "ODUuMA==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwppbXBvcnQgamF2YS5pby4qOwppbXBvcnQgamF2YS50ZXh0Lio7CmltcG9ydCBqYXZhLnRpbWUuKjsKaW1wb3J0IGphdmEubWF0aC4qOwppbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgZG91YmxlIGNhbGN1bGF0ZUF2ZXJhZ2VTY29yZShpbnRbXSBzY29yZXMpIHsNCiAgICBpZiAoc2NvcmVzID09IG51bGwgfHwgc2NvcmVzLmxlbmd0aCA9PSAwKSB7DQogICAgICAgIHJldHVybiAwOw0KICAgIH0NCiAgICBpbnQgc3VtID0gMDsNCiAgICBmb3IgKGludCBzY29yZSA6IHNjb3Jlcykgew0KICAgICAgICBzdW0gKz0gc2NvcmU7DQogICAgfQ0KICAgIHJldHVybiAoZG91YmxlKSBzdW0gLyBzY29yZXMubGVuZ3RoOw0KfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBEZXRlcm1pbmUgZGVmYXVsdCBvdXRwdXQgdmFsdWUgYmFzZWQgb24gdGhlIHJldHVybiB0eXBlCiAgICAgICAgU3RyaW5nIGRlZmF1bHRWYWx1ZTsKICAgICAgICBpZiAoImRvdWJsZSIuZXF1YWxzKCJkb3VibGUiKSB8fCAiZG91YmxlIi5lcXVhbHMoImZsb2F0IikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIjAuMCI7CiAgICAgICAgfSBlbHNlIGlmICgiZG91YmxlIi5lcXVhbHMoImludCIpIHx8ICJkb3VibGUiLmVxdWFscygibG9uZyIpIHx8CiAgICAgICAgICAgICAgICAgICAiZG91YmxlIi5lcXVhbHMoInNob3J0IikgfHwgImRvdWJsZSIuZXF1YWxzKCJieXRlIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIjAiOwogICAgICAgIH0gZWxzZSBpZiAoImRvdWJsZSIuZXF1YWxzKCJib29sZWFuIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gImZhbHNlIjsKICAgICAgICB9IGVsc2UgaWYgKCJkb3VibGUiLmVxdWFscygiU3RyaW5nIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIiI7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIm51bGwiOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBDaGVjayBmb3IgZW1wdHkgaW5wdXQKICAgICAgICBpZiAoIXNjYW5uZXIuaGFzTmV4dExpbmUoKSkgewogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oZGVmYXVsdFZhbHVlKTsKICAgICAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgICAgICAgICByZXR1cm47CiAgICAgICAgfQogICAgICAgIFN0cmluZyBpbnB1dExpbmUgPSBzY2FubmVyLm5leHRMaW5lKCkudHJpbSgpOwogICAgICAgIGlmIChpbnB1dExpbmUuZXF1YWxzKCJbXSIpIHx8IGlucHV0TGluZS5pc0VtcHR5KCkpIHsKICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKGRlZmF1bHRWYWx1ZSk7CiAgICAgICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZ1tdIHNjb3Jlc1N0ciA9IGlucHV0TGluZS5zcGxpdCgiICIpOwogICAgICAgIGludFtdIHNjb3JlcyA9IG5ldyBpbnRbc2NvcmVzU3RyLmxlbmd0aF07CiAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBzY29yZXNTdHIubGVuZ3RoOyBpKyspIHsKICAgICAgICAgICAgc2NvcmVzW2ldID0gSW50ZWdlci5wYXJzZUludChzY29yZXNTdHJbaV0pOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGRvdWJsZSByZXN1bHQgPSBzb2x1dGlvbi5jYWxjdWxhdGVBdmVyYWdlU2NvcmUoc2NvcmVzKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "NTAgNjAgNzA=",
+      "expected_output": "NjAuMA==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwppbXBvcnQgamF2YS5pby4qOwppbXBvcnQgamF2YS50ZXh0Lio7CmltcG9ydCBqYXZhLnRpbWUuKjsKaW1wb3J0IGphdmEubWF0aC4qOwppbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgZG91YmxlIGNhbGN1bGF0ZUF2ZXJhZ2VTY29yZShpbnRbXSBzY29yZXMpIHsNCiAgICBpZiAoc2NvcmVzID09IG51bGwgfHwgc2NvcmVzLmxlbmd0aCA9PSAwKSB7DQogICAgICAgIHJldHVybiAwOw0KICAgIH0NCiAgICBpbnQgc3VtID0gMDsNCiAgICBmb3IgKGludCBzY29yZSA6IHNjb3Jlcykgew0KICAgICAgICBzdW0gKz0gc2NvcmU7DQogICAgfQ0KICAgIHJldHVybiAoZG91YmxlKSBzdW0gLyBzY29yZXMubGVuZ3RoOw0KfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBEZXRlcm1pbmUgZGVmYXVsdCBvdXRwdXQgdmFsdWUgYmFzZWQgb24gdGhlIHJldHVybiB0eXBlCiAgICAgICAgU3RyaW5nIGRlZmF1bHRWYWx1ZTsKICAgICAgICBpZiAoImRvdWJsZSIuZXF1YWxzKCJkb3VibGUiKSB8fCAiZG91YmxlIi5lcXVhbHMoImZsb2F0IikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIjAuMCI7CiAgICAgICAgfSBlbHNlIGlmICgiZG91YmxlIi5lcXVhbHMoImludCIpIHx8ICJkb3VibGUiLmVxdWFscygibG9uZyIpIHx8CiAgICAgICAgICAgICAgICAgICAiZG91YmxlIi5lcXVhbHMoInNob3J0IikgfHwgImRvdWJsZSIuZXF1YWxzKCJieXRlIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIjAiOwogICAgICAgIH0gZWxzZSBpZiAoImRvdWJsZSIuZXF1YWxzKCJib29sZWFuIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gImZhbHNlIjsKICAgICAgICB9IGVsc2UgaWYgKCJkb3VibGUiLmVxdWFscygiU3RyaW5nIikpIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIiI7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZGVmYXVsdFZhbHVlID0gIm51bGwiOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBDaGVjayBmb3IgZW1wdHkgaW5wdXQKICAgICAgICBpZiAoIXNjYW5uZXIuaGFzTmV4dExpbmUoKSkgewogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oZGVmYXVsdFZhbHVlKTsKICAgICAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgICAgICAgICByZXR1cm47CiAgICAgICAgfQogICAgICAgIFN0cmluZyBpbnB1dExpbmUgPSBzY2FubmVyLm5leHRMaW5lKCkudHJpbSgpOwogICAgICAgIGlmIChpbnB1dExpbmUuZXF1YWxzKCJbXSIpIHx8IGlucHV0TGluZS5pc0VtcHR5KCkpIHsKICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKGRlZmF1bHRWYWx1ZSk7CiAgICAgICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZ1tdIHNjb3Jlc1N0ciA9IGlucHV0TGluZS5zcGxpdCgiICIpOwogICAgICAgIGludFtdIHNjb3JlcyA9IG5ldyBpbnRbc2NvcmVzU3RyLmxlbmd0aF07CiAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBzY29yZXNTdHIubGVuZ3RoOyBpKyspIHsKICAgICAgICAgICAgc2NvcmVzW2ldID0gSW50ZWdlci5wYXJzZUludChzY29yZXNTdHJbaV0pOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGRvdWJsZSByZXN1bHQgPSBzb2x1dGlvbi5jYWxjdWxhdGVBdmVyYWdlU2NvcmUoc2NvcmVzKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "",
+      "expected_output": "MC4w",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-22 19:32:13,042 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-22 19:32:13,043 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "5df517df-ef08-47ed-9218-aeef18b62c36"
+  },
+  {
+    "token": "bbdf209d-159b-4efc-9df8-2a807cb08605"
+  },
+  {
+    "token": "2887e12b-a285-48c9-9cd2-29c7c1914bba"
+  }
+]
+2025-02-22 19:32:13,047 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '5df517df-ef08-47ed-9218-aeef18b62c36'}, {'token': 'bbdf209d-159b-4efc-9df8-2a807cb08605'}, {'token': '2887e12b-a285-48c9-9cd2-29c7c1914bba'}]
+2025-02-22 19:32:13,057 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-22 19:32:13,058 - main.problem_submission.problem_submission_route - INFO - Tokens: ['5df517df-ef08-47ed-9218-aeef18b62c36', 'bbdf209d-159b-4efc-9df8-2a807cb08605', '2887e12b-a285-48c9-9cd2-29c7c1914bba']
+2025-02-22 19:32:13,058 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-22 19:32:13,059 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:32:13,059 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:32:13,059 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 5df517df-ef08-47ed-9218-aeef18b62c36 ===
+2025-02-22 19:32:13,061 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:32:13,061 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/5df517df-ef08-47ed-9218-aeef18b62c36
+2025-02-22 19:32:14,608 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:32:14,608 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:32:14,609 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-22 19:32:14,609 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:32:14,610 - main.problem_submission.problem_submission_service - INFO - Stdout: 85.0
+
+2025-02-22 19:32:14,610 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-22 19:32:14,611 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-22 19:32:14,612 - main.problem_submission.problem_submission_service - INFO - Time: 0.063
+2025-02-22 19:32:14,612 - main.problem_submission.problem_submission_service - INFO - Memory: 16924
+2025-02-22 19:32:14,614 - main.problem_submission.problem_submission_service - INFO - === Polling Submission bbdf209d-159b-4efc-9df8-2a807cb08605 ===
+2025-02-22 19:32:14,615 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:32:14,617 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/bbdf209d-159b-4efc-9df8-2a807cb08605
+2025-02-22 19:32:16,110 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:32:16,110 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:32:16,111 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-22 19:32:16,111 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:32:16,112 - main.problem_submission.problem_submission_service - INFO - Stdout: 60.0
+
+2025-02-22 19:32:16,112 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-22 19:32:16,112 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-22 19:32:16,113 - main.problem_submission.problem_submission_service - INFO - Time: 0.064
+2025-02-22 19:32:16,113 - main.problem_submission.problem_submission_service - INFO - Memory: 16996
+2025-02-22 19:32:16,115 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 2887e12b-a285-48c9-9cd2-29c7c1914bba ===
+2025-02-22 19:32:16,116 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:32:16,117 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/2887e12b-a285-48c9-9cd2-29c7c1914bba
+2025-02-22 19:32:17,544 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:32:17,544 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:32:17,544 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-22 19:32:17,546 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:32:17,547 - main.problem_submission.problem_submission_service - INFO - Stdout: 0.0
+
+2025-02-22 19:32:17,548 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-22 19:32:17,548 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-22 19:32:17,549 - main.problem_submission.problem_submission_service - INFO - Time: 0.072
+2025-02-22 19:32:17,550 - main.problem_submission.problem_submission_service - INFO - Memory: 16904
+2025-02-22 19:32:17,554 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-22 19:32:17,555 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-22 19:32:17,556 - main.problem_submission.problem_submission_route - INFO - All Passed: True
+2025-02-22 19:32:17,556 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-22 19:32:43,241 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-22 19:32:43,241 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-22 19:32:44,950 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-22 19:32:44,951 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-22 19:32:44,952 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-22 19:32:44,957 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-22 19:32:44,957 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-22 19:32:44,958 - main.problem_generator.prompt_manager - INFO - Selected category: String Operations (previous was: None)
+2025-02-22 19:32:44,958 - main.problem_generator.prompt_manager - INFO - Selected problem type: Character Analysis (previous was: None)
+2025-02-22 19:32:45,005 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-22 19:32:45,005 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-22 19:32:45,010 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: Character Analysis
+            Suggested Variation: Find spaces in a ...
+2025-02-22 19:32:45,012 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-22 19:32:45,012 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-22 19:32:45,012 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-22 19:32:45,014 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: String Operations
+            Problem Type: Character Analysis
+            Suggested Variation: Find spaces in a player name
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-22 19:32:45,016 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-22 19:32:45,017 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Basic Programming for Absolute Beginners
+
+2025-02-22 19:32:47,528 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-22 19:32:47,578 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-22 19:32:47,578 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello World! How are you today?!"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "No exclamations here"
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      "Wow! This is amazing!!!"
+    ],
+    "output": 4
+  }
+]
+2025-02-22 19:32:47,580 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-22 19:32:47,581 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello World! How are you today?!"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "No exclamations here"
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      "Wow! This is amazing!!!"
+    ],
+    "output": 4
+  }
+]
+2025-02-22 19:32:47,582 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-22 19:32:47,583 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "easy",
+  "problem_title": "Count the Exclamation Marks",
+  "problem_statement": "Write a function that counts how many exclamation marks ('!') are in a given string. This can help us understand how enthusiastic a message is!",
+  "test_cases": [
+    {
+      "input": [
+        "Hello World! How are you today?!"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "No exclamations here"
+      ],
+      "output": 0
+    },
+    {
+      "input": [
+        "Wow! This is amazing!!!"
+      ],
+      "output": 4
+    }
+  ],
+  "tags": [
+    "strings",
+    "counting",
+    "string_manipulation"
+  ],
+  "structure": {
+    "problem_name": "count_exclamations",
+    "function_name": "count_exclamations",
+    "input_structure": [
+      {
+        "Input_Field": "string message"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int count"
+    }
+  },
+  "java_boilerplate": "public int countExclamations(String message) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def count_exclamations(message: str) -> int:\n    # Write your code here\n    pass"
+}
+2025-02-22 19:32:47,584 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count the Exclamation Marks
+2025-02-22 19:34:11,648 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-22 19:34:11,649 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-22 19:34:11,650 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-22 19:34:11,651 - main.problem_submission.problem_submission_route - INFO - Source code length: 273
+2025-02-22 19:34:11,651 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-22 19:34:11,652 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"count_exclamations","function_name":"count_exclamations","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-22 19:34:11,653 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-22 19:34:11,653 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-22 19:34:11,654 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:34:11,654 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:34:11,656 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-22 19:34:11,656 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-22 19:34:11,656 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-22 19:34:11,657 - main.problem_submission.problem_submission_service - INFO - Source Code:
+public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+2025-02-22 19:34:11,658 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"count_exclamations","function_name":"count_exclamations","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-22 19:34:11,659 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "Hello World! How are you today?!"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "No exclamations here"
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      "Wow! This is amazing!!!"
+    ],
+    "output": 4
+  }
+]
+2025-02-22 19:34:11,660 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-22 19:34:11,662 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-22 19:34:11,663 - main.submission_generator.java_submission_generator - INFO - Source code: public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+2025-02-22 19:34:11,663 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'count_exclamations', 'function_name': 'count_exclamations', 'input_structure': [{'Input_Field': 'string message'}], 'output_structure': {'Output_Field': 'int count'}}
+2025-02-22 19:34:11,665 - main.submission_generator.java_submission_generator - INFO - Checking for function name: countExclamations (original: count_exclamations)
+2025-02-22 19:34:11,665 - main.submission_generator.java_submission_generator - INFO - Function name: countExclamations
+2025-02-22 19:34:11,666 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}]
+2025-02-22 19:34:11,666 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'int count'}
+2025-02-22 19:34:11,667 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String message']
+2025-02-22 19:34:11,668 - main.submission_generator.java_submission_generator - INFO - Return type: int
+2025-02-22 19:34:11,671 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-22 19:34:11,672 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-22 19:34:11,672 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+import java.io.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Determine default output value based on the return type
+        String defaultValue;
+        if ("int".equals("double") || "int".equals("float")) {
+            defaultValue = "0.0";
+        } else if ("int".equals("int") || "int".equals("long") ||
+                   "int".equals("short") || "int".equals("byte")) {
+            defaultValue = "0";
+        } else if ("int".equals("boolean")) {
+            defaultValue = "false";
+        } else if ("int".equals("String")) {
+            defaultValue = "";
+        } else {
+            defaultValue = "null";
+        }
+        
+        // Check for empty input
+        if (!scanner.hasNextLine()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        String inputLine = scanner.nextLine().trim();
+        if (inputLine.equals("[]") || inputLine.isEmpty()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        int result = solution.countExclamations(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-22 19:34:11,673 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-22 19:34:11,674 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+import java.io.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Determine default output value based on the return type
+        String defaultValue;
+        if ("int".equals("double") || "int".equals("float")) {
+            defaultValue = "0.0";
+        } else if ("int".equals("int") || "int".equals("long") ||
+                   "int".equals("short") || "int".equals("byte")) {
+            defaultValue = "0";
+        } else if ("int".equals("boolean")) {
+            defaultValue = "false";
+        } else if ("int".equals("String")) {
+            defaultValue = "";
+        } else {
+            defaultValue = "null";
+        }
+        
+        // Check for empty input
+        if (!scanner.hasNextLine()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        String inputLine = scanner.nextLine().trim();
+        if (inputLine.equals("[]") || inputLine.isEmpty()) {
+            System.out.println(defaultValue);
+            scanner.close();
+            return;
+        }
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        int result = solution.countExclamations(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+
+2025-02-22 19:34:11,678 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-22 19:34:11,679 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-22 19:34:11,679 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwppbXBvcnQgamF2YS5pby4qOwppbXBvcnQgamF2YS50ZXh0Lio7CmltcG9ydCBqYXZhLnRpbWUuKjsKaW1wb3J0IGphdmEubWF0aC4qOwppbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50IGNvdW50RXhjbGFtYXRpb25zKFN0cmluZyBtZXNzYWdlKSB7DQogICAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgew0KICAgICAgICByZXR1cm4gMDsNCiAgICB9DQogICAgaW50IGNvdW50ID0gMDsNCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG1lc3NhZ2UubGVuZ3RoKCk7IGkrKykgew0KICAgICAgICBpZiAobWVzc2FnZS5jaGFyQXQoaSkgPT0gJyEnKSB7DQogICAgICAgICAgICBjb3VudCsrOw0KICAgICAgICB9DQogICAgfQ0KICAgIHJldHVybiBjb3VudDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gRGV0ZXJtaW5lIGRlZmF1bHQgb3V0cHV0IHZhbHVlIGJhc2VkIG9uIHRoZSByZXR1cm4gdHlwZQogICAgICAgIFN0cmluZyBkZWZhdWx0VmFsdWU7CiAgICAgICAgaWYgKCJpbnQiLmVxdWFscygiZG91YmxlIikgfHwgImludCIuZXF1YWxzKCJmbG9hdCIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIwLjAiOwogICAgICAgIH0gZWxzZSBpZiAoImludCIuZXF1YWxzKCJpbnQiKSB8fCAiaW50Ii5lcXVhbHMoImxvbmciKSB8fAogICAgICAgICAgICAgICAgICAgImludCIuZXF1YWxzKCJzaG9ydCIpIHx8ICJpbnQiLmVxdWFscygiYnl0ZSIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIwIjsKICAgICAgICB9IGVsc2UgaWYgKCJpbnQiLmVxdWFscygiYm9vbGVhbiIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICJmYWxzZSI7CiAgICAgICAgfSBlbHNlIGlmICgiaW50Ii5lcXVhbHMoIlN0cmluZyIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIiOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICJudWxsIjsKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2hlY2sgZm9yIGVtcHR5IGlucHV0CiAgICAgICAgaWYgKCFzY2FubmVyLmhhc05leHRMaW5lKCkpIHsKICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKGRlZmF1bHRWYWx1ZSk7CiAgICAgICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAgICBTdHJpbmcgaW5wdXRMaW5lID0gc2Nhbm5lci5uZXh0TGluZSgpLnRyaW0oKTsKICAgICAgICBpZiAoaW5wdXRMaW5lLmVxdWFscygiW10iKSB8fCBpbnB1dExpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihkZWZhdWx0VmFsdWUpOwogICAgICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICAgICAgICAgIHJldHVybjsKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludCByZXN1bHQgPSBzb2x1dGlvbi5jb3VudEV4Y2xhbWF0aW9ucyhtZXNzYWdlKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "SGVsbG8gV29ybGQhIEhvdyBhcmUgeW91IHRvZGF5PyE=",
+      "expected_output": "Mw==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwppbXBvcnQgamF2YS5pby4qOwppbXBvcnQgamF2YS50ZXh0Lio7CmltcG9ydCBqYXZhLnRpbWUuKjsKaW1wb3J0IGphdmEubWF0aC4qOwppbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50IGNvdW50RXhjbGFtYXRpb25zKFN0cmluZyBtZXNzYWdlKSB7DQogICAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgew0KICAgICAgICByZXR1cm4gMDsNCiAgICB9DQogICAgaW50IGNvdW50ID0gMDsNCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG1lc3NhZ2UubGVuZ3RoKCk7IGkrKykgew0KICAgICAgICBpZiAobWVzc2FnZS5jaGFyQXQoaSkgPT0gJyEnKSB7DQogICAgICAgICAgICBjb3VudCsrOw0KICAgICAgICB9DQogICAgfQ0KICAgIHJldHVybiBjb3VudDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gRGV0ZXJtaW5lIGRlZmF1bHQgb3V0cHV0IHZhbHVlIGJhc2VkIG9uIHRoZSByZXR1cm4gdHlwZQogICAgICAgIFN0cmluZyBkZWZhdWx0VmFsdWU7CiAgICAgICAgaWYgKCJpbnQiLmVxdWFscygiZG91YmxlIikgfHwgImludCIuZXF1YWxzKCJmbG9hdCIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIwLjAiOwogICAgICAgIH0gZWxzZSBpZiAoImludCIuZXF1YWxzKCJpbnQiKSB8fCAiaW50Ii5lcXVhbHMoImxvbmciKSB8fAogICAgICAgICAgICAgICAgICAgImludCIuZXF1YWxzKCJzaG9ydCIpIHx8ICJpbnQiLmVxdWFscygiYnl0ZSIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIwIjsKICAgICAgICB9IGVsc2UgaWYgKCJpbnQiLmVxdWFscygiYm9vbGVhbiIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICJmYWxzZSI7CiAgICAgICAgfSBlbHNlIGlmICgiaW50Ii5lcXVhbHMoIlN0cmluZyIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIiOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICJudWxsIjsKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2hlY2sgZm9yIGVtcHR5IGlucHV0CiAgICAgICAgaWYgKCFzY2FubmVyLmhhc05leHRMaW5lKCkpIHsKICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKGRlZmF1bHRWYWx1ZSk7CiAgICAgICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAgICBTdHJpbmcgaW5wdXRMaW5lID0gc2Nhbm5lci5uZXh0TGluZSgpLnRyaW0oKTsKICAgICAgICBpZiAoaW5wdXRMaW5lLmVxdWFscygiW10iKSB8fCBpbnB1dExpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihkZWZhdWx0VmFsdWUpOwogICAgICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICAgICAgICAgIHJldHVybjsKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludCByZXN1bHQgPSBzb2x1dGlvbi5jb3VudEV4Y2xhbWF0aW9ucyhtZXNzYWdlKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "Tm8gZXhjbGFtYXRpb25zIGhlcmU=",
+      "expected_output": "MA==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwppbXBvcnQgamF2YS5pby4qOwppbXBvcnQgamF2YS50ZXh0Lio7CmltcG9ydCBqYXZhLnRpbWUuKjsKaW1wb3J0IGphdmEubWF0aC4qOwppbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CgpwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50IGNvdW50RXhjbGFtYXRpb25zKFN0cmluZyBtZXNzYWdlKSB7DQogICAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgew0KICAgICAgICByZXR1cm4gMDsNCiAgICB9DQogICAgaW50IGNvdW50ID0gMDsNCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG1lc3NhZ2UubGVuZ3RoKCk7IGkrKykgew0KICAgICAgICBpZiAobWVzc2FnZS5jaGFyQXQoaSkgPT0gJyEnKSB7DQogICAgICAgICAgICBjb3VudCsrOw0KICAgICAgICB9DQogICAgfQ0KICAgIHJldHVybiBjb3VudDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gRGV0ZXJtaW5lIGRlZmF1bHQgb3V0cHV0IHZhbHVlIGJhc2VkIG9uIHRoZSByZXR1cm4gdHlwZQogICAgICAgIFN0cmluZyBkZWZhdWx0VmFsdWU7CiAgICAgICAgaWYgKCJpbnQiLmVxdWFscygiZG91YmxlIikgfHwgImludCIuZXF1YWxzKCJmbG9hdCIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIwLjAiOwogICAgICAgIH0gZWxzZSBpZiAoImludCIuZXF1YWxzKCJpbnQiKSB8fCAiaW50Ii5lcXVhbHMoImxvbmciKSB8fAogICAgICAgICAgICAgICAgICAgImludCIuZXF1YWxzKCJzaG9ydCIpIHx8ICJpbnQiLmVxdWFscygiYnl0ZSIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIwIjsKICAgICAgICB9IGVsc2UgaWYgKCJpbnQiLmVxdWFscygiYm9vbGVhbiIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICJmYWxzZSI7CiAgICAgICAgfSBlbHNlIGlmICgiaW50Ii5lcXVhbHMoIlN0cmluZyIpKSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICIiOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGRlZmF1bHRWYWx1ZSA9ICJudWxsIjsKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gQ2hlY2sgZm9yIGVtcHR5IGlucHV0CiAgICAgICAgaWYgKCFzY2FubmVyLmhhc05leHRMaW5lKCkpIHsKICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKGRlZmF1bHRWYWx1ZSk7CiAgICAgICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAgICBTdHJpbmcgaW5wdXRMaW5lID0gc2Nhbm5lci5uZXh0TGluZSgpLnRyaW0oKTsKICAgICAgICBpZiAoaW5wdXRMaW5lLmVxdWFscygiW10iKSB8fCBpbnB1dExpbmUuaXNFbXB0eSgpKSB7CiAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihkZWZhdWx0VmFsdWUpOwogICAgICAgICAgICBzY2FubmVyLmNsb3NlKCk7CiAgICAgICAgICAgIHJldHVybjsKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludCByZXN1bHQgPSBzb2x1dGlvbi5jb3VudEV4Y2xhbWF0aW9ucyhtZXNzYWdlKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "V293ISBUaGlzIGlzIGFtYXppbmchISE=",
+      "expected_output": "NA==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-22 19:34:12,948 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-22 19:34:12,948 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "a98c790c-2bd8-461b-b9dd-c8fe6e715e0b"
+  },
+  {
+    "token": "8369101e-7feb-4484-9b09-f781a5d77244"
+  },
+  {
+    "token": "9812e71a-6fdb-42f5-a013-4a0cd43e4ff4"
+  }
+]
+2025-02-22 19:34:12,952 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': 'a98c790c-2bd8-461b-b9dd-c8fe6e715e0b'}, {'token': '8369101e-7feb-4484-9b09-f781a5d77244'}, {'token': '9812e71a-6fdb-42f5-a013-4a0cd43e4ff4'}]
+2025-02-22 19:34:12,959 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-22 19:34:12,959 - main.problem_submission.problem_submission_route - INFO - Tokens: ['a98c790c-2bd8-461b-b9dd-c8fe6e715e0b', '8369101e-7feb-4484-9b09-f781a5d77244', '9812e71a-6fdb-42f5-a013-4a0cd43e4ff4']
+2025-02-22 19:34:12,959 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-22 19:34:12,960 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:34:12,960 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:34:12,960 - main.problem_submission.problem_submission_service - INFO - === Polling Submission a98c790c-2bd8-461b-b9dd-c8fe6e715e0b ===
+2025-02-22 19:34:12,960 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:34:12,960 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/a98c790c-2bd8-461b-b9dd-c8fe6e715e0b
+2025-02-22 19:34:14,164 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:34:14,164 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:34:14,166 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-22 19:34:14,167 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:34:14,167 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-22 19:34:14,168 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.util.NoSuchElementException: No line found
+	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
+	at Main.main(Main.java:57)
+
+2025-02-22 19:34:14,168 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-22 19:34:14,169 - main.problem_submission.problem_submission_service - INFO - Time: 0.067
+2025-02-22 19:34:14,169 - main.problem_submission.problem_submission_service - INFO - Memory: 16968
+2025-02-22 19:34:14,171 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 8369101e-7feb-4484-9b09-f781a5d77244 ===
+2025-02-22 19:34:14,172 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:34:14,172 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/8369101e-7feb-4484-9b09-f781a5d77244
+2025-02-22 19:34:15,403 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:34:15,403 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:34:15,404 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-22 19:34:15,405 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:34:15,405 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-22 19:34:15,406 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.util.NoSuchElementException: No line found
+	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
+	at Main.main(Main.java:57)
+
+2025-02-22 19:34:15,407 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-22 19:34:15,407 - main.problem_submission.problem_submission_service - INFO - Time: 0.055
+2025-02-22 19:34:15,407 - main.problem_submission.problem_submission_service - INFO - Memory: 16832
+2025-02-22 19:34:15,410 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 9812e71a-6fdb-42f5-a013-4a0cd43e4ff4 ===
+2025-02-22 19:34:15,411 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:34:15,412 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/9812e71a-6fdb-42f5-a013-4a0cd43e4ff4
+2025-02-22 19:34:16,741 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:34:16,742 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:34:16,742 - main.problem_submission.problem_submission_service - INFO - Status: Runtime Error (NZEC)
+2025-02-22 19:34:16,743 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:34:16,743 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-22 19:34:16,745 - main.problem_submission.problem_submission_service - INFO - Stderr: Exception in thread "main" java.util.NoSuchElementException: No line found
+	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
+	at Main.main(Main.java:57)
+
+2025-02-22 19:34:16,745 - main.problem_submission.problem_submission_service - INFO - Exit Code: 1
+2025-02-22 19:34:16,745 - main.problem_submission.problem_submission_service - INFO - Time: 0.068
+2025-02-22 19:34:16,747 - main.problem_submission.problem_submission_service - INFO - Memory: 17000
+2025-02-22 19:34:16,748 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-22 19:34:16,748 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-22 19:34:16,749 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-22 19:34:16,749 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-22 19:35:10,263 - uvicorn.error - INFO - Started server process [6128]
+2025-02-22 19:35:10,264 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-22 19:35:10,264 - uvicorn.error - INFO - Application startup complete.
+2025-02-22 19:35:25,828 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-22 19:35:25,829 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-22 19:35:25,830 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-22 19:35:25,831 - main.problem_submission.problem_submission_route - INFO - Source code length: 273
+2025-02-22 19:35:25,832 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-22 19:35:25,833 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"count_exclamations","function_name":"count_exclamations","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-22 19:35:25,834 - main.problem_submission.problem_submission_route - INFO - Test cases count: 3
+2025-02-22 19:35:25,834 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-22 19:35:25,835 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:35:25,836 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:35:25,836 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-22 19:35:25,837 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-22 19:35:25,837 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-22 19:35:25,838 - main.problem_submission.problem_submission_service - INFO - Source Code:
+public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+2025-02-22 19:35:25,838 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"count_exclamations","function_name":"count_exclamations","input_structure":[{"Input_Field":"string message"}],"output_structure":{"Output_Field":"int count"}}
+2025-02-22 19:35:25,839 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "Hello World! How are you today?!"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "No exclamations here"
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      "Wow! This is amazing!!!"
+    ],
+    "output": 4
+  }
+]
+2025-02-22 19:35:25,840 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-22 19:35:25,842 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-22 19:35:25,843 - main.submission_generator.java_submission_generator - INFO - Source code: public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+2025-02-22 19:35:25,844 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'count_exclamations', 'function_name': 'count_exclamations', 'input_structure': [{'Input_Field': 'string message'}], 'output_structure': {'Output_Field': 'int count'}}
+2025-02-22 19:35:25,844 - main.submission_generator.java_submission_generator - INFO - Checking for function name: countExclamations (original: count_exclamations)
+2025-02-22 19:35:25,844 - main.submission_generator.java_submission_generator - INFO - Function name: countExclamations
+2025-02-22 19:35:25,846 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string message'}]
+2025-02-22 19:35:25,846 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'int count'}
+2025-02-22 19:35:25,847 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String message']
+2025-02-22 19:35:25,848 - main.submission_generator.java_submission_generator - INFO - Return type: int
+2025-02-22 19:35:25,853 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-22 19:35:25,853 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-22 19:35:25,853 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        int result = solution.countExclamations(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-22 19:35:25,855 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-22 19:35:25,855 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+public int countExclamations(String message) {
+    if (message == null) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < message.length(); i++) {
+        if (message.charAt(i) == '!') {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String message = scanner.nextLine();
+        
+        // Call the solution function
+        int result = solution.countExclamations(message);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-22 19:35:25,859 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-22 19:35:25,860 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-22 19:35:25,860 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50IGNvdW50RXhjbGFtYXRpb25zKFN0cmluZyBtZXNzYWdlKSB7DQogICAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgew0KICAgICAgICByZXR1cm4gMDsNCiAgICB9DQogICAgaW50IGNvdW50ID0gMDsNCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG1lc3NhZ2UubGVuZ3RoKCk7IGkrKykgew0KICAgICAgICBpZiAobWVzc2FnZS5jaGFyQXQoaSkgPT0gJyEnKSB7DQogICAgICAgICAgICBjb3VudCsrOw0KICAgICAgICB9DQogICAgfQ0KICAgIHJldHVybiBjb3VudDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludCByZXN1bHQgPSBzb2x1dGlvbi5jb3VudEV4Y2xhbWF0aW9ucyhtZXNzYWdlKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "SGVsbG8gV29ybGQhIEhvdyBhcmUgeW91IHRvZGF5PyE=",
+      "expected_output": "Mw==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50IGNvdW50RXhjbGFtYXRpb25zKFN0cmluZyBtZXNzYWdlKSB7DQogICAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgew0KICAgICAgICByZXR1cm4gMDsNCiAgICB9DQogICAgaW50IGNvdW50ID0gMDsNCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG1lc3NhZ2UubGVuZ3RoKCk7IGkrKykgew0KICAgICAgICBpZiAobWVzc2FnZS5jaGFyQXQoaSkgPT0gJyEnKSB7DQogICAgICAgICAgICBjb3VudCsrOw0KICAgICAgICB9DQogICAgfQ0KICAgIHJldHVybiBjb3VudDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludCByZXN1bHQgPSBzb2x1dGlvbi5jb3VudEV4Y2xhbWF0aW9ucyhtZXNzYWdlKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "Tm8gZXhjbGFtYXRpb25zIGhlcmU=",
+      "expected_output": "MA==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50IGNvdW50RXhjbGFtYXRpb25zKFN0cmluZyBtZXNzYWdlKSB7DQogICAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgew0KICAgICAgICByZXR1cm4gMDsNCiAgICB9DQogICAgaW50IGNvdW50ID0gMDsNCiAgICBmb3IgKGludCBpID0gMDsgaSA8IG1lc3NhZ2UubGVuZ3RoKCk7IGkrKykgew0KICAgICAgICBpZiAobWVzc2FnZS5jaGFyQXQoaSkgPT0gJyEnKSB7DQogICAgICAgICAgICBjb3VudCsrOw0KICAgICAgICB9DQogICAgfQ0KICAgIHJldHVybiBjb3VudDsNCn0KCgogICAgcHVibGljIHN0YXRpYyB2b2lkIG1haW4oU3RyaW5nW10gYXJncykgewogICAgICAgIFNjYW5uZXIgc2Nhbm5lciA9IG5ldyBTY2FubmVyKFN5c3RlbS5pbik7CiAgICAgICAgTWFpbiBzb2x1dGlvbiA9IG5ldyBNYWluKCk7CiAgICAgICAgCiAgICAgICAgLy8gUGFyc2UgaW5wdXQKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludCByZXN1bHQgPSBzb2x1dGlvbi5jb3VudEV4Y2xhbWF0aW9ucyhtZXNzYWdlKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "V293ISBUaGlzIGlzIGFtYXppbmchISE=",
+      "expected_output": "NA==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-22 19:35:27,375 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-22 19:35:27,376 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "450b7276-91fc-44b0-af59-057e9c384721"
+  },
+  {
+    "token": "7fbaa1a4-1047-46c5-bdd9-3e328ee6e513"
+  },
+  {
+    "token": "a0454107-ad25-4b4a-817f-c78b1277ca3f"
+  }
+]
+2025-02-22 19:35:27,379 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '450b7276-91fc-44b0-af59-057e9c384721'}, {'token': '7fbaa1a4-1047-46c5-bdd9-3e328ee6e513'}, {'token': 'a0454107-ad25-4b4a-817f-c78b1277ca3f'}]
+2025-02-22 19:35:27,390 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 3 Submissions ===
+2025-02-22 19:35:27,391 - main.problem_submission.problem_submission_route - INFO - Tokens: ['450b7276-91fc-44b0-af59-057e9c384721', '7fbaa1a4-1047-46c5-bdd9-3e328ee6e513', 'a0454107-ad25-4b4a-817f-c78b1277ca3f']
+2025-02-22 19:35:27,392 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-22 19:35:27,392 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:35:27,393 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-22 19:35:27,393 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 450b7276-91fc-44b0-af59-057e9c384721 ===
+2025-02-22 19:35:27,394 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:35:27,394 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/450b7276-91fc-44b0-af59-057e9c384721
+2025-02-22 19:35:28,869 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:35:28,870 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:35:28,871 - main.problem_submission.problem_submission_service - INFO - Status: Wrong Answer
+2025-02-22 19:35:28,872 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:35:28,872 - main.problem_submission.problem_submission_service - INFO - Stdout: 2
+
+2025-02-22 19:35:28,873 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-22 19:35:28,873 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-22 19:35:28,874 - main.problem_submission.problem_submission_service - INFO - Time: 0.062
+2025-02-22 19:35:28,875 - main.problem_submission.problem_submission_service - INFO - Memory: 36200
+2025-02-22 19:35:28,877 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 7fbaa1a4-1047-46c5-bdd9-3e328ee6e513 ===
+2025-02-22 19:35:28,878 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:35:28,878 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/7fbaa1a4-1047-46c5-bdd9-3e328ee6e513
+2025-02-22 19:35:30,151 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:35:30,152 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:35:30,152 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-22 19:35:30,153 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:35:30,155 - main.problem_submission.problem_submission_service - INFO - Stdout: 0
+
+2025-02-22 19:35:30,156 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-22 19:35:30,156 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-22 19:35:30,157 - main.problem_submission.problem_submission_service - INFO - Time: 0.062
+2025-02-22 19:35:30,158 - main.problem_submission.problem_submission_service - INFO - Memory: 28588
+2025-02-22 19:35:30,160 - main.problem_submission.problem_submission_service - INFO - === Polling Submission a0454107-ad25-4b4a-817f-c78b1277ca3f ===
+2025-02-22 19:35:30,160 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-22 19:35:30,160 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/a0454107-ad25-4b4a-817f-c78b1277ca3f
+2025-02-22 19:35:31,507 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-22 19:35:31,508 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-22 19:35:31,508 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-22 19:35:31,509 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-22 19:35:31,510 - main.problem_submission.problem_submission_service - INFO - Stdout: 4
+
+2025-02-22 19:35:31,510 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-22 19:35:31,510 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-22 19:35:31,511 - main.problem_submission.problem_submission_service - INFO - Time: 0.057
+2025-02-22 19:35:31,511 - main.problem_submission.problem_submission_service - INFO - Memory: 34320
+2025-02-22 19:35:31,513 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-22 19:35:31,514 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-22 19:35:31,514 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-22 19:35:31,514 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-23 12:28:52,605 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 12:28:52,607 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Simple String handling, complexity: MEDIUM
+2025-02-23 12:28:54,116 - main.problem_generator.prompt_manager - INFO - Normalizing name: Simple String handling
+2025-02-23 12:28:54,117 - main.problem_generator.prompt_manager - INFO - Normalized to: simple_string_handling
+2025-02-23 12:28:54,118 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\simple_string_handling\config.json
+2025-02-23 12:28:54,120 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\simple_string_handling\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\simple_string_handling\\config.json'
+2025-02-23 12:28:54,142 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-23 12:28:54,144 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-23 12:28:54,156 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 12:28:54,157 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 12:28:54,158 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 12:28:54,158 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 12:28:54,160 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for medium experienced programmers with 1-3 years of experience.
+For MEDIUM difficulty level, ensure:
+
+Input Parameters:
+
+2-3 parameters
+May include more complex types (arrays, lists, simple objects)
+May require working with multiple arrays simultaneously
+
+
+Problem Scope:
+
+Multiple operations or transformations
+May require nested loops
+More complex conditionals allowed
+May involve working with simple data structures (stacks, queues, basic trees)
+May require multiple steps to solve
+Time complexity: O(n log n) or better typically expected
+Space complexity: O(n) typically expected
+
+
+Test Cases:
+
+4 test cases covering normal scenarios
+Include 2 edge case (empty inputs, boundary values)
+<!-- Include at least one larger input example -->
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                Use these medium-complexity real-world contexts:
+
+- Gaming Systems
+- Social Network Analysis
+- Education Systems
+- Weather Prediction
+- E-commerce Systems
+- Media Content Management
+- Sports Analytics
+    -- Player performance prediction
+    -- Team composition optimization
+    -- Game strategy analysis
+    -- Tournament bracket generation
+- Financial Applications
+    -- Budget tracking with categorization
+    -- Investment portfolio balancing
+    -- Expense pattern analysis
+    -- Simple stock trend calculations
+
+2025-02-23 12:28:54,161 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 12:28:54,161 - main.problem_generator.problem_generator_service - INFO - Content: Generate a MEDIUM difficulty problem about Simple String handling
+
+2025-02-23 12:28:54,170 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 12:28:54,171 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Simple String handling, complexity: EASY
+2025-02-23 12:28:55,667 - main.problem_generator.prompt_manager - INFO - Normalizing name: Simple String handling
+2025-02-23 12:28:55,668 - main.problem_generator.prompt_manager - INFO - Normalized to: simple_string_handling
+2025-02-23 12:28:55,669 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\simple_string_handling\config.json
+2025-02-23 12:28:55,670 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\simple_string_handling\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\simple_string_handling\\config.json'
+2025-02-23 12:28:55,673 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-23 12:28:55,673 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-23 12:28:55,689 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 12:28:55,690 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 12:28:55,690 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 12:28:55,691 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 12:28:55,691 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-23 12:28:55,692 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 12:28:55,693 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about Simple String handling
+
+2025-02-23 12:28:57,961 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 12:28:58,017 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 12:28:58,018 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello world"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "OpenAI is amazing!"
+    ],
+    "output": 6
+  },
+  {
+    "input": [
+      ""
+    ],
+    "output": 0
+  }
+]
+2025-02-23 12:28:58,019 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 12:28:58,020 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "hello world"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "OpenAI is amazing!"
+    ],
+    "output": 6
+  },
+  {
+    "input": [
+      ""
+    ],
+    "output": 0
+  }
+]
+2025-02-23 12:28:58,022 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 12:28:58,023 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Simple String handling",
+  "difficulty": "EASY",
+  "problem_title": "Count Vowels in a String",
+  "problem_statement": "Write a function that counts the number of vowels (a, e, i, o, u) in a given string. The function should ignore case, meaning 'A' and 'a' should both be counted as vowels. Return the total count of vowels found in the string.",
+  "test_cases": [
+    {
+      "input": [
+        "hello world"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "OpenAI is amazing!"
+      ],
+      "output": 6
+    },
+    {
+      "input": [
+        ""
+      ],
+      "output": 0
+    }
+  ],
+  "tags": [
+    "strings",
+    "counting",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "count_vowels",
+    "function_name": "count_vowels",
+    "input_structure": [
+      {
+        "Input_Field": "string input_string"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int count"
+    }
+  },
+  "java_boilerplate": "public int countVowels(String input_string) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def count_vowels(input_string: str) -> int:\n    # Write your code here\n    pass"
+}
+2025-02-23 12:28:58,024 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count Vowels in a String
+2025-02-23 12:28:58,969 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 12:28:58,972 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 12:28:58,974 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "listen",
+      "silent"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "triangle",
+      "integral"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "apple",
+      "pale"
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "The eyes",
+      "They see"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "",
+      ""
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "a",
+      ""
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "a b c",
+      "c b a"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Hello World!",
+      "dlroW olleH"
+    ],
+    "output": true
+  }
+]
+2025-02-23 12:28:58,976 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 12:28:58,977 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "listen",
+      "silent"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "triangle",
+      "integral"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "apple",
+      "pale"
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "The eyes",
+      "They see"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "",
+      ""
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "a",
+      ""
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "a b c",
+      "c b a"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Hello World!",
+      "dlroW olleH"
+    ],
+    "output": true
+  }
+]
+2025-02-23 12:28:58,979 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 12:28:58,980 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Simple String handling",
+  "difficulty": "medium",
+  "problem_title": "String Anagram Checker with Character Count",
+  "problem_statement": "You are tasked with writing a function that checks if two given strings are anagrams of each other based on character counts. An anagram is a rearrangement of the letters of one word to form another word, using all the original letters exactly once. You need to consider only alphabetical characters and ignore cases. The function should return True if the two strings are anagrams and False otherwise. For the sake of this problem, ignore spaces and punctuation marks.",
+  "test_cases": [
+    {
+      "input": [
+        "listen",
+        "silent"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "triangle",
+        "integral"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "apple",
+        "pale"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "The eyes",
+        "They see"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "",
+        ""
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "a",
+        ""
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "a b c",
+        "c b a"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "Hello World!",
+        "dlroW olleH"
+      ],
+      "output": true
+    }
+  ],
+  "tags": [
+    "strings",
+    "conditional_logic",
+    "loops",
+    "array_manipulation"
+  ],
+  "structure": {
+    "problem_name": "anagram_checker",
+    "function_name": "are_anagrams",
+    "input_structure": [
+      {
+        "Input_Field": "string str1"
+      },
+      {
+        "Input_Field": "string str2"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "bool result"
+    }
+  },
+  "java_boilerplate": "public boolean areAnagrams(String str1, String str2) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Write your code here\n    pass"
+}
+2025-02-23 12:28:58,982 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: String Anagram Checker with Character Count
+2025-02-23 12:29:22,607 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-23 12:29:22,608 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-23 12:29:22,608 - main.problem_submission.problem_submission_route - INFO - Language ID: 4
+2025-02-23 12:29:22,609 - main.problem_submission.problem_submission_route - INFO - Source code length: 152
+2025-02-23 12:29:22,610 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-23 12:29:22,610 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"anagram_checker","function_name":"are_anagrams","input_structure":[{"Input_Field":"string str1"},{"Input_Field":"string str2"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-23 12:29:22,610 - main.problem_submission.problem_submission_route - INFO - Test cases count: 8
+2025-02-23 12:29:22,611 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-23 12:29:22,611 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-23 12:29:22,611 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-23 12:29:22,613 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-23 12:29:22,613 - main.problem_submission.problem_submission_service - INFO - Language ID: 4
+2025-02-23 12:29:22,613 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-23 12:29:22,613 - main.problem_submission.problem_submission_service - INFO - Source Code:
+public boolean areAnagrams(String str1, String str2) {
+    // Your implementation code goes here
+    return null;  // Replace with actual return value
+}
+2025-02-23 12:29:22,613 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"anagram_checker","function_name":"are_anagrams","input_structure":[{"Input_Field":"string str1"},{"Input_Field":"string str2"}],"output_structure":{"Output_Field":"bool result"}}
+2025-02-23 12:29:22,615 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "listen",
+      "silent"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "triangle",
+      "integral"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "apple",
+      "pale"
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "The eyes",
+      "They see"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "",
+      ""
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "a",
+      ""
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      "a b c",
+      "c b a"
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      "Hello World!",
+      "dlroW olleH"
+    ],
+    "output": true
+  }
+]
+2025-02-23 12:29:22,616 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-23 12:29:22,617 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-23 12:29:22,618 - main.submission_generator.java_submission_generator - INFO - Source code: public boolean areAnagrams(String str1, String str2) {
+    // Your implementation code goes here
+    return null;  // Replace with actual return value
+}
+2025-02-23 12:29:22,619 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'anagram_checker', 'function_name': 'are_anagrams', 'input_structure': [{'Input_Field': 'string str1'}, {'Input_Field': 'string str2'}], 'output_structure': {'Output_Field': 'bool result'}}
+2025-02-23 12:29:22,620 - main.submission_generator.java_submission_generator - INFO - Checking for function name: areAnagrams (original: are_anagrams)
+2025-02-23 12:29:22,621 - main.submission_generator.java_submission_generator - INFO - Function name: areAnagrams
+2025-02-23 12:29:22,621 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string str1'}, {'Input_Field': 'string str2'}]
+2025-02-23 12:29:22,621 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'bool result'}
+2025-02-23 12:29:22,622 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String str1', 'String str2']
+2025-02-23 12:29:22,622 - main.submission_generator.java_submission_generator - INFO - Return type: boolean
+2025-02-23 12:29:22,626 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-23 12:29:22,627 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-23 12:29:22,627 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+public boolean areAnagrams(String str1, String str2) {
+    // Your implementation code goes here
+    return null;  // Replace with actual return value
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String str1 = scanner.nextLine();
+        String str2 = scanner.nextLine();
+        
+        // Call the solution function
+        boolean result = solution.areAnagrams(str1, str2);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-23 12:29:22,629 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-23 12:29:22,629 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+public boolean areAnagrams(String str1, String str2) {
+    // Your implementation code goes here
+    return null;  // Replace with actual return value
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String str1 = scanner.nextLine();
+        String str2 = scanner.nextLine();
+        
+        // Call the solution function
+        boolean result = solution.areAnagrams(str1, str2);
+        
+        // Print the result
+        System.out.println(result);
+        scanner.close();
+    }
+}
+2025-02-23 12:29:22,632 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-23 12:29:22,633 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-extra-ce.p.rapidapi.com/submissions/batch
+2025-02-23 12:29:22,635 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "bGlzdGVuCnNpbGVudA==",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "dHJpYW5nbGUKaW50ZWdyYWw=",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "YXBwbGUKcGFsZQ==",
+      "expected_output": "RmFsc2U=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "VGhlIGV5ZXMKVGhleSBzZWU=",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "Cg==",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "YQo=",
+      "expected_output": "RmFsc2U=",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "YSBiIGMKYyBiIGE=",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    },
+    {
+      "language_id": 4,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgYm9vbGVhbiBhcmVBbmFncmFtcyhTdHJpbmcgc3RyMSwgU3RyaW5nIHN0cjIpIHsKICAgIC8vIFlvdXIgaW1wbGVtZW50YXRpb24gY29kZSBnb2VzIGhlcmUKICAgIHJldHVybiBudWxsOyAgLy8gUmVwbGFjZSB3aXRoIGFjdHVhbCByZXR1cm4gdmFsdWUKfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBzdHIxID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIFN0cmluZyBzdHIyID0gc2Nhbm5lci5uZXh0TGluZSgpOwogICAgICAgIAogICAgICAgIC8vIENhbGwgdGhlIHNvbHV0aW9uIGZ1bmN0aW9uCiAgICAgICAgYm9vbGVhbiByZXN1bHQgPSBzb2x1dGlvbi5hcmVBbmFncmFtcyhzdHIxLCBzdHIyKTsKICAgICAgICAKICAgICAgICAvLyBQcmludCB0aGUgcmVzdWx0CiAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHJlc3VsdCk7CiAgICAgICAgc2Nhbm5lci5jbG9zZSgpOwogICAgfQp9",
+      "stdin": "SGVsbG8gV29ybGQhCmRscm9XIG9sbGVI",
+      "expected_output": "VHJ1ZQ==",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-23 12:29:24,066 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-23 12:29:24,067 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "b986f7d2-62f7-4780-bc6f-84932a22909b"
+  },
+  {
+    "token": "ea9456de-d77a-4254-8293-543de7421e3e"
+  },
+  {
+    "token": "7f181ae4-d523-4319-bf02-0bf5558eec12"
+  },
+  {
+    "token": "60c91580-ed45-478d-b2e2-bb1a70f1c1cc"
+  },
+  {
+    "token": "406b382a-a127-40ef-9b80-295f07e09f81"
+  },
+  {
+    "token": "383e271d-346d-4454-bc87-a221ea461eeb"
+  },
+  {
+    "token": "702800af-a657-4c55-879a-cbf723352f53"
+  },
+  {
+    "token": "44945802-fe91-4ca1-b4e6-a64893201ff8"
+  }
+]
+2025-02-23 12:29:24,071 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': 'b986f7d2-62f7-4780-bc6f-84932a22909b'}, {'token': 'ea9456de-d77a-4254-8293-543de7421e3e'}, {'token': '7f181ae4-d523-4319-bf02-0bf5558eec12'}, {'token': '60c91580-ed45-478d-b2e2-bb1a70f1c1cc'}, {'token': '406b382a-a127-40ef-9b80-295f07e09f81'}, {'token': '383e271d-346d-4454-bc87-a221ea461eeb'}, {'token': '702800af-a657-4c55-879a-cbf723352f53'}, {'token': '44945802-fe91-4ca1-b4e6-a64893201ff8'}]
+2025-02-23 12:29:24,084 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 8 Submissions ===
+2025-02-23 12:29:24,085 - main.problem_submission.problem_submission_route - INFO - Tokens: ['b986f7d2-62f7-4780-bc6f-84932a22909b', 'ea9456de-d77a-4254-8293-543de7421e3e', '7f181ae4-d523-4319-bf02-0bf5558eec12', '60c91580-ed45-478d-b2e2-bb1a70f1c1cc', '406b382a-a127-40ef-9b80-295f07e09f81', '383e271d-346d-4454-bc87-a221ea461eeb', '702800af-a657-4c55-879a-cbf723352f53', '44945802-fe91-4ca1-b4e6-a64893201ff8']
+2025-02-23 12:29:24,086 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-23 12:29:24,086 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-extra-ce.p.rapidapi.com
+2025-02-23 12:29:24,087 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-extra-ce.p.rapidapi.com
+2025-02-23 12:29:24,088 - main.problem_submission.problem_submission_service - INFO - === Polling Submission b986f7d2-62f7-4780-bc6f-84932a22909b ===
+2025-02-23 12:29:24,089 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:24,089 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/b986f7d2-62f7-4780-bc6f-84932a22909b
+2025-02-23 12:29:25,421 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:25,422 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:25,423 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:25,424 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:25,425 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:25,425 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:25,426 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:25,427 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:25,428 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:25,430 - main.problem_submission.problem_submission_service - INFO - === Polling Submission ea9456de-d77a-4254-8293-543de7421e3e ===
+2025-02-23 12:29:25,430 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:25,431 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/ea9456de-d77a-4254-8293-543de7421e3e
+2025-02-23 12:29:26,681 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:26,682 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:26,683 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:26,683 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:26,685 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:26,685 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:26,686 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:26,687 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:26,688 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:26,690 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 7f181ae4-d523-4319-bf02-0bf5558eec12 ===
+2025-02-23 12:29:26,691 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:26,692 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/7f181ae4-d523-4319-bf02-0bf5558eec12
+2025-02-23 12:29:28,161 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:28,163 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:28,163 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:28,163 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:28,165 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:28,166 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:28,167 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:28,168 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:28,168 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:28,171 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 60c91580-ed45-478d-b2e2-bb1a70f1c1cc ===
+2025-02-23 12:29:28,207 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:28,208 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/60c91580-ed45-478d-b2e2-bb1a70f1c1cc
+2025-02-23 12:29:29,696 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:29,699 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:29,699 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:29,699 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:29,700 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:29,700 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:29,700 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:29,700 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:29,702 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:29,705 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 406b382a-a127-40ef-9b80-295f07e09f81 ===
+2025-02-23 12:29:29,706 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:29,707 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/406b382a-a127-40ef-9b80-295f07e09f81
+2025-02-23 12:29:30,919 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:30,920 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:30,921 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:30,922 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:30,922 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:30,924 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:30,925 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:30,925 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:30,925 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:30,927 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 383e271d-346d-4454-bc87-a221ea461eeb ===
+2025-02-23 12:29:30,928 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:30,929 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/383e271d-346d-4454-bc87-a221ea461eeb
+2025-02-23 12:29:32,256 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:32,257 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:32,257 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:32,258 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:32,259 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:32,260 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:32,261 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:32,261 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:32,261 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:32,263 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 702800af-a657-4c55-879a-cbf723352f53 ===
+2025-02-23 12:29:32,263 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:32,265 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/702800af-a657-4c55-879a-cbf723352f53
+2025-02-23 12:29:33,485 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:33,486 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:33,487 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:33,487 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:33,488 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:33,489 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:33,490 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:33,490 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:33,491 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:33,492 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 44945802-fe91-4ca1-b4e6-a64893201ff8 ===
+2025-02-23 12:29:33,493 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-23 12:29:33,493 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-extra-ce.p.rapidapi.com/submissions/44945802-fe91-4ca1-b4e6-a64893201ff8
+2025-02-23 12:29:34,872 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-23 12:29:34,872 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-23 12:29:34,873 - main.problem_submission.problem_submission_service - INFO - Status: Compilation Error
+2025-02-23 12:29:34,874 - main.problem_submission.problem_submission_service - INFO - Compile Output: Main.java:12: error: incompatible types: <null> cannot be converted to boolean
+    return null;  // Replace with actual return value
+           ^
+1 error
+
+2025-02-23 12:29:34,874 - main.problem_submission.problem_submission_service - INFO - Stdout: None
+2025-02-23 12:29:34,875 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-23 12:29:34,876 - main.problem_submission.problem_submission_service - INFO - Exit Code: None
+2025-02-23 12:29:34,877 - main.problem_submission.problem_submission_service - INFO - Time: None
+2025-02-23 12:29:34,877 - main.problem_submission.problem_submission_service - INFO - Memory: None
+2025-02-23 12:29:34,880 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-23 12:29:34,881 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-23 12:29:34,882 - main.problem_submission.problem_submission_route - INFO - All Passed: False
+2025-02-23 12:29:34,883 - main.problem_submission.problem_submission_route - INFO - Results count: 8
+2025-02-23 12:58:14,810 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 12:58:14,812 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c1-s1, complexity: MEDIUM
+2025-02-23 12:58:16,353 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c1-s1
+2025-02-23 12:58:16,355 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c1-s1
+2025-02-23 12:58:16,355 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c1-s1\config.json
+2025-02-23 12:58:16,357 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+2025-02-23 12:58:16,359 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-23 12:58:16,359 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-23 12:58:16,364 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 12:58:16,364 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 12:58:16,365 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 12:58:16,365 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 12:58:16,366 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for medium experienced programmers with 1-3 years of experience.
+For MEDIUM difficulty level, ensure:
+
+Input Parameters:
+
+2-3 parameters
+May include more complex types (arrays, lists, simple objects)
+May require working with multiple arrays simultaneously
+
+
+Problem Scope:
+
+Multiple operations or transformations
+May require nested loops
+More complex conditionals allowed
+May involve working with simple data structures (stacks, queues, basic trees)
+May require multiple steps to solve
+Time complexity: O(n log n) or better typically expected
+Space complexity: O(n) typically expected
+
+
+Test Cases:
+
+4 test cases covering normal scenarios
+Include 2 edge case (empty inputs, boundary values)
+<!-- Include at least one larger input example -->
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                Use these medium-complexity real-world contexts:
+
+- Gaming Systems
+- Social Network Analysis
+- Education Systems
+- Weather Prediction
+- E-commerce Systems
+- Media Content Management
+- Sports Analytics
+    -- Player performance prediction
+    -- Team composition optimization
+    -- Game strategy analysis
+    -- Tournament bracket generation
+- Financial Applications
+    -- Budget tracking with categorization
+    -- Investment portfolio balancing
+    -- Expense pattern analysis
+    -- Simple stock trend calculations
+
+2025-02-23 12:58:16,366 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 12:58:16,366 - main.problem_generator.problem_generator_service - INFO - Content: Generate a MEDIUM difficulty problem about p1-c1-s1
+
+2025-02-23 12:58:16,371 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 12:58:16,372 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c1-s1, complexity: MEDIUM
+2025-02-23 12:58:17,820 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c1-s1
+2025-02-23 12:58:17,821 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c1-s1
+2025-02-23 12:58:17,821 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c1-s1\config.json
+2025-02-23 12:58:17,823 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+2025-02-23 12:58:17,824 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-23 12:58:17,825 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-23 12:58:17,830 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 12:58:17,831 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 12:58:17,831 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 12:58:17,832 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 12:58:17,833 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for medium experienced programmers with 1-3 years of experience.
+For MEDIUM difficulty level, ensure:
+
+Input Parameters:
+
+2-3 parameters
+May include more complex types (arrays, lists, simple objects)
+May require working with multiple arrays simultaneously
+
+
+Problem Scope:
+
+Multiple operations or transformations
+May require nested loops
+More complex conditionals allowed
+May involve working with simple data structures (stacks, queues, basic trees)
+May require multiple steps to solve
+Time complexity: O(n log n) or better typically expected
+Space complexity: O(n) typically expected
+
+
+Test Cases:
+
+4 test cases covering normal scenarios
+Include 2 edge case (empty inputs, boundary values)
+<!-- Include at least one larger input example -->
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                Use these medium-complexity real-world contexts:
+
+- Gaming Systems
+- Social Network Analysis
+- Education Systems
+- Weather Prediction
+- E-commerce Systems
+- Media Content Management
+- Sports Analytics
+    -- Player performance prediction
+    -- Team composition optimization
+    -- Game strategy analysis
+    -- Tournament bracket generation
+- Financial Applications
+    -- Budget tracking with categorization
+    -- Investment portfolio balancing
+    -- Expense pattern analysis
+    -- Simple stock trend calculations
+
+2025-02-23 12:58:17,834 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 12:58:17,834 - main.problem_generator.problem_generator_service - INFO - Content: Generate a MEDIUM difficulty problem about p1-c1-s1
+
+2025-02-23 12:58:20,911 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 12:58:20,915 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 12:58:20,916 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        20,
+        15,
+        30
+      ],
+      [
+        5,
+        10,
+        8
+      ]
+    ],
+    "output": [
+      23.5,
+      20.5,
+      19.4
+    ]
+  },
+  {
+    "input": [
+      [
+        10,
+        10,
+        10
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "output": [
+      7.7,
+      7.7,
+      7.7
+    ]
+  },
+  {
+    "input": [
+      [],
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "output": []
+  },
+  {
+    "input": [
+      [
+        50,
+        40
+      ],
+      []
+    ],
+    "output": []
+  }
+]
+2025-02-23 12:58:20,917 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 12:58:20,918 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        20,
+        15,
+        30
+      ],
+      [
+        5,
+        10,
+        8
+      ]
+    ],
+    "output": [
+      23.5,
+      20.5,
+      19.4
+    ]
+  },
+  {
+    "input": [
+      [
+        10,
+        10,
+        10
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "output": [
+      7.7,
+      7.7,
+      7.7
+    ]
+  },
+  {
+    "input": [
+      [],
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "output": []
+  },
+  {
+    "input": [
+      [
+        50,
+        40
+      ],
+      []
+    ],
+    "output": []
+  }
+]
+2025-02-23 12:58:20,920 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 12:58:20,921 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c1-s1",
+  "difficulty": "medium",
+  "problem_title": "Player Performance Prediction",
+  "problem_statement": "In a sports analytics application, you are tasked with predicting player performance based on their past game statistics. Given two lists: one containing the average scores of individual players and the other containing their average assists, you need to calculate a predicted performance score for each player. The predicted performance score is calculated using the formula: (average score * 0.7) + (average assists * 0.3). You should return a list of predicted performance scores sorted in descending order. If any list is empty, return an empty list.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          20,
+          15,
+          30
+        ],
+        [
+          5,
+          10,
+          8
+        ]
+      ],
+      "output": [
+        23.5,
+        20.5,
+        19.4
+      ]
+    },
+    {
+      "input": [
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "output": [
+        7.7,
+        7.7,
+        7.7
+      ]
+    },
+    {
+      "input": [
+        [],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [
+          50,
+          40
+        ],
+        []
+      ],
+      "output": []
+    }
+  ],
+  "tags": [
+    "arrays",
+    "numbers",
+    "array_manipulation",
+    "loops",
+    "conditional_logic",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "predict_performance",
+    "function_name": "predict_performance",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] average_scores"
+      },
+      {
+        "Input_Field": "List[int] average_assists"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[float] predicted_scores"
+    }
+  },
+  "java_boilerplate": "public double[] predictPerformance(int[] average_scores, int[] average_assists) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def predict_performance(average_scores: List[int], average_assists: List[int]) -> List[float]:\n    # Write your code here\n    pass"
+}
+2025-02-23 12:58:20,922 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Player Performance Prediction
+2025-02-23 12:58:21,938 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 12:58:21,942 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 12:58:21,943 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        {
+          "player": "Alice",
+          "score": 10
+        },
+        {
+          "player": "Bob",
+          "score": 20
+        }
+      ],
+      [
+        {
+          "player": "Alice",
+          "score": 30
+        },
+        {
+          "player": "Charlie",
+          "score": 25
+        }
+      ],
+      [
+        {
+          "player": "Bob",
+          "score": 5
+        },
+        {
+          "player": "Charlie",
+          "score": 15
+        }
+      ]
+    ],
+    "output": [
+      {
+        "player": "Alice",
+        "average_score": 20.0
+      },
+      {
+        "player": "Charlie",
+        "average_score": 20.0
+      },
+      {
+        "player": "Bob",
+        "average_score": 12.5
+      }
+    ]
+  },
+  {
+    "input": [
+      [
+        {
+          "player": "Dan",
+          "score": 0
+        },
+        {
+          "player": "Eve",
+          "score": 30
+        }
+      ],
+      [
+        {
+          "player": "Dan",
+          "score": 20
+        },
+        {
+          "player": "Eve",
+          "score": 10
+        }
+      ],
+      [
+        {
+          "player": "Dan",
+          "score": -5
+        }
+      ]
+    ],
+    "output": [
+      {
+        "player": "Eve",
+        "average_score": 20.0
+      },
+      {
+        "player": "Dan",
+        "average_score": 5.0
+      }
+    ]
+  },
+  {
+    "input": [
+      [],
+      3
+    ],
+    "output": []
+  },
+  {
+    "input": [
+      [
+        [
+          {
+            "player": "Frank",
+            "score": 40
+          }
+        ],
+        [
+          {
+            "player": "Gina",
+            "score": 50
+          }
+        ]
+      ],
+      1
+    ],
+    "output": [
+      {
+        "player": "Gina",
+        "average_score": 50.0
+      }
+    ]
+  }
+]
+2025-02-23 12:58:21,946 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 12:58:21,947 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        {
+          "player": "Alice",
+          "score": 10
+        },
+        {
+          "player": "Bob",
+          "score": 20
+        }
+      ],
+      [
+        {
+          "player": "Alice",
+          "score": 30
+        },
+        {
+          "player": "Charlie",
+          "score": 25
+        }
+      ],
+      [
+        {
+          "player": "Bob",
+          "score": 5
+        },
+        {
+          "player": "Charlie",
+          "score": 15
+        }
+      ]
+    ],
+    "output": [
+      {
+        "player": "Alice",
+        "average_score": 20.0
+      },
+      {
+        "player": "Charlie",
+        "average_score": 20.0
+      },
+      {
+        "player": "Bob",
+        "average_score": 12.5
+      }
+    ]
+  },
+  {
+    "input": [
+      [
+        {
+          "player": "Dan",
+          "score": 0
+        },
+        {
+          "player": "Eve",
+          "score": 30
+        }
+      ],
+      [
+        {
+          "player": "Dan",
+          "score": 20
+        },
+        {
+          "player": "Eve",
+          "score": 10
+        }
+      ],
+      [
+        {
+          "player": "Dan",
+          "score": -5
+        }
+      ]
+    ],
+    "output": [
+      {
+        "player": "Eve",
+        "average_score": 20.0
+      },
+      {
+        "player": "Dan",
+        "average_score": 5.0
+      }
+    ]
+  },
+  {
+    "input": [
+      [],
+      3
+    ],
+    "output": []
+  },
+  {
+    "input": [
+      [
+        [
+          {
+            "player": "Frank",
+            "score": 40
+          }
+        ],
+        [
+          {
+            "player": "Gina",
+            "score": 50
+          }
+        ]
+      ],
+      1
+    ],
+    "output": [
+      {
+        "player": "Gina",
+        "average_score": 50.0
+      }
+    ]
+  }
+]
+2025-02-23 12:58:21,949 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 12:58:21,950 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c1-s1",
+  "difficulty": "MEDIUM",
+  "problem_title": "Player Performance Prediction",
+  "problem_statement": "In a sports analytics scenario, you are tasked to analyze the performance of players in a series of games over a season. Each game has a set of players with their respective scores. You need to implement a function that computes the average score for each player across all games and determines the top N players based on their average scores. The function should also handle cases where players have no scores in some games. The function should return a sorted list of the top N players along with their average scores. Handle edge cases like empty game lists and cases where there are fewer than N players.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          {
+            "player": "Alice",
+            "score": 10
+          },
+          {
+            "player": "Bob",
+            "score": 20
+          }
+        ],
+        [
+          {
+            "player": "Alice",
+            "score": 30
+          },
+          {
+            "player": "Charlie",
+            "score": 25
+          }
+        ],
+        [
+          {
+            "player": "Bob",
+            "score": 5
+          },
+          {
+            "player": "Charlie",
+            "score": 15
+          }
+        ]
+      ],
+      "output": [
+        {
+          "player": "Alice",
+          "average_score": 20.0
+        },
+        {
+          "player": "Charlie",
+          "average_score": 20.0
+        },
+        {
+          "player": "Bob",
+          "average_score": 12.5
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          {
+            "player": "Dan",
+            "score": 0
+          },
+          {
+            "player": "Eve",
+            "score": 30
+          }
+        ],
+        [
+          {
+            "player": "Dan",
+            "score": 20
+          },
+          {
+            "player": "Eve",
+            "score": 10
+          }
+        ],
+        [
+          {
+            "player": "Dan",
+            "score": -5
+          }
+        ]
+      ],
+      "output": [
+        {
+          "player": "Eve",
+          "average_score": 20.0
+        },
+        {
+          "player": "Dan",
+          "average_score": 5.0
+        }
+      ]
+    },
+    {
+      "input": [
+        [],
+        3
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [
+          [
+            {
+              "player": "Frank",
+              "score": 40
+            }
+          ],
+          [
+            {
+              "player": "Gina",
+              "score": 50
+            }
+          ]
+        ],
+        1
+      ],
+      "output": [
+        {
+          "player": "Gina",
+          "average_score": 50.0
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "arrays",
+    "lists",
+    "control_flow",
+    "data_types",
+    "array_iteration",
+    "counting",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "player_performance_prediction",
+    "function_name": "top_n_players_average_score",
+    "input_structure": [
+      {
+        "Input_Field": "List[List[Dict[str, Union[str, int]]]] games"
+      },
+      {
+        "Input_Field": "int top_n"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[Dict[str, Union[str, float]]] top_players"
+    }
+  },
+  "java_boilerplate": "public Object topNPlayersAverageScore(Object games, int top_n) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def top_n_players_average_score(games: Any, top_n: int) -> Any:\n    # Write your code here\n    pass"
+}
+2025-02-23 12:58:21,953 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Player Performance Prediction
+2025-02-23 13:13:17,724 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 13:13:17,727 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c1-s1, complexity: MEDIUM
+2025-02-23 13:13:19,078 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c1-s1
+2025-02-23 13:13:19,079 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c1-s1
+2025-02-23 13:13:19,079 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c1-s1\config.json
+2025-02-23 13:13:19,081 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+2025-02-23 13:13:19,082 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-23 13:13:19,083 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-23 13:13:19,087 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 13:13:19,088 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 13:13:19,088 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 13:13:19,089 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 13:13:19,090 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for medium experienced programmers with 1-3 years of experience.
+For MEDIUM difficulty level, ensure:
+
+Input Parameters:
+
+2-3 parameters
+May include more complex types (arrays, lists, simple objects)
+May require working with multiple arrays simultaneously
+
+
+Problem Scope:
+
+Multiple operations or transformations
+May require nested loops
+More complex conditionals allowed
+May involve working with simple data structures (stacks, queues, basic trees)
+May require multiple steps to solve
+Time complexity: O(n log n) or better typically expected
+Space complexity: O(n) typically expected
+
+
+Test Cases:
+
+4 test cases covering normal scenarios
+Include 2 edge case (empty inputs, boundary values)
+<!-- Include at least one larger input example -->
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                Use these medium-complexity real-world contexts:
+
+- Gaming Systems
+- Social Network Analysis
+- Education Systems
+- Weather Prediction
+- E-commerce Systems
+- Media Content Management
+- Sports Analytics
+    -- Player performance prediction
+    -- Team composition optimization
+    -- Game strategy analysis
+    -- Tournament bracket generation
+- Financial Applications
+    -- Budget tracking with categorization
+    -- Investment portfolio balancing
+    -- Expense pattern analysis
+    -- Simple stock trend calculations
+
+2025-02-23 13:13:19,091 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 13:13:19,092 - main.problem_generator.problem_generator_service - INFO - Content: Generate a MEDIUM difficulty problem about p1-c1-s1
+
+2025-02-23 13:13:19,097 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 13:13:19,097 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c1-s1, complexity: EASY
+2025-02-23 13:13:20,355 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c1-s1
+2025-02-23 13:13:20,356 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c1-s1
+2025-02-23 13:13:20,356 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c1-s1\config.json
+2025-02-23 13:13:20,358 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c1-s1\\config.json'
+2025-02-23 13:13:20,359 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-23 13:13:20,360 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-23 13:13:20,363 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 13:13:20,364 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 13:13:20,364 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 13:13:20,366 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 13:13:20,366 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-23 13:13:20,368 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 13:13:20,369 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about p1-c1-s1
+
+2025-02-23 13:13:22,990 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 13:13:22,995 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 13:13:22,997 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello World"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "Programming is fun!"
+    ],
+    "output": 6
+  },
+  {
+    "input": [
+      ""
+    ],
+    "output": 0
+  }
+]
+2025-02-23 13:13:22,997 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 13:13:22,998 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Hello World"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "Programming is fun!"
+    ],
+    "output": 6
+  },
+  {
+    "input": [
+      ""
+    ],
+    "output": 0
+  }
+]
+2025-02-23 13:13:23,000 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 13:13:23,000 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c1-s1",
+  "difficulty": "EASY",
+  "problem_title": "Count Vowels in a String",
+  "problem_statement": "Write a function that counts the number of vowels in a given string. Vowels are the letters 'a', 'e', 'i', 'o', 'u'. Your function should be case-insensitive, meaning it should count both uppercase and lowercase vowels. For example, the string 'Hello World' contains 3 vowels: 'e', 'o', 'o'.",
+  "test_cases": [
+    {
+      "input": [
+        "Hello World"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "Programming is fun!"
+      ],
+      "output": 6
+    },
+    {
+      "input": [
+        ""
+      ],
+      "output": 0
+    }
+  ],
+  "tags": [
+    "strings",
+    "counting",
+    "validation"
+  ],
+  "structure": {
+    "problem_name": "count_vowels",
+    "function_name": "count_vowels",
+    "input_structure": [
+      {
+        "Input_Field": "string input_string"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int vowel_count"
+    }
+  },
+  "java_boilerplate": "public int countVowels(String input_string) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def count_vowels(input_string: str) -> int:\n    # Write your code here\n    pass"
+}
+2025-02-23 13:13:23,002 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count Vowels in a String
+2025-02-23 13:13:24,014 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 13:13:24,020 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 13:13:24,021 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        10,
+        15,
+        20
+      ],
+      [
+        5,
+        7,
+        10
+      ],
+      [
+        400,
+        300,
+        250
+      ]
+    ],
+    "output": [
+      15.5,
+      15.0,
+      12.0
+    ]
+  },
+  {
+    "input": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "output": [
+      0
+    ]
+  },
+  {
+    "input": [
+      [
+        5,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        100,
+        200
+      ]
+    ],
+    "output": [
+      7.0,
+      5.5
+    ]
+  },
+  {
+    "input": [
+      [],
+      [],
+      []
+    ],
+    "output": []
+  }
+]
+2025-02-23 13:13:24,023 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 13:13:24,023 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        10,
+        15,
+        20
+      ],
+      [
+        5,
+        7,
+        10
+      ],
+      [
+        400,
+        300,
+        250
+      ]
+    ],
+    "output": [
+      15.5,
+      15.0,
+      12.0
+    ]
+  },
+  {
+    "input": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "output": [
+      0
+    ]
+  },
+  {
+    "input": [
+      [
+        5,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        100,
+        200
+      ]
+    ],
+    "output": [
+      7.0,
+      5.5
+    ]
+  },
+  {
+    "input": [
+      [],
+      [],
+      []
+    ],
+    "output": []
+  }
+]
+2025-02-23 13:13:24,025 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 13:13:24,027 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c1-s1",
+  "difficulty": "MEDIUM",
+  "problem_title": "Player Performance Prediction",
+  "problem_statement": "In sports analytics, predicting player performance is crucial for team strategy. Given a list of player performance stats (goals, assists, and minutes played) for a season, the goal is to predict the player's effectiveness score based on a simple formula: effectiveness score = (goals * 4 + assists * 3) / minutes played. Implement a function that calculates the effectiveness score for each player and returns the scores sorted in descending order. If a player has played 0 minutes, their score should be considered 0. Additionally, the function should handle cases where the input lists are of varying lengths (where the length of `goals`, `assists`, and `minutes` may not match).",
+  "test_cases": [
+    {
+      "input": [
+        [
+          10,
+          15,
+          20
+        ],
+        [
+          5,
+          7,
+          10
+        ],
+        [
+          400,
+          300,
+          250
+        ]
+      ],
+      "output": [
+        15.5,
+        15.0,
+        12.0
+      ]
+    },
+    {
+      "input": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "output": [
+        0
+      ]
+    },
+    {
+      "input": [
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          100,
+          200
+        ]
+      ],
+      "output": [
+        7.0,
+        5.5
+      ]
+    },
+    {
+      "input": [
+        [],
+        [],
+        []
+      ],
+      "output": []
+    }
+  ],
+  "tags": [
+    "arrays",
+    "numbers",
+    "control_flow",
+    "array_iteration",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "player_performance_prediction",
+    "function_name": "calculate_effectiveness_scores",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] goals"
+      },
+      {
+        "Input_Field": "List[int] assists"
+      },
+      {
+        "Input_Field": "List[int] minutes"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[float] scores"
+    }
+  },
+  "java_boilerplate": "public double[] calculateEffectivenessScores(int[] goals, int[] assists, int[] minutes) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def calculate_effectiveness_scores(goals: List[int], assists: List[int], minutes: List[int]) -> List[float]:\n    # Write your code here\n    pass"
+}
+2025-02-23 13:13:24,029 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Player Performance Prediction
+2025-02-23 17:23:34,814 - uvicorn.error - INFO - Started server process [36316]
+2025-02-23 17:23:34,816 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-23 17:23:34,817 - uvicorn.error - INFO - Application startup complete.

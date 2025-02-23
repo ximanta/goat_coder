@@ -5,6 +5,7 @@ import { Boxes, Puzzle, Network, TextCursor, CodeSquare, Search, Code, BookOpen,
 import dynamic from 'next/dynamic';
 import { LoadingSpinner } from '@/components/common/loading-spinner';
 import Heading from './heading';
+import ProgramWisePractice from '@/components/program-wise-practice';
 
 const CodeArena = dynamic(() => import('@/components/codearena/code_arena'), {
   loading: () => <LoadingSpinner />,
@@ -14,12 +15,15 @@ const CodeArena = dynamic(() => import('@/components/codearena/code_arena'), {
 const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const handleSprintSelect = (concept: string) => {
+    setSelectedCategory(concept);
+  };
+
   const categories = [
     { icon: <CodeSquare className="w-6 h-6" />, name: 'Programming Basics - Newbie', count: '250+ Problems', value: 'Basic Programming for Absolute Beginners' },
     { icon: <TextCursor className="w-6 h-6" />, name: 'String Handling', count: '150+ Problems', value: 'Simple String handling' },
     { icon: <CodeSquare className="w-6 h-6" />, name: 'Data Structures', count: '250+ Problems', value: 'Data Structures for Beginners' },
     { icon: <Code className="w-6 h-6" />, name: 'Array Search', count: '50+ Problems', value: 'Array Search' },
-
     { icon: <Code className="w-6 h-6" />, name: 'Algorithms', count: '150+ Problems', value: 'Algorithms Basics' }
 
   ];
@@ -85,6 +89,9 @@ const Page = () => {
 
       {/* Categories Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Program Wise Practice Section */}
+        <ProgramWisePractice onSprintSelect={handleSprintSelect} />
+
         <h3 className="text-2xl font-bold text-gray-900 mb-8">Problem Categories</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category, index) => (

@@ -7,15 +7,9 @@ import java.util.*;
             
 public class Main {
 
-public double calculateAverageScore(int[] scores) {
-    if (scores == null || scores.length == 0) {
-        return 0;
-    }
-    int sum = 0;
-    for (int score : scores) {
-        sum += score;
-    }
-    return (double) sum / scores.length;
+public boolean areAnagrams(String str1, String str2) {
+    // Your implementation code goes here
+    return null;  // Replace with actual return value
 }
 
 
@@ -24,14 +18,11 @@ public double calculateAverageScore(int[] scores) {
         Main solution = new Main();
         
         // Parse input
-        String[] scoresStr = scanner.nextLine().split(" ");
-        int[] scores = new int[scoresStr.length];
-        for (int i = 0; i < scoresStr.length; i++) {
-            scores[i] = Integer.parseInt(scoresStr[i]);
-        }
+        String str1 = scanner.nextLine();
+        String str2 = scanner.nextLine();
         
         // Call the solution function
-        double result = solution.calculateAverageScore(scores);
+        boolean result = solution.areAnagrams(str1, str2);
         
         // Print the result
         System.out.println(result);
