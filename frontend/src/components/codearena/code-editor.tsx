@@ -85,7 +85,7 @@ export function CodeEditor({
     if (language) {
       console.log('Attempting to set boilerplate for language:', language);
       switch (language) {
-        case '4': // Java
+        case '91': // Java
           if (javaBoilerplate) {
             console.log('Setting Java boilerplate:', javaBoilerplate);
             onCodeChange(javaBoilerplate)

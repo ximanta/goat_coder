@@ -40,12 +40,12 @@ export async function pollSubmission(tokens: string[]): Promise<BatchSubmissionS
     throw new Error('No submission tokens provided');
   }
 
-  const PROCESSING_STATUSES = [1, 2];
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   while (true) {
     console.log('Polling submissions...');
     
-    const response = await fetch(`http://localhost:8000/problem-submission/submissions-status`, {
+    const response = await fetch(`${API_BASE_URL}/problem-submission/submissions-status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

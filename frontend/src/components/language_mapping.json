@@ -2,9 +2,9 @@
     "languages": { 
        "Java": {
         "displayName": "Java",
-        "name": "Java (OpenJDK 14.0.1)",
+        "name": "Java (JDK 17.0.6)",
         "extension": ".java",
-        "codeInt": 4
+        "codeInt": 91
       },
     
       "Python_3.10": {

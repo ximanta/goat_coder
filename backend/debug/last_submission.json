@@ -1,53 +1,30 @@
 {
-  "language_id": 4,
+  "language_id": 91,
   "problem_id": "123",
   "structure": {
-    "problem_name": "anagram_checker",
-    "function_name": "are_anagrams",
+    "problem_name": "format_product_name",
+    "function_name": "format_product_name",
     "input_structure": [
       {
-        "Input_Field": "string str1"
-      },
-      {
-        "Input_Field": "string str2"
+        "Input_Field": "string product_name"
       }
     ],
     "output_structure": {
-      "Output_Field": "bool result"
+      "Output_Field": "string formatted_name"
     }
   },
   "test_cases": [
     {
-      "input": "listen\nsilent",
-      "expected_output": "True"
+      "input": "laptop",
+      "expected_output": "Laptop"
     },
     {
-      "input": "triangle\nintegral",
-      "expected_output": "True"
+      "input": "HEADPHONES",
+      "expected_output": "Headphones"
     },
     {
-      "input": "apple\npale",
-      "expected_output": "False"
-    },
-    {
-      "input": "The eyes\nThey see",
-      "expected_output": "True"
-    },
-    {
-      "input": "\n",
-      "expected_output": "True"
-    },
-    {
-      "input": "a\n",
-      "expected_output": "False"
-    },
-    {
-      "input": "a b c\nc b a",
-      "expected_output": "True"
-    },
-    {
-      "input": "Hello World!\ndlroW olleH",
-      "expected_output": "True"
+      "input": "",
+      "expected_output": "No product"
     }
   ]
 }

@@ -7,13 +7,15 @@ import java.util.*;
             
 public class Main {
 
-public int[] processArray(int[] nums) {
-        int[] result = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            result[i] = nums[i] * 2;
-        }
-        return result;
-    }
+public String formatProductName(String product_name) {
+    if (product_name == null || product_name.trim().isEmpty()) {
+        return "No product";
+    }
+    // Trim and convert the entire string to lowercase first
+    product_name = product_name.trim().toLowerCase();
+    // Capitalize the first letter and concatenate with the rest of the string
+    return product_name.substring(0, 1).toUpperCase() + product_name.substring(1);
+}
 
 
     public static void main(String[] args) {
@@ -21,26 +23,13 @@ public int[] processArray(int[] nums) {
         Main solution = new Main();
         
         // Parse input
-        String[] numsStr = scanner.nextLine().split(" ");
-        int[] nums = new int[numsStr.length];
-        for (int i = 0; i < numsStr.length; i++) {
-            nums[i] = Integer.parseInt(numsStr[i]);
-        }
+        String productName = scanner.nextLine();
         
         // Call the solution function
-        int[] result = solution.processArray(nums);
+        String result = solution.formatProductName(productName);
         
         // Print the result
-        if (result == null) {
-            System.out.println("null");
-        } else {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < result.length; i++) {
-                if (i > 0) sb.append(" ");
-                sb.append(result[i]);
-            }
-            System.out.println(sb.toString());
-        }
+        System.out.println(result);
         scanner.close();
     }
 }

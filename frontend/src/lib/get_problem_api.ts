@@ -3,10 +3,14 @@ interface ProblemResponse {
   difficulty: "Easy" | "Medium" | "Hard";
   problem_title: string;
   problem_statement: string;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+
   test_cases: {
     input: any[];
     output: any;
   }[];
+  /* eslint-enable @typescript-eslint/no-explicit-any */
+
   tags: string[];
   structure: {
     problem_name: string;
@@ -19,13 +23,14 @@ interface ProblemResponse {
 }
 
 export type { ProblemResponse };
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function generateProblem(concept: string, complexity: string): Promise<ProblemResponse> {
   console.log('=== generateProblem API Call ===');
   console.log('Sending to backend:', { concept, complexity });
 
   try {
-    const response = await fetch("http://localhost:8000/problem-generator/generate", {
+    const response = await fetch(`${API_BASE_URL}/problem-generator/generate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

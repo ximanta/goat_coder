@@ -1,13 +1,3 @@
-interface ChatMessage {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
-interface ChatResponse {
-  message: string;
-  error?: string;
-}
-
 interface ChatContext {
   userId: string;
   concept?: string;
@@ -17,14 +7,14 @@ interface ChatContext {
   problemDescription?: string;
   programmingLanguage?: string;
   currentCode?: string;
-  testCases?: Array<{ input: any[]; output: any; }>;
+  testCases?: Array<{ input: string[]; output: string; }>;
   submissionResults?: {
     completed: boolean;
     passed: boolean;
-    results: any[];
+    results: string[];
   };
 }
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function sendChatMessage(
   message: string, 
   context: ChatContext,
@@ -34,7 +24,7 @@ export async function sendChatMessage(
     console.log('=== Chat API Call ===');
     console.log('Sending to backend:', { message, context });
 
-    const response = await fetch("http://localhost:8000/codeassist/chat", {
+    const response = await fetch(`${API_BASE_URL}/codeassist/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

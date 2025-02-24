@@ -1,21 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface TestCase {
   input: any[]
   output: any
 }
 
-interface ProblemStructure {
-  function_name: string
-  input_structure: Array<{ Input_Field: string }>
-  output_structure: { Output_Field: string }
-}
-
-interface SubmissionRequest {
-  language_id: string
-  source_code: string
-  problem_id: string
-  structure: string  // JSON string of ProblemStructure
-  test_cases: TestCase[]
-}
 
 interface SubmissionResponse {
   token: string;
@@ -35,8 +23,9 @@ export async function submitCode(
     structure,
     test_cases
   });
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const response = await fetch("http://localhost:8000/problem-submission/submit", {
+  const response = await fetch(`${API_BASE_URL}/problem-submission/submit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
