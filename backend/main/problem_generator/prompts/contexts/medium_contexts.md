@@ -1,4 +1,4 @@
-Use these medium-complexity real-world contexts:
+<!-- ##Use these medium-complexity real-world contexts:
 
 - Gaming Systems
 - Social Network Analysis
@@ -15,4 +15,4 @@ Use these medium-complexity real-world contexts:
     -- Budget tracking with categorization
     -- Investment portfolio balancing
     -- Expense pattern analysis
-    -- Simple stock trend calculations
+    -- Simple stock trend calculations -->

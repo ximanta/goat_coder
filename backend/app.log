@@ -49381,3 +49381,1300 @@ For EASY difficulty level, ensure:
 2025-02-23 17:23:34,814 - uvicorn.error - INFO - Started server process [36316]
 2025-02-23 17:23:34,816 - uvicorn.error - INFO - Waiting for application startup.
 2025-02-23 17:23:34,817 - uvicorn.error - INFO - Application startup complete.
+2025-02-23 17:34:34,404 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 17:34:34,404 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c2-s4, complexity: MEDIUM
+2025-02-23 17:34:35,517 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c2-s4
+2025-02-23 17:34:35,518 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c2-s4
+2025-02-23 17:34:35,519 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c2-s4\config.json
+2025-02-23 17:34:35,519 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c2-s4\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c2-s4\\config.json'
+2025-02-23 17:34:35,538 - main.problem_generator.prompt_manager - INFO - Normalizing name: MEDIUM
+2025-02-23 17:34:35,539 - main.problem_generator.prompt_manager - INFO - Normalized to: medium
+2025-02-23 17:34:35,546 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 17:34:35,547 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 17:34:35,547 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 17:34:35,548 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 17:34:35,548 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for medium experienced programmers with 1-3 years of experience.
+For MEDIUM difficulty level, ensure:
+
+Input Parameters:
+
+2-3 parameters
+May include more complex types (arrays, lists, simple objects)
+May require working with multiple arrays simultaneously
+
+
+Problem Scope:
+
+Multiple operations or transformations
+May require nested loops
+More complex conditionals allowed
+May involve working with simple data structures (stacks, queues, basic trees)
+May require multiple steps to solve
+Time complexity: O(n log n) or better typically expected
+Space complexity: O(n) typically expected
+
+
+Test Cases:
+
+4 test cases covering normal scenarios
+Include 2 edge case (empty inputs, boundary values)
+<!-- Include at least one larger input example -->
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                Use these medium-complexity real-world contexts:
+
+- Gaming Systems
+- Social Network Analysis
+- Education Systems
+- Weather Prediction
+- E-commerce Systems
+- Media Content Management
+- Sports Analytics
+    -- Player performance prediction
+    -- Team composition optimization
+    -- Game strategy analysis
+    -- Tournament bracket generation
+- Financial Applications
+    -- Budget tracking with categorization
+    -- Investment portfolio balancing
+    -- Expense pattern analysis
+    -- Simple stock trend calculations
+
+2025-02-23 17:34:35,550 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 17:34:35,550 - main.problem_generator.problem_generator_service - INFO - Content: Generate a MEDIUM difficulty problem about You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.
+
+2025-02-23 17:34:35,555 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 17:34:35,557 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c2-s4, complexity: HARD
+2025-02-23 17:34:36,640 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c2-s4
+2025-02-23 17:34:36,641 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c2-s4
+2025-02-23 17:34:36,641 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c2-s4\config.json
+2025-02-23 17:34:36,643 - main.problem_generator.prompt_manager - ERROR - Error in get_concept_prompt: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c2-s4\\config.json'
+Traceback (most recent call last):
+  File "D:\ai_projects\goat_coder\backend\.\main\problem_generator\prompt_manager.py", line 55, in get_concept_prompt
+    with config_path.open() as f:
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1252, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "D:\anaconda\envs\content-crafter\lib\pathlib.py", line 1120, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\ai_projects\\goat_coder\\backend\\main\\problem_generator\\prompts\\concepts\\p1-c2-s4\\config.json'
+2025-02-23 17:34:36,644 - main.problem_generator.prompt_manager - INFO - Normalizing name: HARD
+2025-02-23 17:34:36,646 - main.problem_generator.prompt_manager - INFO - Normalized to: hard
+2025-02-23 17:34:36,657 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples....
+2025-02-23 17:34:36,658 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 17:34:36,658 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 17:34:36,659 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 17:34:36,659 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for  experienced programmers with 3+ years of experience.
+                You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.            
+                You are generating a single file coding problem for  experienced programmers with 3 + years of experience.
+
+2025-02-23 17:34:36,659 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 17:34:36,661 - main.problem_generator.problem_generator_service - INFO - Content: Generate a HARD difficulty problem about You are generating a programming problem for beginners. Focus on fundamental concepts and clear examples.
+
+2025-02-23 17:34:39,697 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 17:34:39,757 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 17:34:39,758 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    ],
+    "output": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    ]
+  }
+]
+2025-02-23 17:34:39,761 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 17:34:39,762 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    ],
+    "output": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    ]
+  }
+]
+2025-02-23 17:34:39,764 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 17:34:39,765 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c2-s4",
+  "difficulty": "hard",
+  "problem_title": "Maze Path Finder",
+  "problem_statement": "Given a 2D grid representing a maze where '0' represents an open path and '1' represents a wall, write a function to find all possible unique paths from the top-left corner to the bottom-right corner of the grid. You can only move down or right at any point in time. The function should return a list of lists, where each inner list contains the coordinates of the path taken. If there are no paths, return an empty list.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "output": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ]
+    }
+  ],
+  "tags": [
+    "arrays",
+    "control_flow",
+    "loops",
+    "array_iteration",
+    "searching",
+    "validation"
+  ],
+  "structure": {
+    "problem_name": "Maze Path Finder",
+    "function_name": "find_unique_paths",
+    "input_structure": [
+      {
+        "Input_Field": "List[List[int]] maze"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[List[Tuple[int, int]]] paths"
+    }
+  },
+  "java_boilerplate": "public Object findUniquePaths(Object maze) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def find_unique_paths(maze: Any) -> Any:\n    # Write your code here\n    pass"
+}
+2025-02-23 17:34:39,767 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Maze Path Finder
+2025-02-23 17:34:40,266 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 17:34:40,269 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 17:34:40,270 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        100,
+        200,
+        50
+      ],
+      [
+        [
+          "fixed",
+          50
+        ],
+        [
+          "percentage",
+          10
+        ]
+      ]
+    ],
+    "output": 265
+  },
+  {
+    "input": [
+      [
+        150,
+        300,
+        450
+      ],
+      [
+        [
+          "percentage",
+          20
+        ]
+      ]
+    ],
+    "output": 720
+  },
+  {
+    "input": [
+      [],
+      [
+        [
+          "fixed",
+          20
+        ]
+      ]
+    ],
+    "output": 0
+  },
+  {
+    "input": [
+      [
+        500
+      ],
+      []
+    ],
+    "output": 500
+  }
+]
+2025-02-23 17:34:40,271 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 17:34:40,272 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      [
+        100,
+        200,
+        50
+      ],
+      [
+        [
+          "fixed",
+          50
+        ],
+        [
+          "percentage",
+          10
+        ]
+      ]
+    ],
+    "output": 265.0
+  },
+  {
+    "input": [
+      [
+        150,
+        300,
+        450
+      ],
+      [
+        [
+          "percentage",
+          20
+        ]
+      ]
+    ],
+    "output": 720.0
+  },
+  {
+    "input": [
+      [],
+      [
+        [
+          "fixed",
+          20
+        ]
+      ]
+    ],
+    "output": 0.0
+  },
+  {
+    "input": [
+      [
+        500
+      ],
+      []
+    ],
+    "output": 500.0
+  }
+]
+2025-02-23 17:34:40,273 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 17:34:40,273 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c2-s4",
+  "difficulty": "MEDIUM",
+  "problem_title": "Calculate Order Total with Discounts",
+  "problem_statement": "You are tasked with creating a function that calculates the total amount of an order after applying discounts. The discount can be applied in two formats: a fixed amount discount on the entire order or a percentage discount on the total. The function should take in a list of item prices and a list of discounts. Each discount is represented as a tuple with the first element indicating the type of discount ('fixed' or 'percentage') and the second element being the discount value. You need to return the final total after applying all discounts to the total price of items. If there are no items in the order, return 0. If there are no discounts, return the total price of the items.",
+  "test_cases": [
+    {
+      "input": [
+        [
+          100,
+          200,
+          50
+        ],
+        [
+          [
+            "fixed",
+            50
+          ],
+          [
+            "percentage",
+            10
+          ]
+        ]
+      ],
+      "output": 265.0
+    },
+    {
+      "input": [
+        [
+          150,
+          300,
+          450
+        ],
+        [
+          [
+            "percentage",
+            20
+          ]
+        ]
+      ],
+      "output": 720.0
+    },
+    {
+      "input": [
+        [],
+        [
+          [
+            "fixed",
+            20
+          ]
+        ]
+      ],
+      "output": 0.0
+    },
+    {
+      "input": [
+        [
+          500
+        ],
+        []
+      ],
+      "output": 500.0
+    }
+  ],
+  "tags": [
+    "arrays",
+    "numbers",
+    "control_flow",
+    "lists",
+    "array_manipulation",
+    "loops",
+    "conditional_logic"
+  ],
+  "structure": {
+    "problem_name": "calculate_order_total",
+    "function_name": "calculate_order_total",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] prices"
+      },
+      {
+        "Input_Field": "List[Tuple[str, float]] discounts"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "float total"
+    }
+  },
+  "java_boilerplate": "public double calculateOrderTotal(int[] prices, Object discounts) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def calculate_order_total(prices: List[int], discounts: Any) -> float:\n    # Write your code here\n    pass"
+}
+2025-02-23 17:34:40,274 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Calculate Order Total with Discounts
+2025-02-23 17:41:14,213 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-23 17:41:14,214 - main.problem_generator.problem_generator_route - INFO - Received request - concept: p1-c2-s4, complexity: HARD
+2025-02-23 17:41:15,711 - main.problem_generator.prompt_manager - INFO - Normalizing name: p1-c2-s4
+2025-02-23 17:41:15,712 - main.problem_generator.prompt_manager - INFO - Normalized to: p1-c2-s4
+2025-02-23 17:41:15,713 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\p1-c2-s4\config.json
+2025-02-23 17:41:15,715 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-23 17:41:15,716 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-23 17:41:15,716 - main.problem_generator.prompt_manager - INFO - Selected category: Mathematical Recursion (previous was: None)
+2025-02-23 17:41:15,717 - main.problem_generator.prompt_manager - INFO - Selected problem type: Mathematical Properties (previous was: None)
+2025-02-23 17:41:15,835 - main.problem_generator.prompt_manager - INFO - Normalizing name: HARD
+2025-02-23 17:41:15,835 - main.problem_generator.prompt_manager - INFO - Normalized to: hard
+2025-02-23 17:41:15,842 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Mathematical Recursion
+            Problem Type: Mathematical Properties
+            Suggested Variation: Check n...
+2025-02-23 17:41:15,843 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-23 17:41:15,844 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-23 17:41:15,844 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-23 17:41:15,845 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for  experienced programmers with 3+ years of experience.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Mathematical Recursion
+            Problem Type: Mathematical Properties
+            Suggested Variation: Check number palindrome
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                You are generating a single file coding problem for  experienced programmers with 3 + years of experience.
+
+2025-02-23 17:41:15,845 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-23 17:41:15,845 - main.problem_generator.problem_generator_service - INFO - Content: Generate a HARD difficulty problem about 
+        
+
+            For this problem, use this specific type:
+            Category: Mathematical Recursion
+            Problem Type: Mathematical Properties
+            Suggested Variation: Check number palindrome
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+            
+
+2025-02-23 17:41:19,415 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-23 17:41:19,420 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-23 17:41:19,422 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      153
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      370
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      371
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      407
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      123
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      0
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      1
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      10
+    ],
+    "output": false
+  }
+]
+2025-02-23 17:41:19,424 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-23 17:41:19,426 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      153
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      370
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      371
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      407
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      123
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      0
+    ],
+    "output": false
+  },
+  {
+    "input": [
+      1
+    ],
+    "output": true
+  },
+  {
+    "input": [
+      10
+    ],
+    "output": false
+  }
+]
+2025-02-23 17:41:19,428 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-23 17:41:19,429 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "p1-c2-s4",
+  "difficulty": "HARD",
+  "problem_title": "Check if a Number is a Sum of Cubes of Its Digits",
+  "problem_statement": "Given a positive integer, determine if it can be represented as the sum of the cubes of its digits. A number is considered valid if, when you take each of its digits, cube them, and sum those values, the result equals the original number. For instance, the number 153 is valid because 1^3 + 5^3 + 3^3 = 153. Your task is to implement a recursive function that checks this property. The function should return `True` if the number can be expressed as such, and `False` otherwise. Consider edge cases like single-digit numbers, which inherently satisfy the condition as they equal the cube of themselves.",
+  "test_cases": [
+    {
+      "input": [
+        153
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        370
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        371
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        407
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        123
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        1
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        10
+      ],
+      "output": false
+    }
+  ],
+  "tags": [
+    "numbers",
+    "recursion",
+    "validation",
+    "conditional_logic"
+  ],
+  "structure": {
+    "problem_name": "check_sum_of_cubes",
+    "function_name": "check_sum_of_cubes",
+    "input_structure": [
+      {
+        "Input_Field": "int number"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "bool result"
+    }
+  },
+  "java_boilerplate": "public boolean checkSumOfCubes(int number) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def check_sum_of_cubes(number: int) -> bool:\n    # Write your code here\n    pass"
+}
+2025-02-23 17:41:19,432 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Check if a Number is a Sum of Cubes of Its Digits
+2025-02-24 16:25:36,401 - uvicorn.error - INFO - Shutting down
+2025-02-24 16:25:36,549 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-02-24 16:25:36,560 - uvicorn.error - INFO - Application shutdown complete.
+2025-02-24 16:25:36,561 - uvicorn.error - INFO - Finished server process [36316]
+2025-02-24 17:27:49,331 - uvicorn.error - INFO - Started server process [28648]
+2025-02-24 17:27:49,332 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-24 17:27:49,334 - uvicorn.error - INFO - Application startup complete.
+2025-02-24 17:27:57,590 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-24 17:27:57,590 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-24 17:27:58,408 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-24 17:27:58,408 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-24 17:27:58,410 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-24 17:27:58,414 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-24 17:27:58,415 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-24 17:27:58,416 - main.problem_generator.prompt_manager - INFO - Selected category: Array Operations (previous was: None)
+2025-02-24 17:27:58,417 - main.problem_generator.prompt_manager - INFO - Selected problem type: Array Transformation (previous was: None)
+2025-02-24 17:27:58,524 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-24 17:27:58,525 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-24 17:27:58,528 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Array Transformation
+            Suggested Variation: Replace negative...
+2025-02-24 17:27:58,529 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-24 17:27:58,529 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-24 17:27:58,530 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-24 17:27:58,530 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Array Transformation
+            Suggested Variation: Replace negative temperatures with zero
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-24 17:27:58,532 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-24 17:27:58,533 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about 
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Array Transformation
+            Suggested Variation: Replace negative temperatures with zero
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+            
+
+2025-02-24 17:28:02,848 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-24 17:28:02,887 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-24 17:28:02,888 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      10,
+      -3,
+      5,
+      -1,
+      0,
+      15
+    ],
+    "output": [
+      10,
+      0,
+      5,
+      0,
+      0,
+      15
+    ]
+  },
+  {
+    "input": [
+      -10,
+      -20,
+      -30
+    ],
+    "output": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "input": [
+      0,
+      5,
+      10,
+      3
+    ],
+    "output": [
+      0,
+      5,
+      10,
+      3
+    ]
+  }
+]
+2025-02-24 17:28:02,888 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-24 17:28:02,890 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      10,
+      -3,
+      5,
+      -1,
+      0,
+      15
+    ],
+    "output": [
+      10,
+      0,
+      5,
+      0,
+      0,
+      15
+    ]
+  },
+  {
+    "input": [
+      -10,
+      -20,
+      -30
+    ],
+    "output": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "input": [
+      0,
+      5,
+      10,
+      3
+    ],
+    "output": [
+      0,
+      5,
+      10,
+      3
+    ]
+  }
+]
+2025-02-24 17:28:02,891 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-24 17:28:02,892 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "EASY",
+  "problem_title": "Adjusting Player Scores",
+  "problem_statement": "In a gaming leaderboard, player scores can sometimes be negative, which does not make sense in the context of scoring. Your task is to create a function that takes a list of player scores and replaces any negative score with zero, ensuring all scores are non-negative. For example, if a player's score is -5, it should be changed to 0. Return the adjusted list of scores.",
+  "test_cases": [
+    {
+      "input": [
+        10,
+        -3,
+        5,
+        -1,
+        0,
+        15
+      ],
+      "output": [
+        10,
+        0,
+        5,
+        0,
+        0,
+        15
+      ]
+    },
+    {
+      "input": [
+        -10,
+        -20,
+        -30
+      ],
+      "output": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "input": [
+        0,
+        5,
+        10,
+        3
+      ],
+      "output": [
+        0,
+        5,
+        10,
+        3
+      ]
+    }
+  ],
+  "tags": [
+    "arrays",
+    "array_manipulation",
+    "transformation"
+  ],
+  "structure": {
+    "problem_name": "adjust_scores",
+    "function_name": "adjust_scores",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] scores"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[int] adjusted_scores"
+    }
+  },
+  "java_boilerplate": "public int[] adjustScores(int[] scores) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def adjust_scores(scores: List[int]) -> List[int]:\n    # Write your code here\n    pass"
+}
+2025-02-24 17:28:02,894 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Adjusting Player Scores
+2025-02-24 17:28:08,338 - uvicorn.error - INFO - Shutting down
+2025-02-24 17:46:55,425 - uvicorn.error - INFO - Started server process [34672]
+2025-02-24 17:46:55,427 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-24 17:46:55,428 - uvicorn.error - INFO - Application startup complete.
+2025-02-24 17:47:03,664 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-24 17:47:03,665 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-24 17:47:04,659 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-24 17:47:04,659 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-24 17:47:04,660 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-24 17:47:04,662 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-24 17:47:04,663 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-24 17:47:04,664 - main.problem_generator.prompt_manager - INFO - Selected category: Basic Arithmetic (previous was: None)
+2025-02-24 17:47:04,665 - main.problem_generator.prompt_manager - INFO - Selected problem type: Simple Calculations (previous was: None)
+2025-02-24 17:47:04,756 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-24 17:47:04,756 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-24 17:47:04,763 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Basic Arithmetic
+            Problem Type: Simple Calculations
+            Suggested Variation: Calculate distanc...
+2025-02-24 17:47:04,764 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-24 17:47:04,766 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-24 17:47:04,766 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-24 17:47:04,767 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Basic Arithmetic
+            Problem Type: Simple Calculations
+            Suggested Variation: Calculate distance between two points
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-24 17:47:04,768 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-24 17:47:04,768 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about 
+        
+
+            For this problem, use this specific type:
+            Category: Basic Arithmetic
+            Problem Type: Simple Calculations
+            Suggested Variation: Calculate distance between two points
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+            
+
+2025-02-24 17:47:08,377 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-24 17:47:08,426 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-24 17:47:08,427 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      3,
+      10
+    ],
+    "output": 30
+  },
+  {
+    "input": [
+      5,
+      20
+    ],
+    "output": 100
+  },
+  {
+    "input": [
+      0,
+      15
+    ],
+    "output": 0
+  }
+]
+2025-02-24 17:47:08,428 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-24 17:47:08,430 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      3,
+      10.0
+    ],
+    "output": 30.0
+  },
+  {
+    "input": [
+      5,
+      20.0
+    ],
+    "output": 100.0
+  },
+  {
+    "input": [
+      0,
+      15.0
+    ],
+    "output": 0.0
+  }
+]
+2025-02-24 17:47:08,431 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-24 17:47:08,432 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "EASY",
+  "problem_title": "Total Shopping Cost Calculator",
+  "problem_statement": "You need to calculate the total cost of items you want to buy. You will be given the number of items you want to purchase and the price of a single item. Your task is to write a function that computes the total cost by multiplying the number of items by the price of one item.",
+  "test_cases": [
+    {
+      "input": [
+        3,
+        10.0
+      ],
+      "output": 30.0
+    },
+    {
+      "input": [
+        5,
+        20.0
+      ],
+      "output": 100.0
+    },
+    {
+      "input": [
+        0,
+        15.0
+      ],
+      "output": 0.0
+    }
+  ],
+  "tags": [
+    "arithmetic",
+    "numbers"
+  ],
+  "structure": {
+    "problem_name": "calculate_total_cost",
+    "function_name": "calculate_total_cost",
+    "input_structure": [
+      {
+        "Input_Field": "int number_of_items"
+      },
+      {
+        "Input_Field": "float price_per_item"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "float total_cost"
+    }
+  },
+  "java_boilerplate": "public double calculateTotalCost(int number_of_items, double price_per_item) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def calculate_total_cost(number_of_items: int, price_per_item: float) -> float:\n    # Write your code here\n    pass"
+}
+2025-02-24 17:47:08,435 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Total Shopping Cost Calculator
+2025-02-24 17:47:41,996 - uvicorn.error - INFO - Shutting down
+2025-02-24 17:47:42,105 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-02-24 17:47:42,106 - uvicorn.error - INFO - Application shutdown complete.
+2025-02-24 17:47:42,108 - uvicorn.error - INFO - Finished server process [34672]
