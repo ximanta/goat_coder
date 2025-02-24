@@ -7,10 +7,13 @@ import java.util.*;
             
 public class Main {
 
-public boolean areAnagrams(String str1, String str2) {
-    // Your implementation code goes here
-    return null;  // Replace with actual return value
-}
+public int[] processArray(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            result[i] = nums[i] * 2;
+        }
+        return result;
+    }
 
 
     public static void main(String[] args) {
@@ -18,14 +21,26 @@ public boolean areAnagrams(String str1, String str2) {
         Main solution = new Main();
         
         // Parse input
-        String str1 = scanner.nextLine();
-        String str2 = scanner.nextLine();
+        String[] numsStr = scanner.nextLine().split(" ");
+        int[] nums = new int[numsStr.length];
+        for (int i = 0; i < numsStr.length; i++) {
+            nums[i] = Integer.parseInt(numsStr[i]);
+        }
         
         // Call the solution function
-        boolean result = solution.areAnagrams(str1, str2);
+        int[] result = solution.processArray(nums);
         
         // Print the result
-        System.out.println(result);
+        if (result == null) {
+            System.out.println("null");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < result.length; i++) {
+                if (i > 0) sb.append(" ");
+                sb.append(result[i]);
+            }
+            System.out.println(sb.toString());
+        }
         scanner.close();
     }
 }
