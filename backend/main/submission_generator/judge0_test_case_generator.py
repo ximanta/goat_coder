@@ -109,6 +109,10 @@ class Judge0TestCaseGenerator:
             Judge0TestCaseGeneratorException: If output format is invalid
         """
         try:
+            # Validate output structure
+            if not output_structure or "Output_Field" not in output_structure:
+                raise Judge0TestCaseGeneratorException("Invalid output structure: missing Output_Field")
+
             # Get output type
             output_type = output_structure["Output_Field"].split()[0]
 
@@ -121,6 +125,10 @@ class Judge0TestCaseGenerator:
                 else:
                     return str(output_data)
 
+            # Handle boolean types
+            if output_type.lower() == "bool":
+                return "true" if output_data else "false"
+
             # Handle float/double types with potential precision issues
             if output_type.lower() in ["float", "double"]:
                 if isinstance(output_data, (int, float)):
@@ -130,12 +138,6 @@ class Judge0TestCaseGenerator:
                     else:
                         # For floats with a fractional part, return the exact value.
                         return str(output_data)
-            else:
-                return str(output_data)
-
-            # Handle boolean types
-            if output_type.lower() == "bool":
-                return str(output_data).lower()
 
             # For all other types, convert to string
             return str(output_data)
