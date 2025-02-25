@@ -23,6 +23,6 @@ For EASY difficulty level, ensure:
    - Linear solution possible
 
 3. Test Cases:
-   - 2-3 simple test cases that include one edge case like empty input or single element.
+   - 2 simple test cases. Ensure you reflect on each test case to ensure they will pass the problem's constraints.
 
 

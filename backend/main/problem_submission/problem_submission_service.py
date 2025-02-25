@@ -24,11 +24,23 @@ class ProblemSubmissionService:
         if not rapidapi_host:
             raise ValueError("JUDGE0_RAPIDAPI_HOST environment variable is not set")
 
+        # Sulu configuration
+        sulu_base_url = os.getenv("SULU_BASE_URL")
+        if not sulu_base_url:
+            raise ValueError("SULU_BASE_URL environment variable is not set")
+        sulu_api_key = os.getenv("SULU_API_KEY")
+        if not sulu_api_key:
+            raise ValueError("SULU_API_KEY environment variable is not set")
+
         self.headers = {
             "x-rapidapi-key": rapidapi_key,
             "x-rapidapi-host": rapidapi_host,
             "Content-Type": "application/json"
         }
+
+        # self.sulu_headers = {
+        #     "Authorization": f"Bearer {sulu_api_key}"
+        # }
 
         logger.info("ProblemSubmissionService initialized with:")
         logger.info(f"Judge0 Base URL: {self.judge0_base_url}")
@@ -98,8 +110,10 @@ class ProblemSubmissionService:
             except Exception as e:
                 logger.error(f"Failed to save last_submission.json: {str(e)}")
             
-            # Submit batch request
+            # Submit batch request RapidAPI
             url = f"{self.judge0_base_url}/submissions/batch"
+            # #Submit batch request Sulu
+            # url= f"{self.sulu_base_url}/submissions/batch"
             payload = {"submissions": submissions}
             
             response = await self._make_request(url, payload)

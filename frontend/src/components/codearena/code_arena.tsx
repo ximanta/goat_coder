@@ -8,7 +8,6 @@ import { submitCode } from "@/lib/submission_api"
 import { pollSubmission } from "@/lib/fetch_submission_api"
 import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
-import { ProblemResponse } from "@/lib/get_problem_api"
 import { Loader2, ArrowLeft, GripHorizontal, Play, Moon, Sun, Copy, Check } from "lucide-react"
 import languageMapping from '@/components/language_mapping.json'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -66,7 +65,7 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     title: string;
     difficulty: string;
     description: string;
-    testCases: { input: any[]; output: any; }[];
+    testCases: { input: string  []; output: string; }[];
     structure: {
       problem_name: string;
       function_name: string;
@@ -93,7 +92,6 @@ export default function CodeArena({ category, onBack }: CodeArenaProps) {
     tags: [],
     concept: ""
   })
-  const { theme } = useTheme()
   const [testResults, setTestResults] = useState<TestResults>({
     submitted: false,
     completed: false,

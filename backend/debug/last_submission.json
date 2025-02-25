@@ -2,29 +2,25 @@
   "language_id": 91,
   "problem_id": "123",
   "structure": {
-    "problem_name": "format_product_name",
-    "function_name": "format_product_name",
+    "problem_name": "convert_hex_to_rgb",
+    "function_name": "convert_hex_to_rgb",
     "input_structure": [
       {
-        "Input_Field": "string product_name"
+        "Input_Field": "string hex_color"
       }
     ],
     "output_structure": {
-      "Output_Field": "string formatted_name"
+      "Output_Field": "List[int] rgb_values"
     }
   },
   "test_cases": [
     {
-      "input": "laptop",
-      "expected_output": "Laptop"
+      "input": "#FFFFFF",
+      "expected_output": "255 255 255"
     },
     {
-      "input": "HEADPHONES",
-      "expected_output": "Headphones"
-    },
-    {
-      "input": "",
-      "expected_output": "No product"
+      "input": "#000000",
+      "expected_output": "0 0 0"
     }
   ]
 }

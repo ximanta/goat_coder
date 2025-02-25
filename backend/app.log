@@ -52726,3 +52726,645 @@ public String formatProductName(String product_name) {
 2025-02-24 21:12:39,974 - main.problem_submission.problem_submission_route - INFO - Completed: True
 2025-02-24 21:12:39,974 - main.problem_submission.problem_submission_route - INFO - All Passed: False
 2025-02-24 21:12:39,974 - main.problem_submission.problem_submission_route - INFO - Results count: 3
+2025-02-24 21:17:53,871 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-24 21:17:53,872 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-24 21:17:56,508 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-24 21:17:56,510 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-24 21:17:56,511 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-24 21:17:56,514 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-24 21:17:56,514 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-24 21:17:56,514 - main.problem_generator.prompt_manager - INFO - Selected category: Array Operations (previous was: None)
+2025-02-24 21:17:56,514 - main.problem_generator.prompt_manager - INFO - Selected problem type: Element Counting (previous was: None)
+2025-02-24 21:17:56,529 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-24 21:17:56,529 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-24 21:17:56,536 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Element Counting
+            Suggested Variation: Count team members w...
+2025-02-24 21:17:56,536 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-24 21:17:56,536 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-24 21:17:56,536 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-24 21:17:56,536 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2-3 simple test cases that include one edge case like empty input or single element.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Element Counting
+            Suggested Variation: Count team members with long names
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-24 21:17:56,543 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-24 21:17:56,543 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about 
+        
+
+            For this problem, use this specific type:
+            Category: Array Operations
+            Problem Type: Element Counting
+            Suggested Variation: Count team members with long names
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+            
+
+2025-02-24 21:17:58,935 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-24 21:17:58,935 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-24 21:17:58,943 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Alice",
+      "Bob",
+      "Catherine",
+      "Dan",
+      "Eve"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "Jonathan",
+      "Alex",
+      "Lucy"
+    ],
+    "output": 1
+  },
+  {
+    "input": [
+      "Sam"
+    ],
+    "output": 1
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-24 21:17:58,944 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-24 21:17:58,945 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "Alice",
+      "Bob",
+      "Catherine",
+      "Dan",
+      "Eve"
+    ],
+    "output": 3
+  },
+  {
+    "input": [
+      "Jonathan",
+      "Alex",
+      "Lucy"
+    ],
+    "output": 1
+  },
+  {
+    "input": [
+      "Sam"
+    ],
+    "output": 1
+  },
+  {
+    "input": [],
+    "output": 0
+  }
+]
+2025-02-24 21:17:58,945 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-24 21:17:58,948 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "easy",
+  "problem_title": "Count Employees with Short Names",
+  "problem_statement": "In a company, you have a list of employees with their names. You would like to know how many employees have names that are shorter than or equal to 5 characters. Write a function that takes in an array of employee names and returns the count of those with short names.",
+  "test_cases": [
+    {
+      "input": [
+        "Alice",
+        "Bob",
+        "Catherine",
+        "Dan",
+        "Eve"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "Jonathan",
+        "Alex",
+        "Lucy"
+      ],
+      "output": 1
+    },
+    {
+      "input": [
+        "Sam"
+      ],
+      "output": 1
+    },
+    {
+      "input": [],
+      "output": 0
+    }
+  ],
+  "tags": [
+    "arrays",
+    "counting",
+    "array_iteration"
+  ],
+  "structure": {
+    "problem_name": "count_short_names",
+    "function_name": "count_short_names",
+    "input_structure": [
+      {
+        "Input_Field": "List[str] names"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int count"
+    }
+  },
+  "java_boilerplate": "public int countShortNames(String[] names) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def count_short_names(names: List[str]) -> int:\n    # Write your code here\n    pass"
+}
+2025-02-24 21:17:58,952 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Count Employees with Short Names
+2025-02-25 09:27:04,461 - uvicorn.error - INFO - Started server process [35184]
+2025-02-25 09:27:04,466 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:27:04,475 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:27:11,134 - uvicorn.error - INFO - Started server process [19248]
+2025-02-25 09:27:11,136 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:27:11,137 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:28:29,332 - uvicorn.error - INFO - Started server process [12080]
+2025-02-25 09:28:29,333 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:28:29,335 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:28:40,099 - uvicorn.error - INFO - Started server process [9072]
+2025-02-25 09:28:40,100 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:28:40,101 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:29:28,226 - uvicorn.error - INFO - Started server process [13168]
+2025-02-25 09:29:28,227 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:29:28,228 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:29:51,269 - uvicorn.error - INFO - Started server process [26544]
+2025-02-25 09:29:51,271 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:29:51,271 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:30:02,293 - uvicorn.error - INFO - Started server process [27588]
+2025-02-25 09:30:02,295 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-25 09:30:02,296 - uvicorn.error - INFO - Application startup complete.
+2025-02-25 09:54:18,981 - main.problem_generator.problem_generator_route - INFO - === Problem Generation Request ===
+2025-02-25 09:54:18,982 - main.problem_generator.problem_generator_route - INFO - Received request - concept: Basic Programming for Absolute Beginners, complexity: EASY
+2025-02-25 09:54:20,431 - main.problem_generator.prompt_manager - INFO - Normalizing name: Basic Programming for Absolute Beginners
+2025-02-25 09:54:20,432 - main.problem_generator.prompt_manager - INFO - Normalized to: basic_programming_absolute_beginners
+2025-02-25 09:54:20,433 - main.problem_generator.prompt_manager - INFO - Loading config from: D:\ai_projects\goat_coder\backend\main\problem_generator\prompts\concepts\basic_programming_absolute_beginners\config.json
+2025-02-25 09:54:20,451 - main.problem_generator.prompt_manager - INFO - Loaded config with 5 problem type categories
+2025-02-25 09:54:20,451 - main.problem_generator.prompt_manager - INFO - Found 5 available categories (excluding last used: None)
+2025-02-25 09:54:20,452 - main.problem_generator.prompt_manager - INFO - Selected category: Data Type Conversion (previous was: None)
+2025-02-25 09:54:20,452 - main.problem_generator.prompt_manager - INFO - Selected problem type: Type Casting (previous was: None)
+2025-02-25 09:54:20,566 - main.problem_generator.prompt_manager - INFO - Normalizing name: EASY
+2025-02-25 09:54:20,567 - main.problem_generator.prompt_manager - INFO - Normalized to: easy
+2025-02-25 09:54:20,579 - main.problem_generator.problem_generator_service - INFO - Attempt 1: Using concept prompt: 
+        
+
+            For this problem, use this specific type:
+            Category: Data Type Conversion
+            Problem Type: Type Casting
+            Suggested Variation: Convert binary strin...
+2025-02-25 09:54:20,580 - main.problem_generator.problem_generator_service - INFO - === LLM Request Details ===
+2025-02-25 09:54:20,581 - main.problem_generator.problem_generator_service - INFO - Messages being sent to LLM:
+2025-02-25 09:54:20,581 - main.problem_generator.problem_generator_service - INFO - Role: system
+2025-02-25 09:54:20,582 - main.problem_generator.problem_generator_service - INFO - Content: You are generating a single file coding problem for absolute beginners in programming. The problem should:
+
+1. Focus on a single, clear programming concept
+2. Use familiar real-world scenarios that beginners can relate to
+3. Have clear input/output requirements
+4. Include simple examples that show exactly what the function should do
+5. Avoid technical jargon and complex terminology
+
+The problem should build confidence in new programmers while teaching fundamental concepts. 
+# Easy Difficulty Level
+
+For EASY difficulty level, ensure:
+
+1. Input Parameters:
+   - Maximum 2 parameters
+   - Use only simple types (string, int, char, bool, float, double, or single array)
+   - Clear parameter names that describe their purpose
+
+2. Problem Scope:
+   - Single operation or transformation
+   - No nested loops required
+   - No complex conditions
+   - Linear solution possible
+
+3. Test Cases:
+   - 2 simple test cases. Ensure you reflect on each test case to ensure they will pass the problem's constraints.
+                
+        
+
+            For this problem, use this specific type:
+            Category: Data Type Conversion
+            Problem Type: Type Casting
+            Suggested Variation: Convert binary string to number
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+                        
+                <!-- Use these real-world contexts:
+- Gaming scores and achievements
+- Social media post analysis
+- School grade calculations
+- Weather data processing
+- Shopping and inventory
+- Music playlist management
+- Text message analysis
+- Sports statistics  -->
+
+2025-02-25 09:54:20,583 - main.problem_generator.problem_generator_service - INFO - Role: user
+2025-02-25 09:54:20,584 - main.problem_generator.problem_generator_service - INFO - Content: Generate a EASY difficulty problem about 
+        
+
+            For this problem, use this specific type:
+            Category: Data Type Conversion
+            Problem Type: Type Casting
+            Suggested Variation: Convert binary string to number
+
+            Important: While using this problem type, create a unique variation that is
+            substantially different from the suggested one. Do not reuse the exact suggested variation.
+            Instead, create a new problem following the same pattern but with different requirements and context.
+            
+
+2025-02-25 09:54:24,218 - httpx - INFO - HTTP Request: POST https://contentcrafter.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-02-25 09:54:24,247 - main.problem_generator.problem_generator_service - INFO - Original test cases before fixing floats:
+2025-02-25 09:54:24,248 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "#FFFFFF"
+    ],
+    "output": [
+      255,
+      255,
+      255
+    ]
+  },
+  {
+    "input": [
+      "#000000"
+    ],
+    "output": [
+      0,
+      0,
+      0
+    ]
+  }
+]
+2025-02-25 09:54:24,248 - main.problem_generator.problem_generator_service - INFO - Fixed test cases:
+2025-02-25 09:54:24,249 - main.problem_generator.problem_generator_service - INFO - [
+  {
+    "input": [
+      "#FFFFFF"
+    ],
+    "output": [
+      255,
+      255,
+      255
+    ]
+  },
+  {
+    "input": [
+      "#000000"
+    ],
+    "output": [
+      0,
+      0,
+      0
+    ]
+  }
+]
+2025-02-25 09:54:24,249 - main.problem_generator.problem_generator_service - INFO - Final response after language conversion:
+2025-02-25 09:54:24,251 - main.problem_generator.problem_generator_service - INFO - {
+  "concept": "Basic Programming for Absolute Beginners",
+  "difficulty": "Easy",
+  "problem_title": "Convert Hexadecimal Color Code to RGB Values",
+  "problem_statement": "You are working on a graphics application and need to convert a hexadecimal color code into its RGB (Red, Green, Blue) components. The color code is a string that starts with a '#' followed by six hexadecimal digits. Your task is to write a function that takes this hexadecimal color code and returns the corresponding RGB values as a tuple of three integers (red, green, blue).",
+  "test_cases": [
+    {
+      "input": [
+        "#FFFFFF"
+      ],
+      "output": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "input": [
+        "#000000"
+      ],
+      "output": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "tags": [
+    "strings",
+    "data_types",
+    "type_conversion"
+  ],
+  "structure": {
+    "problem_name": "convert_hex_to_rgb",
+    "function_name": "convert_hex_to_rgb",
+    "input_structure": [
+      {
+        "Input_Field": "string hex_color"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "List[int] rgb_values"
+    }
+  },
+  "java_boilerplate": "public int[] convertHexToRgb(String hex_color) {\n    // Your implementation code goes here\n    return null;  // Replace with actual return value\n}",
+  "python_boilerplate": "def convert_hex_to_rgb(hex_color: str) -> List[int]:\n    # Write your code here\n    pass"
+}
+2025-02-25 09:54:24,251 - main.problem_generator.problem_generator_route - INFO - Successfully generated problem: Convert Hexadecimal Color Code to RGB Values
+2025-02-25 10:01:19,584 - main.problem_submission.problem_submission_route - INFO - === Problem Submission Route ===
+2025-02-25 10:01:19,585 - main.problem_submission.problem_submission_route - INFO - 1. Received submission request:
+2025-02-25 10:01:19,585 - main.problem_submission.problem_submission_route - INFO - Language ID: 91
+2025-02-25 10:01:19,586 - main.problem_submission.problem_submission_route - INFO - Source code length: 590
+2025-02-25 10:01:19,586 - main.problem_submission.problem_submission_route - INFO - Problem ID: 123
+2025-02-25 10:01:19,587 - main.problem_submission.problem_submission_route - INFO - Structure (raw): {"problem_name":"convert_hex_to_rgb","function_name":"convert_hex_to_rgb","input_structure":[{"Input_Field":"string hex_color"}],"output_structure":{"Output_Field":"List[int] rgb_values"}}
+2025-02-25 10:01:19,587 - main.problem_submission.problem_submission_route - INFO - Test cases count: 2
+2025-02-25 10:01:19,588 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-25 10:01:19,588 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-ce.p.rapidapi.com
+2025-02-25 10:01:19,589 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-ce.p.rapidapi.com
+2025-02-25 10:01:19,589 - main.problem_submission.problem_submission_service - INFO - === Received Submit Code Request ===
+2025-02-25 10:01:19,590 - main.problem_submission.problem_submission_service - INFO - Language ID: 91
+2025-02-25 10:01:19,591 - main.problem_submission.problem_submission_service - INFO - Problem ID: 123
+2025-02-25 10:01:19,593 - main.problem_submission.problem_submission_service - INFO - Source Code:
+public int[] convertHexToRgb(String hex_color) {
+    // Validate that the input is a valid hex color string.
+    if (hex_color == null || !hex_color.matches("#[0-9A-Fa-f]{6}")) {
+        throw new IllegalArgumentException("Invalid hex color format");
+    }
+    // Remove the '#' and parse the hexadecimal substrings.
+    String hex = hex_color.substring(1);
+    int red = Integer.parseInt(hex.substring(0, 2), 16);
+    int green = Integer.parseInt(hex.substring(2, 4), 16);
+    int blue = Integer.parseInt(hex.substring(4, 6), 16);
+    
+    return new int[]{red, green, blue};
+}
+2025-02-25 10:01:19,594 - main.problem_submission.problem_submission_service - INFO - Structure:
+{"problem_name":"convert_hex_to_rgb","function_name":"convert_hex_to_rgb","input_structure":[{"Input_Field":"string hex_color"}],"output_structure":{"Output_Field":"List[int] rgb_values"}}
+2025-02-25 10:01:19,594 - main.problem_submission.problem_submission_service - INFO - Test Cases:
+[
+  {
+    "input": [
+      "#FFFFFF"
+    ],
+    "output": [
+      255,
+      255,
+      255
+    ]
+  },
+  {
+    "input": [
+      "#000000"
+    ],
+    "output": [
+      0,
+      0,
+      0
+    ]
+  }
+]
+2025-02-25 10:01:19,595 - main.problem_submission.problem_submission_service - INFO - =====================================
+2025-02-25 10:01:19,596 - main.submission_generator.java_submission_generator - INFO - Generating Java submission:
+2025-02-25 10:01:19,597 - main.submission_generator.java_submission_generator - INFO - Source code: public int[] convertHexToRgb(String hex_color) {
+    // Validate that the input is a valid hex color string.
+    if (hex_color == null || !hex_color.matches("#[0-9A-Fa-f]{6}")) {
+        throw new IllegalArgumentException("Invalid hex color format");
+    }
+    // Remove the '#' and parse the hexadecimal substrings.
+    String hex = hex_color.substring(1);
+    int red = Integer.parseInt(hex.substring(0, 2), 16);
+    int green = Integer.parseInt(hex.substring(2, 4), 16);
+    int blue = Integer.parseInt(hex.substring(4, 6), 16);
+    
+    return new int[]{red, green, blue};
+}
+2025-02-25 10:01:19,597 - main.submission_generator.java_submission_generator - INFO - Problem structure: {'problem_name': 'convert_hex_to_rgb', 'function_name': 'convert_hex_to_rgb', 'input_structure': [{'Input_Field': 'string hex_color'}], 'output_structure': {'Output_Field': 'List[int] rgb_values'}}
+2025-02-25 10:01:19,597 - main.submission_generator.java_submission_generator - INFO - Checking for function name: convertHexToRgb (original: convert_hex_to_rgb)
+2025-02-25 10:01:19,599 - main.submission_generator.java_submission_generator - INFO - Function name: convertHexToRgb
+2025-02-25 10:01:19,599 - main.submission_generator.java_submission_generator - INFO - Input structure: [{'Input_Field': 'string hex_color'}]
+2025-02-25 10:01:19,600 - main.submission_generator.java_submission_generator - INFO - Output structure: {'Output_Field': 'List[int] rgb_values'}
+2025-02-25 10:01:19,600 - main.submission_generator.java_submission_generator - INFO - Parameter list: ['String hexColor']
+2025-02-25 10:01:19,601 - main.submission_generator.java_submission_generator - INFO - Return type: int[]
+2025-02-25 10:01:19,603 - main.submission_generator.java_submission_generator - INFO - Successfully saved generated Java code to D:\ai_projects\goat_coder\backend\.\main\submission_generator\..\..\debug\Main.java
+2025-02-25 10:01:19,604 - main.submission_generator.java_submission_generator - INFO - Content being written to file:
+2025-02-25 10:01:19,604 - main.submission_generator.java_submission_generator - INFO - import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+public int[] convertHexToRgb(String hex_color) {
+    // Validate that the input is a valid hex color string.
+    if (hex_color == null || !hex_color.matches("#[0-9A-Fa-f]{6}")) {
+        throw new IllegalArgumentException("Invalid hex color format");
+    }
+    // Remove the '#' and parse the hexadecimal substrings.
+    String hex = hex_color.substring(1);
+    int red = Integer.parseInt(hex.substring(0, 2), 16);
+    int green = Integer.parseInt(hex.substring(2, 4), 16);
+    int blue = Integer.parseInt(hex.substring(4, 6), 16);
+    
+    return new int[]{red, green, blue};
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String hexColor = scanner.nextLine();
+        
+        // Call the solution function
+        int[] result = solution.convertHexToRgb(hexColor);
+        
+        // Print the result
+        if (result == null) {
+            System.out.println("null");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < result.length; i++) {
+                if (i > 0) sb.append(" ");
+                sb.append(result[i]);
+            }
+            System.out.println(sb.toString());
+        }
+        scanner.close();
+    }
+}
+2025-02-25 10:01:19,605 - main.submission_generator.java_submission_generator - INFO - === Generated Java Submission ===
+2025-02-25 10:01:19,606 - main.submission_generator.java_submission_generator - INFO - Generated submission:
+import java.util.*;
+            import java.io.*;
+            import java.text.*;
+            import java.time.*;
+            import java.math.*;
+            import java.util.regex.*;
+            
+public class Main {
+
+public int[] convertHexToRgb(String hex_color) {
+    // Validate that the input is a valid hex color string.
+    if (hex_color == null || !hex_color.matches("#[0-9A-Fa-f]{6}")) {
+        throw new IllegalArgumentException("Invalid hex color format");
+    }
+    // Remove the '#' and parse the hexadecimal substrings.
+    String hex = hex_color.substring(1);
+    int red = Integer.parseInt(hex.substring(0, 2), 16);
+    int green = Integer.parseInt(hex.substring(2, 4), 16);
+    int blue = Integer.parseInt(hex.substring(4, 6), 16);
+    
+    return new int[]{red, green, blue};
+}
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main solution = new Main();
+        
+        // Parse input
+        String hexColor = scanner.nextLine();
+        
+        // Call the solution function
+        int[] result = solution.convertHexToRgb(hexColor);
+        
+        // Print the result
+        if (result == null) {
+            System.out.println("null");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < result.length; i++) {
+                if (i > 0) sb.append(" ");
+                sb.append(result[i]);
+            }
+            System.out.println(sb.toString());
+        }
+        scanner.close();
+    }
+}
+2025-02-25 10:01:19,610 - main.problem_submission.problem_submission_service - INFO - Successfully saved submission details to D:\ai_projects\goat_coder\backend\.\main\problem_submission\..\..\debug\last_submission.json
+2025-02-25 10:01:19,611 - main.problem_submission.problem_submission_service - INFO - Making request to: https://judge0-ce.p.rapidapi.com/submissions/batch
+2025-02-25 10:01:19,612 - main.problem_submission.problem_submission_service - INFO - Payload: {
+  "submissions": [
+    {
+      "language_id": 91,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50W10gY29udmVydEhleFRvUmdiKFN0cmluZyBoZXhfY29sb3IpIHsNCiAgICAvLyBWYWxpZGF0ZSB0aGF0IHRoZSBpbnB1dCBpcyBhIHZhbGlkIGhleCBjb2xvciBzdHJpbmcuDQogICAgaWYgKGhleF9jb2xvciA9PSBudWxsIHx8ICFoZXhfY29sb3IubWF0Y2hlcygiI1swLTlBLUZhLWZdezZ9IikpIHsNCiAgICAgICAgdGhyb3cgbmV3IElsbGVnYWxBcmd1bWVudEV4Y2VwdGlvbigiSW52YWxpZCBoZXggY29sb3IgZm9ybWF0Iik7DQogICAgfQ0KICAgIC8vIFJlbW92ZSB0aGUgJyMnIGFuZCBwYXJzZSB0aGUgaGV4YWRlY2ltYWwgc3Vic3RyaW5ncy4NCiAgICBTdHJpbmcgaGV4ID0gaGV4X2NvbG9yLnN1YnN0cmluZygxKTsNCiAgICBpbnQgcmVkID0gSW50ZWdlci5wYXJzZUludChoZXguc3Vic3RyaW5nKDAsIDIpLCAxNik7DQogICAgaW50IGdyZWVuID0gSW50ZWdlci5wYXJzZUludChoZXguc3Vic3RyaW5nKDIsIDQpLCAxNik7DQogICAgaW50IGJsdWUgPSBJbnRlZ2VyLnBhcnNlSW50KGhleC5zdWJzdHJpbmcoNCwgNiksIDE2KTsNCiAgICANCiAgICByZXR1cm4gbmV3IGludFtde3JlZCwgZ3JlZW4sIGJsdWV9Ow0KfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBoZXhDb2xvciA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludFtdIHJlc3VsdCA9IHNvbHV0aW9uLmNvbnZlcnRIZXhUb1JnYihoZXhDb2xvcik7CiAgICAgICAgCiAgICAgICAgLy8gUHJpbnQgdGhlIHJlc3VsdAogICAgICAgIGlmIChyZXN1bHQgPT0gbnVsbCkgewogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oIm51bGwiKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgICBTdHJpbmdCdWlsZGVyIHNiID0gbmV3IFN0cmluZ0J1aWxkZXIoKTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCByZXN1bHQubGVuZ3RoOyBpKyspIHsKICAgICAgICAgICAgICAgIGlmIChpID4gMCkgc2IuYXBwZW5kKCIgIik7CiAgICAgICAgICAgICAgICBzYi5hcHBlbmQocmVzdWx0W2ldKTsKICAgICAgICAgICAgfQogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oc2IudG9TdHJpbmcoKSk7CiAgICAgICAgfQogICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgIH0KfQ==",
+      "stdin": "I0ZGRkZGRg==",
+      "expected_output": "MjU1IDI1NSAyNTU=",
+      "callback_url": null
+    },
+    {
+      "language_id": 91,
+      "source_code": "aW1wb3J0IGphdmEudXRpbC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS5pby4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS50ZXh0Lio7CiAgICAgICAgICAgIGltcG9ydCBqYXZhLnRpbWUuKjsKICAgICAgICAgICAgaW1wb3J0IGphdmEubWF0aC4qOwogICAgICAgICAgICBpbXBvcnQgamF2YS51dGlsLnJlZ2V4Lio7CiAgICAgICAgICAgIApwdWJsaWMgY2xhc3MgTWFpbiB7CgpwdWJsaWMgaW50W10gY29udmVydEhleFRvUmdiKFN0cmluZyBoZXhfY29sb3IpIHsNCiAgICAvLyBWYWxpZGF0ZSB0aGF0IHRoZSBpbnB1dCBpcyBhIHZhbGlkIGhleCBjb2xvciBzdHJpbmcuDQogICAgaWYgKGhleF9jb2xvciA9PSBudWxsIHx8ICFoZXhfY29sb3IubWF0Y2hlcygiI1swLTlBLUZhLWZdezZ9IikpIHsNCiAgICAgICAgdGhyb3cgbmV3IElsbGVnYWxBcmd1bWVudEV4Y2VwdGlvbigiSW52YWxpZCBoZXggY29sb3IgZm9ybWF0Iik7DQogICAgfQ0KICAgIC8vIFJlbW92ZSB0aGUgJyMnIGFuZCBwYXJzZSB0aGUgaGV4YWRlY2ltYWwgc3Vic3RyaW5ncy4NCiAgICBTdHJpbmcgaGV4ID0gaGV4X2NvbG9yLnN1YnN0cmluZygxKTsNCiAgICBpbnQgcmVkID0gSW50ZWdlci5wYXJzZUludChoZXguc3Vic3RyaW5nKDAsIDIpLCAxNik7DQogICAgaW50IGdyZWVuID0gSW50ZWdlci5wYXJzZUludChoZXguc3Vic3RyaW5nKDIsIDQpLCAxNik7DQogICAgaW50IGJsdWUgPSBJbnRlZ2VyLnBhcnNlSW50KGhleC5zdWJzdHJpbmcoNCwgNiksIDE2KTsNCiAgICANCiAgICByZXR1cm4gbmV3IGludFtde3JlZCwgZ3JlZW4sIGJsdWV9Ow0KfQoKCiAgICBwdWJsaWMgc3RhdGljIHZvaWQgbWFpbihTdHJpbmdbXSBhcmdzKSB7CiAgICAgICAgU2Nhbm5lciBzY2FubmVyID0gbmV3IFNjYW5uZXIoU3lzdGVtLmluKTsKICAgICAgICBNYWluIHNvbHV0aW9uID0gbmV3IE1haW4oKTsKICAgICAgICAKICAgICAgICAvLyBQYXJzZSBpbnB1dAogICAgICAgIFN0cmluZyBoZXhDb2xvciA9IHNjYW5uZXIubmV4dExpbmUoKTsKICAgICAgICAKICAgICAgICAvLyBDYWxsIHRoZSBzb2x1dGlvbiBmdW5jdGlvbgogICAgICAgIGludFtdIHJlc3VsdCA9IHNvbHV0aW9uLmNvbnZlcnRIZXhUb1JnYihoZXhDb2xvcik7CiAgICAgICAgCiAgICAgICAgLy8gUHJpbnQgdGhlIHJlc3VsdAogICAgICAgIGlmIChyZXN1bHQgPT0gbnVsbCkgewogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oIm51bGwiKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgICBTdHJpbmdCdWlsZGVyIHNiID0gbmV3IFN0cmluZ0J1aWxkZXIoKTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCByZXN1bHQubGVuZ3RoOyBpKyspIHsKICAgICAgICAgICAgICAgIGlmIChpID4gMCkgc2IuYXBwZW5kKCIgIik7CiAgICAgICAgICAgICAgICBzYi5hcHBlbmQocmVzdWx0W2ldKTsKICAgICAgICAgICAgfQogICAgICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oc2IudG9TdHJpbmcoKSk7CiAgICAgICAgfQogICAgICAgIHNjYW5uZXIuY2xvc2UoKTsKICAgIH0KfQ==",
+      "stdin": "IzAwMDAwMA==",
+      "expected_output": "MCAwIDA=",
+      "callback_url": null
+    }
+  ]
+}
+2025-02-25 10:01:20,965 - main.problem_submission.problem_submission_service - INFO - Response status: 201
+2025-02-25 10:01:20,966 - main.problem_submission.problem_submission_service - INFO - Response: [
+  {
+    "token": "366656f8-c3f0-4fe8-9be7-bae90d099646"
+  },
+  {
+    "token": "22bf60af-881a-49f0-8d7d-c71844f53f63"
+  }
+]
+2025-02-25 10:01:20,970 - main.problem_submission.problem_submission_route - INFO - 2. Service result: [{'token': '366656f8-c3f0-4fe8-9be7-bae90d099646'}, {'token': '22bf60af-881a-49f0-8d7d-c71844f53f63'}]
+2025-02-25 10:01:20,978 - main.problem_submission.problem_submission_route - INFO - === Getting Status for 2 Submissions ===
+2025-02-25 10:01:20,979 - main.problem_submission.problem_submission_route - INFO - Tokens: ['366656f8-c3f0-4fe8-9be7-bae90d099646', '22bf60af-881a-49f0-8d7d-c71844f53f63']
+2025-02-25 10:01:20,980 - main.problem_submission.problem_submission_service - INFO - ProblemSubmissionService initialized with:
+2025-02-25 10:01:20,980 - main.problem_submission.problem_submission_service - INFO - Judge0 Base URL: https://judge0-ce.p.rapidapi.com
+2025-02-25 10:01:20,981 - main.problem_submission.problem_submission_service - INFO - RapidAPI Host: judge0-ce.p.rapidapi.com
+2025-02-25 10:01:20,981 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 366656f8-c3f0-4fe8-9be7-bae90d099646 ===
+2025-02-25 10:01:20,982 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-25 10:01:20,982 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-ce.p.rapidapi.com/submissions/366656f8-c3f0-4fe8-9be7-bae90d099646
+2025-02-25 10:01:22,171 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-25 10:01:22,172 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-25 10:01:22,173 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-25 10:01:22,173 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-25 10:01:22,174 - main.problem_submission.problem_submission_service - INFO - Stdout: 255 255 255
+
+2025-02-25 10:01:22,174 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-25 10:01:22,175 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-25 10:01:22,175 - main.problem_submission.problem_submission_service - INFO - Time: 0.045
+2025-02-25 10:01:22,175 - main.problem_submission.problem_submission_service - INFO - Memory: 15060
+2025-02-25 10:01:22,177 - main.problem_submission.problem_submission_service - INFO - === Polling Submission 22bf60af-881a-49f0-8d7d-c71844f53f63 ===
+2025-02-25 10:01:22,177 - main.problem_submission.problem_submission_service - INFO - Getting submission details from Judge0:
+2025-02-25 10:01:22,178 - main.problem_submission.problem_submission_service - INFO - URL: https://judge0-ce.p.rapidapi.com/submissions/22bf60af-881a-49f0-8d7d-c71844f53f63
+2025-02-25 10:01:23,501 - main.problem_submission.problem_submission_service - INFO - Response status: 200
+2025-02-25 10:01:23,502 - main.problem_submission.problem_submission_service - INFO - Decoded Judge0 response:
+2025-02-25 10:01:23,503 - main.problem_submission.problem_submission_service - INFO - Status: Accepted
+2025-02-25 10:01:23,503 - main.problem_submission.problem_submission_service - INFO - Compile Output: None
+2025-02-25 10:01:23,504 - main.problem_submission.problem_submission_service - INFO - Stdout: 0 0 0
+
+2025-02-25 10:01:23,504 - main.problem_submission.problem_submission_service - INFO - Stderr: None
+2025-02-25 10:01:23,505 - main.problem_submission.problem_submission_service - INFO - Exit Code: 0
+2025-02-25 10:01:23,506 - main.problem_submission.problem_submission_service - INFO - Time: 0.046
+2025-02-25 10:01:23,506 - main.problem_submission.problem_submission_service - INFO - Memory: 15104
+2025-02-25 10:01:23,509 - main.problem_submission.problem_submission_route - INFO - Batch status result:
+2025-02-25 10:01:23,510 - main.problem_submission.problem_submission_route - INFO - Completed: True
+2025-02-25 10:01:23,510 - main.problem_submission.problem_submission_route - INFO - All Passed: True
+2025-02-25 10:01:23,511 - main.problem_submission.problem_submission_route - INFO - Results count: 2
