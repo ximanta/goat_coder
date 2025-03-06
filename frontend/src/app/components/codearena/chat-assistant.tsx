@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/app/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/app/components/ui/card"
+import { Input } from "@/app/components/ui/input"
 import { MessageCircle, X, Send, RefreshCw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { sendChatMessage } from "@/lib/codeassist-chat-api"

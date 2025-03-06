@@ -44,69 +44,6 @@ The Frontend is designed to work seamlessly with the backend API. It:
 The application will be available at http://localhost:3000.
 
 
-# Directory Structure
-
-Directory structure:
-└── frontend/
-    ├── components.json
-    ├── next.config.js
-    ├── next.config.mjs
-    ├── package-lock.json
-    ├── package.json
-    ├── postcss.config.ms
-    ├── tailwind.config.ts
-    ├── tsconfig.json
-    ├── .gitignore
-    ├── public/
-    │   └── images/
-    ├── services/
-    │   └── code-submission.tsx
-    └── src/
-        ├── app/
-        │   ├── globals-bk.css
-        │   ├── heading.tsx
-        │   ├── layout.tsx
-        │   ├── page.tsx
-        │   └── fonts/
-        │       ├── GeistMonoVF.woff
-        │       └── GeistVF.woff
-        ├── components/
-        │   ├── HelloWorld.tsx
-        │   ├── language_mapping.json
-        │   ├── codearena/
-        │   │   ├── chat-assistant.tsx
-        │   │   ├── code-editor.tsx
-        │   │   ├── code_arena.tsx
-        │   │   ├── common-code-arena.tsx
-        │   │   ├── problem-description.tsx
-        │   │   └── test-cases.tsx
-        │   ├── common/
-        │   │   ├── language_mapping.json
-        │   │   └── loading-spinner.tsx
-        │   ├── program-wise-practice/
-        │   │   └── index.tsx
-        │   └── ui/
-        │       ├── button.tsx
-        │       ├── card.tsx
-        │       ├── input.tsx
-        │       ├── label.tsx
-        │       ├── select.tsx
-        │       ├── tabs.tsx
-        │       ├── timer.tsx
-        │       └── tooltip.tsx
-        ├── data/
-        │   └── program_data.json
-        ├── lib/
-        │   ├── codeassist-chat-api.ts
-        │   ├── fetch_submission_api.ts
-        │   ├── get_problem_api.ts
-        │   ├── submission_api.ts
-        │   └── utils.ts
-        ├── services/
-        │   └── code-submission.tsx
-        └── styles/
-            └── globals.css
-
 ## Key Files and Components
 
 ### Configuration & Environment

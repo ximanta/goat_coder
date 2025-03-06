@@ -1,6 +1,6 @@
 "use client"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import { Loader2, CheckCircle2, XCircle } from "lucide-react"
 import { useState, useEffect } from "react"

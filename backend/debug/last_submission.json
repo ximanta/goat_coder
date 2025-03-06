@@ -2,25 +2,25 @@
   "language_id": 91,
   "problem_id": "123",
   "structure": {
-    "problem_name": "convert_hex_to_rgb",
-    "function_name": "convert_hex_to_rgb",
+    "problem_name": "clean_book_title",
+    "function_name": "clean_book_title",
     "input_structure": [
       {
-        "Input_Field": "string hex_color"
+        "Input_Field": "string title"
       }
     ],
     "output_structure": {
-      "Output_Field": "List[int] rgb_values"
+      "Output_Field": "string cleaned_title"
     }
   },
   "test_cases": [
     {
-      "input": "#FFFFFF",
-      "expected_output": "255 255 255"
+      "input": "The Fast & the Furious!",
+      "expected_output": "The Fast the Furious"
     },
     {
-      "input": "#000000",
-      "expected_output": "0 0 0"
+      "input": "Harry Potter: The (Philosopher's) Stone",
+      "expected_output": "Harry Potter The Philosophers Stone"
     }
   ]
 }

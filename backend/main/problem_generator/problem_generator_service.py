@@ -129,6 +129,7 @@ class ProblemGeneratorService:
                         "content": f"Generate a {complexity} difficulty problem about {concept_prompt}"
                     }
                 ]
+                # Define function for LLM
 
                 functions = [{
                     "name": "generate_programming_problem",

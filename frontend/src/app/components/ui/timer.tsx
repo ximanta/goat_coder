@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Timer as TimerIcon, Pause, Play, RotateCcw, ChevronLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Tooltip } from "@/components/ui/tooltip"
+import { Button } from "@/app/components/ui/button"
+import { Tooltip } from "@/app/components/ui/tooltip"
 
 export function Timer() {
   const [isVisible, setIsVisible] = useState(false)

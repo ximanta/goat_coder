@@ -1,0 +1,48 @@
+{
+    "problem_types": [
+        {
+            "category": "Array Sorting",
+            "problems": [
+                {
+                    "type": "Basic Sorting",
+                    "variations": [
+                        "Sort an array of integers in ascending order",
+                        "Sort an array of integers in descending order",
+                        "Sort an array of strings alphabetically",
+                        "Sort an array of floating point numbers",
+                        "Sort an array of characters",
+                        "Sort an array of mixed-case strings ignoring case",
+                        "Sort an array of dates chronologically",
+                        "Sort an array of custom objects by a numeric field"
+                    ]
+                },
+                {
+                    "type": "Advanced Sorting",
+                    "variations": [
+                        "Implement bubble sort for an array",
+                        "Implement merge sort for an array",
+                        "Implement quick sort for an array",
+                        "Implement insertion sort for an array",
+                        "Implement selection sort for an array",
+                        "Sort an array using a custom comparator function",
+                        "Implement stable sorting for an array of objects",
+                        "Sort an array in descending order using recursion"
+                    ]
+                },
+                {
+                    "type": "Sorting Analysis",
+                    "variations": [
+                        "Determine the time complexity of a sorting algorithm",
+                        "Compare performance of merge sort vs quick sort",
+                        "Analyze the best and worst case scenarios for bubble sort",
+                        "Evaluate stability in different sorting algorithms",
+                        "Visualize the step-by-step process of insertion sort",
+                        "Count the number of swaps in selection sort",
+                        "Track recursive calls in quick sort",
+                        "Compare in-place sorting vs non in-place sorting methods"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Editor } from "@monaco-editor/react"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
-import { TestCases } from "@/components/codearena/test-cases"
+import { TestCases } from "@/app/components/codearena/test-cases"
 import languageMapping from '@/components/language_mapping.json'
 import { GripVertical } from "lucide-react"
 

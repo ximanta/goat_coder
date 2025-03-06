@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ProblemDescription } from "@/components/codearena/problem-description"
-import { CodeEditor } from "@/components/codearena/code-editor"
+import { ProblemDescription } from "@/app/components/codearena/problem-description"
+import { CodeEditor } from "@/app/components/codearena/code-editor"
 import { useTheme } from "next-themes"
 import { submitCode } from "@/lib/submission_api"
 import { pollSubmission } from "@/lib/fetch_submission_api"
@@ -10,9 +10,9 @@ import { generateProblem } from "@/lib/get_problem_api"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { Loader2, ArrowLeft, GripHorizontal, Play, Moon, Sun, Copy, Check } from "lucide-react"
 import languageMapping from '@/components/language_mapping.json'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Timer } from "@/components/ui/timer"
-import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select"
+import { Timer } from "@/app/components/ui/timer"
+import { Button } from "@/app/components/ui/button"
 
 export interface CodeArenaProps {
   category?: string;
