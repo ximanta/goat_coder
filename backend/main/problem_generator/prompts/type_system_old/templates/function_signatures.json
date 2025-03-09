@@ -1,0 +1,32 @@
+{
+  "easy": {
+    "max_parameters": 2,
+    "allowed_types": {
+      "parameters": [
+        "primitive_types",
+        "single_arrays"
+      ],
+      "return": [
+        "primitive_types",
+        "single_arrays",
+        "nullable_types"
+      ]
+    }
+  },
+  "medium": {
+    "max_parameters": 3,
+    "allowed_types": {
+      "parameters": [
+        "primitive_types",
+        "single_arrays",
+        "wrapper_types"
+      ],
+      "return": [
+        "primitive_types",
+        "single_arrays",
+        "wrapper_types",
+        "nullable_types"
+      ]
+    }
+  }
+} 

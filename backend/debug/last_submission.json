@@ -1,0 +1,29 @@
+{
+  "language_id": 91,
+  "problem_id": "123",
+  "structure": {
+    "problem_name": "count_low_scores",
+    "function_name": "count_low_scores",
+    "input_structure": [
+      {
+        "Input_Field": "List[int] scores"
+      },
+      {
+        "Input_Field": "int threshold"
+      }
+    ],
+    "output_structure": {
+      "Output_Field": "int result"
+    }
+  },
+  "test_cases": [
+    {
+      "input": "100|50|75|40|80\n60",
+      "expected_output": "2"
+    },
+    {
+      "input": "10|20|30|40|5\n15",
+      "expected_output": "2"
+    }
+  ]
+}

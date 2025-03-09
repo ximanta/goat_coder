@@ -1,0 +1,27 @@
+{
+    "int": "int",
+    "float": "double",
+    "str": "String",
+    "bool": "boolean",
+    "string": "String",
+    "double": "double",
+    "boolean": "boolean",
+    "List[int]": "int[]",
+    "List[float]": "double[]",
+    "List[str]": "String[]",
+    "List[bool]": "boolean[]",
+    "List[double]": "double[]",
+    "Dict": "Map<String, Object>",
+    "dict": "Map<String, Object>",
+    "Union": "Object",
+    "Any": "Object",
+    "_wrapper": {
+        "int": "Integer",
+        "float": "Double",
+        "str": "String",
+        "string": "String",
+        "bool": "Boolean",
+        "double": "Double",
+        "boolean": "Boolean"
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "problem_types": [
+        {
+            "category": "Array Operations",
+            "problems": [
+                {
+                    "type": "Array Search",
+                    "variations": [
+                        "Find index of a specific element in an array",
+                        "Check if an element exists in an array",
+                        "Find first occurrence of a target number",
+                        "Find last occurrence of a target number",
+                        "Search for multiple occurrences of an element",
+                        "Find the position of the smallest element",
+                        "Find the position of the largest element",
+                        "Perform binary search on a sorted array",
+                        "Find closest number to a given target",
+                        "Find an element in a rotated sorted array",
+                        "Find a peak element in an array",
+                        "Find index of first element greater than X",
+                        "Find index of first element smaller than X",
+                        "Find the first repeating element in an array",
+                        "Find the first non-repeating element in an array"
+                    ]
+                },
+                {
+                    "type": "Advanced Search Techniques",
+                    "variations": [
+                        "Find missing number in a sequence",
+                        "Find duplicate elements in an array",
+                        "Find all pairs with sum equal to a target",
+                        "Find all triplets that sum to a target",
+                        "Find element that appears more than N/2 times (majority element)",
+                        "Find k-th smallest element in an unsorted array",
+                        "Find k-th largest element in an unsorted array",
+                        "Find smallest missing positive number",
+                        "Find longest consecutive sequence in an unsorted array",
+                        "Find subarray with given sum",
+                        "Find maximum sum subarray using Kadane’s Algorithm",
+                        "Find minimum element in a rotated sorted array",
+                        "Find maximum element in a rotated sorted array"
+                    ]
+                },
+                {
+                    "type": "Search in 2D Arrays",
+                    "variations": [
+                        "Find an element in a 2D matrix (row and column sorted)",
+                        "Find an element in an unsorted 2D matrix",
+                        "Find the largest element in a 2D array",
+                        "Find the smallest element in a 2D array",
+                        "Find the peak element in a 2D array",
+                        "Find row with the maximum sum",
+                        "Find column with the maximum sum",
+                        "Find the maximum element in each row",
+                        "Find the maximum element in each column",
+                        "Find the minimum element in each row",
+                        "Find the minimum element in each column"
+                    ]
+                },
+                {
+                    "type": "Search with Conditions",
+                    "variations": [
+                        "Find first even number in an array",
+                        "Find first odd number in an array",
+                        "Find first prime number in an array",
+                        "Find first composite number in an array",
+                        "Find first palindrome number in an array",
+                        "Find first perfect square in an array",
+                        "Find first Fibonacci number in an array",
+                        "Find first number that is a power of 2",
+                        "Find last occurrence of an even number",
+                        "Find last occurrence of an odd number",
+                        "Find last occurrence of a prime number"
+                    ]
+                },
+                {
+                    "type": "Search in Strings (Array of Strings)",
+                    "variations": [
+                        "Find longest string in an array",
+                        "Find shortest string in an array",
+                        "Find first string containing a given substring",
+                        "Find last string containing a given substring",
+                        "Find string with maximum vowels",
+                        "Find string with minimum vowels",
+                        "Find string with only uppercase letters",
+                        "Find string with only lowercase letters",
+                        "Find first anagram of a given string",
+                        "Find most frequently occurring string"
+                    ]
+                }
+            ]
+        }
+    ]
+}

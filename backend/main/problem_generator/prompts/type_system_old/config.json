@@ -1,0 +1,22 @@
+{
+  "supported_languages": ["java", "python"],
+  "default_language": "java",
+  "type_categories": {
+    "numeric": {
+      "simple": ["int", "double", "float"],
+      "nullable": ["Integer", "Double", "Float"]
+    },
+    "text": {
+      "simple": ["String", "char"],
+      "nullable": ["String"]
+    },
+    "boolean": {
+      "simple": ["boolean"],
+      "nullable": ["Boolean"]
+    },
+    "array": {
+      "simple": ["array", "List"],
+      "nullable": ["Array", "List"]
+    }
+  }
+} 

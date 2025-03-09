@@ -1,0 +1,269 @@
+{
+  "programs": [
+    {
+      "programId": "p1",
+      "programName": "Professional Program in Front-end Web Development",
+      "courses": [
+        {
+          "courseId": "c1",
+          "courseName": "Fundamentals of Programming Using Java - V4",
+          "isPlatformEnabled": true,
+          "concept": "p1-c1",
+          "sprints": [
+            {
+              "sprintId": "s1",
+              "sprintName": "Algorithmic Problem Solving",
+              "sprintDescription": "Problem-solving algorithm is a technique used to find a solution in a finite amount of time. Programmers often use pseudocodes to develop these algorithms. The primary objective of a pseudocode is to simplify the function of each line of a program and make the construction phase of a code simpler for the programmer.In this learning sprint, you will decompose a problem into a step-by-step solution and apply programming logic to solve problems using algorithms and pseudocodes.",
+              "concept": "p1-c1-s1",
+              "isPlatformEnabled": false,
+              "learningObjectives": [
+                "Break down a complex problem into simple steps​",
+                "Use an algorithmic approach to solve problems​",
+                "Create pseudocode to represent algorithms​",
+                "Analyze the input and output requirements of a computer problem​"
+              ]
+            }
+           
+          ]
+        },
+        {
+          "courseId": "c2",
+          "courseName": "Java Language Fundamentals",
+          "isPlatformEnabled": true,
+          "concept": "p1-c2",
+          "sprints": [
+            {
+              "sprintId": "s1",
+              "sprintName": "Unit Testing With JUNIT",
+              "sprintDescription": "How can you find out whether a code will produce the desired result? If it does not produce the expected output, at what point would you like to find the errors? At the end,  when all the programs are integrated or  at the unit level? Identifying defects at the unit level and fixing the defects helps to achieve better quality code, simplifies the debugging process, and reduces the overall time and cost to fix a defect.In this learning sprint, you will implement unit testing using the JUnit framework. You will learn to write test cases and use assertion statements to test the individual unit of your code.",
+              "concept": "p1-c2-s1",
+              "isPlatformEnabled": false,
+              "learningObjectives": [
+                "Explore software testing",
+                "Explain unit testing and its significance",
+                "Define JUnit architecture",
+                "Test a Java class",
+                "Describe JUnit annotations",
+                "Demonstrate assertion statements",
+                "Write test cases"
+              ]
+            },
+            {
+              "sprintId": "s2",
+              "sprintName": "Working With Arrays",
+              "sprintDescription": "A data structure that stores a fixed-size, sequential collection of elements of the same type is called an array. You may also think of an array as a collection of variables of the same type.In this learning sprint, you will learn to declare, define, store, and manipulate a set of data elements in the memory as single-dimensional array.",
+              "concept": "p1-c2-s2",
+              "isPlatformEnabled": true,
+              "learningObjectives": [
+                "Describe Arrays and its types",
+                "Declare an Array",
+                "Initialize an Array",
+                "Access Array elements using Loop",
+                "Pass Array as a method parameter and return type",
+                "Manipulate values of an Array"
+              ]
+            },
+            {
+              "sprintId": "s3",
+              "sprintName": "Implement Sorting on Arrays",
+              "sprintDescription": "Have you ever noticed how data is typically displayed in chronological order, whether in an email application or on a social media platform? An email application, for instance could display emails sorted as per their received date or sorted as per the sender. Sorting an array means arranging its elements in ascending or descending order. There are different algorithms that can be used to sort an array. In this learning sprint, you will learn to sort data stored in arrays using a few sorting algorithms.",
+              "concept": "p1-c2-s3",
+              "isPlatformEnabled": true,
+              "learningObjectives": [
+                "Explore nested for Loops",
+                "Explain sorting",
+                "Implement Bubble sort on an Array",
+                "Implement Insertion sort on an Array"
+              ]
+            },
+            {
+              "sprintId": "s4",
+              "sprintName": "Implement Recursion",
+              "sprintDescription": "Recursion is the technique of making a function call itself. This technique provides a way to break down complicated problems into simple problems that are easier to solve.In this learning sprint, you will learn to break down large, complex problems into simple sub-problems using recursive methods.",
+              "concept": "p1-c2-s4",
+              "isPlatformEnabled": true,
+              "learningObjectives": [
+                "Explore Recursion",
+                "Implement Recursion for solving problems",
+                "Explain Recursive Methods",
+                "Describe Base Case in Recursion",
+                "Explore the applications of Recursion"
+              ]
+            },
+            {
+              "sprintId": "s5",
+              "sprintName": "Java String Manipulations",
+              "sprintDescription": "In Java, a string is an object that represents a sequence of characters. In this learning sprint, you will learn how to use the String class in Java and how to manipulate strings using built-in methods.",
+              "concept": "p1-c2-s5",
+              "isPlatformEnabled": true,
+              "learningObjectives": [
+                "Explore String Class",
+                "Describe how Strings are Immutable",
+                "Compare String with ( == ) equality operator and with equals method",
+                "Manipulate String Objects"
+              ]
+            },
+            {
+              "sprintId": "s6",
+              "sprintName": "Project",
+              "isPlatformEnabled": false,
+              "sprintDescription": "Implementing an automated grading system at Oak Bridge School to replace manual processes. With exams completed, teams are assigned specific tasks to streamline the grading process, improving efficiency and accuracy. The focus is on empowering the institution with a technology-driven solution for managing student records and academic performance. By the end of this hands-on experience, you'll learn to work with arrays, sorting the arrays, String  class and work with its inbuilt methods to handle these specific calculations, offering you practical skills in Java programming.",
+              "concept": "p1-c2-s6",
+              "learningObjectives": []
+            },
+            {
+              "sprintId": "s7",
+              "sprintName": "Project",
+              "isPlatformEnabled": false,
+              "sprintDescription": "Implementing an automated grading system at Oak Bridge School to replace manual processes. With exams completed, teams are assigned specific tasks to streamline the grading process, improving efficiency and accuracy. The focus is on empowering the institution with a technology-driven solution for managing student records and academic performance. By the end of this hands-on experience, you'll learn to work with arrays, sorting the arrays, String  class and work with its inbuilt methods to handle these specific calculations, offering you practical skills in Java programming.",
+              "concept": "p1-c2-s7",
+              "learningObjectives": []
+            },
+            {
+              "sprintId": "s8",
+              "sprintName": "Assessment",
+              "isPlatformEnabled": false,
+              "sprintDescription": "Put your Java skills to the test with our Java Basics course end assessment. This comprehensive assessment covers essential topics such as syntax, control flow, loops, and functions. Answer the provided questions to showcase your grasp of fundamental Java concepts.",
+              "concept": "p1-c2-s8",
+              "learningObjectives": []
+            }
+          ]
+        },
+        {
+          "courseId": "c3",
+          "courseName": "Object Oriented Programming",
+          "isPlatformEnabled": false,
+          "concept": "p1-c3",
+          "sprints": [
+            {
+              "sprintId": "s1",
+              "sprintName": "Introduction to Object Oriented Programming",
+              "sprintDescription": "Object-oriented programming is the core of Java Programming language. It is used to design a program using classes and objects. You would have seen various objects around you. Each of these  objects have attributes that display some kind of behavior. In this learning sprint, you will learn to identify attributes and behavior of objects and model them as Java objects. It will also help you to create classes that will be the manufacturer of the objects.",
+              "concept": "p1-c3-s1",
+              "learningObjectives": [
+                "Define \"object\"",
+                "Compare objects in real life with objects in programming",
+                "Explore object-oriented programming (OOP)",
+                "Solve a problem using OOP",
+                "Identify objects",
+                "Identify attributes and behavior",
+                "Create classes"
+              ]
+            },
+            {
+              "sprintId": "s2",
+              "sprintName": "Creating Objects and Constructors",
+              "sprintDescription": "The foundation of Java is build on classes and objects, their attributes and their methods. In this learning sprint you will learn to create Java objects through programming. You will learn to declare and initialize Java objects in a class by using constructors. You will also explore how Java objects are stored in memory.",
+              "concept": "p1-c3-s2",
+              "learningObjectives": [
+                "Explore Java objects",
+                "Objects in Memory",
+                "Define constructors",
+                "Declare different types of constructors",
+                "Use \"this\" keyword",
+                "Explore static and final modifiers in Java"
+              ]
+            },
+            {
+              "sprintId": "s3",
+              "sprintName": "Implement Data Abstraction and Encapsulation",
+              "sprintDescription": "In object-oriented programming (OOP), abstraction is a feature of that hides unnecessary information and makes only what is essential visible to the users. OOPs also have encapsulation as a feature. In order to shield the data from prying eyes, it combines the code and data into a single entity. This helps resolve issues or problems at the design level of a program.In this learning sprint, you will learn to package and organize Java classes and understand how access can be specified for all the classes. You will learn the necessary skills to write well encapsulated classes.",
+              "concept": "p1-c3-s3",
+              "learningObjectives": [
+                "Organize classes using packages",
+                "Explore the pillars of OOP",
+                "Explain encapsulation",
+                "Use access specifiers",
+                "Implement encapsulation",
+                "Explain abstraction"
+              ]
+            },
+            {
+              "sprintId": "s4",
+              "sprintName": "Implement Inheritance",
+              "sprintDescription": "In inheritance, one object acquires or inherits the properties of another object. The process of inheritance also supports hierarchical classification. It allows building of new classes on top of the existing classes.In this learning sprint, you will identify the relationship between classes and implement the different types of inheritance relationships among classes. You will learn to inherit a new class from an existing one and identify the reusable methods within the class hierarchy.",
+              "concept": "p1-c3-s4",
+              "learningObjectives": [
+                "Explore the relationship between objects",
+                "Explain the types of Inheritance",
+                "Implement Inheritance",
+                "Explore Constructors in Inheritance",
+                "Implement Inheritance using abstract classes",
+                "Explore the Object Class"
+              ]
+            },
+            {
+              "sprintId": "s5",
+              "sprintName": "Implement Polymorphism",
+              "sprintDescription": "Polymorphism is a process in which different ways can be used to perform the same task. In Java, one class can acquire the attributes and properties of another class through Java inheritance. Users use polymorphism to use these inherited properties for a variety of purposes.In this learning sprint, you will learn to use abstract classes and interfaces to implement static and dynamic polymorphism among Java objects.",
+              "concept": "p1-c3-s5",
+              "learningObjectives": [
+                "Explore interfaces",
+                "Implement an interface",
+                "Define polymorphism",
+                "Explain static polymorphism",
+                "Explain dynamic polymorphism"
+              ]
+            },
+            {
+              "sprintId": "s6",
+              "sprintName": "Project",
+              "sprintDescription": "Developing an advanced Student Enrollment System to facilitate course registration in Programming and Math courses. This system, built on object-oriented programming principles, supports course enrollment, detailed viewing of enrolled courses, and exploration of specific course attributes. Through this project, you will delve into creating classes for students and courses, implementing methods for enrolling in courses while preventing duplicates, and leveraging inheritance and polymorphism to manage course-specific details efficiently. This practical project enhances your understanding of Java programming by applying concepts such as arrays, classes, and inheritance, equipping you with the skills to handle real-world software development tasks.",
+              "concept": "p1-c3-s6",
+              "learningObjectives": []
+            },
+            {
+              "sprintId": "s7",
+              "sprintName": "Project",
+              "sprintDescription": "Developing an advanced Student Enrollment System to facilitate course registration in Programming and Math courses. This system, built on object-oriented programming principles, supports course enrollment, detailed viewing of enrolled courses, and exploration of specific course attributes. Through this project, you will delve into creating classes for students and courses, implementing methods for enrolling in courses while preventing duplicates, and leveraging inheritance and polymorphism to manage course-specific details efficiently. This practical project enhances your understanding of Java programming by applying concepts such as arrays, classes, and inheritance, equipping you with the skills to handle real-world software development tasks.",
+              "concept": "p1-c3-s7",
+              "learningObjectives": []
+            },
+            {
+              "sprintId": "s8",
+              "sprintName": "Assessment",
+              "sprintDescription": "Put your Java skills to the test with our Java Basics course end assessment. This comprehensive assessment covers essential topics such as syntax, control flow, loops, and functions. Answer the provided questions to showcase your grasp of fundamental Java concepts.",
+              "concept": "p1-c3-s8",
+              "learningObjectives": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "programId": "p2",
+      "programName": "Data Structures & Algorithms",
+      "courses": [
+        {
+          "courseId": "c3",
+          "courseName": "Basic Data Structures",
+          "concept": "p2-c3",
+          "sprints": [
+            {
+              "sprintId": "s5",
+              "sprintName": "Arrays & Strings",
+              "sprintDescription": "Master fundamental data structures with arrays and strings",
+              "concept": "p2-c3-s5",
+              "learningObjectives": [
+                "Implement array operations",
+                "Solve string manipulation problems",
+                "Analyze time and space complexity"
+              ]
+            },
+            {
+              "sprintId": "s6",
+              "sprintName": "Linked Lists",
+              "sprintDescription": "Understanding and implementing linked list data structures",
+              "concept": "p2-c3-s6",
+              "learningObjectives": [
+                "Implement singly and doubly linked lists",
+                "Solve linked list problems",
+                "Compare with array-based solutions"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
